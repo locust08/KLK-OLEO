@@ -1,0 +1,6 @@
+data/
+src/payload-types.ts
+src/app/(payload)/admin/importMap.js
+package-lock.json
+AGENTS.md
+CLAUDE.md

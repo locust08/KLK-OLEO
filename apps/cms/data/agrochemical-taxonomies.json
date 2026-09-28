@@ -1,0 +1,36 @@
+{
+  "functions": [
+    "Adjuvants",
+    "Emulsifiers",
+    "Dispersants",
+    "Rheology modifiers",
+    "(Co) Solvents",
+    "Wetters, Penetrants and Spreaders",
+    "Active Ingredients",
+    "Defoamer",
+    "Soil Moisture Retainers",
+    "Humectants",
+    "Anti Drift",
+    "Tank Mix Adjuvants"
+  ],
+  "formulationTypes": [
+    "Emulsifiable Concentrates (EC)",
+    "Oil Dispersions (OD)",
+    "Oil in Water Emulsions (EW)",
+    "Suspension Concentrates (SC)",
+    "Soluble Liquids (SL)",
+    "Suspo-Emulsions (SE)",
+    "Micro-Emulsion (ME)",
+    "Water dispersible Granules (WG)",
+    "Wettable Powders (WP)"
+  ],
+  "regulatoryLabels": [
+    "REACH",
+    "OMRI eligible",
+    "Dioxane-free",
+    "Biodegradability",
+    "Microplastic-free",
+    "EPA",
+    "Label-free"
+  ]
+}
