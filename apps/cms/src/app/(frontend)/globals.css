@@ -1937,7 +1937,52 @@ a {
   top: 105px;
   display: grid;
   gap: 24px;
+  max-height: calc(100vh - 125px);
+  padding-right: 5px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   background: transparent;
+}
+.catalog-filter-tools {
+  display: grid;
+  gap: 10px;
+  padding: 22px 24px;
+  border: 1px solid #c7d8ce;
+  background: #fff;
+}
+.catalog-filter-tools label {
+  color: var(--heading);
+  font-size: 15px;
+  font-weight: 600;
+}
+.catalog-filter-tools input {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid #9eb3a7;
+  border-radius: 2px;
+  color: var(--heading);
+  font: inherit;
+}
+.catalog-filter-tools input:focus-visible,
+.catalog-filter-group input:focus-visible,
+.catalog-clear:focus-visible,
+.catalog-pagination button:focus-visible {
+  outline: 3px solid #f5d249;
+  outline-offset: 3px;
+}
+.catalog-clear {
+  justify-self: start;
+  padding: 3px 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--green);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
 }
 .catalog-filter-group {
   min-width: 0;
@@ -1971,11 +2016,39 @@ a {
   line-height: 1.35;
   cursor: pointer;
 }
+.catalog-filter-group label.is-disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
 .catalog-filter-group input {
   width: 19px;
   height: 19px;
   margin: 0;
   accent-color: #fff;
+}
+.catalog-filter-count {
+  white-space: nowrap;
+  color: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.catalog-results__header {
+  display: flex;
+  min-height: 56px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+}
+.catalog-results__header h2 {
+  margin: 0 0 18px;
+  color: var(--green);
+  font-size: 28px;
+}
+.catalog-results__header p {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 14px;
 }
 .catalog-list {
   border-bottom: 2px solid var(--green);
@@ -2058,6 +2131,31 @@ a {
   font-size: 28px;
 }
 .catalog-empty p { margin: 0; }
+.catalog-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  padding-top: 30px;
+  color: var(--secondary);
+  font-size: 14px;
+}
+.catalog-pagination button {
+  min-height: 42px;
+  padding: 8px 17px;
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.catalog-pagination button:disabled {
+  border-color: #a9b6ae;
+  background: #e1e7e3;
+  color: #68736c;
+  cursor: not-allowed;
+}
 .product-detail {
   max-width: 1200px;
   margin: 0 auto;
@@ -2211,8 +2309,14 @@ a {
     gap: 42px;
     padding: 35px 20px 80px;
   }
-  .catalog-filters { position: static; }
+  .catalog-filters {
+    position: static;
+    max-height: none;
+    padding-right: 0;
+    overflow: visible;
+  }
   .catalog-filter-group { padding: 20px; }
+  .catalog-pagination { justify-content: space-between; gap: 10px; }
   .catalog-product-row {
     grid-template-columns: minmax(0, 1fr) 44px;
     min-height: 0;

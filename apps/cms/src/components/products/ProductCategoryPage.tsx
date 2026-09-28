@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ProductHero } from "@/components/products/ProductHero";
@@ -40,7 +41,9 @@ export function ProductCategoryPage({
             ))}
           </nav>
         </section>
-        <ProductListing category={category} groups={groups} products={products} />
+        <Suspense fallback={null}>
+          <ProductListing category={category} groups={groups} products={products} />
+        </Suspense>
       </main>
       <SiteFooter />
     </>

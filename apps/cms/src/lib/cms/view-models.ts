@@ -13,17 +13,26 @@ export type ProductViewModel = {
   type: string;
   summary: string;
   functionalities: string[];
+  functionalitySlugs: string[];
   formulations: string[];
+  formulationSlugs: string[];
   labels: string[];
+  labelSlugs: string[];
   manufacturingSite: string;
   casNumber: string;
   imageUrl?: string;
 };
 
+export type ProductCategoryOption = {
+  id: number | string;
+  slug: string;
+  name: string;
+};
+
 export type ProductCategoryGroup = {
   label: string;
   description: string;
-  options: string[];
+  options: ProductCategoryOption[];
 };
 
 export type ProductCategoryGroups = Record<ProductCategoryKey, ProductCategoryGroup>;
@@ -83,7 +92,7 @@ export function getProductCategoryValues(
   product: ProductViewModel,
   key: ProductCategoryKey,
 ) {
-  if (key === "functionalities") return product.functionalities;
-  if (key === "formulation-type") return product.formulations;
-  return product.labels;
+  if (key === "functionalities") return product.functionalitySlugs;
+  if (key === "formulation-type") return product.formulationSlugs;
+  return product.labelSlugs;
 }
