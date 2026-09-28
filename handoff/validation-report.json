@@ -1,5 +1,6 @@
 {
-  "result": "pass_with_editorial_review",
+  "result": "legacy_snapshot_valid_with_pending_market_scope",
+  "validation_scope": "Structural checks of the captured main-site snapshot only; not a full-scope acceptance or runtime compliance result.",
   "source_capture": "2026-09-25T02:08:37+00:00",
   "counts": {
     "banners": 6,
@@ -20,13 +21,15 @@
   },
   "checks": {
     "exactly_eight_product_families": true,
-    "no_market_source_pages_in_records": true,
-    "no_market_links_in_normalized_markdown": true,
     "all_product_brand_relationships_resolve": true,
     "all_asset_references_resolve": true,
     "all_collection_record_ids_are_unique": true
   },
   "known_gaps": [
+    "Markets are in scope, but the legacy crawl and normalized snapshot do not provide a complete market registry, catalogue import, or audited market links. Recover and map these before full-scope acceptance.",
+    "The legacy crawl script still excludes market paths and product/category sitemaps. Revise its scope before a new market recovery run; do not use --prune-markets for the reconciled scope.",
+    "One shared CMS and mandatory RBAC are required. The initial Payload app implements site hierarchy and site-scoped roles, not all market workflows or section-level grants.",
+    "Cross-market enquiry carts, conditional routing, CRM delivery, gated downloads, localization, and flexible market layouts remain implementation work; see cms/shared-cms-requirements.json.",
     "20 rendered pages failed or returned no usable result; consult migration-decisions.csv.",
     "No published job records were returned by the public careers endpoint; careers.json is intentionally empty.",
     "Banner records are derived from page SEO metadata and require confirmation against the active design/CMS.",

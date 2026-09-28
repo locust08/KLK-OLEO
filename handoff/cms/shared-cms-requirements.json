@@ -1,0 +1,77 @@
+{
+  "authority": "User-approved scope reconciliation; supersedes the earlier Markets exclusion",
+  "status": "target_requirements_not_runtime_compliance",
+  "cms": {
+    "backend_installations": 1,
+    "covers": ["main website", "all market minisites"],
+    "rbac_required": true,
+    "separate_cms_per_market": false,
+    "current_implementation": "apps/cms",
+    "current_status": "Initial Payload foundation, not a complete implementation"
+  },
+  "site_hierarchy": {
+    "collection": "sites",
+    "main_kind": "main",
+    "market_kind": "minisite",
+    "parent_field": "parentSite",
+    "market_parent": "main site",
+    "main_site_membership_grants_market_access": false,
+    "navigation_levels": ["global main-site navigation", "current market navigation"],
+    "market_specific_configuration": ["layout", "catalogue", "filters", "resources", "forms", "navigation"],
+    "isolation": "Site-scoped ownership, queries and independently configured market filters/layouts; not separate CMS installations"
+  },
+  "catalogues": {
+    "main": "Eight Products-tab families and their linked brands",
+    "markets": "Separate site-scoped ingredient/product catalogues in the same CMS",
+    "cross_links": "Explicit reviewed relationships; never infer by matching names",
+    "agrochemical_source": "apps/cms/data/agrochemical-products.json",
+    "agrochemical_source_count": 99,
+    "market_registry_status": "Full list, ownership and destinations require review; do not invent missing sites",
+    "agrochemical_target_path": "/agrochemical",
+    "agrochemical_target_path_status": "Specified by the brief, not implemented by the current root-mounted preview"
+  },
+  "rbac": {
+    "enforcement": "Server-side role, operation and explicit assigned-site checks",
+    "roles": {
+      "super-admin": "All sites, users, role assignments, hierarchy and routing configuration",
+      "site-admin": "Assigned-site content, publication, deletion and leads",
+      "editor": "Assigned-site content and drafts; no publication or deletion",
+      "publisher": "Assigned-site content and publication; no deletion",
+      "lead-manager": "Assigned-site leads and routing-profile visibility",
+      "viewer": "Assigned-site content visibility"
+    },
+    "section_grants": "Add where required by the approved permission matrix; not currently implemented",
+    "public_access": "Published public content and active site metadata only",
+    "protected": ["users", "leads", "internal provenance fields", "routing configuration", "CRM credentials"]
+  },
+  "enquiries": {
+    "multi_product": true,
+    "cross_market": true,
+    "one_customer_submission": true,
+    "ownership": "Validate each product and its market on the server",
+    "routing": "Server-side conditional rules and approved team/CRM mappings",
+    "visibility": "Teams receive only authorized enquiry items and necessary customer data",
+    "current_limitations": ["Single same-site productId", "Routing rules stored but not executed", "Manual-review lead storage only", "CRM mode returns HTTP 503"]
+  },
+  "snapshot": {
+    "scope": "Legacy main-site content capture; not a complete market import",
+    "market_pages_and_links": "Previously omitted or stripped; recover and map before publication",
+    "crawler_scope": "Legacy crawler still excludes market paths and product/category sitemaps. Revise capture scope before recovery; do not run --prune-markets for the reconciled project.",
+    "migration_action": "review_market_scope, not automatic exclusion",
+    "generation": "Maintained separately from the generated snapshot; retain this contract when regenerating"
+  },
+  "pending_implementation": [
+    "Complete market registry and audited content recovery",
+    "Two-level navigation and approved market routing",
+    "Flexible market/brand layouts and configurable multi-select filters",
+    "Cross-market enquiry cart and item-level lead visibility",
+    "Conditional recipient routing and CRM/email delivery",
+    "Gated single-file, multi-file and sales-assisted resource requests",
+    "Localization and remaining main-site content collections"
+  ],
+  "unresolved_decisions": [
+    "Retention or approved replacement of Contact Form 7 and WooCommerce-related requirements",
+    "Detailed per-section access grants and CRM/recipient destination mappings",
+    "Full market destination and redirect registry"
+  ]
+}

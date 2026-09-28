@@ -1,6 +1,8 @@
 {
   "rule": "Null means the source did not provide a reliable value. Never invent missing facts; preserve review flags.",
-  "product_scope": "Products consist only of eight Products-tab families and the brand pages linked by those families. Market pages and market product records are excluded.",
+  "product_scope": "This snapshot covers eight main Products-tab families and their linked brands. Market minisites and their separate catalogues are also in scope; see shared-cms-requirements.json and the agrochemical data in apps/cms.",
+  "schema_status": "Legacy content-migration fields, not a complete runtime schema or proof of feature implementation.",
+  "shared_cms_contract": "shared-cms-requirements.json",
   "collections": {
     "banners": [
       "id",

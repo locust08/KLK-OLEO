@@ -1,4 +1,23 @@
 {
+  "market-minisite": [
+    "global_header",
+    "market_navigation",
+    "market_hero",
+    "market_configured_sections",
+    "market_product_finder_optional",
+    "market_enquiry_cart",
+    "global_footer"
+  ],
+  "market-product-detail": [
+    "global_header",
+    "market_navigation",
+    "product_overview",
+    "technical_fields",
+    "resource_request_cta_optional",
+    "product_enquiry_cta",
+    "market_enquiry_cart",
+    "global_footer"
+  ],
   "home": [
     "global_header",
     "hero_banner",

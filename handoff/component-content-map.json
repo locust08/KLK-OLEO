@@ -1,5 +1,7 @@
 {
   "binding_rule": "Components bind only to the named fields. Do not infer market taxonomy, dates, addresses, or media roles from prose.",
+  "shared_cms_contract": "cms/shared-cms-requirements.json",
+  "market_binding_status": "Pending audited per-market bindings. Use apps/cms schemas for the current agrochemical data; do not infer fields from the main product-family map.",
   "components": {
     "hero_banner": {
       "collection": "banners",

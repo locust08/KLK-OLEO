@@ -1,6 +1,7 @@
 {
   "status": "recommended_default_not_client_approved",
-  "instruction": "Use this hierarchy for the redesign. Preserve a crawled path when no explicit destination is defined in migration-decisions.csv. Do not add a Markets section.",
+  "instruction": "Include Markets as subsidiary minisites managed in one shared CMS with mandatory RBAC. Preserve source paths until reviewed; populate market destinations from the site registry, not guessed slugs.",
+  "shared_cms_contract": "cms/shared-cms-requirements.json",
   "primary_navigation": [
     {
       "label": "Home",
@@ -82,6 +83,15 @@
       ]
     },
     {
+      "label": "Markets",
+      "path": null,
+      "template": "market-minisite",
+      "children": [],
+      "children_source": "Shared CMS sites where kind=minisite and parentSite is the main site",
+      "review_required": true,
+      "review_reason": "Approve the full market registry and destinations. A standalone Markets index URL has not been approved."
+    },
+    {
       "label": "Sustainability",
       "path": "/sustainability-principled-by-integrity/",
       "template": "section-index",
@@ -129,10 +139,6 @@
       "template": "contact"
     }
   ],
-  "excluded_sections": [
-    "Markets",
-    "Life Science market landing",
-    "Oleo Basics market landing",
-    "market product catalogue"
-  ]
+  "excluded_sections": [],
+  "market_content_status": "In scope; legacy main-site snapshot is incomplete. Agrochemical seed data exists separately in apps/cms/data."
 }

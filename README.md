@@ -18,9 +18,9 @@ Research, normalized content, CMS models, and implementation handoff materials f
 
 ## Product scope
 
-The redesign covers the eight families under the main Products navigation. Market pages, market landing pages, and market product records are intentionally excluded from the normalized handoff.
+The main Products catalogue covers eight families. Markets are also in scope: each is a subsidiary minisite managed, together with the main website, by one shared backend CMS with mandatory RBAC. See [`handoff/cms/shared-cms-requirements.json`](handoff/cms/shared-cms-requirements.json).
 
-The agrochemical catalogue is managed separately under its subsidiary site in `apps/cms`. Its spreadsheet products extend the CMS for that minisite and do not alter the main-site handoff's product scope.
+Market catalogues remain separate from the main Products classification within the shared CMS. The initial agrochemical catalogue lives in `apps/cms`; the legacy handoff does not yet contain a complete recovery of every market's content. These requirements describe the target architecture, not completed implementation.
 
 ## Important limitations
 

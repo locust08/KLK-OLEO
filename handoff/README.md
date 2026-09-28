@@ -4,15 +4,17 @@ This folder is the authoritative, context-free content handoff for a separate we
 
 ## Non-negotiable scope
 
-- Products include exactly eight main Products-tab families and 26 brand pages referenced by them.
-- Do not create, import, link, or infer a Markets section, market landing page, or market product catalogue.
+- The main Products catalogue contains eight families and 26 captured brand records. Separate market catalogues do not change that classification.
+- Markets are in scope. Each market is a subsidiary minisite, not a separate CMS installation.
+- One shared backend CMS manages the main website and every market minisite; RBAC is mandatory.
+- Market content is not fully recovered in this legacy snapshot. Use `cms/shared-cms-requirements.json` and the agrochemical seed data; do not fabricate missing market records.
 - Never invent values for `null` fields. Preserve `review_required` and resolve those fields editorially.
 - Source media remain remote. Downloading, licensing, optimization, and final accessibility review are separate launch tasks.
 
 ## Loading order
 
 1. `KLK-OLEO-WEB-DESIGN-HANDOFF.md`
-2. `information-architecture.json`
+2. `cms/shared-cms-requirements.json`, then `information-architecture.json`
 3. `page-templates.json` and `component-content-map.json`
 4. `cms/schemas.json`, followed by the required collection files
 5. `pages/static-pages.json`
@@ -20,7 +22,9 @@ This folder is the authoritative, context-free content handoff for a separate we
 7. `assets/asset-manifest.csv`
 8. `migration-decisions.csv` and `validation-report.json`
 
-## Generated record counts
+## Generated legacy snapshot record counts
+
+These counts are not the complete reconciled website scope. The shared-CMS requirements file is maintained separately from this generated content snapshot and must be retained when regenerating the handoff.
 
 ```json
 {

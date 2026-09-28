@@ -105,7 +105,7 @@ def is_market_url(url: str) -> bool:
 
 
 def clean_markdown(markdown: str, *, product_family: bool = False) -> str:
-    """Remove source UI, market links, duplicated family navigation, and breadcrumbs."""
+    """Clean the legacy main-catalogue snapshot; market links need separate remapping."""
     lines = (markdown or "").splitlines()
     cleaned: list[str] = []
     skip_all_products = False
@@ -269,7 +269,7 @@ def migration_decision(url: str, memberships: list[str], success: bool) -> dict[
     path = path_for(url)
     slug = slug_for(url)
     if is_market_url(url):
-        return {"action": "exclude", "destination": "", "template": "", "reason": "Markets are explicitly out of scope."}
+        return {"action": "review_market_scope", "destination": "", "template": "market-minisite", "reason": "Markets are in scope as subsidiaries in one shared CMS. Recover content and confirm site ownership and destination before importing; do not exclude."}
     if slug in SYSTEM_SLUGS or slug.startswith("product-enquiry") or "staging" in slug:
         return {"action": "system_config", "destination": "", "template": "system", "reason": "Form, commerce, test, or staging utility; do not migrate as editorial content."}
     if path in {"/news-media/", "/brand/", "/timeline-post/", "/report/", "/hub/"} or "post_type=r3d" in url:
@@ -291,7 +291,7 @@ def migration_decision(url: str, memberships: list[str], success: bool) -> dict[
     for sitemap, (collection, template) in collection_by_sitemap.items():
         if sitemap in memberships:
             if sitemap == "brand-sitemap.xml":
-                return {"action": "review_collection_scope", "destination": collection, "template": template, "reason": "Import only when referenced by one of the eight in-scope product families."}
+                return {"action": "review_collection_scope", "destination": collection, "template": template, "reason": "Confirm whether this is a main-family brand or market-owned record, then map its site and collection. Do not discard solely because it is absent from the main eight-family catalogue."}
             return {"action": "cms_import", "destination": collection, "template": template, "reason": f"Repeatable content from {sitemap}."}
     if slug in LOCATION_SLUGS:
         return {"action": "cms_import", "destination": "locations", "template": "location-detail", "reason": "Repeatable facility/location record."}
@@ -318,6 +318,8 @@ def write_csv(path: Path, records: Iterable[dict[str, Any]], fieldnames: list[st
 
 def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
     output.mkdir(parents=True, exist_ok=True)
+    # Preserve the captured main-site records. This is not a complete market import.
+    # The maintained shared-CMS contract takes precedence over this legacy snapshot.
     pages = [p for p in raw.get("rendered_pages", []) if not is_market_url(p.get("url", ""))]
     page_by_url = {normalize_url(p.get("url", "")): p for p in pages}
     sitemap_membership = sitemap_lookup(raw.get("sitemaps", {}))
@@ -507,7 +509,9 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
 
     schemas = {
         "rule": "Null means the source did not provide a reliable value. Never invent missing facts; preserve review flags.",
-        "product_scope": "Products consist only of eight Products-tab families and the brand pages linked by those families. Market pages and market product records are excluded.",
+        "product_scope": "This snapshot covers eight main Products-tab families and their linked brands. Market minisites and their separate catalogues are also in scope; see shared-cms-requirements.json and the agrochemical data in apps/cms.",
+        "schema_status": "Legacy content-migration fields, not a complete runtime schema or proof of feature implementation.",
+        "shared_cms_contract": "shared-cms-requirements.json",
         "collections": {
             "banners": ["id", "placement", "eyebrow", "headline", "body", "cta_label", "cta_url", "desktop_asset_id", "mobile_asset_id", "alt_text", "display_order", "publish_start", "publish_end", "status", "source_url", "review_required"],
             "product_families": ["id", "name", "slug", "summary", "body_markdown", "brand_ids", "asset_ids", "display_order", "destination_path", "status", "source_url"],
@@ -525,7 +529,8 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
 
     site_map = {
         "status": "recommended_default_not_client_approved",
-        "instruction": "Use this hierarchy for the redesign. Preserve a crawled path when no explicit destination is defined in migration-decisions.csv. Do not add a Markets section.",
+        "instruction": "Include Markets as subsidiary minisites managed in one shared CMS with mandatory RBAC. Preserve source paths until reviewed; populate market destinations from the site registry, not guessed slugs.",
+        "shared_cms_contract": "cms/shared-cms-requirements.json",
         "primary_navigation": [
             {"label": "Home", "path": "/", "template": "home"},
             {"label": "Company", "path": "/company/", "template": "section-index", "children": [
@@ -537,6 +542,7 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
             {"label": "Products", "path": "/products/", "template": "product-family-index", "children": [
                 {"label": name, "path": f"/products/{slug}/", "template": "product-family-detail"} for name, slug in PRODUCT_FAMILIES
             ]},
+            {"label": "Markets", "path": None, "template": "market-minisite", "children": [], "children_source": "Shared CMS sites where kind=minisite and parentSite is the main site", "review_required": True, "review_reason": "Approve the full market registry and destinations. A standalone Markets index URL has not been approved."},
             {"label": "Sustainability", "path": "/sustainability-principled-by-integrity/", "template": "section-index", "children": [
                 {"label": "Corporate Responsibility", "path": "/corporate-responsibility/", "template": "standard-page"},
                 {"label": "Environmental Management", "path": "/environmental-management-in-klk-oleo/", "template": "standard-page"},
@@ -548,10 +554,13 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
             {"label": "Careers", "path": "/careers/", "template": "career-index"},
             {"label": "Contact", "path": "/contact-us/", "template": "contact"},
         ],
-        "excluded_sections": ["Markets", "Life Science market landing", "Oleo Basics market landing", "market product catalogue"],
+        "excluded_sections": [],
+        "market_content_status": "In scope; legacy main-site snapshot is incomplete. Agrochemical seed data exists separately in apps/cms/data.",
     }
 
     templates = {
+        "market-minisite": ["global_header", "market_navigation", "market_hero", "market_configured_sections", "market_product_finder_optional", "market_enquiry_cart", "global_footer"],
+        "market-product-detail": ["global_header", "market_navigation", "product_overview", "technical_fields", "resource_request_cta_optional", "product_enquiry_cta", "market_enquiry_cart", "global_footer"],
         "home": ["global_header", "hero_banner", "company_intro", "proof_points", "rise_values", "product_family_grid", "global_presence", "latest_news", "recognition_logos", "sustainability_cta", "global_footer"],
         "standard-page": ["global_header", "page_hero", "breadcrumbs", "rich_text_sections", "downloads_optional", "related_content_optional", "contact_cta", "global_footer"],
         "product-family-index": ["global_header", "page_hero", "intro", "family_grid", "enquiry_cta", "global_footer"],
@@ -571,6 +580,8 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
 
     component_map = {
         "binding_rule": "Components bind only to the named fields. Do not infer market taxonomy, dates, addresses, or media roles from prose.",
+        "shared_cms_contract": "cms/shared-cms-requirements.json",
+        "market_binding_status": "Pending audited per-market bindings. Use apps/cms schemas for the current agrochemical data; do not infer fields from the main product-family map.",
         "components": {
             "hero_banner": {"collection": "banners", "filter": "placement matches current page", "fields": {"eyebrow": "eyebrow", "heading": "headline", "body": "body", "cta.label": "cta_label", "cta.href": "cta_url", "desktop_media": "desktop_asset_id", "mobile_media": "mobile_asset_id", "image_alt": "alt_text"}},
             "product_family_grid": {"collection": "product-families", "sort": "display_order ascending", "fields": {"heading": "name", "body": "summary", "media": "asset_ids[0]", "href": "destination_path"}},
@@ -620,13 +631,12 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
     }
     failed = sum(1 for p in pages if not p.get("success"))
     validation = {
-        "result": "pass_with_editorial_review",
+        "result": "legacy_snapshot_valid_with_pending_market_scope",
+        "validation_scope": "Structural checks of the captured main-site snapshot only; not a full-scope acceptance or runtime compliance result.",
         "source_capture": raw.get("captured_at"),
         "counts": counts,
         "checks": {
             "exactly_eight_product_families": len(product_families) == 8,
-            "no_market_source_pages_in_records": not any(is_market_url(r.get("source_url", "")) for collection in (product_families, brands, news_events, resources, milestones, locations, reports, hubs, static_pages) for r in collection),
-            "no_market_links_in_normalized_markdown": not any(any(path in r.get("body_markdown", "") for path in MARKET_PATHS) for collection in (product_families, brands, news_events, resources, milestones, locations, reports, hubs, static_pages) for r in collection),
             "all_product_brand_relationships_resolve": all(rel["to_id"] in {b["id"] for b in brands} for rel in product_brand_links),
             "all_asset_references_resolve": all(asset_id in {a["asset_id"] for a in assets} for collection in (product_families, brands, news_events, resources, milestones, locations, reports, hubs, static_pages) for record in collection for asset_id in record.get("asset_ids", [])),
             "all_collection_record_ids_are_unique": all(
@@ -635,6 +645,10 @@ def build_handoff(raw: dict[str, Any], output: Path) -> dict[str, Any]:
             ),
         },
         "known_gaps": [
+            "Markets are in scope, but the legacy crawl and normalized snapshot do not provide a complete market registry, catalogue import, or audited market links. Recover and map these before full-scope acceptance.",
+            "The legacy crawl script still excludes market paths and product/category sitemaps. Revise its scope before a new market recovery run; do not use --prune-markets for the reconciled scope.",
+            "One shared CMS and mandatory RBAC are required. The initial Payload app implements site hierarchy and site-scoped roles, not all market workflows or section-level grants.",
+            "Cross-market enquiry carts, conditional routing, CRM delivery, gated downloads, localization, and flexible market layouts remain implementation work; see cms/shared-cms-requirements.json.",
             f"{failed} rendered pages failed or returned no usable result; consult migration-decisions.csv.",
             "No published job records were returned by the public careers endpoint; careers.json is intentionally empty.",
             "Banner records are derived from page SEO metadata and require confirmation against the active design/CMS.",
@@ -650,15 +664,17 @@ This folder is the authoritative, context-free content handoff for a separate we
 
 ## Non-negotiable scope
 
-- Products include exactly eight main Products-tab families and {len(brands)} brand pages referenced by them.
-- Do not create, import, link, or infer a Markets section, market landing page, or market product catalogue.
+- The main Products catalogue contains eight families and {len(brands)} captured brand records. Separate market catalogues do not change that classification.
+- Markets are in scope. Each market is a subsidiary minisite, not a separate CMS installation.
+- One shared backend CMS manages the main website and every market minisite; RBAC is mandatory.
+- Market content is not fully recovered in this legacy snapshot. Use `cms/shared-cms-requirements.json` and the agrochemical seed data; do not fabricate missing market records.
 - Never invent values for `null` fields. Preserve `review_required` and resolve those fields editorially.
 - Source media remain remote. Downloading, licensing, optimization, and final accessibility review are separate launch tasks.
 
 ## Loading order
 
 1. `KLK-OLEO-WEB-DESIGN-HANDOFF.md`
-2. `information-architecture.json`
+2. `cms/shared-cms-requirements.json`, then `information-architecture.json`
 3. `page-templates.json` and `component-content-map.json`
 4. `cms/schemas.json`, followed by the required collection files
 5. `pages/static-pages.json`
@@ -666,7 +682,9 @@ This folder is the authoritative, context-free content handoff for a separate we
 7. `assets/asset-manifest.csv`
 8. `migration-decisions.csv` and `validation-report.json`
 
-## Generated record counts
+## Generated legacy snapshot record counts
+
+These counts are not the complete reconciled website scope. The shared-CMS requirements file is maintained separately from this generated content snapshot and must be retained when regenerating the handoff.
 
 ```json
 {json.dumps(counts, indent=2)}
@@ -682,19 +700,35 @@ Generated from crawl captured at `{raw.get('captured_at')}`.
 
 You are receiving this file without conversational context. Treat it as the controlling specification for mapping the supplied KLK OLEO content into a redesigned website. The original crawl is evidence only. The normalized files in this handoff directory control structure, record identity, relationships, and placement.
 
-When instructions conflict, use this order: this specification → `information-architecture.json` → `component-content-map.json` → collection records → original crawl evidence.
+When instructions conflict, use this order: this specification → `cms/shared-cms-requirements.json` → `information-architecture.json` → `component-content-map.json` → collection records → original crawl evidence. The scope reconciliation below supersedes the earlier Markets exclusion.
 
 ## Required outcome
 
-Build a responsive corporate website that preserves approved KLK OLEO source copy, exposes repeatable material through CMS collections, and keeps page-specific editorial copy in static pages. Do not silently rewrite claims, dates, product names, certifications, addresses, or metrics. Do not fill missing data by inference.
+Build the main corporate website and its market minisites using one shared backend CMS with mandatory RBAC. Preserve approved source copy and manage repeatable material through site-scoped collections. Static-page records are a content classification, not a requirement for a separate CMS or hardcoded editorial copy. Do not silently rewrite claims, dates, product names, certifications, addresses, or metrics. Do not fill missing data by inference.
 
 ## Product boundary
 
-Products are limited to these eight main Products-tab families:
+The main Products catalogue contains these eight families; market catalogues are separately scoped within the same CMS:
 
 {chr(10).join(f'{index}. {name} → `/products/{slug}/`' for index, (name, slug) in enumerate(PRODUCT_FAMILIES, 1))}
 
-The normalized handoff contains {len(brands)} brand records linked from those family pages. Markets, Life Science/Oleo Basics market landings, market taxonomies, and market product records are excluded. The redesigned navigation must not contain a Markets item. Embedded market links were removed from normalized Markdown.
+The legacy normalized snapshot contains {len(brands)} brand records linked from those family pages. Markets, market landing pages, taxonomies, and market product records are now in scope as subsidiary minisites. Include Markets discovery in the global navigation. The old snapshot omitted market pages and stripped embedded market links: this is a recovery gap, not an instruction to remove Markets. Restore only reviewed links to mapped destinations.
+
+## Reconciled shared-CMS architecture
+
+Approved clarification: there is exactly one backend CMS for the main website and every market minisite, and RBAC is mandatory. `cms/shared-cms-requirements.json` is the machine-readable architecture contract. A minisite is a distinct website section with its own content and configuration, not a separate CMS installation.
+
+- Model each market as a `sites` record whose parent is the main site. Give it its own navigation, layout, catalogue, filter configuration, resources, and forms.
+- Display global navigation plus market-specific second-tier navigation. Resolve routes through the approved site registry. The agrochemical brief specifies `/agrochemical`; the current preview at `/` does not implement that mounting.
+- Keep main product families/brands distinct from market ingredients/products. Cross-link only through reviewed relationships, never name matching or inferred taxonomy.
+- Isolate each market's filtering and configuration while retaining the shared CMS. Test that changes to one market do not alter another; separate CMS installations are not the requested isolation mechanism.
+- Enforce server-side access by role, operation, and explicit assigned sites. Main-site access does not implicitly grant subsidiary access. Add section-level grants where the approved permission matrix requires them; these are not implemented by the initial app.
+- Preserve the six current roles: super admin, site admin, editor, publisher, lead manager, and viewer. Editors save drafts; publication requires a publication role. Only super admins manage role assignments and routing configuration.
+- Support one customer enquiry containing products from multiple markets. Resolve product ownership and routing on the server; sales teams see only authorized market items and lead data. This workflow must not bypass ordinary content isolation.
+
+The existing Payload app in `../apps/cms` provides initial site hierarchy, site-scoped roles, and 99 agrochemical product records. Full market content, configurable layouts/filters, cross-market enquiries, conditional routing, CRM delivery, gated downloads, localization, and remaining main-site collections are pending. Stored routing rules are not executed, and CRM mode returns a service-unavailable response. Do not present this architecture contract as completed functionality.
+
+The source inventory was pruned under the old scope. The legacy crawl script still excludes market paths and product/category sitemaps: revise that capture scope before recovering market content and do not run `--prune-markets` for this reconciled project. This handoff update does not perform a new crawl or restore missing source records.
 
 ## Information architecture
 
@@ -702,7 +736,7 @@ The definitive hierarchy is in `information-architecture.json`. Use its `primary
 
 ## Template and component rules
 
-- `page-templates.json` defines the ordered component slots for each template.
+- `page-templates.json` defines default component slots, not a compulsory identical design for every brand or market. Market-specific layouts may vary through approved CMS configuration.
 - `component-content-map.json` defines exact CMS field-to-component bindings.
 - A component may bind only to named fields. Do not recover missing values from unrelated prose.
 - Optional components should be omitted when their bound content is empty.
@@ -711,7 +745,7 @@ The definitive hierarchy is in `information-architecture.json`. Use its `primary
 
 ## CMS collections
 
-The canonical schemas are in `cms/schemas.json`. The main collections are banners, product families, brands, news/events, and careers. Additional structured collections cover resources, milestones, locations, reports, knowledge hubs, and accreditations.
+`cms/schemas.json` describes legacy migration-record fields; `cms/shared-cms-requirements.json` defines the shared-CMS target. Neither is proof that every collection exists in Payload. The main collections are banners, product families, brands, news/events, and careers. Additional structured collections cover resources, milestones, locations, reports, knowledge hubs, and accreditations. Extend the shared CMS with site ownership and market catalogue/configuration models while preserving stable source IDs.
 
 Important states:
 
@@ -738,7 +772,8 @@ Important states:
 - `keep_page`: create a one-off editorial page.
 - `generate`: generate the archive from CMS metadata.
 - `system_config`: implement as form/commerce/system behavior, not editorial content.
-- `review_collection_scope`: import only if related to an in-scope product family.
+- `review_collection_scope`: verify main-family or market ownership before importing; records outside the main eight-family catalogue may belong to a market minisite.
+- `review_market_scope`: recover and map the market to a subsidiary site in the shared CMS; approve its destination before importing.
 - `manual_recovery`: recover the failed page before deciding.
 - `exclude`: omit entirely.
 
@@ -751,7 +786,7 @@ The source supports a global industrial/technical brand presentation: clear corp
 ## Quality gates before implementation is considered complete
 
 1. All eight product families render, and every linked brand resolves.
-2. No Markets navigation, route, imported record, or market-page CTA exists.
+2. Markets discovery, approved market routes, subsidiary relationships, and both navigation levels exist without creating separate backend CMS installations.
 3. Every rendered CMS card/detail uses stable IDs and declared relationships.
 4. No `null` value is replaced with invented copy or data.
 5. Every image has reviewed alt text or is explicitly decorative.
@@ -760,7 +795,10 @@ The source supports a global industrial/technical brand presentation: clear corp
 8. Location addresses, coordinates, capabilities, and certifications are editorially verified.
 9. System pages and forms are implemented as behavior, not copied as content pages.
 10. Redirects are created for any source path changed by the new IA.
-11. `validation-report.json` passes, and every listed known gap has an owner or accepted exception.
+11. The structural checks in `validation-report.json` pass, and every known gap has an owner or accepted exception. Structural validation alone does not establish full-scope readiness.
+12. RBAC tests prove assigned-site isolation, blocked privilege escalation, and draft/publication boundaries; any required section grants are tested explicitly.
+13. Market configurations and filters are isolated, and one cross-market enquiry is routed without exposing unauthorized lead items or CRM credentials.
+14. Required CRM and gated-download workflows are verified end to end, not inferred from form/resource records.
 
 ## Source provenance
 
