@@ -1,0 +1,80 @@
+.page { overflow: hidden; background: #fff; }
+.hero { position: relative; min-height: 556px; display: flex; align-items: center; padding: 0 47px; overflow: hidden; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.heroOverlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 89 47 / 76%) 0%, rgb(0 97 49 / 42%) 53%, rgb(0 77 36 / 5%) 100%); }
+.hero h1 { position: relative; z-index: 1; margin: 0; color: #fff; font-size: clamp(42px, 3.1vw, 60px); font-weight: 600; line-height: 1.1; transform: translateY(-30px); }
+.agriculture { padding: 112px 5.1vw 96px; }
+.agricultureInner { display: grid; grid-template-columns: minmax(390px, 600px) minmax(0, 1fr); align-items: center; gap: clamp(70px, 5.8vw, 112px); max-width: 1770px; margin: 0 auto; }
+.agricultureImage { position: relative; width: 100%; aspect-ratio: .915; overflow: hidden; }
+.agricultureImage img { object-fit: cover; object-position: center; }
+.agricultureCopy { padding-bottom: 5px; }
+.kicker, .brandLabel, .researchLabel { margin: 0 0 24px; color: #171717; font-size: clamp(21px, 1.55vw, 30px); font-weight: 600; line-height: 1.2; }
+.agricultureCopy .kicker { color: var(--green); font-size: clamp(30px, 2.35vw, 45px); }
+.agricultureCopy h2, .brandStory h2, .researchCopy h2 { margin: 0; color: var(--green); font-size: clamp(46px, 3.75vw, 72px); font-weight: 600; letter-spacing: -.02em; line-height: 1.08; }
+.agricultureCopy h2 { margin-bottom: 30px; color: #1a1a1a; }
+.agricultureCopy > p:not(.kicker) { max-width: 1080px; margin: 0 0 20px; color: #2d2d2d; font-size: clamp(16px, 1.08vw, 21px); line-height: 1.43; }
+.brandStory { min-height: 772px; display: flex; align-items: center; padding: 74px 5vw 66px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.brandStoryInner { width: min(61%, 1165px); }
+.brandStory h2 { margin-bottom: 26px; }
+.brandStoryInner > p:not(.brandLabel) { margin: 0 0 27px; color: #151515; font-size: clamp(17px, 1.23vw, 24px); font-weight: 500; line-height: 1.27; }
+.brandLead { color: var(--green); }
+.research { display: grid; grid-template-columns: 49.5% 50.5%; min-height: clamp(850px, 51vw, 1460px); background: #e9f7ff; }
+.researchGallery { --research-image-width: min(66cqi, 770px); --research-image-height: calc(var(--research-image-width) / 1.44); --research-first-top: clamp(88px, 7.5cqi, 112px); --research-step: clamp(calc(var(--research-image-height) * .74), calc(27.2cqi + 47px), calc(var(--research-image-height) * .805)); position: relative; min-height: clamp(850px, 51vw, 1460px); overflow: hidden; container-type: inline-size; }
+.researchImage { position: absolute; overflow: hidden; }
+.researchImage img { object-fit: cover; }
+.researchImageOne { top: var(--research-first-top); left: max(4%, calc((100% - 830px) / 2)); width: var(--research-image-width); aspect-ratio: 1.44; }
+.researchImageOne img { object-position: center 48%; }
+.researchImageTwo { z-index: 2; top: calc(var(--research-first-top) + var(--research-step)); right: 2%; width: var(--research-image-width); aspect-ratio: 1.44; }
+.researchImageThree { top: calc(var(--research-first-top) + (var(--research-step) * 2)); left: max(4%, calc((100% - 830px) / 2)); width: var(--research-image-width); aspect-ratio: 1.44; }
+.researchCopy { align-self: start; padding: clamp(240px, calc(22.1vw - 76px), 558px) 4.8vw 55px 2.7vw; }
+.researchLabel { margin-bottom: 30px; }
+.researchCopy h2 { margin-bottom: 26px; }
+.researchPoint { margin-top: 22px; }
+.researchPoint h3 { margin: 0 0 4px; color: #2c2c2c; font-size: clamp(17px, 1.2vw, 23px); font-weight: 700; line-height: 1.25; }
+.researchPoint p { margin: 0; color: #373737; font-size: clamp(16px, 1.15vw, 22px); line-height: 1.42; }
+.globalPresence { padding: 74px 3.5vw 104px; background: #fff; }
+.globalPresence > h2 { width: 100%; margin: 0 0 40px; color: var(--green); font-family: var(--font-poppins), Arial, sans-serif; font-size: clamp(30px, 2.5vw, 46px); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; text-align: center; }
+.globalPresenceViewport { max-width: 1780px; margin: 0 auto; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-color: var(--green) #e8eee9; scrollbar-width: thin; }
+.globalPresenceMap { width: 100%; height: auto; }
+.globalPresenceViewport:focus-visible { outline: 3px solid var(--leaf); outline-offset: 8px; }
+
+@media (max-width: 1199px) {
+  .hero { min-height: 470px; }
+  .agriculture { padding: 80px 35px; }
+  .agricultureInner { grid-template-columns: minmax(300px, 42%) 1fr; gap: 50px; }
+  .brandStory { min-height: 650px; background-position: 58% center; }
+  .brandStoryInner { width: 66%; }
+  .research, .researchGallery { min-height: 850px; }
+  .researchCopy { padding-top: 240px; }
+}
+
+@media (max-width: 767px) {
+  .hero { min-height: 300px; padding: 0 20px; background-position: 54% center; }
+  .heroOverlay { background: linear-gradient(90deg, rgb(0 89 47 / 74%), rgb(0 89 47 / 16%)); }
+  .hero h1 { font-size: 36px; transform: translateY(-12px); }
+  .agriculture { padding: 60px 15px 70px; }
+  .agricultureInner { display: flex; flex-direction: column; align-items: stretch; gap: 44px; }
+  .agricultureImage { aspect-ratio: .8; }
+  .agricultureCopy .kicker { margin-bottom: 14px; font-size: 25px; }
+  .agricultureCopy h2, .brandStory h2, .researchCopy h2 { font-size: 36px; }
+  .agricultureCopy h2 { margin-bottom: 24px; }
+  .agricultureCopy > p:not(.kicker) { margin-bottom: 18px; font-size: 16px; line-height: 1.5; }
+  .brandStory { position: relative; min-height: 0; padding: 65px 20px; background-attachment: scroll; background-position: 68% center; }
+  .brandStory::before { position: absolute; inset: 0; background: rgb(255 255 255 / 30%); content: ""; }
+  .brandStoryInner { position: relative; width: 100%; }
+  .brandLabel, .researchLabel { margin-bottom: 18px; font-size: 20px; }
+  .brandStory h2 { margin-bottom: 24px; }
+  .brandStoryInner > p:not(.brandLabel) { margin-bottom: 22px; font-size: 16px; line-height: 1.45; }
+  .research { display: flex; min-height: 0; flex-direction: column; }
+  .researchGallery { --research-image-width: 70cqi; --research-image-height: calc(var(--research-image-width) / 1.44); --research-first-top: 30px; --research-step: 120px; min-height: 470px; }
+  .researchImageOne, .researchImageThree { left: 0; width: var(--research-image-width); }
+  .researchImageTwo { right: 0; width: 76cqi; }
+  .researchCopy { padding: 52px 20px 70px; }
+  .researchCopy h2 { margin-bottom: 28px; }
+  .researchPoint { margin-top: 24px; }
+  .researchPoint h3 { font-size: 18px; }
+  .researchPoint p { font-size: 16px; }
+  .globalPresence { padding: 56px 0 78px; }
+  .globalPresence > h2 { margin: 0 20px 30px; font-size: 28px; }
+  .globalPresenceViewport { padding: 0 20px 14px; }
+  .globalPresenceMap { width: 900px; max-width: none; }
+}

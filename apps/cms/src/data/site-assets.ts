@@ -1,0 +1,23 @@
+/** Local production assets downloaded from the approved WordPress reference. */
+export const siteAssets = {
+  logo: "/images/common/klk-oleo-life-science.webp",
+  footerLogo: "/images/common/klk-oleo-logo-white.webp",
+  homeHero: "/images/common/contact-us-agrochem.webp",
+  aboutHero: "/images/about/about-hero-laboratory.png",
+  productsHero: "/images/products/products-hero-leaf.png",
+  resourcesHero: "/images/resources/resources-hero-globe.png",
+  homeIntroduction: "/images/home/aidigro-introduction.webp",
+  whatWeDoGlobal: "/images/home/global-reach.png",
+  whatWeDoTailored: "/images/home/tailored-agriculture.png",
+  whatWeDoPortfolio: "/images/home/comprehensive-portfolio.png",
+  whatWeDoSustainable: "/images/home/sustainable-formulation.png",
+  latestInnovations: "/images/home/latest-innovations.png",
+  agricultureSolutions: "/images/about/agriculture-solutions.png",
+  brandStoryBackground: "/images/about/brand-story-background.png",
+  innovationRDCentre: "/images/about/innovation-rnd-centre-web.jpg",
+  innovationFieldDrones: "/images/about/innovation-field-drones-web.jpg",
+  innovationPlantResearch: "/images/about/innovation-plant-research-web.jpg",
+  globalPresence: "/images/about/klk-oleo-global-presence.png",
+  sustainableFormulation: "/images/about/sustainable-formulation-solutions.webp",
+  resourcePlaceholder: "/images/resources/resource-placeholder.png",
+} as const;
