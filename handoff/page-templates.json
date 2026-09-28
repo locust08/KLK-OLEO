@@ -1,0 +1,139 @@
+{
+  "home": [
+    "global_header",
+    "hero_banner",
+    "company_intro",
+    "proof_points",
+    "rise_values",
+    "product_family_grid",
+    "global_presence",
+    "latest_news",
+    "recognition_logos",
+    "sustainability_cta",
+    "global_footer"
+  ],
+  "standard-page": [
+    "global_header",
+    "page_hero",
+    "breadcrumbs",
+    "rich_text_sections",
+    "downloads_optional",
+    "related_content_optional",
+    "contact_cta",
+    "global_footer"
+  ],
+  "product-family-index": [
+    "global_header",
+    "page_hero",
+    "intro",
+    "family_grid",
+    "enquiry_cta",
+    "global_footer"
+  ],
+  "product-family-detail": [
+    "global_header",
+    "page_hero",
+    "breadcrumbs",
+    "family_intro",
+    "brand_card_grid",
+    "related_documents",
+    "product_enquiry_cta",
+    "global_footer"
+  ],
+  "brand-detail": [
+    "global_header",
+    "page_hero",
+    "breadcrumbs",
+    "brand_overview",
+    "benefits_or_applications",
+    "technical_documents",
+    "related_product_family",
+    "enquiry_cta",
+    "global_footer"
+  ],
+  "news-event-index": [
+    "global_header",
+    "page_hero",
+    "filters",
+    "featured_story",
+    "card_grid",
+    "pagination",
+    "global_footer"
+  ],
+  "news-event-detail": [
+    "global_header",
+    "article_hero",
+    "date_and_type",
+    "article_body",
+    "gallery_optional",
+    "event_details_optional",
+    "related_stories",
+    "global_footer"
+  ],
+  "career-index": [
+    "global_header",
+    "page_hero",
+    "employer_value_proposition",
+    "life_at_klk",
+    "job_filters",
+    "job_list",
+    "application_cta",
+    "global_footer"
+  ],
+  "location-index": [
+    "global_header",
+    "page_hero",
+    "map_or_region_filter",
+    "location_cards",
+    "contact_cta",
+    "global_footer"
+  ],
+  "location-detail": [
+    "global_header",
+    "page_hero",
+    "address_and_contact",
+    "capabilities",
+    "certifications",
+    "map",
+    "enquiry_cta",
+    "global_footer"
+  ],
+  "resource-index": [
+    "global_header",
+    "page_hero",
+    "search_and_filters",
+    "resource_list",
+    "pagination",
+    "global_footer"
+  ],
+  "resource-detail": [
+    "global_header",
+    "page_hero",
+    "resource_summary",
+    "download_or_body",
+    "related_resources",
+    "global_footer"
+  ],
+  "timeline": [
+    "global_header",
+    "page_hero",
+    "intro",
+    "ordered_milestones",
+    "global_footer"
+  ],
+  "archive-index": [
+    "global_header",
+    "page_hero",
+    "generated_results",
+    "pagination",
+    "global_footer"
+  ],
+  "contact": [
+    "global_header",
+    "page_hero",
+    "contact_options",
+    "enquiry_form",
+    "location_links",
+    "global_footer"
+  ]
+}

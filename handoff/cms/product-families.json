@@ -1,0 +1,249 @@
+[
+  {
+    "id": "product-family:amides",
+    "slug": "amides",
+    "title": "Amides",
+    "summary": "KLK OLEO offers sustainable amides for personal care, home care, and industrial use. A trusted amides supplier in Malaysia.",
+    "body_markdown": "Products\n# Amides\n  * ![KLK OLEO PALMOCOL Alkanolamides](https://www.klkoleo.com/wp-content/uploads/2020/04/PALMOCOL-Alkanolamides-1-300x200.jpg)\n#### PALMOCOL Alkanolamides\n[Know More](https://www.klkoleo.com/brand/palmocol-alkanolamides/)\n  * ![Fatty acid amides includes oleyl palmitatmide, EBS wax that is used as anti block agents in plastic coatings, inks and rubber.](https://www.klkoleo.com/wp-content/uploads/2021/11/PALMOWAX-Fatty-Acid-Bis-Amides-300x200.jpg)\n#### PALMOWAX Fatty Acid Bis-Amides\n[Know More](https://www.klkoleo.com/brand/palmowax-fatty-acid-bis-amides/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-1701",
+      "asset:wp-5153"
+    ],
+    "seo_title": "Amides | KLK OLEO",
+    "seo_description": "KLK OLEO offers sustainable amides for personal care, home care, and industrial use. A trusted amides supplier in Malaysia.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/amides/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Amides",
+    "display_order": 1,
+    "brand_ids": [
+      "brand:palmocol-alkanolamides",
+      "brand:palmowax-fatty-acid-bis-amides"
+    ],
+    "destination_path": "/products/amides/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:anionic-surfactants",
+    "slug": "anionic-surfactants",
+    "title": "Anionic Surfactants | Anionic Surfactant Supplier | KLK OLEO Malaysia",
+    "summary": "KLK OLEO offers high-performance anionic surfactants for personal care, home care, and industrial use. A trusted anionic surfactant supplier in Malaysia, delivering superior cleansing and foaming agents.",
+    "body_markdown": "Products\n# Anionic Surfactants\n  * ![this is an image of a mother and a baby showering using PALMOSALT soap noodle.](https://www.klkoleo.com/wp-content/uploads/2020/04/PALMOSALT20Soap20Noodles20base-300x205.jpg)\n#### PALMOSALT Soap Noodles\n[Know More](https://www.klkoleo.com/brand/palmosalt-soap-noodles/)\n  * ![this is an image of a girl helping out with the laundry, and the active cleaning ingredients is Methyl Ester Sulphonate](https://www.klkoleo.com/wp-content/uploads/2020/04/Sulphonated20Methyl20Esters-300x205.jpg)\n#### PALMFONATE Methyl Ester Sulphonates\n[Know More](https://www.klkoleo.com/brand/palmfonate-methyl-ester-sulphonates/)\n  * ![this is an image of a girl washing her hands using a hand soap that uses sympare MES that is a sustainable ingredient for personal care.](https://www.klkoleo.com/wp-content/uploads/2021/11/SYMAPRE-MES-01-300x201.jpg)\n#### Sympare Methyl Ester Sulphonates\n[Know More](https://www.klkoleo.com/brand/sympare-methyl-ester-sulphonates/)\n  * ![fatty alcohol ether sulfate is a primary surfactant in detergent used for everyday laundry at home](https://www.klkoleo.com/wp-content/uploads/2020/04/tensagex_home20care-300x205.jpg)\n#### TENSAGEX Alcohol Ether Sulphates\n[Know More](https://www.klkoleo.com/brand/tensagex-alcohol-ether-sulphates/)\n  * ![Surfactant suppliers](https://www.klkoleo.com/wp-content/uploads/2020/04/tensary2004-300x205.jpg)\n#### TENSARYL Linear Alkylbenzene Sulphonates & Sulphonic Acids\n[Know More](https://www.klkoleo.com/brand/tensaryl-linear-alkylbenzene-sulphonates-sulphonic-acids/)\n  * ![TENSOMILD Sulphosuccinates is an ingredient that has high foaming properties that is used as mild surfactants in shower gel](https://www.klkoleo.com/wp-content/uploads/2020/04/tensomild2002_personal20care-300x205.jpg)\n#### TENSOMILD Sulphosuccinates\n[Know More](https://www.klkoleo.com/brand/tensomild-sulphosuccinates/)\n  * ![TENSOPOL Alcohol Sulphates has a cleansing, and foaming properties commonly used in personal care such as face wash](https://www.klkoleo.com/wp-content/uploads/2020/04/tensopol_personal20care-edit-300x205.jpg)\n#### TENSOPOL Alcohol Sulphates\n[Know More](https://www.klkoleo.com/brand/tensopol-alcohol-sulphates/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-417",
+      "asset:wp-420",
+      "asset:wp-422",
+      "asset:wp-424",
+      "asset:wp-429",
+      "asset:wp-432",
+      "asset:wp-5158"
+    ],
+    "seo_title": "Anionic Surfactants | Anionic Surfactant Supplier | KLK OLEO Malaysia",
+    "seo_description": "KLK OLEO offers high-performance anionic surfactants for personal care, home care, and industrial use. A trusted anionic surfactant supplier in Malaysia, delivering superior cleansing and foaming agents.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/anionic-surfactants/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Anionic Surfactants",
+    "display_order": 2,
+    "brand_ids": [
+      "brand:palmfonate-methyl-ester-sulphonates",
+      "brand:palmosalt-soap-noodles",
+      "brand:sympare-methyl-ester-sulphonates",
+      "brand:tensagex-alcohol-ether-sulphates",
+      "brand:tensaryl-linear-alkylbenzene-sulphonates-sulphonic-acids",
+      "brand:tensomild-sulphosuccinates",
+      "brand:tensopol-alcohol-sulphates"
+    ],
+    "destination_path": "/products/anionic-surfactants/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:esters",
+    "slug": "esters",
+    "title": "Esters",
+    "summary": "KLK OLEO offers high-performance esters for personal care, and industrial use. A trusted and sustainable ester supplier in Malaysia.",
+    "body_markdown": "Products\n# Esters\n  * ![EDENOR Triacetin](https://www.klkoleo.com/wp-content/uploads/2024/07/EDENOR-Triacetin-300x200.jpg)\n#### EDENOR Triacetin\n[Know More](https://www.klkoleo.com/brand/edenor-triacetin/)\n  * ![Sorbitan esters is a renewable raw materials used in natural personal care application.](https://www.klkoleo.com/wp-content/uploads/2020/04/3-Artboard-3-300x200.jpg)\n#### KOSTERAN Sorbitan Esters\n[Know More](https://www.klkoleo.com/brand/kosteran-sorbitan-esters/)\n  * ![Cetyl ethylhexanoate is used in beauty and personal care that the women is looking at](https://www.klkoleo.com/wp-content/uploads/2021/11/PALMESTER-Fatty-Acid-Esters-300x199.jpg)\n#### PALMESTER Fatty Acid Esters\n[Know More](https://www.klkoleo.com/brand/palmester-fatty-acid-esters/)\n  * ![klkoleo is one of the trusted biodiesel suppliers which is an alternative fuel that is similar to the properties of petroleum diesel](https://www.klkoleo.com/wp-content/uploads/2020/04/PALMERGY-1-300x200.jpg)\n#### PALMERGY Biodiesels\n[Know More](https://www.klkoleo.com/brand/palmergy-biodiesels/)\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/PALMERE20Methyl20Esters_0-300x205.jpg)\n#### PALMERE Methyl Esters\n[Know More](https://www.klkoleo.com/brand/palmere-methyl-esters/)\n  * ![PLANTERA Esters](https://www.klkoleo.com/wp-content/uploads/2026/05/PLANTERA-Esters-300x200.jpg)\n#### PLANTERA Esters\n[Know More](https://www.klkoleo.com/brand/plantera-esters/)\n  * ![TEMEST Ester 3](https://www.klkoleo.com/wp-content/uploads/2020/03/TEMEST-Ester-3-300x200.png)\n#### TEMEST Esters\n[Know More](https://www.klkoleo.com/brand/temest-esters/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-13118",
+      "asset:wp-13347",
+      "asset:wp-14477",
+      "asset:wp-1594",
+      "asset:wp-444",
+      "asset:wp-5159",
+      "asset:wp-5162"
+    ],
+    "seo_title": "Esters | KLK OLEO",
+    "seo_description": "KLK OLEO offers high-performance esters for personal care, and industrial use. A trusted and sustainable ester supplier in Malaysia.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/esters/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Esters",
+    "display_order": 3,
+    "brand_ids": [
+      "brand:edenor-triacetin",
+      "brand:kosteran-sorbitan-esters",
+      "brand:palmere-methyl-esters",
+      "brand:palmergy-biodiesels",
+      "brand:palmester-fatty-acid-esters",
+      "brand:plantera-esters",
+      "brand:temest-esters"
+    ],
+    "destination_path": "/products/esters/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:fatty-acids",
+    "slug": "fatty-acids",
+    "title": "Fatty Acids",
+    "summary": "KLK OLEO's fatty acids such as dimer acids, monomer acids, isostearic acids & more can be used as-is, or as a derivative.",
+    "body_markdown": "Products\n# Fatty Acids\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/PALMERA-Fatty-Acids01-300x205.jpg)\n#### PALMERA Fatty Acids\n[Know More](https://www.klkoleo.com/brand/palmera-fatty-acids/)\n  * ![PLANTERA Fatty Acids](https://www.klkoleo.com/wp-content/uploads/2026/03/PLANTERA-Fatty-Acids-3-300x200.png)\n#### PLANTERA Fatty Acids\n[Know More](https://www.klkoleo.com/brand/plantera-fatty-acids/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-14288",
+      "asset:wp-1554"
+    ],
+    "seo_title": "Fatty Acids | KLK OLEO",
+    "seo_description": "KLK OLEO's fatty acids such as dimer acids, monomer acids, isostearic acids & more can be used as-is, or as a derivative.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/fatty-acids/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Fatty Acids",
+    "display_order": 4,
+    "brand_ids": [
+      "brand:palmera-fatty-acids",
+      "brand:plantera-fatty-acids"
+    ],
+    "destination_path": "/products/fatty-acids/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:fatty-alcohols",
+    "slug": "fatty-alcohols",
+    "title": "Fatty Alcohols",
+    "summary": "KLK OLEO's high quality fatty alcohols are derived from vegetable oils. These fatty alcohols play a vital role in the production of household detergents.",
+    "body_markdown": "Products\n# Fatty Alcohols\n  * ![fatty alcohols is a raw materials used for surface cleaners, disinfectants and more](https://www.klkoleo.com/wp-content/uploads/2020/04/Fatty20Alcohols-300x205.jpg)\n#### PALMEROL Fatty Alcohols\n[Know More](https://www.klkoleo.com/brand/palmerol-fatty-alcohols/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-461"
+    ],
+    "seo_title": "Fatty Alcohols | KLK OLEO",
+    "seo_description": "KLK OLEO's high quality fatty alcohols are derived from vegetable oils. These fatty alcohols play a vital role in the production of household detergents.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/fatty-alcohols/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Fatty Alcohols",
+    "display_order": 5,
+    "brand_ids": [
+      "brand:palmerol-fatty-alcohols"
+    ],
+    "destination_path": "/products/fatty-alcohols/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:glycerine",
+    "slug": "glycerine",
+    "title": "Glycerine",
+    "summary": "KLK OLEO's glycerin conforms to USP, EP and BP standards; making it suitable for pharmaceutical and personal care applications.",
+    "body_markdown": "Products\n# Glycerine\n  * ![this is an image of a girl that is using eye drops, which has pharmaceutical-grade glycerine that acts as a non toxic and odourless lubricant.](https://www.klkoleo.com/wp-content/uploads/2019/04/EDENOR-Glycerine-Pharma-Grade-300x200.jpg)\n#### ENHEX Glycerin Pharma Grade\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/Refined20Glycerine-300x205.jpg)\n#### PALMERA Glycerine\n[Know More](https://www.klkoleo.com/brand/palmera-glycerine/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-465",
+      "asset:wp-5165"
+    ],
+    "seo_title": "Glycerine | KLK OLEO",
+    "seo_description": "KLK OLEO's glycerin conforms to USP, EP and BP standards; making it suitable for pharmaceutical and personal care applications.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/glycerine/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Glycerine",
+    "display_order": 6,
+    "brand_ids": [
+      "brand:palmera-glycerine"
+    ],
+    "destination_path": "/products/glycerine/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:nonionic-surfactants",
+    "slug": "nonionic-surfactants",
+    "title": "Nonionic Surfactants",
+    "summary": "KLK OLEO offers sustainable and high-performance nonanionic surfactants for personal care, home care, pharmaceutical and industrial use.",
+    "body_markdown": "Products\n# Nonionic Surfactants\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/greenbentin-300x205.jpg)\n#### GREENBENTIN Ethoxylates & Alkoxylates\n[Know More](https://www.klkoleo.com/brand/greenbentin-ethoxylates-alkoxylates/)\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/Hedilub-300x205.jpg)\n#### HEDILUB Alkoxylates & Esters\n[Know More](https://www.klkoleo.com/brand/hedilub-alkoxylates-esters/)\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/hedipin-300x205.jpg)\n#### HEDIPIN Alkoxylates, Triglyceride Ethoxylates & Esters\n[Know More](https://www.klkoleo.com/brand/hedipin-alkoxylates-triglyceride-ethoxylates-esters/)\n  * ![HEDJUVAN Polysorbates, Sorbitan Esters and Polyethylene Glycols](https://www.klkoleo.com/wp-content/uploads/2024/03/HEDJUVAN-Polysorbates-Sorbitan-Esters-and-Polyethylene-Glycols.png)\n#### HEDJUVAN Polysorbates, Sorbitan Esters & Polyethylene Glycols\n  * ![](https://www.klkoleo.com/wp-content/uploads/2021/11/IMBENTIN-Ethoxylates-Alkoxylates-300x200.jpg)\n#### IMBENTIN Ethoxylates & Alkoxylates\n[Know More](https://www.klkoleo.com/brand/imbentin-ethoxylates-alkoxylates/)\n  * ![](https://www.klkoleo.com/wp-content/uploads/2021/11/KOTILEN-Sorbitan-Ester-Ethoxylates-Polysorbates-300x200.jpg)\n#### KOTILEN Sorbitan Ester Ethoxylates (Polysorbates)\n[Know More](https://www.klkoleo.com/brand/kotilen-sorbitan-ester-ethoxylates-polysorbates/)\n  * ![KLK OLEO SYMPATENS Fatty Alcohol](https://www.klkoleo.com/wp-content/uploads/2021/11/SYMPATENS-Fatty-Alcohol-300x200.jpg)\n#### SYMPATENS Fatty Alcohol & Fatty Acid Ethoxylates, Triglyceride Ethoxylates\n[Know More](https://www.klkoleo.com/brand/sympatens-fatty-alcohol-fatty-acid-ethoxylates-triglyceride-ethoxylates/)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-1598",
+      "asset:wp-1602",
+      "asset:wp-471",
+      "asset:wp-473",
+      "asset:wp-475",
+      "asset:wp-5168",
+      "asset:wp-8648"
+    ],
+    "seo_title": "Nonionic Surfactants | KLK OLEO",
+    "seo_description": "KLK OLEO offers sustainable and high-performance nonanionic surfactants for personal care, home care, pharmaceutical and industrial use.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/nonionic-surfactants/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Nonionic Surfactants",
+    "display_order": 7,
+    "brand_ids": [
+      "brand:greenbentin-ethoxylates-alkoxylates",
+      "brand:hedilub-alkoxylates-esters",
+      "brand:hedipin-alkoxylates-triglyceride-ethoxylates-esters",
+      "brand:imbentin-ethoxylates-alkoxylates",
+      "brand:kotilen-sorbitan-ester-ethoxylates-polysorbates",
+      "brand:sympatens-fatty-alcohol-fatty-acid-ethoxylates-triglyceride-ethoxylates"
+    ],
+    "destination_path": "/products/nonionic-surfactants/",
+    "template": "product-family-detail"
+  },
+  {
+    "id": "product-family:phytonutrients",
+    "slug": "phytonutrients",
+    "title": "Phytonutrients",
+    "summary": "KLK OLEO/ Davos Life Science is a leading market player in producing high quality phytonutrients. The signature product - DavosLife E3 is a natural Vitamin E with full spectrum Tocotrienols and α-tocopherol.",
+    "body_markdown": "Products\n# Phytonutrients\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/Palm-mixed-carotenes-300x205.jpg)\n#### DAVOSLIFE Biocarotene Palm Mixed Carotene\n[Know More](https://klkoleo.com/davoslife/davoslife-biocarotene/)\n  * ![](https://www.klkoleo.com/wp-content/uploads/2020/04/DavosLife-E3-Range-300x205.jpg)\n#### DAVOSLIFE E3 Tocotrienols\n[Know More](https://klkoleo.com/davoslife/davoslife-e3/#derived-from-nature-driven-by-science)",
+    "asset_ids": [
+      "asset:crawl-1b48764e09dc",
+      "asset:wp-480",
+      "asset:wp-483"
+    ],
+    "seo_title": "Phytonutrients | KLK OLEO",
+    "seo_description": "KLK OLEO/ Davos Life Science is a leading market player in producing high quality phytonutrients. The signature product - DavosLife E3 is a natural Vitamin E with full spectrum Tocotrienols and α-tocopherol.",
+    "published_at": null,
+    "modified_at": null,
+    "status": "draft_migrated",
+    "source_url": "https://www.klkoleo.com/products/phytonutrients/",
+    "migration_confidence": "high",
+    "review_required": true,
+    "name": "Phytonutrients",
+    "display_order": 8,
+    "brand_ids": [],
+    "destination_path": "/products/phytonutrients/",
+    "template": "product-family-detail"
+  }
+]

@@ -1,0 +1,138 @@
+{
+  "status": "recommended_default_not_client_approved",
+  "instruction": "Use this hierarchy for the redesign. Preserve a crawled path when no explicit destination is defined in migration-decisions.csv. Do not add a Markets section.",
+  "primary_navigation": [
+    {
+      "label": "Home",
+      "path": "/",
+      "template": "home"
+    },
+    {
+      "label": "Company",
+      "path": "/company/",
+      "template": "section-index",
+      "children": [
+        {
+          "label": "About KLK OLEO",
+          "path": "/company/klk-oleo-brief/",
+          "template": "standard-page"
+        },
+        {
+          "label": "History & Milestones",
+          "path": "/history-milestones/",
+          "template": "timeline"
+        },
+        {
+          "label": "Global Locations",
+          "path": "/company/locations/",
+          "template": "location-index"
+        },
+        {
+          "label": "Accreditations",
+          "path": "/accreditations/",
+          "template": "accreditation-index"
+        }
+      ]
+    },
+    {
+      "label": "Products",
+      "path": "/products/",
+      "template": "product-family-index",
+      "children": [
+        {
+          "label": "Amides",
+          "path": "/products/amides/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Anionic Surfactants",
+          "path": "/products/anionic-surfactants/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Esters",
+          "path": "/products/esters/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Fatty Acids",
+          "path": "/products/fatty-acids/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Fatty Alcohols",
+          "path": "/products/fatty-alcohols/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Glycerine",
+          "path": "/products/glycerine/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Nonionic Surfactants",
+          "path": "/products/nonionic-surfactants/",
+          "template": "product-family-detail"
+        },
+        {
+          "label": "Phytonutrients",
+          "path": "/products/phytonutrients/",
+          "template": "product-family-detail"
+        }
+      ]
+    },
+    {
+      "label": "Sustainability",
+      "path": "/sustainability-principled-by-integrity/",
+      "template": "section-index",
+      "children": [
+        {
+          "label": "Corporate Responsibility",
+          "path": "/corporate-responsibility/",
+          "template": "standard-page"
+        },
+        {
+          "label": "Environmental Management",
+          "path": "/environmental-management-in-klk-oleo/",
+          "template": "standard-page"
+        },
+        {
+          "label": "Supply Chain Management",
+          "path": "/supply-chain-management/",
+          "template": "standard-page"
+        },
+        {
+          "label": "Governance & Policies",
+          "path": "/governance-and-policies/",
+          "template": "standard-page"
+        }
+      ]
+    },
+    {
+      "label": "Resources",
+      "path": "/resources/",
+      "template": "resource-index"
+    },
+    {
+      "label": "News & Events",
+      "path": "/news-events/",
+      "template": "news-event-index"
+    },
+    {
+      "label": "Careers",
+      "path": "/careers/",
+      "template": "career-index"
+    },
+    {
+      "label": "Contact",
+      "path": "/contact-us/",
+      "template": "contact"
+    }
+  ],
+  "excluded_sections": [
+    "Markets",
+    "Life Science market landing",
+    "Oleo Basics market landing",
+    "market product catalogue"
+  ]
+}

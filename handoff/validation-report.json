@@ -1,0 +1,36 @@
+{
+  "result": "pass_with_editorial_review",
+  "source_capture": "2026-09-25T02:08:37+00:00",
+  "counts": {
+    "banners": 6,
+    "product_families": 8,
+    "brands": 26,
+    "news_events": 129,
+    "careers": 0,
+    "resources": 79,
+    "milestones": 125,
+    "locations": 13,
+    "reports": 7,
+    "knowledge_hubs": 12,
+    "accreditations": 16,
+    "static_pages": 18,
+    "assets": 2168,
+    "relationships": 1974,
+    "migration_decisions": 474
+  },
+  "checks": {
+    "exactly_eight_product_families": true,
+    "no_market_source_pages_in_records": true,
+    "no_market_links_in_normalized_markdown": true,
+    "all_product_brand_relationships_resolve": true,
+    "all_asset_references_resolve": true,
+    "all_collection_record_ids_are_unique": true
+  },
+  "known_gaps": [
+    "20 rendered pages failed or returned no usable result; consult migration-decisions.csv.",
+    "No published job records were returned by the public careers endpoint; careers.json is intentionally empty.",
+    "Banner records are derived from page SEO metadata and require confirmation against the active design/CMS.",
+    "Asset binaries were not downloaded; asset-manifest.csv stores source URLs and roles only.",
+    "Null structured fields are intentional and must be resolved by an editor, never guessed by an implementation model."
+  ]
+}

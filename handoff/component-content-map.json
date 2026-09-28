@@ -1,0 +1,91 @@
+{
+  "binding_rule": "Components bind only to the named fields. Do not infer market taxonomy, dates, addresses, or media roles from prose.",
+  "components": {
+    "hero_banner": {
+      "collection": "banners",
+      "filter": "placement matches current page",
+      "fields": {
+        "eyebrow": "eyebrow",
+        "heading": "headline",
+        "body": "body",
+        "cta.label": "cta_label",
+        "cta.href": "cta_url",
+        "desktop_media": "desktop_asset_id",
+        "mobile_media": "mobile_asset_id",
+        "image_alt": "alt_text"
+      }
+    },
+    "product_family_grid": {
+      "collection": "product-families",
+      "sort": "display_order ascending",
+      "fields": {
+        "heading": "name",
+        "body": "summary",
+        "media": "asset_ids[0]",
+        "href": "destination_path"
+      }
+    },
+    "brand_card_grid": {
+      "collection": "brands",
+      "filter": "id in current_product_family.brand_ids",
+      "fields": {
+        "heading": "name",
+        "body": "summary",
+        "media": "asset_ids[0]",
+        "href": "destination_path"
+      }
+    },
+    "latest_news": {
+      "collection": "news-events",
+      "sort": "published_at descending",
+      "limit": 6,
+      "fields": {
+        "heading": "title",
+        "body": "summary",
+        "media": "asset_ids[0]",
+        "date": "published_at",
+        "href": "destination_path"
+      }
+    },
+    "job_list": {
+      "collection": "careers",
+      "fields": {
+        "heading": "job_title",
+        "location": "work_location",
+        "country": "country",
+        "type": "employment_type",
+        "href": "application_url"
+      }
+    },
+    "ordered_milestones": {
+      "collection": "milestones",
+      "sort": "year then display_order",
+      "fields": {
+        "year": "year",
+        "heading": "title",
+        "body": "body_markdown",
+        "media": "asset_ids[0]"
+      }
+    },
+    "location_cards": {
+      "collection": "locations",
+      "fields": {
+        "heading": "name",
+        "country": "country",
+        "address": "address",
+        "media": "asset_ids[0]",
+        "href": "destination_path"
+      }
+    },
+    "resource_list": {
+      "collection": "resources",
+      "fields": {
+        "heading": "title",
+        "body": "summary",
+        "type": "resource_type",
+        "download": "download_urls[0]",
+        "href": "destination_path"
+      }
+    }
+  }
+}
