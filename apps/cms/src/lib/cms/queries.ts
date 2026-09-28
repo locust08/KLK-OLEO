@@ -49,12 +49,12 @@ function isMedia(value: number | Media | null | undefined): value is Media {
   return Boolean(value && typeof value === "object");
 }
 
-function relationNames<T extends { name: string }>(
+function relationValues<T extends { name: string; slug: string }>(
   values: Array<number | T> | null | undefined,
 ) {
   return (values ?? [])
     .filter((value): value is T => typeof value === "object")
-    .map((value) => value.name);
+    .map((value) => ({ name: value.name, slug: value.slug }));
 }
 
 function mediaUrl(value: number | Media | null | undefined) {
@@ -62,15 +62,21 @@ function mediaUrl(value: number | Media | null | undefined) {
 }
 
 function mapProduct(product: Product): ProductViewModel {
+  const functions = relationValues<ProductFunction>(product.functions);
+  const formulations = relationValues<FormulationType>(product.formulationTypes);
+  const labels = relationValues<RegulatoryLabel>(product.regulatoryLabels);
   return {
     id: product.id,
     slug: product.slug,
     name: product.name,
     type: product.chemicalDescription,
     summary: product.description,
-    functionalities: relationNames<ProductFunction>(product.functions),
-    formulations: relationNames<FormulationType>(product.formulationTypes),
-    labels: relationNames<RegulatoryLabel>(product.regulatoryLabels),
+    functionalities: functions.map((item) => item.name),
+    functionalitySlugs: functions.map((item) => item.slug),
+    formulations: formulations.map((item) => item.name),
+    formulationSlugs: formulations.map((item) => item.slug),
+    labels: labels.map((item) => item.name),
+    labelSlugs: labels.map((item) => item.slug),
     manufacturingSite:
       product.manufacturingRegion === "EU"
         ? "Europe"
@@ -235,15 +241,15 @@ export async function getProductCatalog() {
     groups: {
       functionalities: {
         ...fallbackGroups.functionalities,
-        options: functions.docs.map((item) => item.name),
+        options: functions.docs.map((item) => ({ id: item.id, slug: item.slug, name: item.name })),
       },
       "formulation-type": {
         ...fallbackGroups["formulation-type"],
-        options: formulations.docs.map((item) => item.name),
+        options: formulations.docs.map((item) => ({ id: item.id, slug: item.slug, name: item.name })),
       },
       "regulatory-labels": {
         ...fallbackGroups["regulatory-labels"],
-        options: labels.docs.map((item) => item.name),
+        options: labels.docs.map((item) => ({ id: item.id, slug: item.slug, name: item.name })),
       },
     },
   } satisfies { products: ProductViewModel[]; groups: ProductCategoryGroups };

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ProductHero } from "@/components/products/ProductHero";
@@ -29,7 +30,9 @@ export function ProductsPage({
             {page?.sections[0]?.body || "Explore our agrochemical portfolio by functionality, formulation type, or regulatory label."}
           </p>
         </section>
-        <ProductListing groups={groups} products={products} />
+        <Suspense fallback={null}>
+          <ProductListing groups={groups} products={products} />
+        </Suspense>
       </main>
       <SiteFooter />
     </>
