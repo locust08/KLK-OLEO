@@ -17,9 +17,22 @@ const submission = z.object({
   idempotencyKey: z.uuid(),
   website: z.string().max(200).optional(),
 });
+
+function publicRequestOrigin(request: Request) {
+  const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+  const host = forwardedHost || request.headers.get("host");
+  const forwardedProtocol = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
+  const protocol = forwardedProtocol || new URL(request.url).protocol.replace(":", "");
+  return host ? `${protocol}://${host}` : new URL(request.url).origin;
+}
+
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin)
+  if (
+    origin &&
+    origin !== new URL(request.url).origin &&
+    origin !== publicRequestOrigin(request)
+  )
     return Response.json(
       { error: "Cross-origin submissions are disabled." },
       { status: 403 },
