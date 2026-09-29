@@ -57,7 +57,7 @@ export function filterProducts(
         const active = state.selected[key];
         return (
           active.length === 0 ||
-          active.some((slug) => getProductCategoryValues(product, key).includes(slug))
+          active.every((slug) => getProductCategoryValues(product, key).includes(slug))
         );
       }),
   );
@@ -103,27 +103,30 @@ export function calculateFacetCounts(
   state: ProductFilterState,
   categories: readonly ProductCategoryKey[] = productCategoryKeys,
 ) {
+  const currentTotal = filterProducts(products, state, categories).length;
   return Object.fromEntries(
-    categories.map((key) => {
-      const stateWithoutCurrentGroup: ProductFilterState = {
-        ...state,
-        selected: { ...state.selected, [key]: [] },
-      };
-      const contextualProducts = filterProducts(products, stateWithoutCurrentGroup, categories);
-      return [
-        key,
-        Object.fromEntries(
-          groups[key].options.map((option) => [
+    categories.map((key) => [
+      key,
+      Object.fromEntries(
+        groups[key].options.map((option) => {
+          if (state.selected[key].includes(option.slug)) {
+            return [option.slug, currentTotal];
+          }
+
+          const prospectiveState: ProductFilterState = {
+            ...state,
+            selected: {
+              ...state.selected,
+              [key]: [...state.selected[key], option.slug],
+            },
+          };
+          return [
             option.slug,
-            contextualProducts.reduce(
-              (count, product) =>
-                count + Number(getProductCategoryValues(product, key).includes(option.slug)),
-              0,
-            ),
-          ]),
-        ),
-      ];
-    }),
+            filterProducts(products, prospectiveState, categories).length,
+          ];
+        }),
+      ),
+    ]),
   ) as Record<ProductCategoryKey, Record<string, number>>;
 }
 
