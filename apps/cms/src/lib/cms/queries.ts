@@ -1,4 +1,5 @@
 import "server-only";
+import { mapResource } from "./resource-view-model";
 
 import { getPayload, type Where } from "payload";
 import config from "@payload-config";
@@ -10,7 +11,6 @@ import type {
   Product,
   ProductFunction,
   RegulatoryLabel,
-  Resource,
   Site,
 } from "@/payload-types";
 import type {
@@ -294,20 +294,7 @@ export async function getResources(): Promise<ResourceViewModel[]> {
     draft: false,
     overrideAccess: false,
   });
-  return result.docs.map((resource: Resource) => {
-    const file = isMedia(resource.file) && resource.file.isPublic ? resource.file : null;
-    return {
-      id: resource.id,
-      slug: resource.slug,
-      title: resource.title,
-      description: resource.description || undefined,
-      type: resource.type,
-      availability: resource.availability,
-      placeholderLabel: resource.placeholderLabel || "Coming soon",
-      imageUrl: file?.mimeType?.startsWith("image/") ? file.url || undefined : undefined,
-      fileUrl: resource.availability === "available" ? file?.url || undefined : undefined,
-    };
-  });
+  return result.docs.map(mapResource);
 }
 
 export async function getContactForm(

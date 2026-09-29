@@ -137,7 +137,7 @@ export const checkRelatedSites: CollectionBeforeChangeHook = async ({
       : collection.slug === "forms"
         ? { routingProfile: "routing-profiles" }
         : collection.slug === "resources"
-          ? { file: "media" }
+          ? { file: "media", thumbnail: "media" }
           : collection.slug === "banners"
             ? { desktopImage: "media", mobileImage: "media" }
             : {};

@@ -54,6 +54,34 @@ Membership in the main site does not automatically grant access to minisites. As
 
 Placeholders say “Coming soon” and have no download CTA. To replace one, upload approved media, enable its `isPublic` flag, attach the file, change availability to `available`, and publish. An available resource cannot be saved without a file. Media starts private; only publication roles can make uploads public.
 
+### Supplied agrochemical PDFs
+
+`data/agrochemical-resources.json` records the four PDFs supplied in the September 29, 2026 Drive export, including original filenames, SHA-256 checksums, cover titles, and editorial review notes. All four are brochures, not safety data sheets. The formulation-partner PDF's filename says “Biologicals,” while its cover says “Agrochemicals”; the CMS title follows the cover.
+
+Import into the existing local SQLite CMS from an extracted directory:
+
+```sh
+npm run import:resources -- "/absolute/path/to/Download Material"
+# Back up the local database before applying.
+npm run import:resources -- "/absolute/path/to/Download Material" --apply
+```
+
+The first command validates every source file without writing. The apply command uses the existing super-admin account configured by `CMS_ADMIN_EMAIL`, creates site-scoped draft resources and private media, checks stored checksums and anonymous visibility, and preserves matching records on reruns. It refuses PostgreSQL/remote database configuration. It does not publish, overwrite existing placeholders, change product relationships, or update source claims. Review the manifest notes before making media public and publishing through an authorized account. PDFs and the database remain ignored by Git; the manifest and importer do not transfer uploaded files to another environment.
+
+### Document thumbnails
+
+Each resource has a separate optional `thumbnail` upload referencing same-site image Media. It is independent of the downloadable PDF (`file`). The public page uses only a public image thumbnail, with a neutral document icon when none is available; it never rotates unrelated Home/About images. Thumbnails fill the preview box using centered cover cropping.
+
+Generate first-page covers for the supplied four PDFs with Poppler (`pdftoppm`) installed. Apply the updated schema through the dev server (or reviewed migrations) first; the data-only importer disables automatic schema pushing to avoid concurrent SQLite schema synchronization:
+
+```sh
+npm run import:resource-thumbnails -- "/absolute/path/to/Download Material"
+# Back up the local database before applying.
+npm run import:resource-thumbnails -- "/absolute/path/to/Download Material" --apply
+```
+
+The script checks source and attached-PDF hashes, uploads WebP covers, and attaches them to existing records in local SQLite. New covers are public for already-published resources and private for drafts. Existing thumbnails, resource publication state, and PDF visibility are preserved. Draft cover Media must be made public deliberately when publishing. You can replace a cover in the Resource's Thumbnail field; PDF uploads and cross-site images are rejected. Generated uploads remain ignored by Git. Deploy the schema with reviewed PostgreSQL migrations before using this field in production.
+
 ## Form intake and CRM boundary
 
 `POST /api/enquiries` validates submissions, records consent, verifies published form/product/site ownership, and persists each accepted enquiry with an idempotency key. Routing profiles are resolved on the server; the client cannot select a CRM or destination.

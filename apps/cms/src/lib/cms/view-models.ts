@@ -66,6 +66,7 @@ export type ResourceViewModel = {
   availability: "placeholder" | "available";
   placeholderLabel: string;
   imageUrl?: string;
+  imageAlt?: string;
   fileUrl?: string;
 };
 

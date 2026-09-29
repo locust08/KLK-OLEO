@@ -337,6 +337,10 @@ export interface Resource {
   availability: 'placeholder' | 'available';
   placeholderLabel?: string | null;
   file?: (number | null) | Media;
+  /**
+   * Document cover image. Set its Media isPublic flag to display it on the website; this is independent of PDF download visibility.
+   */
+  thumbnail?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -803,6 +807,7 @@ export interface ResourcesSelect<T extends boolean = true> {
   availability?: T;
   placeholderLabel?: T;
   file?: T;
+  thumbnail?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

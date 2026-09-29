@@ -1,17 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaAnglesRight } from "react-icons/fa6";
+import { FaAnglesRight, FaFilePdf } from "react-icons/fa6";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PageHero } from "@/components/ui/PageHero";
 import type { PageContentViewModel, ResourceViewModel } from "@/lib/cms/view-models";
-
-const fallbackImages = [
-  "/images/about/sustainable-formulation-solutions.webp",
-  "/images/home/aidigro-introduction.webp",
-  "/images/about/agriculture-solutions.png",
-  "/images/home/comprehensive-portfolio.png",
-] as const;
 
 export function ResourcesPage({
   page,
@@ -27,15 +20,19 @@ export function ResourcesPage({
         <PageHero title={page?.heroHeading || page?.title || "Resources"} kind="resources" imageUrl={page?.heroImageUrl} />
         <section className="resource-section" aria-label="Available resources">
           <div className="resource-grid">
-            {resources.map((resource, index) => (
-              <article className="resource-card" key={resource.title}>
+            {resources.map((resource) => (
+              <article className="resource-card" key={resource.id}>
                 <div className="resource-card__preview">
-                  <Image
-                    src={resource.imageUrl || fallbackImages[index % fallbackImages.length]}
+                  {resource.imageUrl ? <Image
+                    src={resource.imageUrl}
                     fill
+                    unoptimized
                     sizes="(max-width: 767px) 100vw, 46vw"
-                    alt={`${resource.title} document preview`}
-                  />
+                    alt={resource.imageAlt || `${resource.title} document cover`}
+                  /> : <div className="resource-card__no-preview">
+                    <FaFilePdf aria-hidden="true" />
+                    <span>Document preview unavailable</span>
+                  </div>}
                 </div>
                 <div className="resource-card__body">
                   <h2>{resource.title}</h2>

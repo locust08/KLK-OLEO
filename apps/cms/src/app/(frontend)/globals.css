@@ -867,6 +867,19 @@ a {
 }
 .resource-card__preview img {
   object-fit: cover;
+  object-position: center;
+}
+.resource-card__no-preview {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--heading);
+}
+.resource-card__no-preview svg {
+  font-size: 48px;
 }
 .resource-card__body {
   min-height: 205px;

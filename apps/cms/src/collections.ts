@@ -410,7 +410,7 @@ export const Resources = versioned({
   indexes: [{ fields: ["site", "slug"], unique: true }],
   hooks: {
     beforeChange: [
-      ({ data, originalDoc }) => {
+      async ({ data, originalDoc, req }) => {
         const availability = data.availability ?? originalDoc?.availability;
         const file = idOf(data.file ?? originalDoc?.file);
         if (availability === "available" && !file)
@@ -419,6 +419,14 @@ export const Resources = versioned({
             400,
           );
         if (availability === "placeholder") data.file = null;
+        const thumbnail = idOf(data.thumbnail === undefined ? originalDoc?.thumbnail : data.thumbnail);
+        if (thumbnail) {
+          const media = await req.payload.findByID({
+            collection: "media", id: thumbnail, depth: 0, req, overrideAccess: true,
+          });
+          if (!media.mimeType?.startsWith("image/"))
+            throw new APIError("Resource thumbnails must be uploaded images, not PDFs.", 400);
+        }
         return data;
       },
     ],
@@ -447,6 +455,13 @@ export const Resources = versioned({
     },
     { name: "placeholderLabel", type: "text", defaultValue: "Coming soon" },
     { name: "file", type: "upload", relationTo: "media" },
+    {
+      name: "thumbnail",
+      type: "upload",
+      relationTo: "media",
+      filterOptions: { mimeType: { contains: "image/" } },
+      admin: { description: "Document cover image. Set its Media isPublic flag to display it on the website; this is independent of PDF download visibility." },
+    },
   ],
 });
 export const RoutingProfiles: CollectionConfig = {

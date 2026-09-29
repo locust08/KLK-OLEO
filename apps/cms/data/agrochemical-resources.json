@@ -1,0 +1,53 @@
+{
+  "siteSlug": "agrochemical",
+  "sourceFolderURL": "https://drive.google.com/drive/folders/1YrIO-hHkKsJxNY35T2NplCeku0Eg_V0d",
+  "sourceArchive": "Download Material-20260929T013633Z-1-001.zip",
+  "publication": "draft",
+  "mediaVisibility": "private",
+  "resources": [
+    {
+      "filename": "English-KLK OLEO-Aidigro Your Biologicals Formulation Partner.pdf",
+      "sha256": "363c86515cbc563e059b8bf9f0e3edd9744d2050eb4836ff751641335f01ca39",
+      "bytes": 1563330,
+      "pages": 2,
+      "slug": "aidigro-agrochemicals-formulation-partner",
+      "title": "Aidigro - Your Agrochemicals Formulation Partner",
+      "description": "An overview of the Aidigro formulation portfolio, ingredient functions, and KLK OLEO's operating network.",
+      "type": "brochure",
+      "reviewNote": "The supplied filename says Biologicals, but the document cover says Agrochemicals. The resource title follows the cover. Review source claims and publication permission before release."
+    },
+    {
+      "filename": "English-KLK OLEO-Aidigro PN123.pdf",
+      "sha256": "444df2956c8fe6865204d479c7c517e61b332cfe98c5555387b31cab37d2774c",
+      "bytes": 3138986,
+      "pages": 2,
+      "slug": "aidigro-pn123-agrochemical-adjuvant",
+      "title": "Aidigro PN123 - An All Purpose Agrochemical Adjuvant",
+      "description": "A product leaflet covering Aidigro PN123, recommended mixing rates, compatibility, and source-reported laboratory and field results.",
+      "type": "brochure",
+      "reviewNote": "Mixing rates and efficacy results remain source claims, not independently verified guidance. Review claims and publication permission before release."
+    },
+    {
+      "filename": "English-KLK OLEO-Aidigro SV-Green Solvent for Agrochemical.pdf",
+      "sha256": "91a89cc61582300a869ef639782605dd340ed03c5fbc7022e14afbc3362ea1e4",
+      "bytes": 6579109,
+      "pages": 1,
+      "slug": "aidigro-sv-green-solvent-agrochemicals",
+      "title": "Aidigro SV - Green Solvent for Agrochemicals",
+      "description": "A product leaflet introducing selected Aidigro SV solvent grades, with a table of descriptions, freeze points, and flash points.",
+      "type": "brochure",
+      "reviewNote": "The REACH asterisk applies to selected grades only. Retain the source disclaimer directing readers to the latest safety data sheet; this leaflet is not an SDS. Review publication permission before release."
+    },
+    {
+      "filename": "English-KLK OLEO-Agrochemicals Leaflet.pdf",
+      "sha256": "2ce02ba21ad7b137fd9edfbcc32908830ea116fe7e6aa50fd27d5f57c1d7f5af",
+      "bytes": 5683809,
+      "pages": 3,
+      "slug": "aidigro-comprehensive-formulation-solutions-agrochemicals",
+      "title": "Aidigro - Comprehensive Formulation Solutions for Agrochemicals",
+      "description": "A portfolio leaflet presenting agrochemical ingredient descriptions, CAS numbers, formulation applications, and functionality mappings.",
+      "type": "brochure",
+      "reviewNote": "Source revision Agro-V2-10-2025. Catalogue mappings remain source-reported; this import does not change product data or infer product relationships. Review publication permission before release."
+    }
+  ]
+}
