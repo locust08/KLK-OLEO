@@ -28,11 +28,6 @@ export function ProductCategoryPage({
       <main>
         <ProductHero title={group.label} eyebrow="Products" />
         <section className="catalog-category-intro">
-          <div>
-            <p className="eyebrow">Browse by category</p>
-            <h2>{group.label}</h2>
-          </div>
-          <p>{group.description}</p>
           <nav aria-label="Product category pages">
             {productCategoryKeys.map((key) => (
               <Link key={key} className={key === category ? "is-active" : undefined} href={`/products/category/${key}`}>

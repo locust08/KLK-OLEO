@@ -8,7 +8,6 @@ import { siteAssets } from "@/data/site-assets";
 import { useSite } from "./SiteContext";
 
 const quickLinks = [
-  { label: "Home", href: "/" },
   { label: "About", href: "/about-us" },
   { label: "Products", href: "/products" },
   { label: "News & Events", href: "/resources" },

@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import {
   calculateFacetCounts,
-  createEmptyFilterState,
   filterProducts,
   paginateProducts,
   parseFilterState,
@@ -26,6 +25,8 @@ type ProductListingProps = {
   groups: ProductCategoryGroups;
   products: ProductViewModel[];
 };
+
+const emptySearchParams = new URLSearchParams();
 
 function FilterGroup({ category, groups, selected, counts, onChange }: {
   category: ProductCategoryKey;
@@ -62,8 +63,9 @@ function FilterGroup({ category, groups, selected, counts, onChange }: {
 }
 
 export function ProductListing({ category, groups, products }: ProductListingProps) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname() ?? "/products";
+  const searchParams = useSearchParams() ?? emptySearchParams;
   const categories = useMemo(
     () => (category ? [category] : productCategoryKeys),
     [category],
@@ -73,10 +75,10 @@ export function ProductListing({ category, groups, products }: ProductListingPro
     [groups, searchParams],
   );
 
-  const setUrlState = (next: ProductFilterState, replace = false) => {
+  const setUrlState = (next: ProductFilterState) => {
     const params = updateFilterParams(searchParams, next);
     const url = params.size ? `${pathname}?${params.toString()}` : pathname;
-    window.history[replace ? "replaceState" : "pushState"](null, "", url);
+    router.push(url, { scroll: false });
   };
 
   const toggle = (key: ProductCategoryKey, value: string) => {
@@ -93,33 +95,9 @@ export function ProductListing({ category, groups, products }: ProductListingPro
   );
   const pagination = paginateProducts(results, state.page);
   const { items: pageProducts, page: currentPage, totalPages } = pagination;
-  const hasActiveFilters =
-    state.query.length > 0 || categories.some((key) => state.selected[key].length > 0);
-
   return (
     <section className="catalog-shell" aria-label="Product catalogue">
       <aside className="catalog-filters" aria-label="Filter products">
-        <div className="catalog-filter-tools">
-          <label htmlFor="catalog-search">Search products</label>
-          <input
-            id="catalog-search"
-            type="search"
-            value={state.query}
-            placeholder="Search by product or application"
-            onChange={(event) =>
-              setUrlState({ ...state, query: event.target.value, page: 1 }, true)
-            }
-          />
-          {hasActiveFilters && (
-            <button
-              type="button"
-              className="catalog-clear"
-              onClick={() => setUrlState(createEmptyFilterState())}
-            >
-              Clear all
-            </button>
-          )}
-        </div>
         {categories.map((key) => (
           <FilterGroup
             key={key}
@@ -133,10 +111,12 @@ export function ProductListing({ category, groups, products }: ProductListingPro
       </aside>
 
       <div className="catalog-results" aria-live="polite" aria-atomic="false">
-        <div className="catalog-results__header">
-          <h2>{pagination.total} {pagination.total === 1 ? "Product" : "Products"}</h2>
-          {totalPages > 1 && <p>Page {currentPage} of {totalPages}</p>}
-        </div>
+        {!category && (
+          <div className="catalog-results__header">
+            <h2>{pagination.total} {pagination.total === 1 ? "Product" : "Products"}</h2>
+            {totalPages > 1 && <p>Page {currentPage} of {totalPages}</p>}
+          </div>
+        )}
         <div className="catalog-list">
           {pageProducts.map((product, index) => (
             <article className="catalog-product-row" key={product.slug} style={{ "--row-delay": `${index * 70}ms` } as React.CSSProperties}>
@@ -157,8 +137,12 @@ export function ProductListing({ category, groups, products }: ProductListingPro
           ))}
           {results.length === 0 && (
             <div className="catalog-empty">
-              <h2>No products match this combination.</h2>
-              <p>Clear one or more filters to see more formulation solutions.</p>
+              <h2>No products found.</h2>
+              <p>
+                {state.query
+                  ? "Try another keyword or clear the search to see all products."
+                  : "Clear one or more filters to see more formulation solutions."}
+              </p>
             </div>
           )}
         </div>

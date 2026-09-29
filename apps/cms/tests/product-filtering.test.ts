@@ -100,6 +100,33 @@ test("search combines with category filters", () => {
   assert.equal(filterProducts(products, state).length, 0);
 });
 
+test("search matches product names and every taxonomy field case-insensitively", () => {
+  const cases = [
+    ["LpH", ["Alpha"]],
+    ["ULSIF", ["Beta", "Gamma", "Echo"]],
+    ["oD", ["Gamma", "Delta", "Echo"]],
+    ["eAcH", ["Beta"]],
+  ] as const;
+
+  for (const [query, expected] of cases) {
+    const state = createEmptyFilterState();
+    state.query = query;
+    assert.deepEqual(filterProducts(products, state).map(({ name }) => name), expected);
+  }
+});
+
+test("search returns each product once and handles empty and no-result queries", () => {
+  const state = createEmptyFilterState();
+  state.query = "gamma";
+  assert.deepEqual(filterProducts(products, state).map(({ name }) => name), ["Gamma"]);
+
+  state.query = "does-not-exist";
+  assert.deepEqual(filterProducts(products, state), []);
+
+  state.query = "   ";
+  assert.equal(filterProducts(products, state).length, products.length);
+});
+
 test("facet counts are prospective AND counts and selected options show the current total", () => {
   const state = createEmptyFilterState();
   state.selected.functionalities = ["emulsifiers"];

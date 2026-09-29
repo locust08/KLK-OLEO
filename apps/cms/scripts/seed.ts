@@ -88,11 +88,10 @@ try {
       domain: "https://klkoleo.dev.malaysiaweb.my",
       active: true,
       market: "Agrochemicals",
-      brandName: "AIDIGRO",
+      brandName: "KLK OLEO | Agrochemicals",
       parentLinkLabel: "Part of KLK OLEO",
       contactEmail: "agrochem@klkoleo.com",
       navigation: [
-        { label: "Home", path: "/" },
         { label: "About Us", path: "/about-us" },
         { label: "Products", path: "/products" },
         { label: "Resources", path: "/resources" },

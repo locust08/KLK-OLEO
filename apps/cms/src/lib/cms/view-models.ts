@@ -4,6 +4,8 @@ export const productCategoryKeys = [
   "regulatory-labels",
 ] as const;
 
+export const AGROCHEMICAL_BRAND_NAME = "KLK OLEO | Agrochemicals";
+
 export type ProductCategoryKey = (typeof productCategoryKeys)[number];
 
 export type ProductViewModel = {

@@ -22,6 +22,7 @@ import type {
   ResourceViewModel,
   SiteChromeViewModel,
 } from "./view-models";
+import { AGROCHEMICAL_BRAND_NAME } from "./view-models";
 
 export const AGROCHEMICAL_SITE_SLUG = "agrochemical";
 
@@ -127,11 +128,13 @@ export async function getSiteChrome(): Promise<SiteChromeViewModel | null> {
   const parent = typeof site.parentSite === "object" ? site.parentSite : null;
   return {
     name: site.name,
-    brandName: site.brandName || "KLK OLEO | Agrochemicals",
+    brandName: AGROCHEMICAL_BRAND_NAME,
     contactEmail: site.contactEmail || "agrochem@klkoleo.com",
     parentDomain: parent?.domain || "https://www.klkoleo.com",
     parentLinkLabel: site.parentLinkLabel || "Part of KLK OLEO",
-    navigation: (site.navigation ?? []).map(({ label, path }) => ({ label, path })),
+    navigation: (site.navigation ?? [])
+      .filter(({ path }) => path !== "/")
+      .map(({ label, path }) => ({ label, path })),
   };
 }
 
