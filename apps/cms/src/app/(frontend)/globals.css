@@ -861,11 +861,14 @@ a {
   margin: auto;
 }
 .resource-card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border: 2px solid var(--heading);
   background: var(--green);
 }
 .resource-card__preview {
+  flex: none;
   position: relative;
   aspect-ratio: 1.7 / 1;
   overflow: hidden;
@@ -888,6 +891,7 @@ a {
   font-size: 48px;
 }
 .resource-card__body {
+  flex: 1;
   min-height: 205px;
   display: flex;
   align-items: center;
@@ -1182,7 +1186,7 @@ a {
     max-width: 325px;
   }
   .home-hero p {
-    margin-bottom: 220px;
+    margin-bottom: 0;
     font-size: 50px;
     line-height: 1.1;
   }
@@ -1560,9 +1564,10 @@ a {
     color: var(--green);
   }
   .home-hero {
-    height: 500px;
-    margin-top: -79.4px;
-    padding: 108.16px 30px 0;
+    height: auto;
+    min-height: 500px;
+    margin-top: 0;
+    padding: 110px 30px 60px;
   }
   .home-hero__brand {
     font-size: 70px;
@@ -1642,9 +1647,10 @@ a {
       padding 0.25s ease;
   }
   .home-hero {
-    height: 500px;
-    margin-top: -92.5px;
-    padding: 144.4px 25px 0;
+    height: auto;
+    min-height: 500px;
+    margin-top: 0;
+    padding: 110px 25px 60px;
     background-position: 50% 0%;
   }
   .home-hero .home-hero__content {
@@ -1859,6 +1865,8 @@ a {
   background: rgb(0 35 16 / 42%);
 }
 .catalog-hero__content {
+  min-width: 0;
+  max-width: 100%;
   padding: 76px 30px 0;
   color: #fff;
   text-align: center;
@@ -1872,6 +1880,7 @@ a {
   text-transform: uppercase;
 }
 .catalog-hero h1 {
+  overflow-wrap: anywhere;
   margin: 0;
   color: #fff;
   font-size: clamp(48px, 5vw, 78px);
@@ -1965,6 +1974,9 @@ a {
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
   background: transparent;
+}
+.catalog-mobile-tools {
+  display: none;
 }
 .catalog-filter-tools {
   display: grid;
@@ -2226,12 +2238,11 @@ a {
 }
 .product-spec-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   margin-top: 44px;
   border: 2px solid var(--heading);
 }
 .product-spec-panel > div {
-  min-height: 315px;
   padding: 34px 40px;
 }
 .product-spec-panel > div + div {
@@ -2249,11 +2260,15 @@ a {
   padding: 0;
   list-style: none;
 }
-.product-spec-panel li {
+.product-spec-panel li,
+.product-spec-panel .product-attribute-empty {
   margin-bottom: 8px;
   color: #303330;
   font-size: 17px;
   line-height: 1.45;
+}
+.product-spec-panel .product-attribute-empty {
+  margin: 0;
 }
 .product-detail__actions {
   display: flex;
@@ -2337,6 +2352,47 @@ a {
     padding-right: 0;
     overflow: visible;
   }
+  .catalog-filters:not(.is-open) {
+    display: none;
+  }
+  .catalog-mobile-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .catalog-mobile-tools > span {
+    flex-basis: 100%;
+    color: var(--green);
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .catalog-results__header {
+    display: none;
+  }
+  .catalog-mobile-tools button,
+  .catalog-mobile-tools a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border: 1px solid var(--green);
+    background: #fff;
+    color: var(--green);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .catalog-mobile-tools button:focus-visible,
+  .catalog-mobile-tools a:focus-visible {
+    outline: 3px solid var(--leaf);
+    outline-offset: 3px;
+  }
+  .catalog-results {
+    scroll-margin-top: 85px;
+  }
   .catalog-filter-group { padding: 20px; }
   .catalog-pagination { justify-content: space-between; gap: 10px; }
   .catalog-product-row {
@@ -2358,7 +2414,8 @@ a {
   .product-spec-panel > div + div { border-top: 2px solid var(--heading); border-left: 0; }
   .product-spec-panel h2,
   .product-meta-grid h2 { font-size: 24px; }
-  .product-spec-panel li { font-size: 15px; }
+  .product-spec-panel li,
+  .product-spec-panel .product-attribute-empty { font-size: 15px; }
   .product-detail__actions { flex-direction: column; }
   .product-action { width: 100%; justify-content: space-between; }
   .product-meta-grid { grid-template-columns: 1fr; gap: 42px; margin-top: 58px; }
@@ -2372,6 +2429,9 @@ a {
 }
 
 @media (max-width: 1199px) {
+  .mobile-nav {
+    background: #fff;
+  }
   .mobile-nav.is-open {
     max-height: min(560px, calc(100vh - 70px));
     overflow-y: auto;

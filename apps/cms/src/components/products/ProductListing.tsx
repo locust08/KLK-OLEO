@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useId, useMemo, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import {
   calculateFacetCounts,
@@ -63,10 +63,13 @@ function FilterGroup({ category, groups, selected, counts, onChange }: {
 }
 
 export function ProductListing({ category, groups, products }: ProductListingProps) {
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const filterId = useId();
+  const resultsId = useId();
   const router = useRouter();
   const pathname = usePathname() ?? "/products";
   const searchParams = useSearchParams() ?? emptySearchParams;
-  const categories = useMemo(
+  const categories = useMemo<readonly ProductCategoryKey[]>(
     () => (category ? [category] : productCategoryKeys),
     [category],
   );
@@ -95,9 +98,23 @@ export function ProductListing({ category, groups, products }: ProductListingPro
   );
   const pagination = paginateProducts(results, state.page);
   const { items: pageProducts, page: currentPage, totalPages } = pagination;
+  const selectedCount = categories.reduce<number>((total, key) => total + state.selected[key].length, 0);
+  const clearFilters = () => setUrlState({
+    query: "",
+    selected: { functionalities: [], "formulation-type": [], "regulatory-labels": [] },
+    page: 1,
+  });
   return (
     <section className="catalog-shell" aria-label="Product catalogue">
-      <aside className="catalog-filters" aria-label="Filter products">
+      <div className="catalog-mobile-tools">
+        <span aria-live="polite">{pagination.total} {pagination.total === 1 ? "Product" : "Products"}</span>
+        <button type="button" aria-expanded={filtersOpen} aria-controls={filterId} onClick={() => setFiltersOpen((current) => !current)}>
+          {filtersOpen ? "Hide filters" : "Show filters"}{selectedCount > 0 ? ` (${selectedCount})` : ""}
+        </button>
+        {(selectedCount > 0 || state.query) && <button type="button" onClick={clearFilters}>Clear filters</button>}
+        {filtersOpen && <a href={`#${resultsId}`}>View results</a>}
+      </div>
+      <aside id={filterId} className={`catalog-filters${filtersOpen ? " is-open" : ""}`} aria-label="Filter products">
         {categories.map((key) => (
           <FilterGroup
             key={key}
@@ -110,7 +127,7 @@ export function ProductListing({ category, groups, products }: ProductListingPro
         ))}
       </aside>
 
-      <div className="catalog-results" aria-live="polite" aria-atomic="false">
+      <div id={resultsId} className="catalog-results" aria-live="polite" aria-atomic="false">
         {!category && (
           <div className="catalog-results__header">
             <h2>{pagination.total} {pagination.total === 1 ? "Product" : "Products"}</h2>

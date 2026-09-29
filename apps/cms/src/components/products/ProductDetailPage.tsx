@@ -4,6 +4,15 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import type { ProductViewModel } from "@/lib/cms/view-models";
 
+function UnspecifiedAttribute() {
+  return (
+    <>
+      <span aria-hidden="true">—</span>
+      <span className="visually-hidden">Not specified</span>
+    </>
+  );
+}
+
 export function ProductDetailPage({ product }: { product: ProductViewModel }) {
   return (
     <>
@@ -26,11 +35,15 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
           <section className="product-spec-panel" aria-label="Product application profile">
             <div>
               <h2>Functionalities</h2>
-              <ul>{product.functionalities.map((item) => <li key={item}>{item}</li>)}</ul>
+              {product.functionalities.length > 0
+                ? <ul>{product.functionalities.map((item) => <li key={item}>{item}</li>)}</ul>
+                : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
             </div>
             <div>
               <h2>Formulation Type</h2>
-              <ul>{product.formulations.map((item) => <li key={item}>{item}</li>)}</ul>
+              {product.formulations.length > 0
+                ? <ul>{product.formulations.map((item) => <li key={item}>{item}</li>)}</ul>
+                : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
             </div>
           </section>
 
@@ -45,7 +58,7 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
 
           <section className="product-meta-grid" aria-label="Product details">
             <div><h2>Manufacturing Site</h2><p>{product.manufacturingSite}</p></div>
-            <div><h2>Regulatory/Labels</h2><p>{product.labels.join(", ")}</p></div>
+            <div><h2>Regulatory/Labels</h2><p>{product.labels.length > 0 ? product.labels.join(", ") : <UnspecifiedAttribute />}</p></div>
             <div><h2>CAS Number</h2><p>{product.casNumber}</p></div>
           </section>
         </article>

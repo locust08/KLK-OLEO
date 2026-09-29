@@ -3,7 +3,7 @@
 import Form from "next/form";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { useSite } from "./SiteContext";
 
@@ -33,7 +33,19 @@ export function SiteHeader() {
   ).filter(({ path }) => path !== "/");
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
+  const menuToggle = useRef<HTMLButtonElement>(null);
   const [productsOpen, setProductsOpen] = useState(pathname.startsWith("/products"));
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      setOpen(false);
+      menuToggle.current?.focus();
+    };
+    document.addEventListener("keydown", dismiss);
+    return () => document.removeEventListener("keydown", dismiss);
+  }, [open]);
   return (
     <header className="site-header">
       <Link
@@ -70,10 +82,12 @@ export function SiteHeader() {
       </nav>
       <div className="header-actions">
         <button
+          ref={menuToggle}
           className="mobile-menu-toggle"
           type="button"
           aria-label="Toggle navigation menu"
           aria-expanded={open}
+          aria-controls="mobile-site-navigation"
           onClick={() => setOpen(!open)}
         >
           <span />
@@ -92,8 +106,11 @@ export function SiteHeader() {
         <ProductSearch className="header-search" inputId="site-search" />
       </div>
       <nav
+        id="mobile-site-navigation"
         className={`mobile-nav ${open ? "is-open" : ""}`}
         aria-label="Mobile navigation"
+        aria-hidden={!open}
+        inert={!open}
       >
         <ProductSearch className="mobile-nav__search" inputId="mobile-product-search" />
         {navigation.map(({ label, path: href }) =>

@@ -40,7 +40,7 @@
 @media (max-width: 1199px) {
   .hero { min-height: 470px; }
   .agriculture { padding: 80px 35px; }
-  .agricultureInner { grid-template-columns: minmax(300px, 42%) 1fr; gap: 50px; }
+  .agricultureInner { grid-template-columns: minmax(300px, 42%) 1fr; align-items: start; gap: 50px; }
   .brandStory { min-height: 650px; background-position: 58% center; }
   .brandStoryInner { width: 66%; }
   .research, .researchGallery { min-height: 850px; }

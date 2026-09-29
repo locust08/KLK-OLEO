@@ -13,13 +13,6 @@ import type {
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
 
-const fallbackForm: ContactFormViewModel = {
-  slug: "general-enquiry",
-  consentLabel:
-    "I agree that KLK OLEO may use my submitted details to respond to this enquiry.",
-  successMessage: "Thank you. Your enquiry has been received.",
-};
-
 export function ContactPage({
   page,
   form,
@@ -31,7 +24,6 @@ export function ContactPage({
   const [message, setMessage] = useState("");
   const [state, setState] = useState<SubmissionState>("idle");
   const [feedback, setFeedback] = useState("");
-  const activeForm = form ?? fallbackForm;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -45,7 +37,7 @@ export function ContactPage({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (state === "submitting") return;
+    if (!form || state === "submitting") return;
 
     const element = event.currentTarget;
     const values = new FormData(element);
@@ -59,7 +51,7 @@ export function ContactPage({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           siteSlug: "agrochemical",
-          formSlug: activeForm.slug,
+          formSlug: form.slug,
           firstName: String(values.get("firstName") || ""),
           lastName: String(values.get("lastName") || ""),
           company: String(values.get("company") || ""),
@@ -78,7 +70,7 @@ export function ContactPage({
       if (!response.ok) {
         throw new Error(result?.error || "We could not submit your enquiry.");
       }
-      setFeedback(result?.message || activeForm.successMessage);
+      setFeedback(result?.message || form.successMessage);
       setState("success");
       element.reset();
       setMessage("");
@@ -100,13 +92,20 @@ export function ContactPage({
         <section className="contact-section" id="contact-form">
           <div className="contact-copy">
             <h2>Get in Touch with Our Team</h2>
-            <p>{page?.heroBody || "If you wish to enquire about KLK OLEO Agrochemicals products, please complete the short form provided. Our team will be in contact with you shortly."}</p>
+            <p>{form
+              ? page?.heroBody || "If you wish to enquire about KLK OLEO Agrochemicals products, please complete the short form provided. Our team will be in contact with you shortly."
+              : "For enquiries about KLK OLEO Agrochemicals products, please email our team. Online enquiries are currently unavailable."}</p>
             <a className="contact-email" href={`mailto:${site.contactEmail}`}>
               <span className="contact-email__icon"><MdEmail aria-hidden="true" /></span>
               <span>{site.contactEmail}</span>
             </a>
           </div>
-          {state === "success" ? (
+          {!form ? (
+            <div className="contact-form-success" role="status">
+              <h2>Contact our team by email.</h2>
+              <p>The online enquiry form is currently unavailable. Please use the email link to get in touch.</p>
+            </div>
+          ) : state === "success" ? (
             <div className="contact-form-success" role="status">
               <h2>Thank you for your request.</h2>
               <p>{feedback}</p>
@@ -120,7 +119,7 @@ export function ContactPage({
               <label>Email <span aria-hidden="true">*</span><input type="email" name="email" autoComplete="email" required /></label>
               <label className="contact-form__full">Country<select name="country" defaultValue=""><option value="">Select Country</option><option>Afghanistan</option><option>Malaysia</option><option>Singapore</option></select></label>
               <label className="contact-form__full">Message <span aria-hidden="true">*</span><textarea name="message" value={message} onChange={(event) => setMessage(event.target.value)} required /></label>
-              <label className="contact-form__full contact-consent"><input type="checkbox" name="consent" required /><span>{activeForm.consentLabel}</span></label>
+              <label className="contact-form__full contact-consent"><input type="checkbox" name="consent" required /><span>{form.consentLabel}</span></label>
               <label className="contact-honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
               {state === "error" && <p className="contact-form__full form-error" role="alert">{feedback}</p>}
               <button type="submit" disabled={state === "submitting"}>{state === "submitting" ? "Submitting…" : "Submit"}</button>
