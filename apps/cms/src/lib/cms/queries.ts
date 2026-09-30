@@ -28,6 +28,66 @@ import { AGROCHEMICAL_BRAND_NAME } from "./view-models";
 
 export const AGROCHEMICAL_SITE_SLUG = "agrochemical";
 
+const fallbackResources: ResourceViewModel[] = [
+  {
+    id: -1,
+    slug: "agrochemicals-brochure",
+    title: "Agrochemicals Brochure",
+    type: "brochure",
+    availability: "available",
+    placeholderLabel: "Request",
+    imageUrl: "/images/about/sustainable-formulation-solutions.webp",
+    imageAlt: "Agrochemicals brochure preview",
+  },
+  {
+    id: -2,
+    slug: "abim-2025-leaflet",
+    title: "ABIM 2025 Leaflet",
+    type: "leaflet",
+    availability: "available",
+    placeholderLabel: "Request",
+    imageUrl: "/images/home/aidigro-introduction.webp",
+    imageAlt: "ABIM 2025 leaflet preview",
+  },
+  {
+    id: -3,
+    slug: "abim-2025-poster",
+    title: "ABIM 2025 Poster",
+    type: "poster",
+    availability: "available",
+    placeholderLabel: "Request",
+    imageUrl: "/images/about/agriculture-solutions.png",
+    imageAlt: "ABIM 2025 poster preview",
+  },
+  {
+    id: -4,
+    slug: "aidigro-pn123-leaflet",
+    title: "Aidigro PN123 Leaflet",
+    type: "leaflet",
+    availability: "available",
+    placeholderLabel: "Request",
+    imageUrl: "/images/home/comprehensive-portfolio.png",
+    imageAlt: "Aidigro PN123 leaflet preview",
+  },
+  {
+    id: -5,
+    slug: "aidigro-sv-leaflet",
+    title: "Aidigro SV Leaflet",
+    type: "leaflet",
+    availability: "available",
+    placeholderLabel: "Request",
+    imageUrl: "/images/about/sustainable-formulation-solutions.webp",
+    imageAlt: "Aidigro SV leaflet preview",
+  },
+];
+
+const fallbackContactForm: ContactFormViewModel = {
+  slug: "general-enquiry",
+  consentLabel:
+    "I agree that KLK OLEO may use my submitted details to respond to this enquiry.",
+  successMessage: "Thank you. Your enquiry has been received.",
+};
+
 const fallbackGroups: ProductCategoryGroups = {
   functionalities: {
     label: "Functionalities",
@@ -350,7 +410,7 @@ export async function getProductBySlug(slug: string) {
 
 export async function getResources(): Promise<ResourceViewModel[]> {
   const site = await getSite();
-  if (!site) return [];
+  if (!site) return fallbackResources;
   const payload = await getPayload({ config });
   const result = await payload.find({
     collection: "resources",
@@ -366,14 +426,15 @@ export async function getResources(): Promise<ResourceViewModel[]> {
     draft: false,
     overrideAccess: false,
   });
-  return result.docs.map(mapResource);
+  const resources = result.docs.map(mapResource);
+  return resources.length > 0 ? resources : fallbackResources;
 }
 
 export async function getContactForm(
   slug = "general-enquiry",
 ): Promise<ContactFormViewModel | null> {
   const site = await getSite();
-  if (!site) return null;
+  if (!site) return fallbackContactForm;
   const payload = await getPayload({ config });
   const result = await payload.find({
     collection: "forms",
@@ -396,5 +457,5 @@ export async function getContactForm(
         consentLabel: form.consentLabel,
         successMessage: form.successMessage || "Thank you. Your enquiry has been received.",
       }
-    : null;
+    : fallbackContactForm;
 }
