@@ -20,11 +20,10 @@ const categories = [
 export function ProductCategoryCarousel() {
   const items = useMemo(() => [...categories, ...categories, ...categories], []);
   const shellRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(5);
+  const [activeIndex, setActiveIndex] = useState(3);
   const [slotWidth, setSlotWidth] = useState(421);
   const [shellWidth, setShellWidth] = useState(1425);
   const [transitioning, setTransitioning] = useState(true);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const shell = shellRef.current;
@@ -41,16 +40,16 @@ export function ProductCategoryCarousel() {
   }, []);
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setInterval(() => setActiveIndex((current) => current + 1), 3200);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, []);
 
   useEffect(() => {
-    if (activeIndex !== 8) return;
+    if (activeIndex !== 6) return;
     const timer = window.setTimeout(() => {
       setTransitioning(false);
-      setActiveIndex(5);
+      setActiveIndex(3);
       window.requestAnimationFrame(() => window.requestAnimationFrame(() => setTransitioning(true)));
     }, 760);
     return () => window.clearTimeout(timer);
@@ -66,10 +65,6 @@ export function ProductCategoryCarousel() {
       role="region"
       aria-roledescription="carousel"
       aria-label="Product categories"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
     >
       <div
         className={`finder-carousel-track${transitioning ? " is-transitioning" : ""}`}

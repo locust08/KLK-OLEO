@@ -1,5 +1,7 @@
 import "server-only";
 import { mapResource } from "./resource-view-model";
+import sourceProducts from "../../../data/agrochemical-products.json";
+import sourceTaxonomies from "../../../data/agrochemical-taxonomies.json";
 
 import { getPayload, type Where } from "payload";
 import config from "@payload-config";
@@ -45,6 +47,58 @@ const fallbackGroups: ProductCategoryGroups = {
     options: [],
   },
 };
+
+type SourceProduct = {
+  name: string;
+  slug: string;
+  chemicalDescription: string;
+  description: string;
+  functions: string[];
+  formulationTypes: string[];
+  regulatoryLabels: string[];
+  manufacturingRegion?: string;
+  casNumber?: string;
+};
+
+function sourceSlug(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function mapSourceProduct(product: SourceProduct, index: number): ProductViewModel {
+  return {
+    id: -(index + 1),
+    slug: product.slug,
+    name: product.name,
+    type: product.chemicalDescription,
+    summary: product.description,
+    functionalities: product.functions,
+    functionalitySlugs: product.functions.map(sourceSlug),
+    formulations: product.formulationTypes,
+    formulationSlugs: product.formulationTypes.map(sourceSlug),
+    labels: product.regulatoryLabels,
+    labelSlugs: product.regulatoryLabels.map(sourceSlug),
+    manufacturingSite:
+      product.manufacturingRegion === "EU"
+        ? "Europe"
+        : product.manufacturingRegion === "MY"
+          ? "Malaysia"
+          : "Not specified",
+    casNumber: product.casNumber || "Not specified",
+  };
+}
+
+function getLocalSourceCatalog() {
+  const products = (sourceProducts as SourceProduct[]).map(mapSourceProduct);
+  const options = (names: string[]) => names.map((name) => ({ id: sourceSlug(name), slug: sourceSlug(name), name }));
+  return {
+    products,
+    groups: {
+      functionalities: { ...fallbackGroups.functionalities, options: options(sourceTaxonomies.functions) },
+      "formulation-type": { ...fallbackGroups["formulation-type"], options: options(sourceTaxonomies.formulationTypes) },
+      "regulatory-labels": { ...fallbackGroups["regulatory-labels"], options: options(sourceTaxonomies.regulatoryLabels) },
+    },
+  } satisfies { products: ProductViewModel[]; groups: ProductCategoryGroups };
+}
 
 function isMedia(value: number | Media | null | undefined): value is Media {
   return Boolean(value && typeof value === "object");
@@ -193,7 +247,11 @@ export async function getHomeBanner(): Promise<BannerViewModel | null> {
 
 export async function getProductCatalog() {
   const site = await getSite();
-  if (!site) return { products: [], groups: fallbackGroups };
+  if (!site) {
+    return process.env.NODE_ENV !== "production"
+      ? getLocalSourceCatalog()
+      : { products: [], groups: fallbackGroups };
+  }
   const payload = await getPayload({ config });
   const published: Where = {
     and: [
@@ -239,7 +297,7 @@ export async function getProductCatalog() {
       overrideAccess: false,
     }),
   ]);
-  return {
+  const catalog = {
     products: products.docs.map(mapProduct),
     groups: {
       functionalities: {
@@ -256,11 +314,18 @@ export async function getProductCatalog() {
       },
     },
   } satisfies { products: ProductViewModel[]; groups: ProductCategoryGroups };
+  return catalog.products.length === 0 && process.env.NODE_ENV !== "production"
+    ? getLocalSourceCatalog()
+    : catalog;
 }
 
 export async function getProductBySlug(slug: string) {
   const site = await getSite();
-  if (!site) return null;
+  if (!site) {
+    return process.env.NODE_ENV !== "production"
+      ? getLocalSourceCatalog().products.find((product) => product.slug === slug) ?? null
+      : null;
+  }
   const payload = await getPayload({ config });
   const result = await payload.find({
     collection: "products",
@@ -276,7 +341,11 @@ export async function getProductBySlug(slug: string) {
     draft: false,
     overrideAccess: false,
   });
-  return result.docs[0] ? mapProduct(result.docs[0]) : null;
+  if (result.docs[0]) return mapProduct(result.docs[0]);
+  if (process.env.NODE_ENV !== "production") {
+    return getLocalSourceCatalog().products.find((product) => product.slug === slug) ?? null;
+  }
+  return null;
 }
 
 export async function getResources(): Promise<ResourceViewModel[]> {

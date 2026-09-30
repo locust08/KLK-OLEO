@@ -17,14 +17,14 @@
   .finder-carousel-track, .finder-carousel-card { transition: none; }
 }
 
-.site-footer { padding-top: 130px; padding-bottom: 54px; }
+.site-footer { padding: 78px 50px 28px; }
 .footer-copyright { height: 56px; padding: 17px 60px; background: #fff; color: #333333; font-size: 12px; text-align: right; }
 .site-footer-minimal { min-height: 334px; display: flex; align-items: end; justify-content: end; padding: 17px 60px; background: #fff; color: #333333; font-size: 12px; }
 @media (max-width: 767px) {
-  .intro-section { min-height: 1212.325px; padding: 40px 15px 78.4px; }
+  .intro-section { min-height: 1212.325px; padding: 40px 15px; }
   .split-intro > img, .about-solution .split-intro > img { width: 100%; aspect-ratio: auto; }
   .capability-section { min-height: 0; }
-  .innovation-section { min-height: 756px; }
+  .innovation-section { min-height: 0; }
   .site-footer { padding: 45px 15px; }
   .footer-copyright { height: 56px; padding: 17px 15px; }
   .site-footer-minimal { min-height: 56px; padding: 17px 15px; }

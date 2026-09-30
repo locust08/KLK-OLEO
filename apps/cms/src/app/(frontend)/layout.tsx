@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import { SiteProvider } from "@/components/layout/SiteContext";
 import { getSiteChrome } from "@/lib/cms/queries";
@@ -31,6 +32,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en" className={`${poppins.variable} h-full`}>
       <body className="min-h-full">
         <SiteProvider value={site}>{children}</SiteProvider>
+        <Script
+          src="https://www.bugherd.com/sidebarv2.js?apikey=jre4xxliq60q0k1jzi9hvw"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

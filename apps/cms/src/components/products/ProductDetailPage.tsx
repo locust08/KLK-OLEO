@@ -14,6 +14,9 @@ function UnspecifiedAttribute() {
 }
 
 export function ProductDetailPage({ product }: { product: ProductViewModel }) {
+  const requestProductHref = product.id > 0
+    ? `/contact?productId=${product.id}&product=${encodeURIComponent(product.name)}`
+    : `/contact?product=${encodeURIComponent(product.name)}`;
   return (
     <>
       <SiteHeader />
@@ -25,8 +28,13 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
             <span>{product.name}</span>
           </nav>
 
+          {product.imageUrl && (
+            <div className="product-detail__visual">
+              <img src={product.imageUrl} alt="" />
+            </div>
+          )}
+
           <header className="product-detail__header">
-            <p className="eyebrow">Agrochemical formulation solution</p>
             <h1>{product.name}</h1>
             <h2>{product.type}</h2>
             <p>{product.summary}</p>
@@ -45,10 +53,16 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
                 ? <ul>{product.formulations.map((item) => <li key={item}>{item}</li>)}</ul>
                 : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
             </div>
+            <div>
+              <h2>Regulatory/Labels</h2>
+              {product.labels.length > 0
+                ? <ul>{product.labels.map((item) => <li key={item}>{item}</li>)}</ul>
+                : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
+            </div>
           </section>
 
           <div className="product-detail__actions">
-            <Link href={`/contact?productId=${product.id}&product=${encodeURIComponent(product.name)}`} className="product-action">
+            <Link href={requestProductHref} className="product-action">
               Request Product <FaArrowRightLong aria-hidden="true" />
             </Link>
             <Link href="/resources" className="product-action product-action--outline">
@@ -56,10 +70,12 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
             </Link>
           </div>
 
-          <section className="product-meta-grid" aria-label="Product details">
-            <div><h2>Manufacturing Site</h2><p>{product.manufacturingSite}</p></div>
-            <div><h2>Regulatory/Labels</h2><p>{product.labels.length > 0 ? product.labels.join(", ") : <UnspecifiedAttribute />}</p></div>
-            <div><h2>CAS Number</h2><p>{product.casNumber}</p></div>
+          <section className="product-meta-table" aria-labelledby="product-information-title">
+            <h2 id="product-information-title">Product Information</h2>
+            <dl>
+              <div><dt>Manufacturing Site</dt><dd>{product.manufacturingSite}</dd></div>
+              <div><dt>CAS Number</dt><dd>{product.casNumber}</dd></div>
+            </dl>
           </section>
         </article>
       </main>
