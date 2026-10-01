@@ -173,7 +173,7 @@
 
 .research {
   display: grid;
-  height: min(67.6vw, 1298px);
+  height: 730px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
   padding: min(4.17vw, 80px) 42px;
@@ -187,7 +187,7 @@
 
 .researchImage {
   position: absolute;
-  width: 67.7%;
+  width: min(66%, 400px);
   aspect-ratio: 800 / 553;
   overflow: hidden;
 }
@@ -196,9 +196,38 @@
   object-fit: cover;
 }
 
-.researchImageOne { top: min(.52vw, 10px); left: 10px; }
-.researchImageTwo { z-index: 2; top: min(18.55vw, 356px); left: 30.1%; }
-.researchImageThree { top: min(36.56vw, 702px); left: 10px; }
+.researchImageOne { top: 0; left: 7%; }
+.researchImageTwo {
+  z-index: 2;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+}
+.researchImageThree { bottom: 0; left: 7%; }
+
+@keyframes research-image-reveal {
+  from {
+    opacity: .15;
+    clip-path: inset(9% 9% 9% 9%);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    filter: blur(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .researchImage {
+    animation: research-image-reveal linear both;
+    animation-timeline: view();
+  }
+
+  .researchImageOne { animation-range: entry 5% cover 28%; }
+  .researchImageTwo { animation-range: entry 12% cover 35%; }
+  .researchImageThree { animation-range: entry 19% cover 42%; }
+}
 
 .researchCopy {
   align-self: center;
@@ -468,19 +497,25 @@
   .research {
     display: flex;
     width: 100%;
-    height: 1092px;
+    height: auto;
     flex-direction: column;
-    gap: 20px;
+    gap: 28px;
     padding: 40px 15px 54px;
   }
   .researchGallery {
     width: 100%;
-    min-height: 441px;
+    height: min(84vw, 330px);
+    min-height: 0;
   }
-  .researchImage { width: 70.1%; }
+  .researchImage { width: 62%; }
   .researchImageOne { top: 0; left: 0; }
-  .researchImageTwo { top: 137px; left: 29.9%; }
-  .researchImageThree { top: 274px; left: 0; }
+  .researchImageTwo {
+    top: 50%;
+    right: 4%;
+    left: auto;
+    transform: translateY(-50%);
+  }
+  .researchImageThree { top: auto; bottom: 0; left: 0; }
   .researchCopy { padding: 0; }
   .researchCopy h2 { margin-bottom: 20px; }
   .researchPoint { margin-top: 14px; }
@@ -523,5 +558,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .agricultureImage { animation: none; }
+  .agricultureImage,
+  .researchImage { animation: none; }
 }
