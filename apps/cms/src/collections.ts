@@ -568,6 +568,8 @@ export const Leads: CollectionConfig = {
     { name: "firstName", type: "text", required: true },
     { name: "lastName", type: "text" },
     { name: "company", type: "text" },
+    { name: "jobPosition", type: "text" },
+    { name: "companyWebsite", type: "text" },
     { name: "country", type: "text" },
     { name: "message", type: "textarea" },
     { name: "product", type: "relationship", relationTo: "products" },

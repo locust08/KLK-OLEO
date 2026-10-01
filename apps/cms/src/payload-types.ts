@@ -465,6 +465,8 @@ export interface Lead {
   firstName: string;
   lastName?: string | null;
   company?: string | null;
+  jobPosition?: string | null;
+  companyWebsite?: string | null;
   country?: string | null;
   message?: string | null;
   product?: (number | null) | Product;
@@ -856,6 +858,8 @@ export interface LeadsSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
   company?: T;
+  jobPosition?: T;
+  companyWebsite?: T;
   country?: T;
   message?: T;
   product?: T;

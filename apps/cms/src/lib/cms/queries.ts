@@ -36,8 +36,6 @@ const fallbackResources: ResourceViewModel[] = [
     type: "brochure",
     availability: "available",
     placeholderLabel: "Request",
-    imageUrl: "/images/about/sustainable-formulation-solutions.webp",
-    imageAlt: "Agrochemicals brochure preview",
   },
   {
     id: -2,
@@ -46,8 +44,6 @@ const fallbackResources: ResourceViewModel[] = [
     type: "leaflet",
     availability: "available",
     placeholderLabel: "Request",
-    imageUrl: "/images/home/aidigro-introduction.webp",
-    imageAlt: "ABIM 2025 leaflet preview",
   },
   {
     id: -3,
@@ -56,8 +52,6 @@ const fallbackResources: ResourceViewModel[] = [
     type: "poster",
     availability: "available",
     placeholderLabel: "Request",
-    imageUrl: "/images/about/agriculture-solutions.png",
-    imageAlt: "ABIM 2025 poster preview",
   },
   {
     id: -4,
@@ -66,8 +60,6 @@ const fallbackResources: ResourceViewModel[] = [
     type: "leaflet",
     availability: "available",
     placeholderLabel: "Request",
-    imageUrl: "/images/home/comprehensive-portfolio.png",
-    imageAlt: "Aidigro PN123 leaflet preview",
   },
   {
     id: -5,
@@ -76,8 +68,6 @@ const fallbackResources: ResourceViewModel[] = [
     type: "leaflet",
     availability: "available",
     placeholderLabel: "Request",
-    imageUrl: "/images/about/sustainable-formulation-solutions.webp",
-    imageAlt: "Aidigro SV leaflet preview",
   },
 ];
 

@@ -67,6 +67,8 @@ try {
     siteSlug: "agrochemical",
     formSlug: form.body.doc.slug,
     firstName: "Test",
+    jobPosition: "Formulation Scientist",
+    country: "Malaysia",
     email,
     message: "Test submission; delete after verification.",
     consent: true,
@@ -105,6 +107,8 @@ try {
   assert.equal(leads.body.totalDocs, 1, "Repeated submission creates one lead");
   created.push({ collection: "leads", id: leads.body.docs[0].id });
   assert.equal(leads.body.docs[0].deliveryStatus, "manual-review");
+  assert.equal(leads.body.docs[0].jobPosition, "Formulation Scientist");
+  assert.equal(leads.body.docs[0].country, "Malaysia");
   assert.equal(leads.body.docs[0].consentText, "Test consent wording.");
   console.log(
     "HTTP checks passed: admin login, public draft privacy, protected leads/routing, resource placeholders, form validation, server-side routing, consent capture, and idempotent lead creation.",

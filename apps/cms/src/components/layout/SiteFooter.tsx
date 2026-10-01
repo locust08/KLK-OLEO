@@ -16,18 +16,18 @@ const quickLinks = [
 ] as const;
 
 const products = [
-  "Adjuvants",
-  "Emulsifiers",
-  "Dispersants",
-  "Rheology Modifiers",
-  "(Co) Solvents",
-  "Wetters, Penetrants and Spreaders",
-  "Active Ingredients",
-  "Defoamer",
-  "Soil Moisture Retainers",
-  "Humectants",
-  "Anti Drift",
-  "Tank Mix Adjuvants",
+  { label: "Adjuvants", slug: "adjuvants" },
+  { label: "Emulsifiers", slug: "emulsifiers" },
+  { label: "Dispersants", slug: "dispersants" },
+  { label: "Rheology Modifiers", slug: "rheology-modifiers" },
+  { label: "(Co) Solvents", slug: "co-solvents" },
+  { label: "Wetters, Penetrants and Spreaders", slug: "wetters-penetrants-and-spreaders" },
+  { label: "Active Ingredients", slug: "active-ingredients" },
+  { label: "Defoamer", slug: "defoamer" },
+  { label: "Soil Moisture Retainers", slug: "soil-moisture-retainers" },
+  { label: "Humectants", slug: "humectants" },
+  { label: "Anti Drift", slug: "anti-drift" },
+  { label: "Tank Mix Adjuvants", slug: "tank-mix-adjuvants" },
 ] as const;
 
 const legalLinks = [
@@ -85,8 +85,8 @@ export function SiteFooter() {
           <h2>Products</h2>
           <ul>
             {products.map((product) => (
-              <li key={product}>
-                <Link href="/products/category/functionalities">{product}</Link>
+              <li key={product.slug}>
+                <Link href={`/products/category/functionalities?function=${product.slug}`}>{product.label}</Link>
               </li>
             ))}
           </ul>

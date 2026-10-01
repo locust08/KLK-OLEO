@@ -1,102 +1,527 @@
-.page { overflow-x: clip; background: #fff; }
-.hero { position: relative; min-height: 556px; display: flex; align-items: center; padding: 0 47px; overflow: hidden; background-position: center; background-repeat: no-repeat; background-size: cover; }
-.heroOverlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 89 47 / 76%) 0%, rgb(0 97 49 / 42%) 53%, rgb(0 77 36 / 5%) 100%); }
-.hero h1 { position: relative; z-index: 1; margin: 0; color: #fff; font-size: clamp(42px, 3.1vw, 60px); font-weight: 600; line-height: 1.1; transform: translateY(-30px); }
-.agriculture { padding: 112px 5.1vw 96px; }
-.agricultureInner { display: grid; grid-template-columns: minmax(390px, 612px) minmax(0, 1fr); align-items: start; gap: clamp(70px, 5.8vw, 112px); max-width: 1770px; margin: 0 auto; }
-.agricultureImage { position: sticky; top: 112px; width: 100%; aspect-ratio: 1001 / 1095; overflow: hidden; }
-.agricultureImage img { object-fit: cover; object-position: center; }
-.agricultureCopy { padding-bottom: 5px; }
-.kicker, .brandLabel, .researchLabel { margin: 0 0 24px; color: #171717; font-size: clamp(21px, 1.55vw, 30px); font-weight: 600; line-height: 1.2; }
-.agricultureCopy .kicker { color: var(--green); font-size: clamp(30px, 2.35vw, 45px); }
-.agricultureCopy h2, .brandStory h2, .researchCopy h2 { margin: 0; color: var(--green); font-size: clamp(44px, 3.45vw, 66px); font-weight: 600; letter-spacing: -.02em; line-height: 1.08; }
-.agricultureCopy h2 { margin-bottom: 30px; color: #1a1a1a; }
-.agricultureCopy > p:not(.kicker) { max-width: 1080px; margin: 0 0 20px; color: #2d2d2d; font-size: clamp(16px, 1.08vw, 21px); line-height: 1.43; }
-.brandStory { position: relative; min-height: 772px; display: flex; align-items: center; padding: 74px 5vw 66px; overflow: hidden; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
-.brandStory::before { position: absolute; inset: -30px 31% -30px -30px; background: linear-gradient(90deg, rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 76%) 57%, rgb(255 255 255 / 20%) 88%, transparent 100%); filter: blur(18px); content: ""; }
-.brandStoryInner { position: relative; z-index: 1; width: min(61%, 1165px); }
-.brandStory h2 { margin-bottom: 26px; }
-.brandStoryInner > p:not(.brandLabel) { margin: 0 0 27px; color: #151515; font-size: clamp(17px, 1.23vw, 24px); font-weight: 500; line-height: 1.27; }
-.brandLead { color: var(--green); }
-.research { display: grid; grid-template-columns: 49.5% 50.5%; min-height: clamp(690px, 42vw, 900px); background: #e9f7ff; }
-.researchGallery { --research-image-width: min(59cqi, 650px); --research-image-height: calc(var(--research-image-width) * .75); --research-first-top: clamp(56px, 5.5cqi, 82px); --research-step: calc(var(--research-image-height) * .62); position: relative; min-height: clamp(690px, 42vw, 900px); overflow: hidden; container-type: inline-size; }
-.researchImage { position: absolute; overflow: hidden; }
-.researchImage img { object-fit: cover; }
-.researchImageOne { top: var(--research-first-top); left: max(4%, calc((100% - 710px) / 2)); width: var(--research-image-width); aspect-ratio: 4 / 3; }
-.researchImageOne img { object-position: center 48%; }
-.researchImageTwo { z-index: 2; top: calc(var(--research-first-top) + var(--research-step)); right: 3%; width: var(--research-image-width); aspect-ratio: 4 / 3; }
-.researchImageThree { top: calc(var(--research-first-top) + (var(--research-step) * 2)); left: max(4%, calc((100% - 710px) / 2)); width: var(--research-image-width); aspect-ratio: 4 / 3; }
-.researchCopy { align-self: start; padding: clamp(118px, 11vw, 195px) 4.8vw 48px 2.7vw; }
-.researchLabel { margin-bottom: 30px; }
-.researchCopy h2 { margin-bottom: 26px; }
-.researchPoint { margin-top: 22px; }
-.researchPoint h3 { margin: 0 0 4px; color: #2c2c2c; font-size: clamp(17px, 1.2vw, 23px); font-weight: 700; line-height: 1.25; }
-.researchPoint p { margin: 0; color: #373737; font-size: clamp(16px, 1.15vw, 22px); line-height: 1.42; }
-.globalPresence { padding: 74px 3.5vw 104px; background: #fff; }
-.globalPresence > h2 { width: min(100%, 1780px); margin: 0 auto 40px; color: var(--green); font-family: var(--font-poppins), Arial, sans-serif; font-size: clamp(30px, 2.5vw, 46px); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; text-align: left; }
-.globalPresenceInner { display: grid; grid-template-columns: minmax(0, 2fr) minmax(290px, .78fr); gap: clamp(24px, 2.5vw, 48px); max-width: 1780px; margin: 0 auto; align-items: start; }
-.globalPresenceViewport { min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-color: var(--green) #e8eee9; scrollbar-width: thin; }
-.globalPresenceMap { display: block; width: 100%; height: auto; }
-.globalPresenceViewport:focus-visible { outline: 3px solid var(--leaf); outline-offset: 8px; }
-.regionList { display: grid; gap: 18px; }
-.regionPanel { overflow: hidden; border: 0; border-radius: 8px; background: #e7f0eb; }
-.regionPanel summary { position: relative; display: flex; min-height: 82px; align-items: center; padding: 18px 68px 18px 22px; color: #1e2522; font-size: clamp(25px, 1.8vw, 36px); font-weight: 600; line-height: 1.15; cursor: pointer; list-style: none; }
-.regionPanel summary::-webkit-details-marker { display: none; }
-.regionPanel summary::after { position: absolute; right: 22px; display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: #67b82d; color: #fff; font-size: 20px; line-height: 1; content: "\2193"; transition: transform .2s ease; }
-.regionPanel[open] { background: #003f27; }
-.regionPanel[open] summary { color: #fff; }
-.regionPanel[open] summary::after { transform: rotate(180deg); }
-.regionPanelBody { padding: 0 22px 20px; color: #fff; }
-.regionGroup + .regionGroup { margin-top: 18px; }
-.regionGroup h3 { margin: 0 0 9px; padding-bottom: 8px; border-bottom: 1px solid rgb(255 255 255 / 25%); color: #fff; font-size: 17px; font-weight: 600; }
-.regionGroup ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
-.regionGroup li { position: relative; padding-left: 23px; font-size: 15px; line-height: 1.3; }
-.regionGroup li::before { position: absolute; top: .3em; left: 1px; width: 11px; height: 11px; background: #008a50; box-shadow: 5px 3px 0 -2px #008a50; content: ""; }
+.page {
+  overflow-x: clip;
+  background: #fff;
+}
 
-@media (max-width: 1199px) {
-  .hero { min-height: 470px; }
-  .agriculture { padding: 60px 20px; }
-  .agricultureInner { grid-template-columns: 35% minmax(0, 1fr); align-items: start; gap: 50px; }
-  .brandStory { min-height: 650px; background-position: 58% center; }
+.hero,
+.agriculture,
+.brandStory,
+.research,
+.globalPresence {
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  height: calc(min(42.2vw, 810px) - 76px);
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 0 42px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 94 48 / 42%);
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.agriculture {
+  padding: 80px 50px;
+}
+
+.agricultureInner {
+  display: grid;
+  max-width: 1820px;
+  grid-template-columns: min(calc(35vw - 60px), 612px) minmax(0, 1fr);
+  align-items: center;
+  gap: 70px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.agricultureImage {
+  position: sticky;
+  top: 98px;
+  width: 100%;
+  aspect-ratio: 1001 / 1095;
+  overflow: hidden;
+  animation: about-fade-in-down 1.25s both;
+}
+
+.agricultureImage img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.agricultureCopy {
+  min-width: 0;
+}
+
+.kicker,
+.brandLabel,
+.researchLabel {
+  margin: 0;
+  color: #1d1d1d;
+  font-weight: 600;
+}
+
+.agricultureCopy .kicker {
+  margin-bottom: 20px;
+  color: var(--green);
+  font-size: 36px;
+  line-height: 1.15;
+}
+
+.agricultureCopy h2,
+.brandStory h2,
+.researchCopy h2 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+
+.agricultureCopy h2 {
+  margin-bottom: 20px;
+  color: #1d1d1d;
+  letter-spacing: normal;
+}
+
+.agricultureCopy > p:not(.kicker) {
+  max-width: 1103px;
+  margin: 0 0 .9375em;
+  color: #414141;
+  font-size: clamp(14px, 1vw, 19.2px);
+  line-height: 1.5;
+}
+
+.brandStory {
+  position: relative;
+  display: flex;
+  min-height: 800px;
+  align-items: center;
+  overflow: hidden;
+  padding: 60px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.brandStory::before {
+  position: absolute;
+  inset: 0 34% 0 0;
+  background: linear-gradient(90deg, rgb(255 255 255 / 72%) 0%, rgb(255 255 255 / 46%) 68%, transparent 100%);
+  content: "";
+}
+
+.brandStoryInner {
+  position: relative;
+  z-index: 1;
+  width: min(61%, 1153px);
+}
+
+.brandLabel,
+.researchLabel {
+  margin-bottom: 20px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.brandStory h2,
+.researchCopy h2 {
+  color: var(--green);
+}
+
+.brandStory h2 {
+  margin-bottom: 24px;
+}
+
+.brandStoryInner > p:not(.brandLabel) {
+  margin: 0 0 20px;
+  color: #1d1d1d;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.brandStoryInner > p:last-child {
+  margin-bottom: 0;
+}
+
+.brandLead {
+  color: var(--green);
+}
+
+.research {
+  display: grid;
+  height: min(67.6vw, 1298px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: min(4.17vw, 80px) 42px;
+  background: #e9f7ff;
+}
+
+.researchGallery {
+  position: relative;
+  min-height: 0;
+}
+
+.researchImage {
+  position: absolute;
+  width: 67.7%;
+  aspect-ratio: 800 / 553;
+  overflow: hidden;
+}
+
+.researchImage img {
+  object-fit: cover;
+}
+
+.researchImageOne { top: min(.52vw, 10px); left: 10px; }
+.researchImageTwo { z-index: 2; top: min(18.55vw, 356px); left: 30.1%; }
+.researchImageThree { top: min(36.56vw, 702px); left: 10px; }
+
+.researchCopy {
+  align-self: center;
+  padding: 0 10px;
+}
+
+.researchCopy h2 {
+  margin-bottom: 24px;
+}
+
+.researchPoint {
+  margin-top: 18px;
+}
+
+.researchPoint h3 {
+  margin: 0;
+  color: #2c2c2c;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.researchPoint p {
+  margin: 0;
+  color: #414141;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.globalPresence {
+  width: 100%;
+  padding: 74px 3.5vw 104px;
+  background: #fff;
+}
+
+.globalPresence > h2 {
+  width: min(100%, 1780px);
+  margin: 0 auto 40px;
+  color: var(--green);
+  font-family: var(--font-poppins), Arial, sans-serif;
+  font-size: clamp(30px, 2.5vw, 46px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.globalPresenceInner {
+  display: grid;
+  width: 100%;
+  max-width: 1780px;
+  grid-template-columns: minmax(0, 2fr) minmax(290px, .78fr);
+  align-items: start;
+  gap: clamp(24px, 2.5vw, 48px);
+  margin: 0 auto;
+}
+
+.globalPresenceViewport {
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--green) #e8eee9;
+  scrollbar-width: thin;
+}
+
+.globalPresenceMap {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.globalPresenceViewport:focus-visible {
+  outline: 3px solid var(--leaf);
+  outline-offset: 8px;
+}
+
+.regionList {
+  display: grid;
+  gap: 18px;
+}
+
+.regionPanel {
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  background: #e7f0eb;
+}
+
+.regionPanel summary {
+  position: relative;
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  padding: 18px 68px 18px 22px;
+  color: #1e2522;
+  font-size: clamp(25px, 1.8vw, 36px);
+  font-weight: 600;
+  line-height: 1.15;
+  cursor: pointer;
+  list-style: none;
+}
+
+.regionPanel summary::-webkit-details-marker {
+  display: none;
+}
+
+.regionPanel summary::after {
+  position: absolute;
+  right: 22px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  background: #67b82d;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  content: "\2193";
+  transition: transform .2s ease;
+}
+
+.regionPanel[open] {
+  background: #003f27;
+}
+
+.regionPanel[open] summary {
+  color: #fff;
+}
+
+.regionPanel[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.regionPanelBody {
+  padding: 0 22px 20px;
+  color: #fff;
+}
+
+.regionGroup + .regionGroup {
+  margin-top: 18px;
+}
+
+.regionGroup h3 {
+  margin: 0 0 9px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgb(255 255 255 / 25%);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.regionGroup ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.regionGroup li {
+  position: relative;
+  padding-left: 23px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.regionGroup li::before {
+  position: absolute;
+  top: .3em;
+  left: 1px;
+  width: 11px;
+  height: 11px;
+  background: #008a50;
+  box-shadow: 5px 3px 0 -2px #008a50;
+  content: "";
+}
+
+@keyframes about-fade-in-down {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .agriculture { padding-right: 40px; padding-left: 40px; }
+  .agricultureInner {
+    grid-template-columns: min(calc(35vw - 60px), 612px) minmax(0, 1fr);
+    gap: 50px;
+  }
+  .agricultureImage { top: 90px; }
+  .brandStory {
+    padding: 50px 40px;
+    background-position: 60% center;
+  }
   .brandStoryInner { width: 66%; }
-  .research, .researchGallery { min-height: 700px; }
-  .researchCopy { padding-top: 120px; }
-  .globalPresenceInner { grid-template-columns: minmax(0, 1.65fr) minmax(260px, .8fr); }
-  .regionPanel summary { min-height: 68px; font-size: 24px; }
+  .research { padding-right: 30px; padding-left: 30px; }
+  .globalPresenceInner {
+    grid-template-columns: minmax(0, 1.65fr) minmax(260px, .8fr);
+  }
+  .regionPanel summary {
+    min-height: 68px;
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 767px) {
-  .hero { min-height: 300px; padding: 0 20px; background-position: 54% center; }
-  .heroOverlay { background: linear-gradient(90deg, rgb(0 89 47 / 74%), rgb(0 89 47 / 16%)); }
-  .hero h1 { font-size: 36px; transform: translateY(-12px); }
-  .agriculture { padding: 60px 15px 70px; }
-  .agricultureInner { display: flex; flex-direction: column; align-items: stretch; gap: 44px; }
-  .agricultureImage { position: relative; top: auto; aspect-ratio: 1001 / 1095; }
-  .agricultureCopy .kicker { margin-bottom: 14px; font-size: 25px; }
-  .agricultureCopy h2, .brandStory h2, .researchCopy h2 { font-size: 34px; }
-  .agricultureCopy h2 { margin-bottom: 24px; }
-  .agricultureCopy > p:not(.kicker) { margin-bottom: 18px; font-size: 16px; line-height: 1.5; }
-  .brandStory { position: relative; min-height: 0; padding: 65px 20px; background-attachment: scroll; background-position: 68% center; }
-  .brandStory::before { inset: -30px 5% -30px -30px; background: linear-gradient(90deg, rgb(255 255 255 / 90%), rgb(255 255 255 / 62%) 67%, transparent); filter: blur(14px); }
-  .brandStoryInner { position: relative; width: 100%; }
-  .brandLabel, .researchLabel { margin-bottom: 18px; font-size: 20px; }
+  .hero {
+    width: 100%;
+    height: 250px;
+    padding: 0 20px;
+    background-position: center;
+  }
+  .hero h1 { font-size: 28px; line-height: 1.1; }
+  .agriculture { padding: 40px 15px 43px; }
+  .agricultureInner {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 49px;
+    padding: 0;
+  }
+  .agricultureImage {
+    position: relative;
+    top: auto;
+    width: 100%;
+  }
+  .agricultureCopy .kicker {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 1.15;
+  }
+  .agricultureCopy h2,
+  .brandStory h2,
+  .researchCopy h2 { font-size: 28px; line-height: 1.1; }
+  .agricultureCopy h2 { margin-bottom: 20px; }
+  .agricultureCopy > p:not(.kicker) {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .agricultureCopy > p:last-child { margin-bottom: 0; }
+  .brandStory {
+    min-height: 673px;
+    align-items: flex-start;
+    padding: 40px 15px;
+    background-attachment: scroll;
+    background-position: center;
+  }
+  .brandStory::before {
+    inset: 0;
+    background: linear-gradient(90deg, rgb(255 255 255 / 55%) 0%, rgb(255 255 255 / 25%) 68%, transparent 100%);
+  }
+  .brandStoryInner { width: 100%; }
+  .brandLabel,
+  .researchLabel {
+    margin-bottom: 18px;
+    font-size: 18px;
+    line-height: 1.25;
+  }
   .brandStory h2 { margin-bottom: 24px; }
-  .brandStoryInner > p:not(.brandLabel) { margin-bottom: 22px; font-size: 16px; line-height: 1.45; }
-  .research { display: flex; min-height: 0; flex-direction: column; }
-  .researchGallery { --research-image-width: 66cqi; --research-image-height: calc(var(--research-image-width) * .75); --research-first-top: 28px; --research-step: calc(var(--research-image-height) * .56); min-height: 430px; }
-  .researchImageOne, .researchImageThree { left: 0; width: var(--research-image-width); }
-  .researchImageTwo { right: 0; width: 76cqi; }
-  .researchCopy { padding: 52px 20px 70px; }
-  .researchCopy h2 { margin-bottom: 28px; }
-  .researchPoint { margin-top: 24px; }
-  .researchPoint h3 { font-size: 18px; }
-  .researchPoint p { font-size: 16px; }
-  .globalPresence { padding: 56px 0 78px; }
-  .globalPresence > h2 { width: auto; margin: 0 20px 30px; font-size: 28px; }
-  .globalPresenceInner { display: flex; flex-direction: column; gap: 26px; }
-  .globalPresenceViewport { width: 100%; padding: 0 20px 14px; }
-  .globalPresenceMap { width: 900px; max-width: none; }
-  .regionList { width: calc(100% - 40px); margin: 0 20px; gap: 12px; }
-  .regionPanel summary { min-height: 64px; padding: 15px 60px 15px 18px; font-size: 23px; }
-  .regionPanel summary::after { right: 18px; }
+  .brandStoryInner > p:not(.brandLabel) {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .research {
+    display: flex;
+    width: 100%;
+    height: 1092px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 15px 54px;
+  }
+  .researchGallery {
+    width: 100%;
+    min-height: 441px;
+  }
+  .researchImage { width: 70.1%; }
+  .researchImageOne { top: 0; left: 0; }
+  .researchImageTwo { top: 137px; left: 29.9%; }
+  .researchImageThree { top: 274px; left: 0; }
+  .researchCopy { padding: 0; }
+  .researchCopy h2 { margin-bottom: 20px; }
+  .researchPoint { margin-top: 14px; }
+  .researchPoint h3,
+  .researchPoint p { font-size: 16px; line-height: 1.5; }
+  .globalPresence {
+    padding: 56px 0 78px;
+  }
+  .globalPresence > h2 {
+    width: auto;
+    margin: 0 20px 30px;
+    font-size: 28px;
+  }
+  .globalPresenceInner {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .globalPresenceViewport {
+    width: 100%;
+    padding: 0 20px 14px;
+  }
+  .globalPresenceMap {
+    width: 900px;
+    max-width: none;
+  }
+  .regionList {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    gap: 12px;
+  }
+  .regionPanel summary {
+    min-height: 64px;
+    padding: 15px 60px 15px 18px;
+    font-size: 23px;
+  }
+  .regionPanel summary::after {
+    right: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agricultureImage { animation: none; }
 }

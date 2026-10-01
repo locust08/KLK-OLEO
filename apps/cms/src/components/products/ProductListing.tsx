@@ -45,7 +45,10 @@ function FilterGroup({ category, groups, selected, counts, onChange }: {
         const isSelected = selected.includes(option.slug);
         const isDisabled = count === 0 && !isSelected;
         return (
-          <label key={option.id} className={isDisabled ? "is-disabled" : undefined}>
+          <label
+            key={option.id}
+            className={[isSelected ? "is-selected" : "", isDisabled ? "is-disabled" : ""].filter(Boolean).join(" ") || undefined}
+          >
             <input
               type="checkbox"
               checked={isSelected}
@@ -165,13 +168,23 @@ export function ProductListing({ category, groups, products }: ProductListingPro
         </div>
         {totalPages > 1 && (
           <nav className="catalog-pagination" aria-label="Product results pages">
-            <button type="button" disabled={currentPage === 1} onClick={() => setUrlState({ ...state, page: currentPage - 1 })}>
+            {currentPage > 1 && <button className="catalog-pagination__direction" type="button" onClick={() => setUrlState({ ...state, page: currentPage - 1 })}>
               Previous
-            </button>
-            <span>Page {currentPage} of {totalPages}</span>
-            <button type="button" disabled={currentPage === totalPages} onClick={() => setUrlState({ ...state, page: currentPage + 1 })}>
+            </button>}
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+              <button
+                key={page}
+                type="button"
+                aria-label={`Page ${page}`}
+                aria-current={page === currentPage ? "page" : undefined}
+                onClick={() => setUrlState({ ...state, page })}
+              >
+                {page}
+              </button>
+            ))}
+            {currentPage < totalPages && <button className="catalog-pagination__direction" type="button" onClick={() => setUrlState({ ...state, page: currentPage + 1 })}>
               Next
-            </button>
+            </button>}
           </nav>
         )}
       </div>

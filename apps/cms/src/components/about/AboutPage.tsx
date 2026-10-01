@@ -5,15 +5,14 @@ import { siteAssets } from "@/data/site-assets";
 import type { PageContentViewModel } from "@/lib/cms/view-models";
 import styles from "./AboutPage.module.css";
 
-export function AboutPage({ page }: { page: PageContentViewModel | null }) {
-  const introduction = page?.sections[0];
+export function AboutPage({ page: _page }: { page: PageContentViewModel | null }) {
   return (
     <>
       <SiteHeader />
       <main className={styles.page}>
-        <section className={styles.hero} style={{ backgroundImage: `url(${page?.heroImageUrl || siteAssets.aboutHero})` }} aria-labelledby="about-page-title">
+        <section className={styles.hero} style={{ backgroundImage: `url(${siteAssets.aboutHero})` }} aria-labelledby="about-page-title">
           <div className={styles.heroOverlay} />
-          <h1 id="about-page-title">{page?.heroHeading || page?.title || "About Us"}</h1>
+          <h1 id="about-page-title">About Us</h1>
         </section>
 
         <section className={styles.agriculture}>
@@ -23,8 +22,8 @@ export function AboutPage({ page }: { page: PageContentViewModel | null }) {
             </div>
             <div className={styles.agricultureCopy}>
               <p className={styles.kicker}>KLK Oleo Agrochemicals</p>
-              <h2>{introduction?.heading || "Agriculture Solutions"}</h2>
-              <p>{introduction?.body || "KLK OLEO Agrochemicals is the preferred partner for high-performing agrochemical ingredients that enhance formulation efficiency, crop health, and application effectiveness. As part of KLK OLEO, a global leader in oleochemicals, we bring the strength of an international network directly to your fields and formulation labs."}</p>
+              <h2>Agriculture Solutions</h2>
+              <p>KLK OLEO Agrochemicals is the preferred partner for high-performing agrochemical ingredients that enhance formulation efficiency, crop health, and application effectiveness. As part of KLK OLEO, a global leader in oleochemicals, we bring the strength of an international network directly to your fields and formulation labs.</p>
               <p>Supported by our experienced scientists, R&amp;D centres, product development capabilities and agronomist insights, we work hand-in-hand with customers to refine formulations, enhance application performance, and develop solutions that create measurable impact in the field.</p>
               <p>Sustainability is embedded in everything we do. From plant-derived ingredients, low-carbon options to innovations that reduce agrochemical use, our portfolio is designed to meet today&apos;s environmental challenges while ensuring productivity and reliability.</p>
               <p>With KLK OLEO Agrochemicals, you gain more than ingredients — you gain a partner committed to quality, consistency, and technical excellence, so you can focus on what matters most: healthy, productive crops and a sustainable future.</p>
@@ -46,13 +45,13 @@ export function AboutPage({ page }: { page: PageContentViewModel | null }) {
         <section className={styles.research} aria-labelledby="research-title">
           <div className={styles.researchGallery} aria-label="Research and development imagery">
             <div className={`${styles.researchImage} ${styles.researchImageOne}`}>
-              <Image src={siteAssets.innovationRDCentre} fill unoptimized sizes="(max-width: 767px) 70vw, 770px" alt="KLK OLEO Research and Development Centre" />
+              <Image src={siteAssets.innovationRDCentre} fill unoptimized sizes="(max-width: 767px) 70vw, 616px" alt="KLK OLEO Research and Development Centre" />
             </div>
             <div className={`${styles.researchImage} ${styles.researchImageTwo}`}>
-              <Image src={siteAssets.innovationFieldDrones} fill unoptimized sizes="(max-width: 767px) 76vw, 770px" alt="Agricultural drones applying treatments over a field" />
+              <Image src={siteAssets.innovationFieldDrones} fill unoptimized sizes="(max-width: 767px) 70vw, 616px" alt="Agricultural drones applying treatments over a field" />
             </div>
             <div className={`${styles.researchImage} ${styles.researchImageThree}`}>
-              <Image src={siteAssets.innovationPlantResearch} fill unoptimized sizes="(max-width: 767px) 70vw, 770px" alt="Scientist studying a plant in a laboratory" />
+              <Image src={siteAssets.innovationPlantResearch} fill unoptimized sizes="(max-width: 767px) 70vw, 616px" alt="Scientist studying a plant in a laboratory" />
             </div>
           </div>
           <div className={styles.researchCopy}>
@@ -169,6 +168,7 @@ export function AboutPage({ page }: { page: PageContentViewModel | null }) {
             </div>
           </div>
         </section>
+
       </main>
       <SiteFooter />
     </>
