@@ -1,0 +1,18 @@
+import type { NewsItem, Product } from "@/types/klk";
+
+export const products: Product[] = [
+  { id: "amidem-100", name: "AMIDEM 100", category: "Amides", functionality: ["Viscosity control", "Foam boosting"], formulationType: ["Liquid"], labels: ["RSPO", "Halal"], description: "Plant-derived amide for personal and home care formulations.", applications: ["Shampoo", "Dishwashing", "Surface care"] },
+  { id: "palmerol-1214", name: "PALMEROL 1214", category: "Fatty Alcohols", functionality: ["Emollient", "Structuring"], formulationType: ["Flake", "Solid"], labels: ["RSPO", "Kosher"], description: "Versatile fatty alcohol offering body and stability to formulations.", applications: ["Skin care", "Hair care", "Industrial"] },
+  { id: "palmera-b180", name: "PALMERA B180", category: "Fatty Acids", functionality: ["Emulsifying", "Lubricating"], formulationType: ["Bead", "Solid"], labels: ["RSPO", "Halal"], description: "High-purity renewable fatty acid for consumer and industrial use.", applications: ["Cosmetics", "Rubber", "Candles"] },
+  { id: "palmosalt-8020", name: "PALMOSALT 8020", category: "Anionic Surfactants", functionality: ["Cleansing", "Foaming"], formulationType: ["Powder"], labels: ["Biodegradable", "RSPO"], description: "Efficient cleansing surfactant with a naturally derived carbon profile.", applications: ["Bar soap", "Laundry", "Home care"] },
+  { id: "palmergy-me", name: "PALMERGY ME", category: "Esters", functionality: ["Energy source", "Solvency"], formulationType: ["Liquid"], labels: ["Bio-based", "ISCC"], description: "Renewable methyl ester engineered for energy and technical applications.", applications: ["Biodiesel", "Industrial cleaning", "Metalworking"] },
+  { id: "davoslife-e3", name: "DavosLife E3", category: "Phytonutrients", functionality: ["Antioxidant", "Nutrition"], formulationType: ["Oil"], labels: ["Non-GMO", "Halal"], description: "Natural tocotrienol complex supporting healthy ageing and wellness.", applications: ["Supplements", "Food", "Personal care"] },
+  { id: "palmester-3595", name: "PALMESTER 3595", category: "Esters", functionality: ["Emollient", "Sensory enhancement"], formulationType: ["Liquid"], labels: ["RSPO", "Vegan"], description: "Lightweight emollient delivering elegant spread and after-feel.", applications: ["Skin care", "Sun care", "Colour cosmetics"] },
+  { id: "glycerine-995", name: "GLYCERINE 99.5%", category: "Glycerine", functionality: ["Humectant", "Solvent"], formulationType: ["Liquid"], labels: ["USP", "EP", "Halal"], description: "High-purity vegetable glycerine for demanding regulated applications.", applications: ["Pharmaceutical", "Food", "Oral care"] },
+];
+
+export const newsItems: NewsItem[] = [
+  { category: "Products", date: "07 Aug 2026", title: "Trusted Partner For Healthy Ageing And Healthier Living", excerpt: "Meet the KLK OLEO team at Vitafoods Asia to learn more about sustainable, high-performance functional ingredients.", image: "/sites/figma-com-fd3c2a3a/proto-klk-oleo-2026-95f6cd74/images/2026-09-VItafoods-Asia-Visual-1080px--1024x1024.png" },
+  { category: "Exhibition", date: "16 Jun 2026", title: "Sustainable Ingredients, Touching Lives Positively, Everyday", excerpt: "Featured products and sensory solutions for modern cosmetic formulations.", image: "/sites/figma-com-fd3c2a3a/proto-klk-oleo-2026-95f6cd74/images/KLK-OLEO-in-cosmetics-Korea-1024x1024.png" },
+  { category: "Corporate", date: "10 Jun 2026", title: "Celebrating 100 Years Of Excellence In Delden", excerpt: "A century of people, chemistry, innovation and partnership at our European site.", image: "/sites/figma-com-fd3c2a3a/proto-klk-oleo-2026-95f6cd74/images/KKS-Site-100th-Anniversary-eBanner-1024x1024.jpg" },
+];
