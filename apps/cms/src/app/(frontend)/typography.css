@@ -157,10 +157,10 @@ main h1, main h2, main h3 { font-weight: 600; letter-spacing: normal; }
 .intro-section {
   position: relative;
   min-height: 0;
-  padding: 80px 20px;
+  padding: 80px 60px;
 }
 .split-intro {
-  max-width: 1280px;
+  max-width: none;
   min-height: 0;
   grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
   gap: 50px;
@@ -192,7 +192,7 @@ main h1, main h2, main h3 { font-weight: 600; letter-spacing: normal; }
 .intro-copy li { margin-bottom: 0; }
 .intro-copy .primary-button { margin-top: 24px; }
 @media (min-width: 768px) and (max-width: 1199px) {
-  .intro-section { padding-block: 60px; }
+  .intro-section { padding: 60px 20px; }
   .split-intro { gap: 30px; }
   .intro-media { margin-top: 0; }
 }
