@@ -1,0 +1,102 @@
+/* Life Science inspired, one-time entrances on the Agrochemical frontend. */
+.capability, .innovation-card, .finder-reveal, .contact-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.motion-enter {
+  transition: opacity 850ms ease, translate 850ms cubic-bezier(.22, 1, .36, 1), scale 850ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.motion-enter:not(.motion-visible) {
+  opacity: 0;
+  translate: 0 28px;
+}
+.motion-enter[data-reveal="right"]:not(.motion-visible) { translate: 28px 0; }
+.motion-enter[data-reveal="zoom"]:not(.motion-visible) { translate: 0 0; scale: .97; }
+.motion-enter.motion-visible { opacity: 1; translate: 0 0; scale: 1; }
+.resource-card, .catalog-product-row {
+  transition: box-shadow 250ms ease, border-color 250ms ease;
+}
+.resource-card:hover, .resource-card:focus-within,
+.catalog-product-row:hover, .catalog-product-row:focus-within {
+  border-color: #9abca8;
+  box-shadow: 0 8px 24px rgb(0 63 37 / 10%);
+}
+.resource-card.motion-enter, .catalog-product-row.motion-enter {
+  transition: opacity 850ms ease, translate 850ms cubic-bezier(.22, 1, .36, 1), box-shadow 250ms ease, border-color 250ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-enter, .motion-enter:not(.motion-visible),
+  .motion-enter[data-reveal], .motion-enter.motion-visible {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+  .resource-card, .catalog-product-row { transition: none; }
+}
+
+/* Life Science push-up cards: image/title front, green description back. */
+.capability {
+  display: grid;
+  padding: 0;
+  min-height: 400px;
+  background: var(--green);
+}
+.capability .capability__panel {
+  grid-area: 1 / 1;
+  height: auto;
+  min-height: 400px;
+  padding: 28px;
+  border-radius: 0;
+  transition: transform 800ms cubic-bezier(.455, .03, .515, .955);
+}
+.capability__panel--front {
+  position: relative;
+  isolation: isolate;
+  background-position: center;
+  background-size: cover;
+}
+.capability__panel--front::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(135deg, rgb(255 255 255 / 65%), rgb(255 255 255 / 35%));
+}
+.capability .capability__panel--front h3 { margin: 0; }
+.capability .capability__panel--back {
+  background: var(--green);
+  transform: translateY(100%);
+}
+.capability .capability__panel--back p { color: #fff; }
+.capability:hover .capability__panel--front,
+.capability:focus .capability__panel--front { transform: translateY(-100%); }
+.capability:hover .capability__panel--back,
+.capability:focus .capability__panel--back { transform: translateY(0); }
+.capability:focus-visible { outline: 3px solid var(--leaf); outline-offset: 4px; }
+@media (max-width: 767px), (max-width: 1199px) and (hover: none) {
+  .capability { display: flex; flex-direction: column; min-height: 0; }
+  .capability .capability__panel { min-height: 0; transform: none; }
+  .capability .capability__panel--front { min-height: 160px; }
+  .capability .capability__panel--back { flex: 1; }
+  .capability:is(:hover, :focus) .capability__panel { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .capability .capability__panel { transition: none; }
+}
+/* Reference-sized bottom bars travel with each push-up panel. */
+.capability .capability__panel {
+  position: relative;
+  padding-bottom: 38px;
+}
+.capability .capability__panel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 10px;
+  pointer-events: none;
+}
+.capability__panel--front::after { background: var(--green); }
+.capability__panel--back::after { background: var(--gold); }

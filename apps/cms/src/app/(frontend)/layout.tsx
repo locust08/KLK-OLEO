@@ -6,6 +6,9 @@ import { SiteProvider } from "@/components/layout/SiteContext";
 import { getSiteChrome } from "@/lib/cms/queries";
 import "./globals.css";
 import "./qa-overrides.css";
+import "./typography.css";
+import "./motion.css";
+import { ScrollAnimations } from "@/components/ui/ScrollAnimations";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +34,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en" className={`${poppins.variable} h-full`}>
       <body className="min-h-full">
-        <SiteProvider value={site}>{children}</SiteProvider>
+        <SiteProvider value={site}>{children}<ScrollAnimations /></SiteProvider>
         <Script
           src="https://www.bugherd.com/sidebarv2.js?apikey=jre4xxliq60q0k1jzi9hvw"
           strategy="afterInteractive"

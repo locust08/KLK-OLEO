@@ -8,6 +8,8 @@
   --secondary: #33373d;
   --white: #ffffff;
   --gutter: 50px;
+  --image-radius: 15px;
+  --gold: #a99767;
 }
 * {
   box-sizing: border-box;
@@ -26,6 +28,7 @@ body {
 img {
   display: block;
   max-width: 100%;
+  border-radius: var(--image-radius);
 }
 a {
   color: inherit;
@@ -180,8 +183,8 @@ a {
   transform: translateY(-2.8px);
 }
 .header-basket svg {
-  width: 38px;
-  height: 38px;
+  width: 22px;
+  height: 22px;
   fill: currentColor;
 }
 .header-search {
@@ -281,7 +284,7 @@ a {
 .home-hero__rule--gold {
   width: 28%;
   margin-top: 13px;
-  border-color: #a99767;
+  border-color: var(--gold);
 }
 .home-hero h1 {
   width: min(55%, 760px);
@@ -679,7 +682,7 @@ a {
 .contact-cta .eyebrow,
 .contact-cta h2,
 .contact-cta p {
-  color: #fff !important;
+  color: #fff;
 }
 .site-footer {
   padding: 78px 50px 28px;
@@ -879,7 +882,7 @@ a {
 }
 .resource-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 26px 24px;
   width: 100%;
   max-width: 1600px;
@@ -970,7 +973,7 @@ a {
 }
 .contact-copy h2 {
   margin: 0 0 25px;
-  color: var(--heading);
+  color: var(--green);
   font-size: 36px;
   line-height: 1.15;
 }
@@ -1012,7 +1015,7 @@ a {
   background: var(--green);
 }
 .contact-form label {
-  color: #d4c18f;
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
 }
@@ -2769,4 +2772,17 @@ a {
     transform: none;
     transition: none;
   }
+}
+
+/* Round image backgrounds and clip image containers consistently. */
+.home-hero,
+.page-hero,
+.catalog-hero,
+.capability,
+.innovation-section,
+.intro-media,
+.resource-card__preview,
+.product-detail__visual {
+  border-radius: var(--image-radius);
+  overflow: hidden;
 }

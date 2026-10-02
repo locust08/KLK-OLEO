@@ -27,7 +27,7 @@ export function ResourcesPage({
                     src={resource.imageUrl}
                     fill
                     unoptimized
-                    sizes="(max-width: 767px) 100vw, 33vw"
+                    sizes="(max-width: 767px) 100vw, (max-width: 900px) 50vw, (max-width: 1199px) 33vw, 25vw"
                     alt={resource.imageAlt || `${resource.title} document cover`}
                   /> : <div className="resource-card__no-preview">
                     <FaFilePdf aria-hidden="true" />

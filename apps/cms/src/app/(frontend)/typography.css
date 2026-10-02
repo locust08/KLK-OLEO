@@ -1,0 +1,288 @@
+/* Typography measured from the KLK OLEO Life Science reference.
+   This stylesheet belongs to the Agrochemical frontend only. */
+:root {
+  --type-title: 48px;
+  --type-feature: 32px;
+  --type-label: 20px;
+  --type-body: 16px;
+  --type-heading-line: 1.2;
+  --type-body-line: 2;
+  --copy: #414141;
+  --secondary: #414141;
+  --image-text-gradient: linear-gradient(90deg, rgb(255 255 255 / 78%), rgb(255 255 255 / 48%) 48%, rgb(255 255 255 / 8%) 100%);
+}
+body { font-weight: 400; }
+main h1, main h2, main h3 { font-weight: 600; letter-spacing: normal; }
+.split-intro h1, .split-intro h2,
+.capability-section > h2, .innovation-section > h2,
+.finder-cta h2, .contact-cta h2,
+.page-hero h1, .catalog-hero h1,
+.catalog-category-intro h2, .product-detail__header h1,
+.contact-copy h2 {
+  font-size: var(--type-title);
+  line-height: var(--type-heading-line);
+}
+.eyebrow, .resource-card h2, .capability h3,
+.product-spec-panel h2, .product-meta-table > h2 {
+  font-size: var(--type-label);
+  font-weight: 600;
+  line-height: var(--type-heading-line);
+}
+.eyebrow { text-transform: uppercase; letter-spacing: normal; }
+.home-hero .home-hero__brand {
+  font-size: var(--type-title);
+  font-weight: 600;
+  line-height: var(--type-heading-line);
+}
+.home-hero h1, .innovation-grid h3, .finder-carousel-card h3,
+.product-detail__header h2 {
+  font-size: var(--type-feature);
+  line-height: var(--type-heading-line);
+}
+.intro-copy p:not(.eyebrow), .intro-copy ul,
+.capability p, .innovation-grid p,
+.finder-cta > div.finder-copy--action > p,
+.contact-action-block > p, .finder-carousel-card p,
+.contact-copy p, .catalog-category-intro > p:not(.eyebrow),
+.catalog-product-row p, .product-detail__header > p:last-child,
+.product-spec-panel p, .product-meta-table dt, .product-meta-table dd,
+.site-footer p, .site-footer li {
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--type-body-line);
+}
+.primary-button, .finder-cta .primary-button,
+.contact-cta .primary-button, .innovation-card .primary-button,
+.resource-card__action, .contact-form button {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.capability, .innovation-card,
+.innovation-card:nth-child(1), .innovation-card:nth-child(2) {
+  height: auto;
+  min-height: 360px;
+}
+.capability__panel, .innovation-card {
+  background: linear-gradient(135deg, rgb(255 255 255 / 82%), rgb(255 255 255 / 55%));
+}
+.home-hero, .page-hero, .innovation-section {
+  position: relative;
+  isolation: isolate;
+}
+.page-hero::before, .innovation-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: var(--image-text-gradient);
+}
+.page-hero--resources::before, .innovation-section::before,
+.catalog-hero__shade {
+  background: linear-gradient(180deg, rgb(255 255 255 / 18%), rgb(255 255 255 / 65%) 50%, rgb(255 255 255 / 22%));
+}
+.home-hero__brand, .home-hero h1,
+.page-hero h1, .catalog-hero h1, .catalog-hero__content {
+  color: var(--green);
+  text-shadow: none;
+}
+.catalog-hero__content p {
+  font-size: var(--type-label);
+  line-height: var(--type-heading-line);
+  font-weight: 600;
+  letter-spacing: normal;
+}
+@media (max-width: 1199px) and (min-width: 768px) {
+  :root { --type-title: 40px; }
+}
+@media (max-width: 767px) {
+  :root {
+    --type-title: 30px;
+    --type-feature: 20px;
+    --type-label: 18px;
+    --type-body: 14px;
+  }
+  .capability, .innovation-card,
+  .innovation-card:nth-child(1), .innovation-card:nth-child(2) { min-height: 280px; }
+}
+
+.site-logo {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+.desktop-nav a {
+  color: #414141;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+@media (max-width: 767px) {
+  .site-logo { font-size: 16px; }
+}
+
+/* Keep the home banner copy left of the plant without an image overlay. */
+.home-hero {
+  background-position: left center;
+}
+.home-hero .home-hero__content {
+  width: min(38%, 520px);
+  max-width: 520px;
+}
+.home-hero h1 {
+  width: 100%;
+}
+.home-hero .home-hero__brand,
+.home-hero h1 {
+  color: #fff;
+  text-shadow: 0 2px 6px rgb(0 0 0 / 35%);
+}
+.home-hero__rule--leaf { width: 46%; }
+.home-hero__rule--gold { width: 72%; }
+@media (max-width: 767px) {
+  .home-hero {
+    background-position: left center;
+    padding-inline: 25px;
+  }
+  .home-hero .home-hero__content {
+    width: 55%;
+    max-width: 260px;
+  }
+}
+
+/* Reference About layout: wide media beside the text column. */
+.intro-section {
+  position: relative;
+  min-height: 0;
+  padding: 80px 20px;
+}
+.split-intro {
+  max-width: 1280px;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+  gap: 50px;
+  align-items: stretch;
+}
+.intro-media {
+  position: relative;
+  top: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+.intro-media img {
+  width: 100%;
+  height: 0;
+  min-height: 500px;
+  flex: 1;
+  aspect-ratio: auto;
+  object-fit: cover;
+  border-radius: var(--image-radius);
+}
+.intro-copy { padding: 0; }
+.intro-copy .eyebrow { margin-bottom: 10px; }
+.intro-copy h2 { margin-bottom: 24px; overflow-wrap: anywhere; }
+.intro-copy ul { margin-top: 32px; padding-left: 40px; }
+.intro-copy li { margin-bottom: 0; }
+.intro-copy .primary-button { margin-top: 24px; }
+@media (min-width: 768px) and (max-width: 1199px) {
+  .intro-section { padding-block: 60px; }
+  .split-intro { gap: 30px; }
+  .intro-media { margin-top: 0; }
+}
+@media (max-width: 767px) {
+  .intro-section { min-height: 0; padding: 40px 20px; }
+  .split-intro { grid-template-columns: 1fr; gap: 30px; }
+  .intro-media { margin-top: 0; }
+  .intro-media img { height: auto; min-height: 0; flex: none; aspect-ratio: 4 / 3; }
+}
+
+/* Match the reference carousel's full-width, 10px bottom accent. */
+.finder-carousel-card {
+  position: relative;
+  overflow: hidden;
+}
+.finder-carousel-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 10px;
+  background: var(--gold);
+  pointer-events: none;
+}
+
+/* Centred contact call-to-action inspired by the Life Science homepage. */
+.contact-cta.contact-cta--image {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  justify-content: center;
+  min-height: 340px;
+  padding: 80px 20px;
+  background-color: #eef4e8;
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--image-radius);
+  text-align: center;
+}
+.contact-cta--image::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgb(255 255 255 / 8%), rgb(255 255 255 / 35%) 50%, rgb(255 255 255 / 8%));
+}
+.contact-cta__content { width: 100%; max-width: 1280px; }
+.contact-cta__content h2 { max-width: 100%; margin: 0 0 20px; }
+.contact-cta__message {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  color: #414141;
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--type-body-line);
+}
+@media (max-width: 767px) {
+  .contact-cta.contact-cta--image { padding: 50px 20px; }
+}
+/* Shared Agrochemical interaction colours. */
+.primary-button, .primary-button--inverse,
+.resource-card__action:not(.resource-card__action--disabled),
+.contact-form button, .contact-form-success button,
+.product-action, .product-action--outline {
+  background: var(--green);
+  color: #fff;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+.primary-button:hover, .primary-button:focus-visible,
+.resource-card__action:not(.resource-card__action--disabled):hover,
+.resource-card__action:not(.resource-card__action--disabled):focus-visible,
+.contact-form button:not(:disabled):hover, .contact-form button:focus-visible,
+.contact-form-success button:hover, .contact-form-success button:focus-visible,
+.product-action:hover, .product-action:focus-visible {
+  background: var(--gold);
+  color: var(--dark-green);
+}
+.finder-carousel-card, .finder-carousel-card.is-active {
+  background: var(--green);
+  transition: transform 750ms cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .primary-button, .resource-card__action, .contact-form button,
+  .contact-form-success button, .product-action, .finder-carousel-card { transition: none; }
+}
+.contact-cta--image .eyebrow, .contact-cta--image h2 { color: var(--green); }
+.contact-cta--image .contact-cta__message { color: #414141; }
+/* Search stays in the dropdown on tablet and mobile. */
+.header-search input, .mobile-nav__search input { border-width: 1px; }
+@media (max-width: 1199px) {
+  .header-search { display: none; }
+  .mobile-nav__search { display: block; }
+}

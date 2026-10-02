@@ -561,3 +561,82 @@
   .agricultureImage,
   .researchImage { animation: none; }
 }
+
+.hero,
+.brandStory,
+.agricultureImage,
+.researchImage {
+  border-radius: var(--image-radius);
+  overflow: hidden;
+}
+
+/* Share the Life Science type scale with the Agrochemical page templates. */
+.hero h1, .agricultureCopy h2, .brandStory h2,
+.researchCopy h2, .globalPresence > h2 {
+  font-size: var(--type-title);
+  font-weight: 600;
+  line-height: var(--type-heading-line);
+  letter-spacing: normal;
+}
+.hero h1 { color: var(--green); }
+.heroOverlay { background: var(--image-text-gradient); }
+.agricultureCopy .kicker {
+  font-size: var(--type-feature);
+  line-height: var(--type-heading-line);
+}
+.brandLabel, .researchLabel, .researchPoint h3 {
+  font-size: var(--type-label);
+  font-weight: 600;
+  line-height: var(--type-heading-line);
+}
+.kicker, .brandLabel, .researchLabel { text-transform: uppercase; }
+.agricultureCopy > p:not(.kicker),
+.brandStoryInner > p:not(.brandLabel), .researchPoint p {
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--type-body-line);
+  color: #414141;
+}
+.brandStory::before { inset: 0; background: var(--image-text-gradient); }
+.research { height: auto; min-height: 730px; }
+.researchGallery { min-height: 570px; }
+@media (max-width: 767px) {
+  .research { min-height: 0; }
+  .researchGallery { min-height: 0; }
+}
+
+/* Match the homepage About section's media and copy proportions. */
+.agriculture { padding: 80px 20px; }
+.agricultureInner {
+  display: grid;
+  max-width: 1280px;
+  grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 50px;
+  padding: 0;
+}
+.agricultureImage {
+  position: relative;
+  top: auto;
+  aspect-ratio: auto;
+  min-height: 500px;
+}
+.agricultureCopy .kicker {
+  margin-bottom: 10px;
+  font-size: var(--type-label);
+  line-height: var(--type-heading-line);
+}
+.agricultureCopy h2 {
+  margin-bottom: 24px;
+  color: var(--green);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .agriculture { padding-block: 60px; }
+  .agricultureInner { gap: 30px; }
+}
+@media (max-width: 767px) {
+  .agriculture { padding: 40px 20px; }
+  .agricultureInner { grid-template-columns: 1fr; gap: 30px; }
+  .agricultureImage { min-height: 0; aspect-ratio: 4 / 3; }
+}

@@ -22,11 +22,11 @@ export const designTokens = {
     mobileHeroOffset: 25,
   },
   type: {
-    eyebrowDesktop: 22,
+    eyebrowDesktop: 20,
     eyebrowMobile: 18,
     titleDesktop: 48,
-    titleMobile: 28,
-    featureDesktop: 36,
-    featureMobile: 24,
+    titleMobile: 30,
+    featureDesktop: 32,
+    featureMobile: 20,
   },
 } as const;

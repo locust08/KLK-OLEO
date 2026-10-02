@@ -18,9 +18,9 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
         <section className={styles.agriculture}>
           <div className={styles.agricultureInner}>
             <div className={styles.agricultureImage}>
-              <Image src={siteAssets.agricultureSolutions} fill priority sizes="(max-width: 767px) calc(100vw - 30px), 32vw" alt="Hands holding soil and a young green plant" />
+              <Image src={siteAssets.agricultureSolutions} fill priority sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1319px) 62vw, 798px" alt="Hands holding soil and a young green plant" />
             </div>
-            <div className={styles.agricultureCopy}>
+            <div className={styles.agricultureCopy} data-reveal="right">
               <p className={styles.kicker}>KLK Oleo Agrochemicals</p>
               <h2>Agriculture Solutions</h2>
               <p>KLK OLEO Agrochemicals is the preferred partner for high-performing agrochemical ingredients that enhance formulation efficiency, crop health, and application effectiveness. As part of KLK OLEO, a global leader in oleochemicals, we bring the strength of an international network directly to your fields and formulation labs.</p>
@@ -32,7 +32,7 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
         </section>
 
         <section className={styles.brandStory} style={{ backgroundImage: `url(${siteAssets.brandStoryBackground})` }} aria-labelledby="brand-story-title">
-          <div className={styles.brandStoryInner}>
+          <div className={styles.brandStoryInner} data-reveal="zoom">
             <p className={styles.brandLabel}>Brand Story</p>
             <h2 id="brand-story-title">AIDIGRO</h2>
             <p><span className={styles.brandLead}>Our dedicated agrochemical range, Aidigro,</span> is more than a name; it&apos;s a promise. Rooted in the fusion of &lsquo;Aid&rsquo; and &lsquo;Agro&rsquo; (agriculture), our brand is a beacon to the world of farming.</p>
@@ -54,7 +54,7 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
               <Image src={siteAssets.innovationPlantResearch} fill unoptimized sizes="(max-width: 767px) 70vw, 616px" alt="Scientist studying a plant in a laboratory" />
             </div>
           </div>
-          <div className={styles.researchCopy}>
+          <div className={styles.researchCopy} data-reveal="right">
             <p className={styles.researchLabel}>Research and Development</p>
             <h2 id="research-title">Innovation from Lab to Field</h2>
             <div className={styles.researchPoint}>
@@ -75,7 +75,7 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
         <section className={styles.globalPresence} aria-labelledby="global-presence-title">
           <h2 id="global-presence-title">KLK OLEO Global Presence</h2>
           <div className={styles.globalPresenceInner}>
-            <div className={styles.globalPresenceViewport} tabIndex={0} aria-label="Scrollable KLK OLEO global presence map">
+            <div className={styles.globalPresenceViewport} data-reveal="up" tabIndex={0} aria-label="Scrollable KLK OLEO global presence map">
               <Image
                 className={styles.globalPresenceMap}
                 src={siteAssets.globalPresence}
@@ -85,7 +85,7 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
                 alt="World map showing KLK OLEO offices, research and development centres, production sites, operating facilities, and sales networks"
               />
             </div>
-            <div className={styles.regionList} aria-label="KLK OLEO global regions">
+            <div className={styles.regionList} data-reveal="up" aria-label="KLK OLEO global regions">
               <details className={styles.regionPanel} open>
                 <summary>South East Asia</summary>
                 <div className={styles.regionPanelBody}>

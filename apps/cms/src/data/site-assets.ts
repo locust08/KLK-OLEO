@@ -11,6 +11,7 @@ export const siteAssets = {
   whatWeDoTailored: "/images/home/tailored-agriculture.png",
   whatWeDoPortfolio: "/images/home/comprehensive-portfolio.png",
   whatWeDoSustainable: "/images/home/sustainable-formulation.png",
+  contactBackground: "/images/home/contact-agriculture-background.webp",
   latestInnovations: "/images/home/latest-innovations.png",
   agricultureSolutions: "/images/about/agriculture-solutions.webp",
   brandStoryBackground: "/images/about/brand-story-background.png",
