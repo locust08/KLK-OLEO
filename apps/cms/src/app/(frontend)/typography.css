@@ -177,10 +177,12 @@ main h1, main h2, main h3 { font-weight: 600; letter-spacing: normal; }
   overflow: visible;
 }
 .intro-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 0;
-  min-height: 500px;
-  flex: 1;
+  height: 100%;
+  min-height: 0;
+  flex: none;
   aspect-ratio: auto;
   object-fit: cover;
   border-radius: var(--image-radius);
@@ -199,7 +201,7 @@ main h1, main h2, main h3 { font-weight: 600; letter-spacing: normal; }
 @media (max-width: 1023px) {
   .split-intro { grid-template-columns: 1fr; gap: 30px; }
   .intro-media { margin-top: 0; }
-  .intro-media img { height: auto; min-height: 0; flex: none; aspect-ratio: 4 / 3; }
+  .intro-media img { position: static; height: auto; min-height: 0; flex: none; aspect-ratio: 4 / 3; }
 }
 @media (max-width: 767px) {
   .intro-section { min-height: 0; padding: 40px 20px; }
