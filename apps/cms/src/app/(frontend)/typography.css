@@ -196,11 +196,13 @@ main h1, main h2, main h3 { font-weight: 600; letter-spacing: normal; }
   .split-intro { gap: 30px; }
   .intro-media { margin-top: 0; }
 }
-@media (max-width: 767px) {
-  .intro-section { min-height: 0; padding: 40px 20px; }
+@media (max-width: 1023px) {
   .split-intro { grid-template-columns: 1fr; gap: 30px; }
   .intro-media { margin-top: 0; }
   .intro-media img { height: auto; min-height: 0; flex: none; aspect-ratio: 4 / 3; }
+}
+@media (max-width: 767px) {
+  .intro-section { min-height: 0; padding: 40px 20px; }
 }
 
 /* Match the reference carousel's full-width, 10px bottom accent. */
