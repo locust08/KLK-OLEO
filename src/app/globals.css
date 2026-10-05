@@ -163,3 +163,8 @@ select {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Match the prototype desktop scale, including 125% browser zoom. */
+@media (min-width: 1024px) {
+  html { font-size: clamp(16px, 1vw, 24px); }
+}

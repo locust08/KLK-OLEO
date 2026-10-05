@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { IndustrySolutions } from "./IndustrySolutions";
 import { useEffect, useRef, useState } from "react";
 
 const imageRoot =
@@ -49,30 +50,8 @@ const riseItems = [
   },
 ] as const;
 
-const solutionPages = [
-  [
-    { title: "Beauty & Personal Care", image: "Cosmetics-01.jpg" },
-    { title: "Food & Nutrition", image: "FnN-Image-2022.jpg" },
-    {
-      title: "Home Care, Industries & Institutional (I&I) Cleaning",
-      image: "solutions-home-care.jpg",
-    },
-  ],
-  [
-    { title: "Life Science", image: "Market-Image_Life-Science.png" },
-    { title: "Lubricants", image: "Lubricant-01.png" },
-    { title: "Polymers", image: "solutions-polymers.jpg" },
-  ],
-  [
-    { title: "Oleo Basics", image: "solutions-oleo-basics.jpg" },
-    { title: "Sustainable Solutions", image: "ESG-Palm-Fruit-01.png" },
-    { title: "Global Supply", image: "slide01-03.jpg" },
-  ],
-] as const;
-
 export function RiseSolutions() {
   const [activeRise, setActiveRise] = useState(0);
-  const [activeSolutionPage, setActiveSolutionPage] = useState(0);
   const riseHoverLockedRef = useRef(false);
   const riseHoverLockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
@@ -244,74 +223,7 @@ export function RiseSolutions() {
         </div>
       </section>
 
-      <section
-        id="solutions"
-        aria-labelledby="solutions-heading"
-        className="bg-[#005c37] px-[38px] pt-[58px] pb-[72px] max-md:px-5 max-md:py-12"
-      >
-        <div className="mx-auto max-w-[1364px]">
-          <h2
-            id="solutions-heading"
-            className="text-[36px] leading-[1.2] font-semibold tracking-[-0.02em] text-white max-sm:text-[31px]"
-          >
-            Solutions By Industry
-          </h2>
-          <p className="mt-5 text-[14px] text-white/90">
-            No matter what business you are in, we have all your needs in one
-            place.
-          </p>
-
-          <div
-            key={activeSolutionPage}
-            className="mt-12 grid animate-in grid-cols-3 gap-9 fade-in duration-300 motion-reduce:animate-none max-md:grid-cols-1"
-          >
-            {solutionPages[activeSolutionPage].map((solution, index) => (
-              <article
-                key={solution.title}
-                className={`group relative aspect-[1.25] min-h-[300px] overflow-hidden rounded-[10px] bg-[#003f27] ${index > 0 ? "max-md:hidden" : ""}`}
-              >
-                <Image
-                  src={`${imageRoot}/${solution.image}`}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.035] motion-reduce:transition-none"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,79,45,0.94)_0%,rgba(0,79,45,0.91)_48%,rgba(121,190,39,0.91)_100%)] transition-opacity duration-500 group-hover:opacity-90 motion-reduce:transition-none" />
-                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                  <h3 className="max-w-[390px] text-[25px] leading-[1.08] font-semibold">
-                    {solution.title}
-                  </h3>
-                  <a
-                    href="#"
-                    className="mt-3 inline-flex items-center gap-4 border-b border-white pb-2 text-[12px] font-semibold tracking-[0.1em] uppercase"
-                  >
-                    Learn More
-                    <span aria-hidden="true" className="text-lg text-[#7bbf2a]">
-                      →
-                    </span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-6 flex justify-center gap-2" aria-label="Solution slides">
-            {solutionPages.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                aria-label={`Show solution slide ${index + 1}`}
-                aria-pressed={activeSolutionPage === index}
-                onClick={() => setActiveSolutionPage(index)}
-                className={`size-3 rounded-full border-2 border-white transition-colors duration-200 motion-reduce:transition-none ${
-                  activeSolutionPage === index ? "bg-[#7bbf2a]" : "bg-transparent"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <IndustrySolutions />
     </>
   );
 }
