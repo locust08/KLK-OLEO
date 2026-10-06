@@ -1,7 +1,9 @@
 # KLK OLEO Visual Refinement — Design QA
 
-Date: 2026-10-06  
-Reference: supplied Figma archive, `DESIGN.md`, linked-page captures, and homepage captures under `docs/design-references/`  
+Date: 2026-10-06
+
+Reference: supplied Figma archive, `DESIGN.md`, linked-page captures, and homepage captures under `docs/design-references/`
+
 Implementation: Next.js routes rendered at 1440, 768, and 390 CSS pixels
 
 ## Final result
@@ -103,4 +105,3 @@ Passed. The eight representative routes passed at 1440, 768, and 390 CSS pixels 
 - Some supplied reference captures show a different homepage carousel frame or an open navigation state; the implementation preserves the existing eight-slide content and verified controls rather than hard-coding a screenshot-only state.
 - Mixed source-export dimensions require proportional normalization, so small crop differences remain in the combined comparison files.
 - Development mode reports advisory Next Image warnings for the shared logo and an LCP candidate during synthetic full-page scrolling; no broken image, layout shift, production error, or build failure was observed.
-
