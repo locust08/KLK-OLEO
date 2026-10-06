@@ -17,7 +17,6 @@ function OfficeDetails({ office }: { office: Office }) {
     </div>
   );
 }
-
 function OfficeCard({ title, flag, country, offices }: { title: string; flag: string; country: string; offices: Office[] }) {
   return (
     <section className="flex flex-col overflow-hidden rounded-md border border-klk-border bg-white shadow-klk">
