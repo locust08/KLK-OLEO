@@ -125,6 +125,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
               src={`${imageRoot}/KLK-OLEO-Header-Logo-1.png`}
               alt="KLK OLEO"
               fill
+              preload
               sizes="(max-width: 767px) 126px, (max-width: 1199px) 150px, 174px"
               className={`object-contain transition-[filter] duration-300 ${darkHeader ? "brightness-0 invert" : ""}`}
             />

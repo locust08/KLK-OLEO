@@ -128,7 +128,7 @@ export function IndustrySolutions() {
       >
         {[0, 1, 2].flatMap((copy) => solutions.map((solution) => (
           <article key={`${copy}-${solution.title}`} aria-hidden={copy !== 1 || undefined} className="group relative aspect-[31/30] w-[min(27rem,calc((100vw-8rem)/3))] shrink-0 snap-start scroll-ml-10 overflow-hidden rounded-md bg-klk-darker shadow-klk max-md:w-[82vw] max-md:scroll-ml-5">
-            <Image src={`${imageRoot}/${solution.image}`} alt="" fill sizes="(max-width: 768px) 82vw, 33vw" draggable={false} className="pointer-events-none object-cover" />
+            <Image src={`${imageRoot}/${solution.image}`} alt="" fill loading="eager" sizes="(max-width: 768px) 82vw, 33vw" draggable={false} className="pointer-events-none object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,79,45,0)_50%,rgba(0,79,45,0.55)_82%,rgba(123,191,42,0.85)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6 max-sm:p-5">
               <h3 className="klk-h4">{solution.title}</h3>
