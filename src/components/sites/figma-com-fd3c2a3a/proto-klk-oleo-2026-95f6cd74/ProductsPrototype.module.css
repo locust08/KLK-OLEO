@@ -1,0 +1,17 @@
+.productCopy p + p { margin-top: 1.75rem; }
+.productCopy strong, .productCopy b { color: var(--klk-primary); font-weight: 600; }
+.productCopy h2, .productCopy h3, .productCopy h4, .productCopy h5, .productCopy h6 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--klk-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.productCopy ul, .productCopy ol { margin: 0.5rem 0 1.5rem; padding-left: 1.25rem; }
+.productCopy ul { list-style: disc; }
+.productCopy ol { list-style: decimal; }
+.productCopy li + li { margin-top: 0.375rem; }
+.productCopy a { color: var(--klk-primary); text-decoration: underline; text-underline-offset: 0.2em; }
+.productCopy table { width: 100%; min-width: 36rem; margin: 1rem 0; border-collapse: collapse; }
+.productCopy td, .productCopy th { border: 1px solid var(--klk-border); padding: 0.625rem; text-align: left; }
+.productCopy th { background: var(--klk-primary); color: white; font-weight: 600; }
