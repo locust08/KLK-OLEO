@@ -10,7 +10,7 @@ const imageRoot =
 const riseItems = [
   {
     letter: "R",
-    color: "text-[#b31964]",
+    color: "text-klk-brand-pink",
     eyebrow: "Reliable",
     title: "Going Extra Mile",
     paragraphs: [
@@ -20,7 +20,7 @@ const riseItems = [
   },
   {
     letter: "I",
-    color: "text-[#ec1384]",
+    color: "text-klk-brand-pink",
     eyebrow: "Integrated",
     title: "One Integrated Partner",
     paragraphs: [
@@ -30,7 +30,7 @@ const riseItems = [
   },
   {
     letter: "S",
-    color: "text-[#75bd19]",
+    color: "text-klk-lime",
     eyebrow: "Sustainable",
     title: "Enriching Lives Sustainably",
     paragraphs: [
@@ -40,7 +40,7 @@ const riseItems = [
   },
   {
     letter: "E",
-    color: "text-[#078f96]",
+    color: "text-klk-brand-blue",
     eyebrow: "Efficient",
     title: "Delivering With Efficiency",
     paragraphs: [
@@ -96,25 +96,25 @@ export function RiseSolutions() {
 
   return (
     <>
-      <section className="relative min-h-[610px] overflow-hidden px-[38px] py-16 max-md:px-5 max-md:py-12">
+      <section className="klk-section relative min-h-[38.125rem] overflow-hidden">
         <Image
-          src={`${imageRoot}/Market-Image_Life-Science.png`}
+          src={`${imageRoot}/extracted-rise-aerial.png`}
           alt=""
           fill
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-white/55" />
-        <div className="absolute inset-0 bg-[#dbe5dc]/20" />
+        <div className="absolute inset-0 bg-klk-surface-subtle/20" />
 
-        <div className="relative z-10 mx-auto max-w-[1364px]">
-          <h2 className="max-w-[600px] text-[36px] leading-[1.2] font-semibold tracking-[-0.02em] text-white drop-shadow-[0_2px_12px_rgba(0,63,39,0.42)] max-sm:text-[31px]">
+        <div className="klk-container relative z-10">
+          <h2 className="klk-h2 max-w-[40rem] text-klk-darker">
             Built On A Strong Foundation
             <br />
             Committed To RISE
           </h2>
 
-          <div className="mt-10 hidden min-h-[440px] gap-4 min-[900px]:flex xl:min-h-[360px]">
+          <div className="mt-10 hidden min-h-[27.5rem] gap-4 min-[56.25rem]:flex xl:min-h-[22.5rem]">
             {riseItems.map((item, index) => {
               const isActive = activeRise === index;
 
@@ -122,12 +122,12 @@ export function RiseSolutions() {
                 <div
                   key={item.letter}
                   onMouseEnter={() => selectRiseFromHover(index)}
-                  className={`min-w-0 [perspective:1200px] transition-[flex-basis,width] duration-500 ease-out motion-reduce:transition-none ${
+                  className={`min-w-0 [perspective:75rem] transition-[flex-basis,width] duration-500 ease-out motion-reduce:transition-none ${
                     isActive ? "basis-[43%] shrink-0" : "flex-1"
                   }`}
                 >
                   <div
-                    className={`relative h-full min-h-[440px] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] motion-reduce:transition-none xl:min-h-[360px] ${
+                    className={`relative h-full min-h-[27.5rem] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] motion-reduce:transition-none xl:min-h-[22.5rem] ${
                       isActive ? "[transform:rotateY(180deg)]" : ""
                     }`}
                   >
@@ -137,7 +137,7 @@ export function RiseSolutions() {
                       aria-pressed={isActive}
                       onClick={() => selectRiseImmediately(index)}
                       onFocus={() => selectRiseImmediately(index)}
-                      className="group absolute inset-0 flex items-center justify-center overflow-hidden rounded-[10px] border border-white/45 bg-[linear-gradient(180deg,rgba(250,252,250,0.66)_0%,rgba(244,249,244,0.62)_57%,rgba(205,221,75,0.75)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-[3px] [backface-visibility:hidden] hover:border-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      className="group absolute inset-0 flex items-center justify-center overflow-hidden rounded-sm border border-white/45 bg-[linear-gradient(180deg,rgba(250,252,250,0.66)_0%,rgba(244,249,244,0.62)_57%,rgba(205,221,75,0.75)_100%)] shadow-[inset_0_0.0625rem_0_rgba(255,255,255,0.4)] backdrop-blur-[0.1875rem] [backface-visibility:hidden] hover:border-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
                       <span
                         className={`text-[clamp(5.5rem,8.6vw,8.875rem)] leading-none font-bold tracking-[-0.08em] transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none ${item.color}`}
@@ -148,15 +148,15 @@ export function RiseSolutions() {
 
                     <article
                       aria-live={isActive ? "polite" : "off"}
-                      className="absolute inset-0 overflow-y-auto rounded-[10px] bg-[#003f27] p-[34px] text-left text-white shadow-[0_20px_45px_rgba(0,63,39,0.18)] [backface-visibility:hidden] [scrollbar-width:none] [transform:rotateY(180deg)] [&::-webkit-scrollbar]:hidden max-xl:p-7"
+                      className="absolute inset-0 overflow-y-auto rounded-sm bg-klk-darker p-8 text-left text-white shadow-klk [backface-visibility:hidden] [scrollbar-width:none] [transform:rotateY(180deg)] [&::-webkit-scrollbar]:hidden max-xl:p-7"
                     >
-                      <p className="text-[16px] font-semibold text-[#7bbf2a]">
+                      <p className="klk-overline font-semibold text-klk-lime">
                         {item.eyebrow}
                       </p>
-                      <h3 className="mt-2 text-[26px] leading-[1.18] font-semibold">
+                      <h3 className="klk-h4 mt-2">
                         {item.title}
                       </h3>
-                      <div className="mt-7 max-w-[500px] space-y-6 text-[13px] leading-[1.8] text-white/90 max-xl:mt-5 max-xl:space-y-4">
+                      <div className="klk-body-small mt-7 max-w-[31.25rem] space-y-6 text-white/90 max-xl:mt-5 max-xl:space-y-4">
                         {item.paragraphs.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -168,26 +168,26 @@ export function RiseSolutions() {
             })}
           </div>
 
-          <div className="mt-8 min-[900px]:hidden">
+          <div className="mt-8 min-[56.25rem]:hidden">
             <article
               key={rise.letter}
               aria-live="polite"
-              className="min-h-[300px] animate-in rounded-[10px] bg-[#003f27] p-6 text-white fade-in duration-300 motion-reduce:animate-none"
+              className="min-h-[18.75rem] animate-in rounded-sm bg-klk-darker p-6 text-white shadow-klk fade-in duration-300 motion-reduce:animate-none"
             >
-              <p className="text-[15px] font-semibold text-[#7bbf2a]">
+              <p className="klk-overline font-semibold text-klk-lime">
                 {rise.eyebrow}
               </p>
-              <h3 className="mt-2 text-[24px] leading-[1.18] font-semibold">
+              <h3 className="klk-h4 mt-2">
                 {rise.title}
               </h3>
-              <div className="mt-5 space-y-4 text-[13px] leading-[1.75] text-white/90">
+              <div className="klk-body-small mt-5 space-y-4 text-white/90">
                 {rise.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
             </article>
 
-            <div className="mt-4 grid grid-cols-4 gap-2 [perspective:900px]">
+            <div className="mt-4 grid grid-cols-4 gap-2 [perspective:56.25rem]">
               {riseItems.map((item, index) => {
                 const isActive = activeRise === index;
 
@@ -200,14 +200,14 @@ export function RiseSolutions() {
                     onMouseEnter={() => selectRiseFromHover(index)}
                     onFocus={() => selectRiseImmediately(index)}
                     onClick={() => selectRiseImmediately(index)}
-                    className={`group flex min-h-[150px] items-center justify-center overflow-hidden rounded-[10px] border border-white/45 bg-[linear-gradient(180deg,rgba(250,252,250,0.68)_0%,rgba(244,249,244,0.64)_58%,rgba(205,221,75,0.78)_100%)] transition-[transform,border-color] duration-500 [transform-style:preserve-3d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none max-sm:min-h-[112px] ${
+                    className={`group flex min-h-[9.375rem] items-center justify-center overflow-hidden rounded-sm border border-white/45 bg-[linear-gradient(180deg,rgba(250,252,250,0.68)_0%,rgba(244,249,244,0.64)_58%,rgba(205,221,75,0.78)_100%)] transition-[transform,border-color] duration-500 [transform-style:preserve-3d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none max-sm:min-h-[7rem] ${
                       isActive
                         ? "border-white/80 [transform:rotateY(180deg)]"
                         : "hover:border-white/75"
                     }`}
                   >
                     <span
-                      className={`text-[68px] leading-none font-bold tracking-[-0.08em] transition-transform duration-500 motion-reduce:transition-none max-sm:text-[50px] ${
+                      className={`text-[4.25rem] leading-none font-bold tracking-[-0.08em] transition-transform duration-500 motion-reduce:transition-none max-sm:text-[3.125rem] ${
                         isActive
                           ? "[transform:rotateY(180deg)]"
                           : "group-hover:scale-105"

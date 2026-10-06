@@ -10,11 +10,11 @@ import { RiseSolutions } from "@/components/sites/figma-com-fd3c2a3a/proto-klk-o
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-[#202a25]">
+    <main className="min-h-screen bg-white text-klk-text">
       <HeaderHero />
       <AboutMetrics />
       <RiseSolutions />
-      <ProductExperience />
+      <ProductExperience showFinder={false} />
       <PresenceNewsEsg />
       <SiteFooter />
       <CookieBanner />

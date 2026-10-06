@@ -70,10 +70,10 @@ export function IndustrySolutions() {
   };
 
   return (
-    <section id="solutions" aria-labelledby="solutions-heading" className="overflow-hidden bg-[#004f2d] pt-[3.625rem] pb-[4.5rem] text-white max-md:py-12">
-      <div className="px-10 max-md:px-5">
-        <h2 id="solutions-heading" className="text-[2.375rem] leading-[1.2] font-semibold tracking-[-0.02em] max-sm:text-[1.9375rem]">Solutions By Industry</h2>
-        <p className="mt-7 text-[0.9375rem] text-white/90">No matter what business you are in, we have all your needs in one place.</p>
+    <section id="solutions" aria-labelledby="solutions-heading" className="overflow-hidden bg-klk-dark py-16 text-white max-md:py-12">
+      <div className="klk-container">
+        <h2 id="solutions-heading" className="klk-h2">Solutions By Industry</h2>
+        <p className="klk-body-large mt-6 text-white/90">No matter what business you are in, we have all your needs in one place.</p>
       </div>
       <div
         ref={trackRef}
@@ -81,7 +81,7 @@ export function IndustrySolutions() {
         aria-roledescription="carousel"
         aria-label="Solutions by industry. Swipe or use left and right arrow keys to explore."
         tabIndex={0}
-        className="relative mt-10 flex snap-x snap-mandatory gap-10 overflow-x-auto overscroll-x-contain px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white data-[dragging=true]:snap-none data-[dragging=true]:cursor-grabbing max-md:gap-5 max-md:px-5"
+        className="relative mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain px-[max(2.5rem,calc((100vw-90rem)/2+2.5rem))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white data-[dragging=true]:snap-none data-[dragging=true]:cursor-grabbing max-md:gap-5 max-md:px-5"
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
             event.preventDefault();
@@ -127,13 +127,13 @@ export function IndustrySolutions() {
         onDragStart={(event) => event.preventDefault()}
       >
         {[0, 1, 2].flatMap((copy) => solutions.map((solution) => (
-          <article key={`${copy}-${solution.title}`} aria-hidden={copy !== 1 || undefined} className="group relative aspect-[31/30] w-[calc((100vw-3rem)/3)] shrink-0 snap-start scroll-ml-10 overflow-hidden rounded-xl bg-[#003f27] max-md:w-[82vw] max-md:scroll-ml-5">
+          <article key={`${copy}-${solution.title}`} aria-hidden={copy !== 1 || undefined} className="group relative aspect-[31/30] w-[min(27rem,calc((100vw-8rem)/3))] shrink-0 snap-start scroll-ml-10 overflow-hidden rounded-md bg-klk-darker shadow-klk max-md:w-[82vw] max-md:scroll-ml-5">
             <Image src={`${imageRoot}/${solution.image}`} alt="" fill sizes="(max-width: 768px) 82vw, 33vw" draggable={false} className="pointer-events-none object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,79,45,0)_50%,rgba(0,79,45,0.55)_82%,rgba(123,191,42,0.85)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6 max-sm:p-5">
-              <h3 className="text-[1.875rem] leading-[1.1] font-semibold max-lg:text-[1.5rem]">{solution.title}</h3>
-              <Link href="/#solutions" tabIndex={copy === 1 ? 0 : -1} className="mt-3 inline-flex items-center gap-3 border-b border-white pb-2 text-[0.8125rem] font-semibold tracking-[0.08em] uppercase">
-                Learn More <span aria-hidden="true" className="text-lg text-[#7bbf2a]">→</span>
+              <h3 className="klk-h4">{solution.title}</h3>
+              <Link href="/#solutions" tabIndex={copy === 1 ? 0 : -1} className="klk-button mt-4 inline-flex items-center gap-3 border-b border-white pb-2">
+                Learn More <span aria-hidden="true" className="text-lg text-klk-lime">→</span>
               </Link>
             </div>
           </article>
