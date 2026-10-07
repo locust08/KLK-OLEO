@@ -17,7 +17,7 @@ npm run dev
 
 Open `http://localhost:3000/admin`. The seed creates a super admin using the email and password in your local `.env`. It inserts missing records only; rerunning it preserves editorial changes.
 
-The supplied local setup uses SQLite. Set `DATABASE_URL` to use PostgreSQL, which is the intended deployment database. Generate and apply Payload database migrations against PostgreSQL before production. The ignored SQLite database, local credentials, uploads, and dependencies are not committed.
+The supplied local setup uses SQLite. The existing Cloudflare deployment uses D1 and R2; see [Cloudflare deployment](docs/cloudflare-deployment.md). Set `DATABASE_URL` to use PostgreSQL on a Node host and apply reviewed migrations for that target. The ignored SQLite database, local credentials, uploads, and dependencies are not committed.
 
 ## Imported content
 
@@ -67,6 +67,8 @@ The script preserves existing records and connects the new form to the existing 
 Map presentation consumes the main-site-owned `map-locations` collection. After applying the schema/migrations in a configured environment, run `npm run seed:map` to initialize the existing locations without overwriting editor changes. See [`../../docs/shared-world-map.md`](../../docs/shared-world-map.md) for shared-site consumption and CMS editing.
 
 ### Deployment prerequisites
+
+For the existing Agrochemical Worker, follow [the recovered Cloudflare deployment workflow](docs/cloudflare-deployment.md). It preserves the current D1 database, R2 bucket, and authentication compatibility. The following Node-host prerequisites describe the alternative deployment path.
 
 The application root is `apps/cms`; use `npm ci`, `npm run build`, and `npm start` on a Node.js 22+ host. Configure `PAYLOAD_SECRET`, the public server URL, and a durable database before deploying. Production PostgreSQL requires reviewed Payload migrations, including the shared map collection. Persist uploaded media through the hosting platform's durable storage rather than an ephemeral filesystem. Seed the CMS/site first, then shared map locations and the resource-request form. The ignored local SQLite database and uploads are not transferred by a Git push. Publish reviewed CMS content in the target environment; local development's product preview fallback does not publish products in production.
 

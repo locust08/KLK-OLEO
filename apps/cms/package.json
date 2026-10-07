@@ -17,17 +17,24 @@
     "import:resource-thumbnails": "tsx scripts/import-resource-thumbnails.ts",
     "test": "tsx --test tests/*.test.ts",
     "test:integration": "tsx scripts/verify.ts",
-    "test:http": "tsx scripts/http-smoke.ts"
+    "test:http": "tsx scripts/http-smoke.ts",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs",
+    "deploy:cloudflare": "wrangler deploy",
+    "types:cloudflare": "wrangler types --include-runtime false --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@noble/hashes": "^2.4.0",
+    "@opennextjs/cloudflare": "^1.20.9",
+    "@payloadcms/db-d1-sqlite": "^3.90.2",
     "@payloadcms/db-postgres": "3.90.2",
     "@payloadcms/db-sqlite": "3.90.2",
     "@payloadcms/next": "3.90.2",
+    "@payloadcms/storage-r2": "^3.90.2",
     "@payloadcms/ui": "3.90.2",
     "@tailwindcss/postcss": "^4.3.3",
     "dotenv": "^16.6.1",
     "graphql": "^16.11.0",
-    "next": "16.3.6",
+    "next": "^16.3.8",
     "payload": "3.90.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -37,11 +44,13 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261007.1",
     "@types/node": "^22.19.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.148.0"
   },
   "engines": {
     "node": ">=22.0.0"
