@@ -177,7 +177,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
   padding: min(4.17vw, 80px) 42px;
-  background: #e9f7ff;
+  background: #fff;
 }
 
 .researchGallery {
@@ -589,7 +589,8 @@
   font-weight: 600;
   line-height: var(--type-heading-line);
 }
-.kicker, .brandLabel, .researchLabel { text-transform: uppercase; }
+.researchPoint h3 { color: var(--green); }
+.kicker, .brandLabel, .researchLabel { text-transform: none; color: var(--green); }
 .agricultureCopy > p:not(.kicker),
 .brandStoryInner > p:not(.brandLabel), .researchPoint p {
   font-size: var(--type-body);
@@ -605,21 +606,22 @@
   .researchGallery { min-height: 0; }
 }
 
-/* Match the homepage About section's media and copy proportions. */
-.agriculture { padding: 80px 20px; }
+/* Match the R&D section's full-width, balanced media/copy split. */
+.agriculture { padding: 80px 42px; }
 .agricultureInner {
   display: grid;
-  max-width: 1280px;
-  grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
-  align-items: stretch;
-  gap: 50px;
+  max-width: none;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 42px;
   padding: 0;
 }
 .agricultureImage {
   position: relative;
   top: auto;
-  aspect-ratio: auto;
-  min-height: 500px;
+  width: 74%;
+  aspect-ratio: 800 / 553;
+  min-height: 0;
 }
 .agricultureCopy .kicker {
   margin-bottom: 10px;
@@ -632,11 +634,28 @@
   overflow-wrap: anywhere;
 }
 @media (min-width: 768px) and (max-width: 1199px) {
-  .agriculture { padding-block: 60px; }
+  .agriculture { padding-inline: 30px; padding-block: 60px; }
   .agricultureInner { gap: 30px; }
 }
 @media (max-width: 767px) {
-  .agriculture { padding: 40px 20px; }
+  .agriculture { padding: 40px 15px; }
   .agricultureInner { grid-template-columns: 1fr; gap: 30px; }
-  .agricultureImage { min-height: 0; aspect-ratio: 4 / 3; }
+  .agricultureImage { width: 78%; min-height: 0; aspect-ratio: 3 / 2; }
+}
+
+.globalPresence { background: #fff; padding-inline: 42px; }
+/* Keep the Introduction at the same compact scale as R&D. */
+.agriculture { min-height: 730px; padding-block: min(4.17vw, 80px); }
+.agricultureInner { align-items: stretch; gap: 10px; }
+.agricultureInner > .agricultureImage { width: 100%; height: 100%; min-height: 570px; aspect-ratio: auto; }
+.agricultureCopy > p:not(.kicker) { line-height: 1.6; }
+@media (max-width: 767px) {
+  .agriculture { min-height: 0; padding-block: 40px; }
+  .agricultureInner { gap: 30px; }
+  .agricultureInner > .agricultureImage { height: auto; min-height: 0; aspect-ratio: 3 / 2; }
+}
+.globalPresence > h2 { width: auto; margin-inline: 0; }
+@media (max-width: 767px) {
+  .globalPresence { padding-inline: 20px; }
+  .globalPresence > h2 { margin-inline: 0; }
 }

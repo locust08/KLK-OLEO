@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     sites: Site;
+    'map-locations': MapLocation;
     media: Media;
     'product-functions': ProductFunction;
     'formulation-types': FormulationType;
@@ -89,6 +90,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     sites: SitesSelect<false> | SitesSelect<true>;
+    'map-locations': MapLocationsSelect<false> | MapLocationsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'product-functions': ProductFunctionsSelect<false> | ProductFunctionsSelect<true>;
     'formulation-types': FormulationTypesSelect<false> | FormulationTypesSelect<true>;
@@ -193,6 +195,33 @@ export interface Site {
   contactEmail?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "map-locations".
+ */
+export interface MapLocation {
+  id: number;
+  site: number | Site;
+  /**
+   * Stable identifier; do not change when editing a label.
+   */
+  key: string;
+  label: string;
+  country: string;
+  region: 'South East Asia' | 'Asia' | 'Europe' | 'Americas';
+  /**
+   * Decimal degrees, 55°S–85°N (the illustration excludes Antarctica). This is an overview, not a street map.
+   */
+  latitude: number;
+  longitude: number;
+  description?: string | null;
+  url?: string | null;
+  displayOrder: number;
+  enabled: boolean;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -511,6 +540,10 @@ export interface PayloadLockedDocument {
         value: number | Site;
       } | null)
     | ({
+        relationTo: 'map-locations';
+        value: number | MapLocation;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -646,6 +679,26 @@ export interface SitesSelect<T extends boolean = true> {
   contactEmail?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "map-locations_select".
+ */
+export interface MapLocationsSelect<T extends boolean = true> {
+  site?: T;
+  key?: T;
+  label?: T;
+  country?: T;
+  region?: T;
+  latitude?: T;
+  longitude?: T;
+  description?: T;
+  url?: T;
+  displayOrder?: T;
+  enabled?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

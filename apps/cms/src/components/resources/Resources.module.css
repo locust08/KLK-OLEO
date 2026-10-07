@@ -1,0 +1,23 @@
+.section { padding-top: 30px; }
+.empty { grid-column: 1 / -1; }
+.action { border: 0; cursor: pointer; font-family: inherit; }
+.dialog { width: min(720px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 38px; border: 0; border-radius: 14px; background: #fff; color: var(--copy); overflow-y: auto; }
+.dialog::backdrop { background: rgb(0 30 16 / 60%); }
+.dialog h2 { margin: 0 35px 16px 0; font-size: var(--type-feature); color: var(--green); line-height: 1.2; }
+.close { position: absolute; top: 10px; right: 12px; width: 40px; height: 40px; font-size: 28px; color: var(--green); background: transparent; border: 0; cursor: pointer; }
+.formIntro { margin-bottom: 24px; line-height: 1.6; }
+.dialog .form { padding: 0; width: 100%; box-shadow: none; gap: 18px; background: #fff; }
+.dialog .form label, .dialog .form label > span { min-width: 0; color: var(--copy); }
+.form input, .form select, .form textarea { width: 100%; }
+.form input[readonly] { background: #f3f7f4; }
+.form textarea { min-height: 90px; }
+.form label:has(input[type=checkbox]) input { width: auto; }
+.dialog :global(.contact-form-success) { padding: 0; background: #fff; }
+.dialog :global(.contact-form-success) h2 { color: var(--green); }
+.dialog :global(.contact-form-success p) { color: var(--copy); line-height: 1.6; }
+.dialog .form button { min-width: 160px; width: auto; height: auto; min-height: 46px; padding: 12px 20px; justify-self: start; }
+.dialog :global(.contact-form__full) { grid-column: 1 / -1; }
+.dialog :global(.contact-consent) { display: flex; flex-direction: row; gap: 10px; align-items: baseline; font-size: 13px; }
+.dialog button:focus-visible, .dialog input:focus-visible, .dialog select:focus-visible, .dialog textarea:focus-visible, .action:focus-visible { outline: 3px solid #62a83b; outline-offset: 3px; }
+
+@media (max-width: 767px) { .dialog { padding: 30px 20px; } .dialog h2 { font-size: 25px; } .form { grid-template-columns: 1fr; } }

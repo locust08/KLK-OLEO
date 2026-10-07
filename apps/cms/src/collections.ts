@@ -597,9 +597,44 @@ export const Leads: CollectionConfig = {
     },
   ],
 };
+export const MapLocations = versioned({
+  slug: "map-locations",
+  admin: { useAsTitle: "label", group: "Shared content", defaultColumns: ["label", "country", "region", "enabled", "_status"] },
+  access: {
+    ...contentAccess,
+    read: ({ req }) => req.user ? contentRead({ req }) : {
+      and: [{ _status: { equals: "published" } }, { enabled: { equals: true } }],
+    },
+  },
+  hooks: { beforeChange: [async ({ req, data, originalDoc }) => {
+    const owner = idOf(data.site ?? originalDoc?.site);
+    if (owner === undefined) throw new APIError("A main-site owner is required.", 400);
+    const record = await req.payload.findByID({ collection: "sites", id: owner, depth: 0, overrideAccess: true, req });
+    if (record.kind !== "main") throw new APIError("Shared map locations must belong to a main site.", 400);
+    return data;
+  }] },
+  fields: [
+    { name: "key", type: "text", required: true, unique: true, admin: { description: "Stable identifier; do not change when editing a label." } },
+    { name: "label", type: "text", required: true },
+    { name: "country", type: "text", required: true },
+    { name: "region", type: "select", required: true, options: ["South East Asia", "Asia", "Europe", "Americas"] },
+    { name: "latitude", type: "number", required: true, min: -55, max: 85, admin: { description: "Decimal degrees, 55°S–85°N (the illustration excludes Antarctica). This is an overview, not a street map." } },
+    { name: "longitude", type: "number", required: true, min: -180, max: 180 },
+    { name: "description", type: "textarea" },
+    { name: "url", type: "text", validate: (value: unknown) => {
+      if (!value) return true;
+      try { return ["https:", "http:"].includes(new URL(String(value)).protocol) || "Use an http or https URL."; }
+      catch { return "Use a valid http or https URL."; }
+    } },
+    { name: "displayOrder", type: "number", required: true, defaultValue: 0 },
+    { name: "enabled", type: "checkbox", defaultValue: true, required: true },
+  ],
+});
+
 export const collections = [
   Users,
   Sites,
+  MapLocations,
   Media,
   ProductFunctions,
   FormulationTypes,

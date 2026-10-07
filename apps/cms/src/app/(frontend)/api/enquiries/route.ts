@@ -1,24 +1,7 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
-import { z } from "zod";
 import { idOf } from "@/access";
-
-const submission = z.object({
-  siteSlug: z.string().min(1).max(100),
-  formSlug: z.string().min(1).max(100),
-  firstName: z.string().trim().min(1).max(100),
-  lastName: z.string().trim().max(100).optional(),
-  email: z.email().max(254),
-  company: z.string().trim().max(200).optional(),
-  jobPosition: z.string().trim().min(1).max(200),
-  companyWebsite: z.string().trim().max(300).optional(),
-  country: z.string().trim().min(1).max(100),
-  message: z.string().trim().min(1).max(5000),
-  productId: z.union([z.number(), z.string()]).optional(),
-  consent: z.literal(true),
-  idempotencyKey: z.uuid(),
-  website: z.string().max(200).optional(),
-});
+import { enquirySubmission, resourceLeadMessage } from "@/lib/enquiry-validation";
 
 function publicRequestOrigin(request: Request) {
   const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
@@ -56,7 +39,7 @@ export async function POST(request: Request) {
   } catch {
     return Response.json({ error: "Invalid JSON." }, { status: 400 });
   }
-  const result = submission.safeParse(body);
+  const result = enquirySubmission.safeParse(body);
   if (!result.success)
     return Response.json(
       { error: "Please check the required fields." },
@@ -118,6 +101,28 @@ export async function POST(request: Request) {
       { error: "CRM delivery is not enabled for this form." },
       { status: 503 },
     );
+  let leadMessage = input.message;
+  let linkedProductId: number | undefined;
+  if (input.resourceId !== undefined) {
+    const resources = await payload.find({ collection: "resources", where: { and: [
+      { id: { equals: input.resourceId } }, { site: { equals: site.id } }, { _status: { equals: "published" } },
+    ] }, limit: 1, depth: 0, overrideAccess: false, draft: false });
+    const resource = resources.docs[0];
+    if (!resource) return Response.json({ error: "This resource is no longer available. Please refresh Resources." }, { status: 400 });
+    if (input.sourceURL) {
+      const source = new URL(input.sourceURL);
+      if (source.origin !== publicRequestOrigin(request) && source.origin !== new URL(request.url).origin)
+        return Response.json({ error: "Invalid source page." }, { status: 400 });
+      if (source.pathname !== "/resources") return Response.json({ error: "Invalid resource request source." }, { status: 400 });
+    }
+    const products = await payload.find({ collection: "products", where: { and: [
+      { resources: { contains: resource.id } }, { site: { equals: site.id } }, { _status: { equals: "published" } },
+    ] }, depth: 0, pagination: false, overrideAccess: false });
+    linkedProductId = products.docs.length === 1 ? products.docs[0].id : undefined;
+    leadMessage = resourceLeadMessage(input, resource, products.docs);
+    // Future confirmation email belongs after durable lead persistence, with client sender credentials.
+    // Current manual-review routing intentionally sends no external email or files.
+  }
   if (input.productId) {
     const product = await payload.find({
       collection: "products",
@@ -159,8 +164,8 @@ export async function POST(request: Request) {
           jobPosition: input.jobPosition,
           companyWebsite: input.companyWebsite,
           country: input.country,
-          message: input.message,
-          product: input.productId ? Number(input.productId) : undefined,
+          message: leadMessage,
+          product: input.resourceId ? linkedProductId : input.productId ? Number(input.productId) : undefined,
           consentAt: new Date().toISOString(),
           consentText: form.consentLabel,
           routingProfile: profile.id,

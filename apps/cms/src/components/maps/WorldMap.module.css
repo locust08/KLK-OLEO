@@ -1,0 +1,35 @@
+.layout { display: grid; grid-template-columns: minmax(0, 2.5fr) minmax(260px, 1fr); gap: 30px; align-items: start; }
+.map { width: 100%; margin-top: 12px; overflow-x: auto; }
+.canvas { position: relative; width: 100%; }
+.outline { display: block; width: 100%; height: auto; opacity: .65; }
+.pins { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.pin { cursor: pointer; }
+.ring { fill: rgb(1 104 54 / 12%); stroke: var(--green); stroke-width: 2; opacity: .35; transition: opacity 200ms, stroke-width 200ms; }
+.dot { fill: var(--leaf); stroke: #fff; stroke-width: 2; transition: fill 200ms; }
+.selected .ring, .pin:focus-within .ring { opacity: 1; stroke-width: 3; }
+.selected .dot { fill: var(--green); }
+.hovered .ring { opacity: 1; }
+.pin circle[role=button]:focus-visible { outline: none; stroke: var(--green); stroke-width: 3; }
+.regions { display: grid; gap: 14px; }
+.region { border-radius: 6px; background: #e7f1eb; overflow: hidden; }
+.region h3 { margin: 0; }
+.region h3 button { display: flex; width: 100%; gap: 16px; align-items: center; justify-content: space-between; border: 0; padding: 20px; text-align: left; cursor: pointer; font: inherit; font-size: var(--type-label); font-weight: 600; line-height: 1.2; color: #1d1d1d; background: transparent; }
+.open { background: var(--green-dark-active); }
+.open h3 button { color: #fff; }
+.arrow { flex: 0 0 28px; height: 28px; border-radius: 50%; color: #fff; background: var(--leaf); text-align: center; font-size: 24px; line-height: 26px; }
+.body { padding: 0 20px 20px; color: #fff; }
+.country + .country { margin-top: 22px; }
+.country h4 { margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid rgb(255 255 255 / 20%); font-size: var(--type-body); font-weight: 600; color: #fff; }
+.country ul { display: grid; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.country li { position: relative; padding-left: 20px; font-size: 14px; line-height: 1.6; }
+.country li::before { position: absolute; left: 0; top: 6px; width: 10px; height: 10px; content: ""; background: var(--green); }
+.country a { color: inherit; text-decoration: underline; }
+.country p { font-size: inherit; margin: 4px 0 0; }
+.region button:focus-visible { outline: 2px solid var(--leaf); outline-offset: -4px; }
+@media (max-width: 767px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .map { margin-top: 0; }
+  .canvas { min-width: 600px; }
+  .region h3 button { padding: 18px; font-size: 23px; }
+}
+@media (prefers-reduced-motion: reduce) { .ring, .dot { transition: none; } }

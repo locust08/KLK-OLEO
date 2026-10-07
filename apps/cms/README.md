@@ -52,7 +52,23 @@ Membership in the main site does not automatically grant access to minisites. As
 
 ## Resources
 
-Placeholders say “Coming soon” and have no download CTA. To replace one, upload approved media, enable its `isPublic` flag, attach the file, change availability to `available`, and publish. An available resource cannot be saved without a file. Media starts private; only publication roles can make uploads public.
+Agrochemical Resources use **Form → Sales Follow-up**. Download opens a prefilled resource request form; neither the page nor a successful submission provides a PDF URL or automatically downloads a file. Published resources can be requested even while their material is being prepared. Requests use the existing CMS Leads queue and manual Agrochemical sales routing. User confirmation email is not enabled.
+
+Configure the dedicated resource form after the normal CMS seed:
+
+```sh
+npx tsx scripts/seed-resource-request-form.ts
+```
+
+The script preserves existing records and connects the new form to the existing sales routing profile. See [`../../docs/resources-request-flow.md`](../../docs/resources-request-flow.md) for validation, lead context, deferred email configuration, and verification. CMS files remain optional for placeholder resources; the existing `available` validation still requires an approved uploaded file. Upload access and publication permissions remain unchanged.
+
+### Shared world map
+
+Map presentation consumes the main-site-owned `map-locations` collection. After applying the schema/migrations in a configured environment, run `npm run seed:map` to initialize the existing locations without overwriting editor changes. See [`../../docs/shared-world-map.md`](../../docs/shared-world-map.md) for shared-site consumption and CMS editing.
+
+### Deployment prerequisites
+
+The application root is `apps/cms`; use `npm ci`, `npm run build`, and `npm start` on a Node.js 22+ host. Configure `PAYLOAD_SECRET`, the public server URL, and a durable database before deploying. Production PostgreSQL requires reviewed Payload migrations, including the shared map collection. Persist uploaded media through the hosting platform's durable storage rather than an ephemeral filesystem. Seed the CMS/site first, then shared map locations and the resource-request form. The ignored local SQLite database and uploads are not transferred by a Git push. Publish reviewed CMS content in the target environment; local development's product preview fallback does not publish products in production.
 
 ### Supplied agrochemical PDFs
 

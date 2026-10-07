@@ -1,0 +1,11 @@
+.group { min-width: 0; padding: 30px; border-radius: 8px; background: #fff; color: var(--heading); box-shadow: 0 0 10px rgb(0 0 0 / 50%); }
+.group summary { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0 26px 0 0; color: var(--green); font-weight: 600; font-size: clamp(24px, 1.7vw, 32px); line-height: 1.2; overflow-wrap: anywhere; cursor: pointer; }
+.group[open] summary { margin-bottom: 20px; }
+.group summary::-webkit-details-marker { display: none; }
+.chevron { position: absolute; right: 0; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); }
+.group[open] .chevron { transform: translateY(-50%) rotate(180deg); }
+.group .options { padding: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.group .legend { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.count { font-size: 12px; font-weight: 400; white-space: nowrap; }
+.group summary:focus-visible { outline: 3px solid #62a83b; outline-offset: 3px; }
+@media (max-width: 767px) { .clear { display: none; } }

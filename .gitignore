@@ -12,3 +12,5 @@ node_modules/
 dist/
 .astro/
 coverage/
+.playwright-cli/
+.next-backup*/

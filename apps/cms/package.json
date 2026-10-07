@@ -11,6 +11,8 @@
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap",
     "seed": "tsx scripts/seed.ts",
+    "seed:map": "tsx scripts/seed-map.ts",
+    "test:map": "tsx scripts/verify-map.ts",
     "import:resources": "tsx scripts/import-resources.ts",
     "import:resource-thumbnails": "tsx scripts/import-resource-thumbnails.ts",
     "test": "tsx --test tests/*.test.ts",

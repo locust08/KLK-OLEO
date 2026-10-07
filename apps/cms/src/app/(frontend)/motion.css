@@ -63,14 +63,17 @@
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(135deg, rgb(255 255 255 / 65%), rgb(255 255 255 / 35%));
+  pointer-events: none;
+  background: linear-gradient(to top, var(--dark-green) 0%, color-mix(in srgb, var(--green) 94%, transparent) 18%, color-mix(in srgb, var(--green) 45%, transparent) 42%, transparent 72%);
 }
-.capability .capability__panel--front h3 { margin: 0; }
+.capability .capability__panel--front { justify-content: flex-end; }
+.capability .capability__panel--front h3 { margin: 0; color: #fff; }
 .capability .capability__panel--back {
   background: var(--green);
+  justify-content: center;
   transform: translateY(100%);
 }
-.capability .capability__panel--back p { color: #fff; }
+.capability .capability__panel--back p { margin: 0; color: #fff; }
 .capability:hover .capability__panel--front,
 .capability:focus .capability__panel--front { transform: translateY(-100%); }
 .capability:hover .capability__panel--back,
@@ -91,6 +94,7 @@
   position: relative;
   padding-bottom: 38px;
 }
+.capability .capability__panel--back { padding-top: 38px; }
 .capability .capability__panel::after {
   content: "";
   position: absolute;

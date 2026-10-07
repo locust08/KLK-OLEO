@@ -2,7 +2,7 @@
 export const siteAssets = {
   logo: "/images/common/klk-oleo-life-science.webp",
   footerLogo: "/images/common/klk-oleo-logo-white.webp",
-  homeHero: "/images/common/contact-us-agrochem.webp",
+  homeHero: "/images/home/agrochemical-spraying-hero.webp",
   aboutHero: "/images/about/about-us-agrochemical.webp",
   productsHero: "/images/products/products-hero-leaf.png",
   resourcesHero: "/images/resources/resources-hero-globe.png",

@@ -1,0 +1,13 @@
+[
+  {"country":"Malaysia","region":"South East Asia","latitude":3.1,"longitude":101.5,"labels":["KLK Bioenergy","KL-Kepong Oleomas","Palm-Oleo","Palm-Oleo (Klang)","Stolthaven (Westport)"]},
+  {"country":"Singapore","region":"South East Asia","latitude":1.35,"longitude":103.82,"labels":["Davos Life Science"]},
+  {"country":"Indonesia","region":"South East Asia","latitude":1.68,"longitude":101.45,"labels":["KLK Dumai","Perindustrian Sawit Synergi"]},
+  {"country":"China","region":"Asia","latitude":31.3,"longitude":121.1,"labels":["Taiko Palm-Oleo (Zhangjiagang)","KLK OLEO (Shanghai)"]},
+  {"country":"India","region":"Asia","latitude":20.59,"longitude":78.96,"labels":["KLK OLEO India"]},
+  {"country":"Germany","region":"Europe","latitude":51.83,"longitude":6.24,"labels":["KLK Emmerich (Emmerich & Düsseldorf sites)"]},
+  {"country":"Switzerland","region":"Europe","latitude":47.36,"longitude":8.49,"labels":["Kolb Distribution"]},
+  {"country":"Netherlands","region":"Europe","latitude":51.75,"longitude":5.08,"labels":["Dr. W. Kolb Nederland","KLK Kolb Specialties"]},
+  {"country":"Belgium","region":"Europe","latitude":50.6,"longitude":5.55,"labels":["KLK Tensachem"]},
+  {"country":"Italy","region":"Europe","latitude":45.46,"longitude":9.19,"labels":["KLK Temix"]},
+  {"country":"United States","region":"Americas","latitude":39.8,"longitude":-98.58,"labels":["KLK OLEO Americas"]}
+]

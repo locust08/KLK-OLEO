@@ -416,15 +416,21 @@ export async function getResources(): Promise<ResourceViewModel[]> {
     draft: false,
     overrideAccess: false,
   });
-  const resources = result.docs.map(mapResource);
+  const resources = result.docs.map(resource => {
+    const mapped = mapResource(resource);
+    // Method 2: never serialize PDF URLs into the Resources page/client props.
+    delete mapped.fileUrl;
+    return mapped;
+  });
   return resources.length > 0 ? resources : fallbackResources;
 }
 
 export async function getContactForm(
   slug = "general-enquiry",
+  allowFallback = true,
 ): Promise<ContactFormViewModel | null> {
   const site = await getSite();
-  if (!site) return fallbackContactForm;
+  if (!site) return allowFallback ? fallbackContactForm : null;
   const payload = await getPayload({ config });
   const result = await payload.find({
     collection: "forms",
@@ -447,5 +453,5 @@ export async function getContactForm(
         consentLabel: form.consentLabel,
         successMessage: form.successMessage || "Thank you. Your enquiry has been received.",
       }
-    : fallbackContactForm;
+    : allowFallback ? fallbackContactForm : null;
 }

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useId, useMemo, useState } from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaChevronDown } from "react-icons/fa6";
+import styles from "./ProductFilters.module.css";
 import {
   calculateFacetCounts,
   filterProducts,
@@ -36,10 +37,12 @@ function FilterGroup({ category, groups, selected, counts, onChange }: {
   onChange: (value: string) => void;
 }) {
   const group = groups[category];
-  const title = category === "functionalities" ? "Product Function" : group.label;
+  const title = category === "functionalities" ? "Product Function" : category === "formulation-type" ? "Formulation" : "Regulation / Labels";
   return (
-    <fieldset className="catalog-filter-group">
-      <legend>{title}</legend>
+    <details className={styles.group}>
+      <summary>{title}{selected.length > 0 && <span className={styles.count}>{selected.length} selected</span>}<FaChevronDown className={styles.chevron} aria-hidden="true" /></summary>
+    <fieldset className={`catalog-filter-group ${styles.options}`}>
+      <legend className={styles.legend}>{title}</legend>
       {group.options.map((option) => {
         const count = counts[option.slug] ?? 0;
         const isSelected = selected.includes(option.slug);
@@ -62,6 +65,7 @@ function FilterGroup({ category, groups, selected, counts, onChange }: {
         );
       })}
     </fieldset>
+    </details>
   );
 }
 
@@ -118,6 +122,7 @@ export function ProductListing({ category, groups, products }: ProductListingPro
         {filtersOpen && <a href={`#${resultsId}`}>View results</a>}
       </div>
       <aside id={filterId} className={`catalog-filters${filtersOpen ? " is-open" : ""}`} aria-label="Filter products">
+        {(selectedCount > 0 || state.query) && <button type="button" className={`catalog-clear ${styles.clear}`} onClick={clearFilters}>Clear filters</button>}
         {categories.map((key) => (
           <FilterGroup
             key={key}

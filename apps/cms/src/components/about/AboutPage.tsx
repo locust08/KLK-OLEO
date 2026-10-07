@@ -1,11 +1,13 @@
 import Image from "next/image";
+import { WorldMap } from "@/components/maps/WorldMap";
+import type { MapPoint } from "@/lib/maps/model";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { siteAssets } from "@/data/site-assets";
 import type { PageContentViewModel } from "@/lib/cms/view-models";
 import styles from "./AboutPage.module.css";
 
-export function AboutPage({ page: _page }: { page: PageContentViewModel | null }) {
+export function AboutPage({ page: _page, mapPoints }: { page: PageContentViewModel | null; mapPoints: MapPoint[] }) {
   return (
     <>
       <SiteHeader />
@@ -17,8 +19,8 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
 
         <section className={styles.agriculture}>
           <div className={styles.agricultureInner}>
-            <div className={styles.agricultureImage}>
-              <Image src={siteAssets.agricultureSolutions} fill priority sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1319px) 62vw, 798px" alt="Hands holding soil and a young green plant" />
+            <div className={styles.agricultureImage} aria-label="Agriculture solutions imagery">
+              <Image src={siteAssets.agricultureSolutions} fill sizes="(max-width: 767px) 100vw, 50vw" alt="Hands holding soil and a young green plant" />
             </div>
             <div className={styles.agricultureCopy} data-reveal="right">
               <p className={styles.kicker}>KLK Oleo Agrochemicals</p>
@@ -74,99 +76,7 @@ export function AboutPage({ page: _page }: { page: PageContentViewModel | null }
 
         <section className={styles.globalPresence} aria-labelledby="global-presence-title">
           <h2 id="global-presence-title">KLK OLEO Global Presence</h2>
-          <div className={styles.globalPresenceInner}>
-            <div className={styles.globalPresenceViewport} data-reveal="up" tabIndex={0} aria-label="Scrollable KLK OLEO global presence map">
-              <Image
-                className={styles.globalPresenceMap}
-                src={siteAssets.globalPresence}
-                width={2048}
-                height={1448}
-                sizes="(max-width: 767px) 900px, 68vw"
-                alt="World map showing KLK OLEO offices, research and development centres, production sites, operating facilities, and sales networks"
-              />
-            </div>
-            <div className={styles.regionList} data-reveal="up" aria-label="KLK OLEO global regions">
-              <details className={styles.regionPanel} open>
-                <summary>South East Asia</summary>
-                <div className={styles.regionPanelBody}>
-                  <div className={styles.regionGroup}>
-                    <h3>Malaysia</h3>
-                    <ul>
-                      <li>KLK Bioenergy</li>
-                      <li>KL-Kepong Oleomas</li>
-                      <li>Palm-Oleo</li>
-                      <li>Palm-Oleo (Klang)</li>
-                      <li>Stolthaven (Westport)</li>
-                    </ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>Singapore</h3>
-                    <ul><li>Davos Life Science</li></ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>Indonesia</h3>
-                    <ul>
-                      <li>KLK Dumai</li>
-                      <li>Perindustrian Sawit Synergi</li>
-                    </ul>
-                  </div>
-                </div>
-              </details>
-              <details className={styles.regionPanel}>
-                <summary>Asia</summary>
-                <div className={styles.regionPanelBody}>
-                  <div className={styles.regionGroup}>
-                    <h3>China</h3>
-                    <ul>
-                      <li>Taiko Palm-Oleo (Zhangjiagang)</li>
-                      <li>KLK OLEO (Shanghai)</li>
-                    </ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>India</h3>
-                    <ul><li>KLK OLEO India</li></ul>
-                  </div>
-                </div>
-              </details>
-              <details className={styles.regionPanel}>
-                <summary>Europe</summary>
-                <div className={styles.regionPanelBody}>
-                  <div className={styles.regionGroup}>
-                    <h3>Germany</h3>
-                    <ul><li>KLK Emmerich (Emmerich &amp; Düsseldorf sites)</li></ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>Switzerland</h3>
-                    <ul><li>Kolb Distribution</li></ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>Netherlands</h3>
-                    <ul>
-                      <li>Dr. W. Kolb Nederland</li>
-                      <li>KLK Kolb Specialties</li>
-                    </ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>Belgium</h3>
-                    <ul><li>KLK Tensachem</li></ul>
-                  </div>
-                  <div className={styles.regionGroup}>
-                    <h3>Italy</h3>
-                    <ul><li>KLK Temix</li></ul>
-                  </div>
-                </div>
-              </details>
-              <details className={styles.regionPanel}>
-                <summary>Americas</summary>
-                <div className={styles.regionPanelBody}>
-                  <div className={styles.regionGroup}>
-                    <h3>United States</h3>
-                    <ul><li>KLK OLEO Americas</li></ul>
-                  </div>
-                </div>
-              </details>
-            </div>
-          </div>
+          <WorldMap points={mapPoints} />
         </section>
 
       </main>
