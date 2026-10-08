@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { destinationFor } from "@/lib/klk-links";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Check, ChevronRight, Search, SlidersHorizontal, X } from "lucide-react";
@@ -118,14 +119,14 @@ function SearchControls({ query, setQuery, filters, setFilters, compact = false 
 }) {
   const update = (key: keyof Filters, value: string) => setFilters({ ...filters, [key]: value });
   return (
-    <div className="grid gap-3 lg:grid-cols-[minmax(16.25rem,1.5fr)_repeat(4,minmax(9.0625rem,1fr))]">
-      <label className="relative block">
+    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))]">
+      <label className="relative block min-w-0">
         <span className="sr-only">Search by product name</span>
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-klk-primary" size={18} />
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by product name" className="klk-body-small h-[3.25rem] w-full rounded-full border border-klk-border bg-white pl-12 pr-5 text-klk-text outline-none transition focus:border-klk-primary focus:ring-2 focus:ring-klk-lime/20" />
       </label>
       {(Object.keys(fieldOptions) as (keyof Filters)[]).map((key) => (
-        <label key={key} className={compact ? "hidden lg:block" : "block"}>
+        <label key={key} className={compact ? "hidden min-w-0 lg:block" : "block min-w-0"}>
           <span className="sr-only">Filter by {key}</span>
           <select value={filters[key]} onChange={(event) => update(key, event.target.value)} className="klk-body-small h-[3.25rem] w-full rounded-full border border-klk-border bg-white px-4 text-klk-text-secondary outline-none transition focus:border-klk-primary">
             <option value="">All {key === "label" ? "labels" : key}</option>
@@ -213,12 +214,23 @@ export function SiteFooter() {
     { title: "Markets", links: ["Beauty & Personal Care", "Food & Nutrition", "Home Care, Industries & Institutional (I&I) Cleaning", "Life Science", "Lubricants", "Oleo Basics", "Polymers"] },
   ];
   return (
-    <footer id="contact-us" className="bg-klk-darker pb-24 pt-12 text-white">
-      <div className="klk-container grid gap-10 border-b border-white/15 pb-10 sm:grid-cols-2 lg:grid-cols-[1.15fr_repeat(3,1fr)]">
+    <footer id="contact-us" className="bg-klk-darker pt-12 text-white">
+      <div className="klk-container grid gap-10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.15fr_repeat(3,1fr)]">
         <div><Image src={`${imageRoot}/KLK-OLEO-Header-Logo-1.png`} alt="KLK OLEO" width={190} height={72} className="h-auto w-[11.875rem] brightness-0 invert" /><p className="klk-body-large mt-5 max-w-xs font-semibold text-klk-lime">Global Oleochemical Producer<br />For More Than 30 Years</p><h3 className="klk-body-small mt-8 font-semibold">KLK OLEO Corporate Headquarters</h3><p className="klk-caption mt-3 max-w-xs text-white/70">Level 8, Menara KLK, No.1, Jalan PJU 7/6, Mutiara Damansara, 47810 Petaling Jaya, Selangor, Malaysia.</p><p className="klk-caption mt-3 text-white/70"><a href="tel:+60378098833">+603 7809 8833</a> · <a href={destinationFor("Product Enquiry")}>Product Enquiry</a></p></div>
-        {columns.map((column) => <div key={column.title}><h3 className="klk-body-small border-b border-white/15 pb-3 font-semibold">{column.title}</h3><ul className="mt-3 space-y-2.5">{column.links.map((link) => <li key={link}>{link === "Career" ? <span aria-disabled="true" title="No linked Career page in the prototype" className="klk-caption text-white/70">{link}</span> : <a href={destinationFor(link)} className="klk-caption text-white/70 transition hover:text-klk-lime">{link}</a>}</li>)}</ul></div>)}
+        {columns.map((column) => <div key={column.title}><h3 className="klk-body-small border-b border-white/15 pb-3 font-semibold">{column.title}</h3><ul className="mt-3 space-y-2.5">{column.links.map((link) => <li key={link}>{link === "Career" ? <Link href="/careers" className="klk-caption text-white/70">{link}</Link> : <a href={destinationFor(link)} className="klk-caption text-white/70 transition hover:text-klk-lime">{link}</a>}</li>)}</ul></div>)}
       </div>
-      <div className="klk-container klk-caption flex flex-col items-center justify-between gap-3 pt-6 text-center text-white/60 md:flex-row"><p>Copyright © 2026 KLK OLEO 0587027T (200201019364). All rights reserved.</p><p>{["Disclaimer", "Personal Data Notice Statement", "Privacy Notice", "Cookie Notice"].map((label, index) => <span key={label}>{index > 0 && " · "}<a href={destinationFor(label)}>{label}</a></span>)}</p></div>
+      <div className="border-t border-klk-surface/30 px-[var(--klk-gutter)] py-[1.875rem] text-white">
+        <div className="klk-body flex flex-col items-center gap-2.5 text-center">
+          <p>Copyright © 2026 KLK OLEO 0587027T (200201019364) . All rights reserved.</p>
+          <nav aria-label="Legal notices" className="flex flex-wrap items-center justify-center gap-y-2">
+            {["Disclaimer", "Personal Data Notice Statement", "Privacy Notice", "Cookie Notice"].map((label, index) => (
+              <a key={label} href={destinationFor(label)} className={`px-2 leading-[1.375rem] transition-colors hover:text-klk-lime ${index > 0 ? "border-l border-white/30" : ""}`}>
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
     </footer>
   );
 }

@@ -177,6 +177,9 @@
   }
   html {
     @apply font-sans;
+    /* Match the former 125% desktop view at normal zoom, with a fluid
+       transition from the readable 16px mobile scale to 20px desktop. */
+    font-size: clamp(1rem, calc(0.25rem + 1.5625vw), 1.25rem);
     scroll-behavior: smooth;
   }
 }
@@ -205,6 +208,7 @@
   .klk-container {
     width: min(calc(100% - (var(--klk-gutter) * 2)), var(--klk-content-max));
     margin-inline: auto;
+    min-width: 0;
   }
 
   .klk-section {
@@ -341,6 +345,15 @@ section[id], footer[id] {
 :focus-visible {
   outline: 2px solid var(--klk-lime);
   outline-offset: 4px;
+}
+
+main p,
+main h1,
+main h2,
+main h3,
+main h4,
+main li {
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 767px) {

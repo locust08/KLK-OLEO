@@ -68,11 +68,13 @@ const productGroups = [
 ] as const;
 
 const navItems = ["About Us", "Products", "Markets", "Career", "News & Events", "Contact Us"] as const;
+const marketCategories = ["Beauty & Personal Care", "Food & Nutrition", "Home Care, Industries & Institutional (I&I) Cleaning", "Life Science", "Lubricants", "Oleo Basics", "Polymers"] as const;
+const languages = [{ href: "/", label: "English", code: "EN" }, { href: "/de", label: "Deutsch", code: "DE" }, { href: "/cn", label: "中文", code: "中文" }] as const;
 
 const navTargets: Record<(typeof navItems)[number], string> = {
   "About Us": "/about-us",
   Products: "/products",
-  Markets: "/#solutions",
+  Markets: "/markets",
   Career: destinationFor("Career"),
   "News & Events": "/news-events",
   "Contact Us": "/contact-us",
@@ -80,6 +82,7 @@ const navTargets: Record<(typeof navItems)[number], string> = {
 
 export function HeaderHero({ compact = false }: { compact?: boolean }) {
   const pathname = usePathname();
+  const language = languages.find(item => item.href !== "/" && (pathname === item.href || pathname.startsWith(`${item.href}/`))) || languages[0];
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [scrolled, setScrolled] = useState(false);
@@ -112,12 +115,12 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
 
 
   return (
-    <section className={compact ? "relative h-[4.25rem] md:h-[5.625rem]" : "relative h-[36.875rem] overflow-hidden bg-klk-darker md:h-[44.625rem]"}>
+    <section className={compact ? "relative h-[4.25rem] md:h-[5.625rem]" : "relative h-[36.875rem] overflow-hidden bg-klk-darker md:h-[50.3125vw] md:min-h-[38rem]"}>
       <header
         data-dark={darkHeader}
         onMouseEnter={() => setHeaderHovered(true)}
         onMouseLeave={() => setHeaderHovered(false)}
-        className={`site-header fixed inset-x-0 top-0 z-50 h-[4.25rem] border-b backdrop-blur-[0.625rem] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 md:h-[5.625rem] ${darkHeader ? "border-white/10 bg-klk-darker/95" : "border-klk-primary/10 bg-white/90"}`}
+        className={`site-header fixed inset-x-0 top-0 z-50 h-[4.25rem] border-b backdrop-blur-[5px] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 md:h-[5.625rem] ${darkHeader ? "border-white/10 bg-klk-darker/95" : "border-klk-primary/10 bg-white/63"}`}
       >
         <div className="klk-container flex h-full items-center justify-between gap-4">
           <Link href="/#top" aria-label="KLK OLEO home" className="relative block h-10 w-[7.875rem] shrink-0 md:h-14 md:w-[9.375rem] xl:h-20 xl:w-[13.125rem]">
@@ -131,10 +134,19 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
             />
           </Link>
 
-          <nav aria-label="Primary navigation" className="ml-auto hidden min-w-0 items-center gap-4 min-[56.25rem]:flex xl:mr-8 xl:gap-9">
+          <nav aria-label="Primary navigation" className="ml-auto hidden min-w-0 items-center gap-4 min-[80rem]:flex xl:mr-8 xl:gap-9">
             {navItems.map((item) =>
               item === "Career" ? (
-                <span key={item} aria-disabled="true" title="No linked Career page in the prototype" className={`klk-overline whitespace-nowrap font-semibold ${darkHeader ? "text-white" : "text-klk-primary"}`}>Career</span>
+                <Link key={item} href="/careers" className={`klk-overline whitespace-nowrap font-semibold ${darkHeader ? "text-white" : "text-klk-primary"}`}>Career</Link>
+              ) : item === "Markets" ? (
+                <div key={item} className="group relative flex h-[5.625rem] items-center">
+                  <Link href="/markets" aria-current={pathname.startsWith("/markets") ? "page" : undefined} className={`klk-overline flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:text-klk-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}>
+                    Markets <ChevronDown aria-hidden="true" className="h-4 w-4 fill-klk-lime stroke-klk-lime transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+                  </Link>
+                  <div className="invisible absolute right-0 top-full w-[22rem] translate-y-2 border-t-2 border-klk-lime bg-white p-6 opacity-0 shadow-[var(--klk-shadow-raised)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                    <ul className="space-y-3">{marketCategories.map(category => <li key={category}><Link href={destinationFor(category)} aria-current={pathname === destinationFor(category) ? "page" : undefined} className="klk-body-small block font-medium text-klk-text-secondary transition-colors hover:text-klk-primary">{category}</Link></li>)}</ul>
+                  </div>
+                </div>
               ) : item === "Products" ? (
                 <div key={item} className="group relative flex h-[5.625rem] items-center">
                   <Link
@@ -174,7 +186,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
                   className={`klk-overline flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:text-klk-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}
                 >
                   {item}
-                  {(item === "About Us" || item === "Markets" || item === "Contact Us") && (
+                  {(item === "About Us" || item === "Contact Us") && (
                     <ChevronDown aria-hidden="true" className="h-4 w-4 fill-klk-lime stroke-klk-lime" />
                   )}
                 </Link>
@@ -182,7 +194,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
             )}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-3 md:gap-4 min-[56.25rem]:gap-2 xl:gap-4">
+          <div className="flex shrink-0 items-center gap-3 md:gap-4 min-[80rem]:gap-2 xl:gap-4">
             <button
               type="button"
               aria-label="Open product search"
@@ -193,12 +205,10 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
             </button>
             <details className="group relative hidden sm:block">
               <summary aria-label="Change language" className="klk-caption flex h-11 cursor-pointer list-none items-center gap-1 rounded-xs bg-klk-primary px-3 font-semibold text-white transition-colors hover:bg-klk-primary-hover active:bg-klk-primary-active">
-                EN <ChevronDown aria-hidden="true" className="h-3 w-3 fill-white" />
+                {language.code} <ChevronDown aria-hidden="true" className="h-3 w-3 fill-white" />
               </summary>
               <div className="absolute right-0 top-full mt-2 min-w-32 rounded-sm bg-white p-2 text-sm text-klk-primary shadow-[var(--klk-shadow-raised)]">
-                <Link href="/" className="block rounded-xs px-3 py-2 hover:bg-klk-surface">English</Link>
-                <Link href="https://www.klkoleo.com/de/" className="block rounded-xs px-3 py-2 hover:bg-klk-surface">Deutsch</Link>
-                <Link href="https://www.klkoleo.com/cn/" className="block rounded-xs px-3 py-2 hover:bg-klk-surface">中文</Link>
+                {languages.map(item => <Link key={item.href} href={item.href} aria-current={language.href === item.href ? "page" : undefined} onClick={event => event.currentTarget.closest("details")?.removeAttribute("open")} className="block rounded-xs px-3 py-2 hover:bg-klk-surface">{item.label}</Link>)}
               </div>
             </details>
             <button
@@ -207,7 +217,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
               aria-controls="mobile-navigation"
               aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               onClick={() => setMenuOpen((open) => !open)}
-              className={`flex h-11 w-11 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-klk-lime min-[56.25rem]:hidden ${darkHeader ? "text-white" : "text-klk-primary"}`}
+              className={`flex h-11 w-11 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-klk-lime min-[80rem]:hidden ${darkHeader ? "text-white" : "text-klk-primary"}`}
             >
               {menuOpen ? <X aria-hidden="true" className="h-7 w-7" /> : <Menu aria-hidden="true" className="h-7 w-7" />}
             </button>
@@ -216,7 +226,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
 
         <div
           id="mobile-navigation"
-          className={`absolute inset-x-0 top-full max-h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-klk-primary/10 bg-white shadow-[var(--klk-shadow-raised)] transition-[opacity,transform,visibility] duration-300 min-[56.25rem]:hidden ${
+          className={`absolute inset-x-0 top-full max-h-[calc(100dvh-4.25rem)] overflow-y-auto border-t border-klk-primary/10 bg-white shadow-[var(--klk-shadow-raised)] transition-[opacity,transform,visibility] duration-300 md:max-h-[calc(100dvh-5.625rem)] min-[80rem]:hidden ${
             menuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
           }`}
         >
@@ -243,7 +253,11 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
                 ))}
               </div>
             </details>
-            {navItems.slice(2).map((item) => item === "Career" ? <span key={item} aria-disabled="true" title="No linked Career page in the prototype" className="block border-b border-klk-primary/10 py-4 text-sm font-semibold uppercase text-klk-primary">Career</span> : (
+            {navItems.slice(2).map((item) => item === "Markets" ? <details key={item} className="group border-b border-klk-primary/10">
+              <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-sm font-semibold uppercase tracking-[0.04em] text-klk-primary">Markets<ChevronDown aria-hidden="true" className="h-4 w-4 transition-transform group-open:rotate-180" /></summary>
+              <Link href="/markets" onClick={() => setMenuOpen(false)} className="mb-3 block text-sm font-semibold text-klk-primary">View all markets</Link>
+              <ul className="space-y-1 pb-5">{marketCategories.map(category => <li key={category}><Link href={destinationFor(category)} aria-current={pathname === destinationFor(category) ? "page" : undefined} onClick={() => setMenuOpen(false)} className="block py-2 text-sm text-klk-text-secondary">{category}</Link></li>)}</ul>
+            </details> : item === "Career" ? <Link key={item} href="/careers" onClick={() => setMenuOpen(false)} className="block border-b border-klk-primary/10 py-4 text-sm font-semibold uppercase text-klk-primary">Career</Link> : (
               <Link
                 key={item}
                 href={navTargets[item]}
@@ -285,12 +299,12 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
         <div
           key={`${slide.title}-${index}`}
           aria-hidden={activeSlide !== index}
-          className={`absolute bottom-[4.625rem] left-[1.375rem] right-[1.375rem] z-10 text-white transition-[opacity,transform] duration-600 motion-reduce:transition-none md:bottom-[5.125rem] md:left-[2.625rem] md:right-auto ${
+          className={`absolute bottom-[4.625rem] left-[1.375rem] right-[1.375rem] z-10 text-white transition-[opacity,transform] duration-600 motion-reduce:transition-none md:bottom-[5.208vw] md:left-[2.604vw] md:right-auto ${
             activeSlide === index ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
           }`}
         >
-          <p className="klk-h3 font-normal text-white drop-shadow-sm">{slide.eyebrow}</p>
-          <h1 className="klk-h1 mt-2 w-full max-w-5xl text-white drop-shadow-sm md:mt-3">
+          <p className="klk-h3 font-medium text-white drop-shadow-sm md:text-[clamp(2.25rem,3.125vw,3.75rem)] md:tracking-[-0.09375rem]">{slide.eyebrow}</p>
+          <h1 className="klk-h1 mt-2 w-full max-w-5xl font-medium text-white drop-shadow-sm md:mt-1 md:text-[clamp(3rem,5.208vw,6.25rem)]">
             {slide.title}
           </h1>
         </div>
@@ -306,7 +320,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
             aria-label={`Show slide ${index + 1}: ${slide.eyebrow}`}
             onClick={() => setActiveSlide(index)}
             className={`h-3 w-3 rounded-full border border-white shadow-sm transition-colors motion-reduce:transition-none ${
-              activeSlide === index ? "bg-klk-lime" : "bg-white/85 hover:bg-white"
+              activeSlide === index ? "bg-klk-primary" : "bg-white/70 hover:bg-white"
             }`}
           />
         ))}

@@ -119,7 +119,7 @@ export function ProductsPrototypeDetail({ categorySlug = "fatty-acids", productS
     <section className="klk-container py-10 md:py-16">
       <Link href={`/products/${category.slug}`} className={`${linkClass} border-0`}><ArrowLeft className="size-4 text-klk-primary" aria-hidden="true" /> Back</Link>
       <h1 className="klk-h2 mt-6 border-b border-klk-primary/20 pb-6 text-klk-primary">{product.name}</h1>
-      <div className={`${styles.productCopy} klk-body-small py-6 text-klk-text-secondary`} dangerouslySetInnerHTML={{ __html: product.introHtml }} />
+      <div className={`${styles.productCopy} klk-body-small overflow-x-auto py-6 text-klk-text-secondary`} tabIndex={product.introHtml.includes("<table") ? 0 : undefined} role={product.introHtml.includes("<table") ? "region" : undefined} aria-label={product.introHtml.includes("<table") ? `${product.name} product information, scroll to see all columns` : undefined} dangerouslySetInnerHTML={{ __html: product.introHtml }} />
       <div className="mt-5 rounded-md border border-klk-border bg-klk-surface p-6 md:p-8">
         {product.sections.map(section => <details key={section.title} className="group border-b border-klk-primary/20 last-of-type:border-b-0">
           <summary className="klk-h6 flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-klk-text [&::-webkit-details-marker]:hidden">

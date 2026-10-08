@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { destinationFor } from "@/lib/klk-links";
 import { useEffect, useRef, useState } from "react";
 
 const imageRoot = "/sites/figma-com-fd3c2a3a/proto-klk-oleo-2026-95f6cd74/images";
@@ -132,7 +133,7 @@ export function IndustrySolutions() {
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,79,45,0)_50%,rgba(0,79,45,0.55)_82%,rgba(123,191,42,0.85)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6 max-sm:p-5">
               <h3 className="klk-h4">{solution.title}</h3>
-              <Link href="/#solutions" tabIndex={copy === 1 ? 0 : -1} className="klk-button mt-4 inline-flex items-center gap-3 border-b border-white pb-2">
+              <Link href={destinationFor(solution.title)} tabIndex={copy === 1 ? 0 : -1} className="klk-button mt-4 inline-flex items-center gap-3 border-b border-white pb-2">
                 Learn More <span aria-hidden="true" className="text-lg text-klk-lime">→</span>
               </Link>
             </div>

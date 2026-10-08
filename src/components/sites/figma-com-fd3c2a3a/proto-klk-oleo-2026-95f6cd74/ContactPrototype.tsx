@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import {
   PrototypePageBanner,
@@ -136,17 +137,14 @@ export function ContactPrototype() {
                   <Mail aria-hidden="true" className="size-4 text-klk-lime" />
                   General Enquiry
                 </p>
-                <button
-                  disabled
-                  type="button"
-                  aria-describedby="product-enquiry-unavailable"
-                  className="klk-button flex min-h-11 w-full items-center justify-center gap-3 rounded-sm bg-klk-primary px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60"
+                <Link
+                  href="/product-enquiry"
+                  className="klk-button flex min-h-11 w-full items-center justify-center gap-3 rounded-sm bg-klk-primary px-4 py-2 text-white opacity-60"
                 >
                   PRODUCT ENQUIRY <Mail aria-hidden="true" className="size-4" />
-                </button>
+                </Link>
                 <span id="product-enquiry-unavailable" className="sr-only">
-                  Product enquiry is not available in this prototype. Contact a
-                  regional sales office using the email links below.
+                  Open Product Enquiry to prepare an enquiry to a regional sales office.
                 </span>
               </div>
             </div>

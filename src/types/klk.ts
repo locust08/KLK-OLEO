@@ -10,6 +10,7 @@ export type Product = {
 };
 
 export type NewsItem = {
+  href: string;
   category: string;
   date: string;
   title: string;

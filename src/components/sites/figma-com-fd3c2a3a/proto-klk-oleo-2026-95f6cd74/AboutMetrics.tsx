@@ -136,11 +136,11 @@ export function AboutMetrics() {
         aria-label="KLK OLEO in numbers"
         className="klk-section bg-klk-surface"
       >
-        <div className="klk-container grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
+        <div className="klk-container grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {metrics.map((metric) => (
             <article
               key={metric.number}
-              className="group relative aspect-[1.48] min-h-[15.625rem] overflow-hidden rounded-sm bg-klk-dark shadow-klk"
+              className="group relative h-[15.625rem] min-w-0 overflow-hidden rounded-sm bg-klk-dark shadow-klk xl:h-[20rem]"
             >
               <Image
                 src={metric.image}

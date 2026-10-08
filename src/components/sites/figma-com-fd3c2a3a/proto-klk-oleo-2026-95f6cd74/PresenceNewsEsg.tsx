@@ -216,7 +216,7 @@ export function PresenceNewsEsg() {
                   </p>
                   <a
                     className="klk-button group mt-4 inline-flex items-center gap-2 border-b border-klk-brand-blue pb-2"
-                    href="/news-events"
+                    href={item.href.replace("https://www.klkoleo.com/news-media/", "/news-events/")}
                   >
                     Read more
                     <ArrowRight aria-hidden="true" className="h-4 w-4 text-klk-lime transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none" />

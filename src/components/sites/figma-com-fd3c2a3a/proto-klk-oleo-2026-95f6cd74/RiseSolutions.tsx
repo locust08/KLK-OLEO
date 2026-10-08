@@ -10,7 +10,7 @@ const imageRoot =
 const riseItems = [
   {
     letter: "R",
-    color: "text-klk-brand-pink",
+    color: "text-klk-pink",
     eyebrow: "Reliable",
     title: "Going Extra Mile",
     paragraphs: [
@@ -20,7 +20,7 @@ const riseItems = [
   },
   {
     letter: "I",
-    color: "text-klk-brand-pink",
+    color: "text-klk-pink",
     eyebrow: "Integrated",
     title: "One Integrated Partner",
     paragraphs: [
@@ -40,7 +40,7 @@ const riseItems = [
   },
   {
     letter: "E",
-    color: "text-klk-brand-blue",
+    color: "text-klk-blue",
     eyebrow: "Efficient",
     title: "Delivering With Efficiency",
     paragraphs: [
@@ -96,7 +96,7 @@ export function RiseSolutions() {
 
   return (
     <>
-      <section className="klk-section relative min-h-[38.125rem] overflow-hidden">
+      <section className="klk-section-large relative min-h-[38.125rem] overflow-hidden">
         <Image
           src={`${imageRoot}/extracted-rise-aerial.png`}
           alt=""
@@ -104,17 +104,16 @@ export function RiseSolutions() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-white/55" />
-        <div className="absolute inset-0 bg-klk-surface-subtle/20" />
+        <div className="absolute inset-0 bg-black/25" />
 
         <div className="klk-container relative z-10">
-          <h2 className="klk-h2 max-w-[40rem] text-klk-darker">
+          <h2 className="klk-h2 max-w-[43rem] text-white">
             Built On A Strong Foundation
             <br />
             Committed To RISE
           </h2>
 
-          <div className="mt-10 hidden min-h-[27.5rem] gap-4 min-[56.25rem]:flex xl:min-h-[22.5rem]">
+          <div className="mt-10 hidden min-h-[29.4375rem] gap-5 min-[56.25rem]:flex">
             {riseItems.map((item, index) => {
               const isActive = activeRise === index;
 
@@ -122,12 +121,12 @@ export function RiseSolutions() {
                 <div
                   key={item.letter}
                   onMouseEnter={() => selectRiseFromHover(index)}
-                  className={`min-w-0 [perspective:75rem] transition-[flex-basis,width] duration-500 ease-out motion-reduce:transition-none ${
-                    isActive ? "basis-[43%] shrink-0" : "flex-1"
+                  className={`min-w-0 grow-0 shrink-0 [perspective:75rem] transition-[flex-basis] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                    isActive ? "basis-[calc((100%-3.75rem)*0.43)]" : "basis-[calc((100%-3.75rem)*0.19)]"
                   }`}
                 >
                   <div
-                    className={`relative h-full min-h-[27.5rem] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] motion-reduce:transition-none xl:min-h-[22.5rem] ${
+                    className={`relative h-full min-h-[29.4375rem] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] will-change-transform motion-reduce:transition-none ${
                       isActive ? "[transform:rotateY(180deg)]" : ""
                     }`}
                   >
@@ -137,10 +136,10 @@ export function RiseSolutions() {
                       aria-pressed={isActive}
                       onClick={() => selectRiseImmediately(index)}
                       onFocus={() => selectRiseImmediately(index)}
-                      className="group absolute inset-0 flex items-center justify-center overflow-hidden rounded-sm border border-white/45 bg-[linear-gradient(180deg,rgba(250,252,250,0.66)_0%,rgba(244,249,244,0.62)_57%,rgba(205,221,75,0.75)_100%)] shadow-[inset_0_0.0625rem_0_rgba(255,255,255,0.4)] backdrop-blur-[0.1875rem] [backface-visibility:hidden] hover:border-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      className="group absolute inset-0 flex items-center justify-center overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(121,184,41,0.18)_80%,rgba(242,233,0,0.4)_100%)] backdrop-blur-[7.5px] [backface-visibility:hidden] hover:border-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
                       <span
-                        className={`text-[clamp(5.5rem,8.6vw,8.875rem)] leading-none font-bold tracking-[-0.08em] transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none ${item.color}`}
+                        className={`text-[clamp(8rem,15.625vw,18.75rem)] leading-none font-bold tracking-[-0.08em] transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none ${item.color}`}
                       >
                         {item.letter}
                       </span>
@@ -148,15 +147,15 @@ export function RiseSolutions() {
 
                     <article
                       aria-live={isActive ? "polite" : "off"}
-                      className="absolute inset-0 overflow-y-auto rounded-sm bg-klk-darker p-8 text-left text-white shadow-klk [backface-visibility:hidden] [scrollbar-width:none] [transform:rotateY(180deg)] [&::-webkit-scrollbar]:hidden max-xl:p-7"
+                      className="absolute inset-0 overflow-y-auto rounded-lg bg-klk-darker p-8 2xl:p-[3.125rem] text-left text-white shadow-klk [backface-visibility:hidden] [scrollbar-width:none] [transform:rotateY(180deg)] [&::-webkit-scrollbar]:hidden max-xl:p-7"
                     >
-                      <p className="klk-overline font-semibold text-klk-lime">
+                      <p className="klk-h4 text-klk-lime">
                         {item.eyebrow}
                       </p>
-                      <h3 className="klk-h4 mt-2">
+                      <h3 className="klk-h3 mt-2">
                         {item.title}
                       </h3>
-                      <div className="klk-body-small mt-7 max-w-[31.25rem] space-y-6 text-white/90 max-xl:mt-5 max-xl:space-y-4">
+                      <div className="klk-body mt-7 space-y-6 text-white max-xl:mt-5 max-xl:space-y-4">
                         {item.paragraphs.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}

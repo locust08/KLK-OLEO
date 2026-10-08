@@ -1,0 +1,40 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions -- playwright-cli evaluates this function directly. */
+async (page) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("http://localhost:3001/news-events/archive");
+  await page.evaluate(() => localStorage.setItem("klk-cookie-choice", "essential"));
+  await page.reload();
+  await page.getByRole("radio", { name: "Corporate", exact: true }).check();
+  const corporate = await page.locator("section article").count();
+  if (!corporate) throw new Error("Corporate filter has no articles");
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  await page.getByRole("button", { name: "Next", exact: true }).click();
+  if (!await page.getByRole("button", { name: "Page 2", exact: true }).getAttribute("aria-current")) throw new Error("Pagination failed");
+  await page.getByLabel("Year", { exact: true }).selectOption("2025");
+  if (!await page.getByRole("button", { name: "Page 1", exact: true }).getAttribute("aria-current")) throw new Error("Year change did not reset page");
+  if (!await page.locator("section article").count()) throw new Error("Year filter has no articles");
+  await page.locator("section article a").first().click();
+  await page.waitForURL(/news-events\/(?!archive)/);
+  const articleTitle = await page.locator("h1").textContent();
+  await page.goto("http://localhost:3001/product-enquiry");
+  const product = await page.locator('select[name="Product"] option').nth(1).getAttribute("value");
+  await page.locator('select[name="Product"]').selectOption(product || { index: 1 });
+  await page.locator('input[name="Name"]').fill("Responsive QA");
+  await page.locator('input[name="Email"]').fill("qa@example.com");
+  await page.locator('input[name="Company"]').fill("QA Example");
+  await page.locator('select[name="Nature of Business"]').selectOption({ index: 1 });
+  await page.locator('select[name="Country"]').selectOption({ label: "Malaysia" });
+  await page.locator('select[name="How Do You Know Us"]').selectOption({ index: 1 });
+  await page.locator('select[name="office"]').selectOption("info.europe@klkoleo.com");
+  await page.locator('textarea[name="Message"]').fill("Please share product information. Test draft only.");
+  await page.locator('input[name="consent"]').check();
+  await page.getByRole("button", { name: "PREPARE ENQUIRY" }).click();
+  const draft = await page.getByRole("link", { name: "OPEN EMAIL DRAFT" }).getAttribute("href");
+  if (!draft?.startsWith("mailto:info.europe@klkoleo.com?") || !decodeURIComponent(draft).includes("qa@example.com")) throw new Error("Email draft content is invalid");
+  await page.locator('input[name="Company"]').fill("Revised QA Example");
+  if (await page.getByRole("link", { name: "OPEN EMAIL DRAFT" }).count()) throw new Error("Stale draft not cleared after editing");
+  await page.goto("http://localhost:3001/news-events");
+  const articleLinks = await page.getByRole("link", { name: "READ MORE", exact: true }).count();
+  if (articleLinks !== 10) throw new Error("Existing article links were not wired");
+  return { archiveCategory: true, archiveYear: true, pagination: true, articleTitle, existingArticleLinks: articleLinks, emailDraft: true, staleDraftCleared: true, emailsSent: 0 };
+}
