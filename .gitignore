@@ -47,3 +47,9 @@ next-env.d.ts
 
 # Local temp files
 temp/
+.open-next/
+.wrangler/
+.dev.vars*
+.playwright-cli/
+output/playwright/
+cloudflare-env.d.ts

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { destinationFor } from "@/lib/klk-links";
 import { ArrowDown, ArrowRight, ArrowUp, Factory, FlaskConical } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
+import { LocationMap } from "../shared/LocationMap";
 
 import { newsItems } from "@/lib/klk-data";
 
@@ -110,7 +111,8 @@ function RegionContent({ region }: { region: Region }) {
 }
 
 export function GlobalPresence({ heading = "KLK OLEO Global Presence", id = "markets" }: { heading?: string; id?: string }) {
-  const [openRegion, setOpenRegion] = useState("South East Asia");
+  const [openRegion, setOpenRegion] = useState<string | null>("South East Asia");
+  const regionId = useId();
   return (
       <section id={id} className="klk-section bg-white text-klk-text">
         <div className="klk-container">
@@ -118,19 +120,11 @@ export function GlobalPresence({ heading = "KLK OLEO Global Presence", id = "mar
             {heading}
           </h2>
 
-          <div className="grid grid-cols-[minmax(0,68fr)_minmax(19.375rem,32fr)] items-start gap-10 max-[56.25rem]:grid-cols-1">
-            <div className="relative aspect-[1.61/1] w-full">
-              <Image
-                alt="KLK OLEO global locations, facilities and regional network map"
-                className="object-contain"
-                fill
-                sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
-                src={`${assetRoot}/2026-01-Global-Presence_English-1.jpg`}
-              />
-            </div>
+          <div className="grid grid-cols-[minmax(0,2.5fr)_minmax(16.25rem,1fr)] items-start gap-8 max-[56.25rem]:grid-cols-1">
+            <LocationMap selectedRegion={openRegion} onSelectRegion={setOpenRegion} />
 
             <div className="space-y-4">
-              {regions.map((region) => {
+              {regions.map((region, index) => {
                 const isOpen = region.name === openRegion;
 
                 return (
@@ -140,8 +134,10 @@ export function GlobalPresence({ heading = "KLK OLEO Global Presence", id = "mar
                   >
                     <button
                       aria-expanded={isOpen}
+                      aria-controls={`${regionId}-panel-${index}`}
+                      id={`${regionId}-button-${index}`}
                       className="klk-h5 flex min-h-14 w-full cursor-pointer items-center justify-between px-4 text-left sm:px-5"
-                      onClick={() => setOpenRegion(region.name)}
+                      onClick={() => setOpenRegion(isOpen ? null : region.name)}
                       type="button"
                     >
                       <span>{region.name}</span>
@@ -154,6 +150,11 @@ export function GlobalPresence({ heading = "KLK OLEO Global Presence", id = "mar
                       </span>
                     </button>
                     <div
+                      id={`${regionId}-panel-${index}`}
+                      role="region"
+                      aria-labelledby={`${regionId}-button-${index}`}
+                      aria-hidden={!isOpen}
+                      inert={!isOpen}
                       className={`grid transition-[grid-template-rows] duration-[260ms] ease-in-out motion-reduce:transition-none ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                     >
                       <div className="min-h-0 overflow-hidden">
