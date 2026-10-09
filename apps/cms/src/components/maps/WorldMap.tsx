@@ -13,13 +13,13 @@ export function WorldMap({ points }: { points: MapPoint[] }) {
     <div className={styles.map} data-reveal="up" tabIndex={0} aria-label="Scrollable KLK OLEO location map">
       <div className={styles.canvas}>
       {/* The image is only an outline; every location comes from shared CMS data. */}
-      <img src="/images/about/shared-world-map.png" width="2518" height="1246" alt="World map" className={styles.outline} />
-      <svg viewBox="0 0 1000 495" className={styles.pins} aria-label="Select a location to display its region">
+      <img src="/images/about/world-map-light.png" width="1781" height="883" alt="World map" className={styles.outline} />
+      <svg viewBox="0 0 1000 495.79" className={styles.pins} aria-label="Select a location to display its region">
         {pins.map(point => {
           const position = projectPoint(point.latitude, point.longitude);
           const selected = active === point.region;
           const anchor = pins.find(pin => pin.region === point.region)?.id === point.id;
-          return <g key={point.id} transform={`translate(${(position.x * 10).toFixed(2)} ${(position.y * 4.95).toFixed(2)})`} className={`${styles.pin} ${selected ? styles.selected : ""} ${hovered === point.region ? styles.hovered : ""}`}>
+          return <g key={point.id} transform={`translate(${(position.x * 10).toFixed(2)} ${(position.y * 4.9579).toFixed(2)})`} className={`${styles.pin} ${selected ? styles.selected : ""} ${hovered === point.region ? styles.hovered : ""}`}>
             {anchor && <circle r="17" className={styles.ring} />}
             <circle r={anchor ? 7 : 3} className={styles.dot} />
             <circle r="22" fill="transparent" role="button" tabIndex={0} aria-label={`${point.country}: show ${point.region}`} aria-pressed={active === point.region}

@@ -2614,8 +2614,8 @@ a {
   .product-detail__header h2 { font-size: 24px; }
   .product-detail__header > p:last-child { font-size: 17px; }
   .product-spec-panel { grid-template-columns: 1fr; }
-  .product-spec-panel > div { min-height: 0; padding: 28px 24px; }
-  .product-spec-panel > div + div { border-top: 2px solid var(--heading); border-left: 0; }
+  .product-spec-panel > div { min-height: 0; padding: 28px 0; }
+  .product-spec-panel > div + div { padding-left: 0; border-top: 1px solid #cad8d0; border-left: 0; }
   .product-spec-panel h2,
   .product-meta-table > h2 { font-size: 24px; }
   .product-spec-panel li,

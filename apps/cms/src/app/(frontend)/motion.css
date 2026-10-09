@@ -74,17 +74,16 @@
   transform: translateY(100%);
 }
 .capability .capability__panel--back p { margin: 0; color: #fff; }
-.capability:hover .capability__panel--front,
-.capability:focus .capability__panel--front { transform: translateY(-100%); }
-.capability:hover .capability__panel--back,
-.capability:focus .capability__panel--back { transform: translateY(0); }
+.capability[aria-expanded="true"] .capability__panel--front { transform: translateY(-100%); }
+.capability[aria-expanded="true"] .capability__panel--back { transform: translateY(0); }
+@media (hover: hover) and (pointer: fine) {
+  .capability:hover .capability__panel--front { transform: translateY(-100%); }
+  .capability:hover .capability__panel--back { transform: translateY(0); }
+}
 .capability:focus-visible { outline: 3px solid var(--leaf); outline-offset: 4px; }
-@media (max-width: 767px), (max-width: 1199px) and (hover: none) {
-  .capability { display: flex; flex-direction: column; min-height: 0; }
-  .capability .capability__panel { min-height: 0; transform: none; }
-  .capability .capability__panel--front { min-height: 160px; }
-  .capability .capability__panel--back { flex: 1; }
-  .capability:is(:hover, :focus) .capability__panel { transform: none; }
+@media (max-width: 767px) {
+  .capability { min-height: clamp(280px, 65vw, 400px); }
+  .capability .capability__panel { min-height: clamp(280px, 65vw, 400px); padding: 24px 20px 38px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .capability .capability__panel { transition: none; }

@@ -1,7 +1,7 @@
 .layout { display: grid; grid-template-columns: minmax(0, 2.5fr) minmax(260px, 1fr); gap: 30px; align-items: start; }
 .map { width: 100%; margin-top: 12px; overflow-x: auto; }
 .canvas { position: relative; width: 100%; }
-.outline { display: block; width: 100%; height: auto; opacity: .65; }
+.outline { display: block; width: 100%; height: auto; }
 .pins { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .pin { cursor: pointer; }
 .ring { fill: rgb(1 104 54 / 12%); stroke: var(--green); stroke-width: 2; opacity: .35; transition: opacity 200ms, stroke-width 200ms; }
@@ -9,7 +9,14 @@
 .selected .ring, .pin:focus-within .ring { opacity: 1; stroke-width: 3; }
 .selected .dot { fill: var(--green); }
 .hovered .ring { opacity: 1; }
-.pin circle[role=button]:focus-visible { outline: none; stroke: var(--green); stroke-width: 3; }
+.pin circle[role=button]:focus { outline: none; }
+.pin circle[role=button]:focus-visible { stroke: var(--green); stroke-width: 3; }
+.selected .ring { animation: selected-pin-pulse 650ms ease-out; transform-box: fill-box; transform-origin: center; }
+@keyframes selected-pin-pulse {
+  0% { transform: scale(.85); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
 .regions { display: grid; gap: 14px; }
 .region { border-radius: 6px; background: #e7f1eb; overflow: hidden; }
 .region h3 { margin: 0; }
@@ -32,4 +39,4 @@
   .canvas { min-width: 600px; }
   .region h3 button { padding: 18px; font-size: 23px; }
 }
-@media (prefers-reduced-motion: reduce) { .ring, .dot { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ring, .dot { transition: none; animation: none; } }

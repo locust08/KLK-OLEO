@@ -8,4 +8,7 @@
 .group .legend { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .count { font-size: 12px; font-weight: 400; white-space: nowrap; }
 .group summary:focus-visible { outline: 3px solid #62a83b; outline-offset: 3px; }
-@media (max-width: 767px) { .clear { display: none; } }
+@media (max-width: 767px) {
+  .clear { display: none; }
+  .group summary { font-size: 19px; }
+}

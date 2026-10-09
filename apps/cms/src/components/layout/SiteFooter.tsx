@@ -16,18 +16,18 @@ const quickLinks = [
 ] as const;
 
 const products = [
-  { label: "Adjuvants", slug: "adjuvants" },
-  { label: "Emulsifiers", slug: "emulsifiers" },
-  { label: "Dispersants", slug: "dispersants" },
-  { label: "Rheology Modifiers", slug: "rheology-modifiers" },
-  { label: "(Co) Solvents", slug: "co-solvents" },
-  { label: "Wetters, Penetrants and Spreaders", slug: "wetters-penetrants-and-spreaders" },
   { label: "Active Ingredients", slug: "active-ingredients" },
-  { label: "Defoamer", slug: "defoamer" },
-  { label: "Soil Moisture Retainers", slug: "soil-moisture-retainers" },
-  { label: "Humectants", slug: "humectants" },
+  { label: "Adjuvants", slug: "adjuvants" },
   { label: "Anti Drift", slug: "anti-drift" },
+  { label: "(Co) Solvents", slug: "co-solvents" },
+  { label: "Defoamer", slug: "defoamer" },
+  { label: "Dispersants", slug: "dispersants" },
+  { label: "Emulsifiers", slug: "emulsifiers" },
+  { label: "Humectants", slug: "humectants" },
+  { label: "Rheology Modifiers", slug: "rheology-modifiers" },
+  { label: "Soil Moisture Retainers", slug: "soil-moisture-retainers" },
   { label: "Tank Mix Adjuvants", slug: "tank-mix-adjuvants" },
+  { label: "Wetters, Penetrants and Spreaders", slug: "wetters-penetrants-and-spreaders" },
 ] as const;
 
 const legalLinks = [
