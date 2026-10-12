@@ -1,16 +1,26 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, useLayoutEffect, useRef, useMemo, type ReactNode } from "react";
+import { ComposableMap, Marker, useMapContext } from "react-simple-maps/core";
+import { createPortal } from "react-dom";
+import { createWorldMapProjection, mapWidth, mapHeight, regionAnchors } from "@/lib/maps/projection";
 import { groupMapPoints, mapRegions, type MapPoint, type MapRegion } from "@/lib/maps/model";
 import styles from "./WorldMap.module.css";
 
 const asset = (name: string) => `/images/about/global-presence/${name}`;
-const anchors: Record<MapRegion, { x: number; y: number }> = {
-  "South East Asia": { x: 76.89, y: 61.50 },
-  Asia: { x: 73.71, y: 42.55 },
-  Europe: { x: 49.72, y: 33.40 },
-  Americas: { x: 17.87, y: 38.05 },
-};
+// Native buttons preserve the original SVG icon rasterization and focus rings.
+// Their positions come from the same RSM context as the geographic markers.
+function GeographicMarker({ coordinates, container, children }: {
+  coordinates: [number, number];
+  container: HTMLDivElement | null;
+  children: (x: number, y: number) => ReactNode;
+}) {
+  const { projection } = useMapContext();
+  const position = projection(coordinates);
+  return <Marker coordinates={coordinates}>
+    {container && position && createPortal(children(position[0], position[1]), container)}
+  </Marker>;
+}
 const legend = [
   { label: "Corporate Headquarters", icons: ["headquarters.svg"] },
   { label: "International Sales Office", icons: ["sales-office.svg"] },
@@ -28,22 +38,43 @@ function locationIcon(label: string, country: string) {
 
 export function WorldMap({ points }: { points: MapPoint[] }) {
   const id = useId();
+  const canvas = useRef<HTMLDivElement>(null);
+  const [canvasSize, setCanvasSize] = useState({ width: mapWidth, height: mapHeight });
+  useLayoutEffect(() => {
+    const element = canvas.current;
+    if (!element) return;
+    const update = () => {
+      const { width, height } = element.getBoundingClientRect();
+      setCanvasSize({ width, height });
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  const projection = useMemo(() => createWorldMapProjection(canvasSize.width, canvasSize.height, true), [canvasSize]);
+  const pinSize = Math.max(Math.floor(canvasSize.width * .0318 * 64) / 64, 24);
   const [active, setActive] = useState<MapRegion | null>(points[0]?.region ?? null);
   const regions = mapRegions.filter(region => points.some(point => point.region === region));
   return <div className={styles.layout}>
     <div className={styles.mapColumn}>
       <div className={styles.map} aria-label="KLK OLEO location map">
-        <div className={styles.canvas}>
+        <div className={styles.canvas} ref={canvas}>
           <img src={asset("map-texture.png")} width="2518" height="1246" alt="World map of KLK OLEO global presence" className={styles.outline} />
           <img src={asset("network.svg")} alt="" className={styles.network} />
-          {regions.map(region => <button key={region} type="button"
+          <ComposableMap width={canvasSize.width} height={canvasSize.height} projection={projection} className={styles.renderer}>
+          {regions.map(region => <GeographicMarker key={region} coordinates={regionAnchors[region]} container={canvas.current}>
+            {(x, y) =>
+            <button type="button"
             className={`${styles.pin} ${active === region ? styles.selected : ""}`}
-            style={{ left: `${anchors[region].x}%`, top: `${anchors[region].y}%` }}
+            style={{ left: x, top: y, width: pinSize }}
             aria-label={`Show ${region} locations`} aria-pressed={active === region}
             aria-controls={`${id}-${mapRegions.indexOf(region)}`}
             onClick={() => setActive(region)}>
             <img src={asset(region === "South East Asia" ? "dot-headquarters.svg" : "dot-region.svg")} alt="" />
-          </button>)}
+          </button>}
+          </GeographicMarker>)}
+          </ComposableMap>
         </div>
       </div>
       <ul className={styles.legend} aria-label="Map legend">
