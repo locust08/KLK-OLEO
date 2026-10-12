@@ -2291,7 +2291,7 @@ a {
 }
 .catalog-product-row p {
   max-width: 760px;
-  margin: 0 0 10px;
+  margin: 0;
   color: var(--secondary);
   line-height: 1.6;
 }
@@ -2521,12 +2521,12 @@ a {
   .catalog-hero {
     height: 300px;
     margin-top: 0;
-    place-items: end start;
+    place-items: center;
     background-position: 58% center;
   }
   .catalog-hero__content {
-    padding: 0 20px 48px;
-    text-align: left;
+    padding: 60px 20px 0;
+    text-align: center;
   }
   .catalog-hero__content p { font-size: 13px; }
   .catalog-hero h1 { font-size: 42px; }

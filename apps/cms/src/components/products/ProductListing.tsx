@@ -153,7 +153,6 @@ export function ProductListing({ category, groups, products }: ProductListingPro
                 </h2>
                 <h3>{product.type}</h3>
                 <p>{product.summary}</p>
-                <span>{product.formulations.map((item) => item.match(/\(([^)]+)\)/)?.[1]).filter(Boolean).join(", ")}</span>
               </div>
               <Link href={`/products/product/${product.slug}`} className="catalog-product-row__arrow" aria-label={`View ${product.name}`}>
                 <FaArrowRightLong aria-hidden="true" />
