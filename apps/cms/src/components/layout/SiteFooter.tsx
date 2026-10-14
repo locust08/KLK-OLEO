@@ -6,6 +6,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { siteAssets } from "@/data/site-assets";
 import { useSite } from "./SiteContext";
+import { ContactBanner } from "./ContactBanner";
 
 const quickLinks = [
   { label: "About", href: "/about-us" },
@@ -43,7 +44,7 @@ const legalLinks = [
 export function SiteFooter() {
   const site = useSite();
   return (
-    <footer className="site-footer">
+    <><ContactBanner /><footer className="site-footer">
       <div className="footer-inner">
         <section className="footer-brand" aria-labelledby="footer-brand-title">
           <Image
@@ -111,6 +112,6 @@ export function SiteFooter() {
           ))}
         </nav>
       </div>
-    </footer>
+    </footer></>
   );
 }
