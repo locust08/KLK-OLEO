@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { destinationFor } from "@/lib/klk-links";
-import { ArrowDown, ArrowRight, ArrowUp, Factory, FlaskConical } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUp } from "lucide-react";
 import { useId, useState } from "react";
 import { LocationMap } from "../shared/LocationMap";
 
@@ -28,7 +28,6 @@ const regions: Region[] = [
         name: "Malaysia",
         research: true,
         facilities: [
-          "Davos Life Science",
           "KLK Bioenergy",
           "KL-Kepong Oleomas",
           "Palm-Oleo",
@@ -87,19 +86,20 @@ const esgCards = [
 
 function RegionContent({ region }: { region: Region }) {
   return (
-    <div className="klk-caption space-y-3 px-4 pt-1 pb-4 text-white/90 sm:px-5">
+    <div className="space-y-6 px-4 pt-1 pb-4 text-klk-text-light sm:px-5">
       {region.countries.map((country) => (
         <div key={country.name}>
-          <div className="flex items-center gap-1.5 border-b border-white/15 pb-2 font-semibold text-white">
+          <div className="flex items-center gap-1.5 border-b border-klk-border/25 pb-2 text-[18px] leading-[1.3] font-semibold text-white">
+            {country.name === "Malaysia" ? <Image src="/images/maps/global-presence/headquarters-light.svg" width={26} height={26} alt="Corporate headquarters" /> : null}
             {country.research ? (
-              <FlaskConical aria-hidden="true" className="h-4 w-4 text-klk-brand-pink" />
+              <Image src="/images/maps/global-presence/research.svg" width={26} height={26} alt="Research and development" />
             ) : null}
             <span>{country.name}</span>
           </div>
           <ul className="mt-2 space-y-2">
             {country.facilities.map((facility) => (
-              <li className="flex items-start gap-2" key={facility}>
-                <Factory aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-klk-lime" />
+              <li className="flex items-start gap-2 text-[14px] leading-8 [overflow-wrap:anywhere] sm:text-[16px]" key={facility}>
+                <Image src={`/images/maps/global-presence/${facility.startsWith("Stolthaven") ? "storage" : facility.includes("Shanghai") || facility.includes("India") ? "sales-office" : country.name === "Singapore" ? "facility-singapore" : country.name === "Indonesia" ? "facility-indonesia" : "facility"}.svg`} width={16} height={16} alt="" className="mt-2 h-auto w-4 shrink-0" />
                 <span>{facility}</span>
               </li>
             ))}
@@ -114,13 +114,13 @@ export function GlobalPresence({ heading = "KLK OLEO Global Presence", id = "mar
   const [openRegion, setOpenRegion] = useState<string | null>("South East Asia");
   const regionId = useId();
   return (
-      <section id={id} className="klk-section bg-white text-klk-text">
+      <section id={id} className="klk-section bg-white text-klk-text min-[120rem]:min-h-[74.9375rem]">
         <div className="klk-container">
           <h2 className="klk-h2 mb-8 text-klk-primary">
             {heading}
           </h2>
 
-          <div className="grid grid-cols-[minmax(0,2.5fr)_minmax(16.25rem,1fr)] items-start gap-8 max-[56.25rem]:grid-cols-1">
+          <div className="grid grid-cols-[minmax(0,1259fr)_minmax(0,510fr)] items-start gap-[clamp(1.5rem,2.65625vw,3.1875rem)] max-[1199px]:grid-cols-1">
             <LocationMap selectedRegion={openRegion} onSelectRegion={setOpenRegion} />
 
             <div className="space-y-4">
@@ -129,7 +129,7 @@ export function GlobalPresence({ heading = "KLK OLEO Global Presence", id = "mar
 
                 return (
                   <div
-                    className={`overflow-hidden rounded-sm border border-klk-border ${isOpen ? "bg-klk-dark text-white" : "bg-klk-surface text-klk-text"}`}
+                    className={`overflow-hidden rounded-sm border border-klk-border ${isOpen ? "bg-klk-darker text-white" : "bg-klk-surface text-klk-text"}`}
                     key={region.name}
                   >
                     <button
@@ -176,9 +176,9 @@ export function PresenceNewsEsg() {
   return (
     <>
       <GlobalPresence />
-      <section id="news" className="klk-section bg-klk-surface text-klk-text">
+      <section id="news" className="klk-section bg-klk-surface text-klk-text min-[120rem]:min-h-[58.5rem]">
         <div className="klk-container">
-          <div className="mb-9 flex items-end justify-between gap-6">
+          <div className="mb-9 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start max-sm:gap-4">
             <h2 className="klk-h2 text-klk-primary">
               Latest News
             </h2>
@@ -191,10 +191,10 @@ export function PresenceNewsEsg() {
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-6 max-[56.25rem]:grid-cols-2 max-[40rem]:grid-cols-1">
+          <div className="grid grid-cols-3 gap-[1.875rem] max-[56.25rem]:grid-cols-2 max-[40rem]:grid-cols-1">
             {newsItems.slice(0, 3).map((item) => (
-              <article className="rounded-md border border-klk-border bg-white p-4 shadow-klk" key={item.title}>
-                <div className="relative aspect-[1.52/1] overflow-hidden rounded-sm">
+              <article className="flex flex-col rounded-md border border-klk-border bg-white p-5 shadow-klk min-[120rem]:min-h-[42.3435rem]" key={item.title}>
+                <div className="relative aspect-[2.24/1] overflow-hidden rounded-sm">
                   <Image
                     alt=""
                     className="object-cover"
@@ -204,7 +204,7 @@ export function PresenceNewsEsg() {
                   />
                 </div>
                 <div className="px-1 pb-1 pt-4">
-                  <p className="klk-caption text-klk-text-secondary">
+                  <p className="klk-caption text-klk-text">
                     {item.category}
                     <span aria-hidden="true" className="mx-2">•</span>
                     {item.date}
@@ -212,7 +212,7 @@ export function PresenceNewsEsg() {
                   <h3 className="klk-h6 mt-2 text-klk-primary">
                     {item.title}
                   </h3>
-                  <p className="klk-body-small mt-3 line-clamp-3 text-klk-text-secondary">
+                  <p className="klk-body mt-3 line-clamp-3 text-klk-text-secondary">
                     {item.excerpt}
                   </p>
                   <a
@@ -229,16 +229,16 @@ export function PresenceNewsEsg() {
         </div>
       </section>
 
-      <section id="esg" className="klk-section bg-klk-primary text-white">
+      <section id="esg" className="klk-section bg-klk-dark text-white">
         <div className="klk-container">
           <h2 className="klk-h2 mb-8 max-w-[42rem]">
             Environment, Social, And Corporate Governance
           </h2>
 
-          <div className="grid grid-cols-2 gap-5 max-[56.25rem]:grid-cols-2 max-[40rem]:grid-cols-1">
+          <div className="grid grid-cols-2 gap-[1.875rem] max-[56.25rem]:grid-cols-2 max-[40rem]:grid-cols-1">
             {esgCards.map((card) => (
               <a
-                className="group relative aspect-[1.48/1] overflow-hidden rounded-md shadow-klk"
+                className="group relative aspect-[1.525/1] overflow-hidden rounded-md shadow-klk"
                 href={destinationFor(card.title)}
                 key={card.title}
               >
@@ -249,12 +249,12 @@ export function PresenceNewsEsg() {
                   sizes="(max-width: 640px) calc(100vw - 40px), 46vw"
                   src={card.image}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.6)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-7 max-sm:p-5">
                   <h3 className="klk-h4">
                     {card.title}
                   </h3>
-                  <span className="klk-button mt-3 inline-flex items-center gap-2 border-b border-white/70 pb-2">
+                  <span className="klk-button mt-3 inline-flex items-center gap-2 border-b border-white pb-2">
                     Learn more
                     <ArrowRight aria-hidden="true" className="h-4 w-4 text-klk-lime transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none" />
                   </span>

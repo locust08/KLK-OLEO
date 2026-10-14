@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -25,7 +26,15 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${poppins.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Script
+          id="bugherd-sidebar"
+          src="https://www.bugherd.com/sidebarv2.js?apikey=uuh7g8qrx9fige1fqxvr6q"
+          strategy="afterInteractive"
+          async
+        />
+      </body>
     </html>
   );
 }

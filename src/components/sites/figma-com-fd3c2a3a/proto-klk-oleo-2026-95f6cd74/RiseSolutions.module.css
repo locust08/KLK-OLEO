@@ -1,0 +1,42 @@
+.cards {
+  container-type: inline-size;
+  gap: 1.25rem;
+  height: 29.4375rem;
+}
+
+/* Size text against the full row, never the changing width of a flipping card. */
+.face {
+  width: calc((100cqw - 3.75rem) * 0.44318182);
+  overflow-y: auto;
+  padding: clamp(1.25rem, 2.7473cqw, 3.125rem);
+}
+
+.eyebrow {
+  font-size: clamp(1rem, 1.53846cqw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.title {
+  font-size: clamp(1.375rem, 1.97802cqw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.copy {
+  margin-top: clamp(1rem, 1.64835cqw, 1.75rem);
+  font-size: clamp(0.8125rem, 0.87912cqw, 1rem);
+  line-height: 2;
+}
+
+.copy p + p {
+  margin-top: clamp(0.875rem, 1.75824cqw, 2rem);
+}
+
+.front {
+  background-image: url('/images/theme/rise-0.svg'), linear-gradient(rgb(255 255 255 / 10%), rgb(255 255 255 / 10%));
+  background-size: 100% 100%;
+}
+
+.cards > div:nth-child(3) .front { background-image: url('/images/theme/rise-1.svg'), linear-gradient(rgb(255 255 255 / 10%), rgb(255 255 255 / 10%)); }
+.cards > div:nth-child(4) .front { background-image: url('/images/theme/rise-2.svg'), linear-gradient(rgb(255 255 255 / 10%), rgb(255 255 255 / 10%)); }

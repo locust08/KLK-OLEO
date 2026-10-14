@@ -1,71 +1,18 @@
-.map {
-  width: 100%;
-  margin-top: 0.75rem;
-  overflow-x: auto;
+.column { min-width: 0; }
+.map { width: 100%; }
+.canvas { position: relative; width: 100%; aspect-ratio: 2518 / 1246; }
+.pins { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.pins circle { cursor: pointer; }
+.pin { opacity: 0.7; pointer-events: none; transition: opacity 180ms; }
+.selected, .pins g:hover .pin, .pins g:focus-within .pin { opacity: 1; }
+.pins circle:focus-visible { outline: none; stroke: var(--klk-primary); stroke-width: 2; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; margin: 1.375rem auto 0; padding: 0; list-style: none; }
+.legend li { display: flex; align-items: center; gap: 5px; color: var(--klk-primary); font-size: clamp(12px, 0.94vw, 18px); font-weight: 600; line-height: 1.3; }
+.legendIcons { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+.legendIcons img { width: auto; height: 25px; }
+@media (max-width: 767px) {
+  .legend { justify-content: flex-start; gap: 16px; }
+  .legend li { font-size: 12px; }
+  .legendIcons img { height: 20px; }
 }
-
-.canvas {
-  position: relative;
-  width: 100%;
-  min-width: 600px;
-}
-
-.outline {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.pins {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.pin { cursor: pointer; }
-
-.ring {
-  fill: color-mix(in srgb, var(--klk-primary) 12%, transparent);
-  stroke: var(--klk-primary);
-  stroke-width: 2;
-  opacity: 0.35;
-  pointer-events: none;
-  transition: opacity 200ms, stroke-width 200ms;
-}
-
-.dot {
-  fill: var(--klk-lime);
-  stroke: white;
-  stroke-width: 2;
-  pointer-events: none;
-  transition: fill 200ms;
-}
-
-.selected .ring,
-.pin:hover .ring,
-.pin:focus-within .ring { opacity: 1; stroke-width: 3; }
-.selected .dot { fill: var(--klk-primary); }
-.pin circle[role="button"]:focus { outline: none; }
-.pin circle[role="button"]:focus-visible { stroke: var(--klk-primary); stroke-width: 3; }
-
-.selected .ring {
-  animation: selected-pin-pulse 650ms ease-out;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-@keyframes selected-pin-pulse {
-  0% { transform: scale(0.85); }
-  55% { transform: scale(1.16); }
-  100% { transform: scale(1); }
-}
-
-@media (max-width: 900px) {
-  .map { margin-top: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dot, .ring { transition: none; animation: none; }
-}
+@media (prefers-reduced-motion: reduce) { .pin { transition: none; } }

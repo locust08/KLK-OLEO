@@ -71,10 +71,10 @@ export function IndustrySolutions() {
   };
 
   return (
-    <section id="solutions" aria-labelledby="solutions-heading" className="overflow-hidden bg-klk-dark py-16 text-white max-md:py-12">
+    <section id="solutions" aria-labelledby="solutions-heading" className="overflow-hidden bg-klk-dark klk-section text-white">
       <div className="klk-container">
         <h2 id="solutions-heading" className="klk-h2">Solutions By Industry</h2>
-        <p className="klk-body-large mt-6 text-white/90">No matter what business you are in, we have all your needs in one place.</p>
+        <p className="klk-body-large mt-6 text-klk-text-light">No matter what business you are in, we have all your needs in one place.</p>
       </div>
       <div
         ref={trackRef}
@@ -82,7 +82,7 @@ export function IndustrySolutions() {
         aria-roledescription="carousel"
         aria-label="Solutions by industry. Swipe or use left and right arrow keys to explore."
         tabIndex={0}
-        className="relative mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain px-[max(2.5rem,calc((100vw-90rem)/2+2.5rem))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white data-[dragging=true]:snap-none data-[dragging=true]:cursor-grabbing max-md:gap-5 max-md:px-5"
+        className="relative mt-10 flex snap-x snap-mandatory gap-[clamp(1.5rem,2.604vw,3.125rem)] overflow-x-auto overscroll-x-contain px-[max(var(--klk-gutter),calc((100vw-113.75rem)/2))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white data-[dragging=true]:snap-none data-[dragging=true]:cursor-grabbing max-md:gap-5 max-md:px-5"
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
             event.preventDefault();
@@ -128,11 +128,11 @@ export function IndustrySolutions() {
         onDragStart={(event) => event.preventDefault()}
       >
         {[0, 1, 2].flatMap((copy) => solutions.map((solution) => (
-          <article key={`${copy}-${solution.title}`} aria-hidden={copy !== 1 || undefined} className="group relative aspect-[31/30] w-[min(27rem,calc((100vw-8rem)/3))] shrink-0 snap-start scroll-ml-10 overflow-hidden rounded-md bg-klk-darker shadow-klk max-md:w-[82vw] max-md:scroll-ml-5">
+          <article key={`${copy}-${solution.title}`} aria-hidden={copy !== 1 || undefined} className="group relative aspect-[31/30] w-[min(38.75rem,32.292vw)] shrink-0 snap-start scroll-ml-10 overflow-hidden rounded-md bg-klk-darker shadow-klk max-xl:w-[calc((100vw-6rem)/2)] max-lg:w-[82vw] max-md:scroll-ml-5">
             <Image src={`${imageRoot}/${solution.image}`} alt="" fill loading="eager" sizes="(max-width: 768px) 82vw, 33vw" draggable={false} className="pointer-events-none object-cover" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,79,45,0)_50%,rgba(0,79,45,0.55)_82%,rgba(123,191,42,0.85)_100%)]" />
-            <div className="absolute inset-x-0 bottom-0 p-6 max-sm:p-5">
-              <h3 className="klk-h4">{solution.title}</h3>
+            <div className="figma-industry-overlay pointer-events-none absolute inset-0" />
+            <div className="absolute inset-x-0 bottom-0 p-[1.875rem] max-sm:p-5">
+              <h3 className="klk-h3 max-xl:text-[clamp(1.375rem,3.5vw,1.75rem)]">{solution.title}</h3>
               <Link href={destinationFor(solution.title)} tabIndex={copy === 1 ? 0 : -1} className="klk-button mt-4 inline-flex items-center gap-3 border-b border-white pb-2">
                 Learn More <span aria-hidden="true" className="text-lg text-klk-lime">→</span>
               </Link>

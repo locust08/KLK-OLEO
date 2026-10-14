@@ -115,12 +115,12 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
 
 
   return (
-    <section className={compact ? "relative h-[4.25rem] md:h-[5.625rem]" : "relative h-[36.875rem] overflow-hidden bg-klk-darker md:h-[50.3125vw] md:min-h-[38rem]"}>
+    <section className={compact ? "relative h-[4.25rem] md:h-[5.625rem] min-[80rem]:h-[clamp(7.5rem,9.896vw,11.875rem)]" : "relative h-[36.875rem] overflow-hidden bg-klk-darker md:h-[50.3125vw] md:min-h-[38rem]"}>
       <header
         data-dark={darkHeader}
         onMouseEnter={() => setHeaderHovered(true)}
         onMouseLeave={() => setHeaderHovered(false)}
-        className={`site-header fixed inset-x-0 top-0 z-50 h-[4.25rem] border-b backdrop-blur-[5px] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 md:h-[5.625rem] ${darkHeader ? "border-white/10 bg-klk-darker/95" : "border-klk-primary/10 bg-white/63"}`}
+        className={`site-header fixed inset-x-0 top-0 z-50 h-[4.25rem] border-b backdrop-blur-[5px] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 md:h-[5.625rem] min-[80rem]:h-[clamp(7.5rem,9.896vw,11.875rem)] ${darkHeader ? "border-white/10 bg-klk-darker/95" : "border-klk-primary/10 bg-white/63"}`}
       >
         <div className="klk-container flex h-full items-center justify-between gap-4">
           <Link href="/#top" aria-label="KLK OLEO home" className="relative block h-10 w-[7.875rem] shrink-0 md:h-14 md:w-[9.375rem] xl:h-20 xl:w-[13.125rem]">
@@ -134,13 +134,13 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
             />
           </Link>
 
-          <nav aria-label="Primary navigation" className="ml-auto hidden min-w-0 items-center gap-4 min-[80rem]:flex xl:mr-8 xl:gap-9">
+          <nav aria-label="Primary navigation" className="ml-auto hidden min-w-0 items-center gap-4 min-[80rem]:flex h-full xl:mr-5 xl:gap-[clamp(1rem,2.083vw,2.5rem)]">
             {navItems.map((item) =>
               item === "Career" ? (
-                <Link key={item} href="/careers" className={`klk-overline whitespace-nowrap font-semibold ${darkHeader ? "text-white" : "text-klk-primary"}`}>Career</Link>
+                <Link key={item} href="/careers" className={`klk-button text-[0.875rem] min-[96rem]:text-base uppercase whitespace-nowrap font-semibold ${darkHeader ? "text-white" : "text-klk-primary"}`}>Career</Link>
               ) : item === "Markets" ? (
-                <div key={item} className="group relative flex h-[5.625rem] items-center">
-                  <Link href="/markets" aria-current={pathname.startsWith("/markets") ? "page" : undefined} className={`klk-overline flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:text-klk-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}>
+                <div key={item} className="group relative flex h-full items-center">
+                  <Link href="/markets" aria-current={pathname.startsWith("/markets") ? "page" : undefined} className={`klk-button text-[0.875rem] min-[96rem]:text-base uppercase flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}>
                     Markets <ChevronDown aria-hidden="true" className="h-4 w-4 fill-klk-lime stroke-klk-lime transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
                   </Link>
                   <div className="invisible absolute right-0 top-full w-[22rem] translate-y-2 border-t-2 border-klk-lime bg-white p-6 opacity-0 shadow-[var(--klk-shadow-raised)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
@@ -148,11 +148,11 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
                   </div>
                 </div>
               ) : item === "Products" ? (
-                <div key={item} className="group relative flex h-[5.625rem] items-center">
+                <div key={item} className="group relative flex h-full items-center">
                   <Link
                     href="/products"
                     aria-current={pathname.startsWith("/products") ? "page" : undefined}
-                    className={`klk-overline flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:text-klk-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}
+                    className={`klk-button text-[0.875rem] min-[96rem]:text-base uppercase flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}
                   >
                     Products
                     <ChevronDown aria-hidden="true" className="h-4 w-4 fill-klk-lime stroke-klk-lime transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
@@ -183,7 +183,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
                   key={item}
                   href={navTargets[item]}
                   aria-current={pathname === navTargets[item] ? "page" : undefined}
-                  className={`klk-overline flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:text-klk-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}
+                  className={`klk-button text-[0.875rem] min-[96rem]:text-base uppercase flex items-center gap-1.5 whitespace-nowrap font-semibold transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-klk-lime xl:gap-2 ${darkHeader ? "text-white" : "text-klk-primary"}`}
                 >
                   {item}
                   {(item === "About Us" || item === "Contact Us") && (
@@ -293,7 +293,7 @@ export function HeaderHero({ compact = false }: { compact?: boolean }) {
           </div>
         ))}
       </div>
-      <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_40%,rgba(0,63,39,0.86)_100%)]" />
+      <div aria-hidden="true" className="figma-hero-overlay absolute inset-0" />
 
       {heroSlides.map((slide, index) => (
         <div

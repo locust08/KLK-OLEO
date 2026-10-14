@@ -62,22 +62,22 @@ export function AboutMetrics() {
         aria-labelledby="about-klk-heading"
         className="klk-section bg-white"
       >
-        <div className="klk-container grid grid-cols-2 gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+        <div className="klk-container grid grid-cols-[minmax(0,790fr)_minmax(0,900fr)] gap-[clamp(2.5rem,6.77vw,8.125rem)] max-lg:grid-cols-1 max-lg:gap-10">
           <div className="min-w-0">
-            <p className="klk-overline mb-4 text-klk-primary">
+            <p className="klk-h6 mb-2.5 text-klk-text">
               About KLK OLEO
             </p>
             <h2
               id="about-klk-heading"
-              className="klk-h2 max-w-[40rem] text-klk-primary"
+              className="klk-h2 max-w-[46.6875rem] text-klk-primary lg:text-[clamp(2rem,2.5vw,3rem)]"
             >
-              Global Oleochemical Producer For More Than 30 Years
+              Global Oleochemical Producer<br className="hidden lg:block" />{" "}For More Than 30 Years
             </h2>
 
-            <div className="mt-12 grid grid-cols-3 gap-6 max-sm:mt-9 max-sm:gap-3">
+            <div className="mt-[clamp(2rem,5.42vw,6.5rem)] grid grid-cols-3 gap-[clamp(1rem,1.82vw,2.1875rem)] max-sm:mt-9 max-sm:gap-3">
               {awards.map((award) => (
                 <article key={award.label} className="min-w-0">
-                  <div className="relative h-36 overflow-hidden rounded-sm border border-klk-border bg-white max-sm:h-24">
+                  <div className="relative h-[10.875rem] overflow-hidden rounded-sm border border-klk-border bg-white max-sm:h-24">
                     <Image
                       src={award.image}
                       alt=""
@@ -86,7 +86,7 @@ export function AboutMetrics() {
                       className="object-contain p-4"
                     />
                   </div>
-                  <p className="klk-body-small mt-3 text-center font-semibold text-klk-text max-sm:text-[0.6875rem]">
+                  <p className="klk-h6 mt-[0.9375rem] text-center font-semibold text-klk-text max-sm:text-[0.6875rem]">
                     {award.label}
                   </p>
                 </article>
@@ -95,7 +95,7 @@ export function AboutMetrics() {
           </div>
 
           <div className="klk-body pt-1 text-klk-text-secondary">
-            <p>
+            <p className="opacity-80">
               KLK OLEO is a global oleochemical producer, which has integrated
               complexes located strategically in Malaysia, Indonesia, China,
               and Europe. KLK OLEO offers an array of high quality, innovative
@@ -109,7 +109,7 @@ export function AboutMetrics() {
               of approximately RM22.94 (USD5.45) billion at the end of September
               2025.
             </p>
-            <p className="mt-6">
+            <p className="mt-6 opacity-80">
               KLK OLEO’s production portfolio ranges from basic oleochemical
               products, such as Fatty Acids, Glycerine, Fatty Alcohols and Fatty
               Esters, all the way down the spectrum to specialties, such as
@@ -136,11 +136,11 @@ export function AboutMetrics() {
         aria-label="KLK OLEO in numbers"
         className="klk-section bg-klk-surface"
       >
-        <div className="klk-container grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="klk-container grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 xl:grid-cols-3">
           {metrics.map((metric) => (
             <article
               key={metric.number}
-              className="group relative h-[15.625rem] min-w-0 overflow-hidden rounded-sm bg-klk-dark shadow-klk xl:h-[20rem]"
+              className="group relative h-[15.625rem] min-w-0 overflow-hidden rounded-sm bg-klk-dark shadow-klk xl:h-[clamp(15.625rem,19.792vw,23.75rem)]"
             >
               <Image
                 src={metric.image}
@@ -149,7 +149,7 @@ export function AboutMetrics() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-klk-darker via-klk-darker/45 to-transparent" />
+              <div className="figma-stat-overlay absolute inset-0" />
               <div className="absolute inset-x-0 bottom-0 flex items-end gap-4 px-5 pb-7 text-white max-sm:gap-3 max-sm:px-4 max-sm:pb-5">
                 <div className="shrink-0">
                   {"kicker" in metric && metric.kicker ? (
@@ -157,11 +157,11 @@ export function AboutMetrics() {
                       {metric.kicker}
                     </p>
                   ) : null}
-                  <p className="text-[3.25rem] leading-[0.9] font-semibold tracking-[-0.04em] max-sm:text-[2.75rem]">
+                  <p className="text-[clamp(2.75rem,3.438vw,4.125rem)] leading-[0.9] font-semibold tracking-[-0.04em] max-sm:text-[2.75rem]">
                     {metric.number}
                   </p>
                 </div>
-                <p className="klk-h5 max-w-[16.875rem] pb-0.5">
+                <p className="klk-h4 max-w-[16.875rem] pb-0.5">
                   {metric.label}
                 </p>
               </div>

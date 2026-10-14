@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { IndustrySolutions } from "./IndustrySolutions";
 import { useEffect, useRef, useState } from "react";
+import styles from "./RiseSolutions.module.css";
 
 const imageRoot =
   "/sites/figma-com-fd3c2a3a/proto-klk-oleo-2026-95f6cd74/images";
@@ -98,7 +99,7 @@ export function RiseSolutions() {
     <>
       <section className="klk-section-large relative min-h-[38.125rem] overflow-hidden">
         <Image
-          src={`${imageRoot}/extracted-rise-aerial.png`}
+          src={`${imageRoot}/rise-plantation.jpg`}
           alt=""
           fill
           sizes="100vw"
@@ -113,7 +114,7 @@ export function RiseSolutions() {
             Committed To RISE
           </h2>
 
-          <div className="mt-10 hidden min-h-[29.4375rem] gap-5 min-[56.25rem]:flex">
+          <div className={`${styles.cards} mt-[3.125rem] hidden min-[75rem]:flex`}>
             {riseItems.map((item, index) => {
               const isActive = activeRise === index;
 
@@ -122,11 +123,11 @@ export function RiseSolutions() {
                   key={item.letter}
                   onMouseEnter={() => selectRiseFromHover(index)}
                   className={`min-w-0 grow-0 shrink-0 [perspective:75rem] transition-[flex-basis] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                    isActive ? "basis-[calc((100%-3.75rem)*0.43)]" : "basis-[calc((100%-3.75rem)*0.19)]"
+                    isActive ? "basis-[calc((100%-3.75rem)*0.44318182)]" : "basis-[calc((100%-3.75rem)*0.18560606)]"
                   }`}
                 >
                   <div
-                    className={`relative h-full min-h-[29.4375rem] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] will-change-transform motion-reduce:transition-none ${
+                    className={`relative h-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] will-change-transform motion-reduce:transition-none ${
                       isActive ? "[transform:rotateY(180deg)]" : ""
                     }`}
                   >
@@ -136,7 +137,7 @@ export function RiseSolutions() {
                       aria-pressed={isActive}
                       onClick={() => selectRiseImmediately(index)}
                       onFocus={() => selectRiseImmediately(index)}
-                      className="group absolute inset-0 flex items-center justify-center overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(121,184,41,0.18)_80%,rgba(242,233,0,0.4)_100%)] backdrop-blur-[7.5px] [backface-visibility:hidden] hover:border-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      className={`${styles.front} group absolute inset-0 flex items-center justify-center overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(121,184,41,0.18)_80%,rgba(242,233,0,0.4)_100%)] backdrop-blur-[7.5px] [backface-visibility:hidden] hover:border-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white`}
                     >
                       <span
                         className={`text-[clamp(8rem,15.625vw,18.75rem)] leading-none font-bold tracking-[-0.08em] transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none ${item.color}`}
@@ -146,16 +147,18 @@ export function RiseSolutions() {
                     </button>
 
                     <article
+                      aria-hidden={!isActive}
+                      inert={!isActive}
                       aria-live={isActive ? "polite" : "off"}
-                      className="absolute inset-0 overflow-y-auto rounded-lg bg-klk-darker p-8 2xl:p-[3.125rem] text-left text-white shadow-klk [backface-visibility:hidden] [scrollbar-width:none] [transform:rotateY(180deg)] [&::-webkit-scrollbar]:hidden max-xl:p-7"
+                      className={`${styles.face} absolute inset-y-0 left-0 rounded-lg bg-klk-darker text-left text-white shadow-klk [backface-visibility:hidden] [transform:rotateY(180deg)]`}
                     >
-                      <p className="klk-h4 text-klk-lime">
+                      <p className={`${styles.eyebrow} text-klk-lime`}>
                         {item.eyebrow}
                       </p>
-                      <h3 className="klk-h3 mt-2">
+                      <h3 className={`${styles.title} mt-2`}>
                         {item.title}
                       </h3>
-                      <div className="klk-body mt-7 space-y-6 text-white max-xl:mt-5 max-xl:space-y-4">
+                      <div className={styles.copy}>
                         {item.paragraphs.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -167,11 +170,10 @@ export function RiseSolutions() {
             })}
           </div>
 
-          <div className="mt-8 min-[56.25rem]:hidden">
+          <div className="mt-8 min-[75rem]:hidden">
             <article
-              key={rise.letter}
               aria-live="polite"
-              className="min-h-[18.75rem] animate-in rounded-sm bg-klk-darker p-6 text-white shadow-klk fade-in duration-300 motion-reduce:animate-none"
+              className="min-h-[18.75rem] rounded-sm bg-klk-darker p-6 text-white shadow-klk"
             >
               <p className="klk-overline font-semibold text-klk-lime">
                 {rise.eyebrow}

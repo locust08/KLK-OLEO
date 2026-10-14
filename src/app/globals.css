@@ -86,10 +86,10 @@
   --klk-text-light: #f1f3f5;
   --klk-white: #ffffff;
   --klk-gutter: 1.25rem;
-  --klk-content-max: 90rem;
+  --klk-content-max: 113.75rem;
   --klk-section-compact: 3rem;
-  --klk-section-standard: 4rem;
-  --klk-section-large: 5rem;
+  --klk-section-standard: 3rem;
+  --klk-section-large: 3rem;
   --klk-radius-none: 0;
   --klk-radius-xs: 0.25rem;
   --klk-radius-sm: 0.5rem;
@@ -177,9 +177,7 @@
   }
   html {
     @apply font-sans;
-    /* Match the former 125% desktop view at normal zoom, with a fluid
-       transition from the readable 16px mobile scale to 20px desktop. */
-    font-size: clamp(1rem, calc(0.25rem + 1.5625vw), 1.25rem);
+    font-size: 1rem;
     scroll-behavior: smooth;
   }
 }
@@ -195,12 +193,16 @@
 @media (min-width: 48rem) {
   :root {
     --klk-gutter: 2rem;
+    --klk-section-standard: 4rem;
+    --klk-section-large: 4rem;
   }
 }
 
 @media (min-width: 64rem) {
   :root {
-    --klk-gutter: 2.5rem;
+    --klk-gutter: 3.125rem;
+    --klk-section-standard: 5rem;
+    --klk-section-large: 5rem;
   }
 }
 
@@ -371,3 +373,19 @@ main li {
   .site-header:hover nav[aria-label="Primary navigation"] > span,
   .site-header:hover nav[aria-label="Primary navigation"] > div > a { color: white; }
 }
+
+/* Homepage variants verified against the Figma Home frame and component states. */
+.klk-home .figma-hero-overlay { background: url('/images/theme/hero-0.svg') center / 100% 100%; backdrop-filter: blur(5px); }
+.klk-home .figma-stat-overlay { background: url('/images/theme/stats-0.svg') center / 100% 100%; }
+.klk-home [aria-label="KLK OLEO in numbers"] article:nth-child(2) .figma-stat-overlay { background-image: url('/images/theme/stats-1.svg'), linear-gradient(transparent 70.382%, rgb(0 0 0 / 37.5%) 84.966%, rgb(0 0 0 / 75%)); }
+.klk-home [aria-label="KLK OLEO in numbers"] article:nth-child(3) .figma-stat-overlay { background-image: url('/images/theme/stats-2.svg'), linear-gradient(transparent 70.382%, rgb(0 0 0 / 37.5%) 84.966%, rgb(0 0 0 / 75%)); }
+.klk-home [aria-label="KLK OLEO in numbers"] article:nth-child(4) .figma-stat-overlay { background-image: url('/images/theme/stats-5.svg'); }
+.klk-home [aria-label="KLK OLEO in numbers"] article:nth-child(5) .figma-stat-overlay { background-image: url('/images/theme/stats-3.svg'); }
+.klk-home [aria-label="KLK OLEO in numbers"] article:nth-child(6) .figma-stat-overlay { background-image: url('/images/theme/stats-4.svg'); }
+.klk-home .figma-industry-overlay { background: url('/images/theme/industry-0.svg'), url('/images/theme/industry-1.svg'); background-size: 100% 100%; }
+.klk-home .site-header[data-dark="true"] { background-color: rgb(0 36 19 / 35%); }
+.klk-home .site-header:hover { background-color: #002413; border-color: rgb(176 208 193 / 30%); backdrop-filter: blur(20px); }
+.klk-home .klk-button:hover { color: #014e29; }
+.klk-home #solutions .klk-button:hover, .klk-home #esg a:hover .klk-button { color: #d9edef; }
+
+.klk-home { --klk-text: #1a1e21; }
