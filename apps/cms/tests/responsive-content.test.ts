@@ -56,6 +56,20 @@ test("populated product attributes remain visible", () => {
   assert.doesNotMatch(html, /<span aria-hidden="true">—<\/span>/);
 });
 
+test("product attributes link using their CMS slugs and the correct category filters", () => {
+  const html = renderDetailContent({
+    ...product,
+    functionalitySlugs: ["cms-function-slug"],
+    formulations: ["Oil Dispersion (OD)"],
+    formulationSlugs: ["oil-dispersion-od"],
+    labels: ["REACH"],
+    labelSlugs: ["reach"],
+  });
+  assert.match(html, /href="\/products\/category\/functionalities\?function=cms-function-slug"/);
+  assert.match(html, /href="\/products\/category\/formulation-type\?formulation=oil-dispersion-od"/);
+  assert.match(html, /href="\/products\/category\/regulatory-labels\?label=reach"/);
+});
+
 test("slash-separated hero titles preserve text with a safe line-break opportunity", () => {
   const html = renderToStaticMarkup(createElement(ProductHero, { title: "Regulatory/Labels" }));
   assert.match(html, /<h1>Regulatory\/<wbr\/>Labels<\/h1>/);

@@ -37,7 +37,7 @@ function FilterGroup({ category, groups, selected, counts, onChange }: {
   onChange: (value: string) => void;
 }) {
   const group = groups[category];
-  const title = category === "functionalities" ? "Product Function" : category === "formulation-type" ? "Formulation" : "Regulation / Labels";
+  const title = category === "functionalities" ? "Functionality" : category === "formulation-type" ? "Formulation Type" : "Regulatory/Labels";
   return (
     <details className={styles.group}>
       <summary>{title}{selected.length > 0 && <span className={styles.count}>{selected.length} selected</span>}<FaChevronDown className={styles.chevron} aria-hidden="true" /></summary>

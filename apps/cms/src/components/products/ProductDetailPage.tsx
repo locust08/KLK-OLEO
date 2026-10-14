@@ -1,8 +1,16 @@
 import Link from "next/link";
-import { FaArrowRightLong, FaDownload } from "react-icons/fa6";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import type { ProductViewModel } from "@/lib/cms/view-models";
+import type { ProductViewModel, ProductCategoryKey } from "@/lib/cms/view-models";
+import { productFilterParam } from "@/lib/product-filtering";
+
+function AttributeValues({ values, slugs, category }: { values: string[]; slugs: string[]; category: ProductCategoryKey }) {
+  return <ul>{values.map((value, index) => <li key={value}>
+    {slugs[index]
+      ? <Link href={`/products/category/${category}?${new URLSearchParams({ [productFilterParam[category]]: slugs[index] })}`}>{value}</Link>
+      : value}
+  </li>)}</ul>;
+}
 
 function UnspecifiedAttribute() {
   return (
@@ -44,29 +52,29 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
             <div>
               <h2>Functionalities</h2>
               {product.functionalities.length > 0
-                ? <ul>{product.functionalities.map((item) => <li key={item}>{item}</li>)}</ul>
+                ? <AttributeValues values={product.functionalities} slugs={product.functionalitySlugs} category="functionalities" />
                 : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
             </div>
             <div>
               <h2>Formulation Type</h2>
               {product.formulations.length > 0
-                ? <ul>{product.formulations.map((item) => <li key={item}>{item}</li>)}</ul>
+                ? <AttributeValues values={product.formulations} slugs={product.formulationSlugs} category="formulation-type" />
                 : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
             </div>
             <div>
               <h2>Regulatory/Labels</h2>
               {product.labels.length > 0
-                ? <ul>{product.labels.map((item) => <li key={item}>{item}</li>)}</ul>
+                ? <AttributeValues values={product.labels} slugs={product.labelSlugs} category="regulatory-labels" />
                 : <p className="product-attribute-empty"><UnspecifiedAttribute /></p>}
             </div>
           </section>
 
           <div className="product-detail__actions">
             <Link href={requestProductHref} className="product-action">
-              Request Product <FaArrowRightLong aria-hidden="true" />
+              Request Product
             </Link>
             <Link href="/resources" className="product-action product-action--outline">
-              Request Brochure <FaDownload aria-hidden="true" />
+              Request Brochure
             </Link>
           </div>
 

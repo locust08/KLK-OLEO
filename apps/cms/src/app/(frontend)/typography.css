@@ -396,6 +396,18 @@ main h1, main h2, main h3,
 .home-faq__icon::after { width: 2px; height: 16px; left: 9px; top: 2px; }
 .home-faq__item[open] .home-faq__icon::after { display: none; }
 .home-faq__answer { margin: 0; padding: 0 44px 28px 0; max-width: 1000px; color: var(--copy); font-size: var(--type-body); line-height: var(--type-body-line); }
+/* Product catalogue refinements, shared by listing and category results. */
+.catalog-product-row__title { font-size: 32px; color: var(--green); overflow-wrap: anywhere; }
+.catalog-product-row h3 { color: #414141; }
+.catalog-product-row__arrow:hover, .catalog-product-row__arrow:focus-visible { background: var(--gold); }
+.catalog-product-row__arrow:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.product-detail { width: 100%; max-width: none; }
+.product-spec-panel li a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.product-spec-panel li a:hover { color: var(--green); }
+.product-spec-panel li a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.product-detail__actions .product-action { border: 0; }
+.product-detail__actions .product-action:hover, .product-detail__actions .product-action:focus-visible { background: var(--gold); color: var(--dark-green); }
+.product-detail__actions .product-action:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
 @media (max-width: 1199px) { .home-faq { padding: 60px 20px; } }
 @media (max-width: 767px) {
   .home-faq { padding: 40px 20px; }
