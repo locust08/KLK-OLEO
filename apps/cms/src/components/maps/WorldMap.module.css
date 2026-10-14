@@ -2,7 +2,7 @@
 .mapColumn { min-width: 0; }
 .map { width: 100%; }
 .canvas { position: relative; width: 100%; aspect-ratio: 2518 / 1246; }
-.outline { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; mask-image: url("/images/about/global-presence/map-mask.png"); mask-size: 100% 100%; mask-repeat: no-repeat; }
+.outline { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
 .network { position: absolute; left: 18.825%; top: 25.37%; width: 77.125%; height: 64.064%; pointer-events: none; }
 .renderer { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .pin { position: absolute; display: block; aspect-ratio: 1; padding: 0; border: 0; background: transparent; cursor: pointer; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: auto; }

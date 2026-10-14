@@ -660,3 +660,20 @@
   .globalPresence { padding-inline: 20px; }
   .globalPresence > h2 { margin-inline: 0; }
 }
+
+/* Use the homepage introduction's column widths and image sizing rules. */
+.agriculture { min-height: 0; padding: 80px 60px; }
+.agricultureInner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; }
+.agricultureInner > .agricultureImage { min-height: 0; }
+.agricultureImage img { object-fit: cover; object-position: center 25%; }
+@media (min-width: 768px) and (max-width: 1199px) {
+  .agriculture { padding: 60px 20px; }
+  .agricultureInner { gap: 30px; }
+}
+@media (max-width: 991px) {
+  .agricultureInner { grid-template-columns: 1fr; gap: 30px; }
+  .agricultureInner > .agricultureImage { height: auto; aspect-ratio: 4 / 3; }
+}
+@media (max-width: 767px) {
+  .agriculture { padding: 40px 20px; }
+}

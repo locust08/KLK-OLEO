@@ -60,7 +60,7 @@ export function WorldMap({ points }: { points: MapPoint[] }) {
     <div className={styles.mapColumn}>
       <div className={styles.map} aria-label="KLK OLEO location map">
         <div className={styles.canvas} ref={canvas}>
-          <img src={asset("map-texture.png")} width="2518" height="1246" alt="World map of KLK OLEO global presence" className={styles.outline} />
+          <img src={asset("map-outline.png")} width="1259" height="623" alt="World map of KLK OLEO global presence" className={styles.outline} />
           <img src={asset("network.svg")} alt="" className={styles.network} />
           <ComposableMap width={canvasSize.width} height={canvasSize.height} projection={projection} className={styles.renderer}>
           {regions.map(region => <GeographicMarker key={region} coordinates={regionAnchors[region]} container={canvas.current}>

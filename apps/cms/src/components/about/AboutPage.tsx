@@ -20,7 +20,7 @@ export function AboutPage({ page: _page, mapPoints }: { page: PageContentViewMod
         <section className={styles.agriculture}>
           <div className={styles.agricultureInner}>
             <div className={styles.agricultureImage} aria-label="Agriculture solutions imagery">
-              <Image src={siteAssets.agricultureSolutions} fill sizes="(max-width: 767px) 100vw, 50vw" alt="Hands holding soil and a young green plant" />
+              <Image src={siteAssets.agricultureSolutions} fill sizes="(max-width: 991px) 100vw, 50vw" alt="Hands holding soil and a young green plant" />
             </div>
             <div className={styles.agricultureCopy} data-reveal="right">
               <p className={styles.kicker}>KLK Oleo Agrochemicals</p>
