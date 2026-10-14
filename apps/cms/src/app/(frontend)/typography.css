@@ -401,7 +401,11 @@ main h1, main h2, main h3,
 .catalog-product-row h3 { color: #414141; }
 .catalog-product-row__arrow:hover, .catalog-product-row__arrow:focus-visible { background: var(--gold); }
 .catalog-product-row__arrow:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
-.product-detail { width: 100%; max-width: none; }
+:root { --header-content-gutter: 60px; }
+@media (max-width: 1199px) { :root { --header-content-gutter: 20px; } }
+@media (max-width: 767px) { :root { --header-content-gutter: 15px; } }
+.site-header { padding-inline: var(--header-content-gutter); }
+.product-detail { width: 100%; max-width: none; padding-inline: var(--header-content-gutter); }
 .product-spec-panel li a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
 .product-spec-panel li a:hover { color: var(--green); }
 .product-spec-panel li a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
