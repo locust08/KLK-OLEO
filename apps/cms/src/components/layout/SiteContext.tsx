@@ -29,7 +29,11 @@ export function SiteProvider({
   value: SiteChromeViewModel | null;
   children: ReactNode;
 }) {
-  return <SiteContext value={value ?? fallbackSite}>{children}</SiteContext>;
+  const site = value ? {
+    ...value,
+    navigation: value.navigation.length ? value.navigation : fallbackSite.navigation,
+  } : fallbackSite;
+  return <SiteContext value={site}>{children}</SiteContext>;
 }
 
 export function useSite() {
