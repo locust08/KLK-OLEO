@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { buildConfig } from "payload";
-import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
+import { editorialD1Adapter } from "./lib/content/d1-upsert";
 import { r2Storage } from "@payloadcms/storage-r2";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { dirname, resolve } from "node:path";
@@ -19,7 +19,7 @@ const sharp = cloudflare
       )
     ).default;
 const db = platform
-  ? sqliteD1Adapter({ binding: platform.env.D1, push: false })
+  ? editorialD1Adapter({ binding: platform.env.D1, push: false })
   : process.env.DATABASE_URL
     ? (
         await import(

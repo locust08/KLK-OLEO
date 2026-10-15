@@ -44,8 +44,40 @@ const api = async (path, method = "GET", data) => {
 };
 const sites = await api("/api/sites?where[slug][equals]=agrochemical");
 const site = sites.docs[0].id;
-let fixture, privateImage;
+let fixture, privateImage, pageFixture;
 try {
+  const home = (
+    await api("/api/pages?where[slug][equals]=home&depth=0&draft=false")
+  ).docs[0];
+  const withoutArrayIds = (value) =>
+    Array.isArray(value)
+      ? value.map(withoutArrayIds)
+      : value && typeof value === "object"
+        ? Object.fromEntries(
+            Object.entries(value)
+              .filter(([key]) => key !== "id")
+              .map(([key, value]) => [key, withoutArrayIds(value)]),
+          )
+        : value;
+  const pageData = {
+    site,
+    title: "Preview full page write verification",
+    slug: "preview-full-page-write-verification",
+    template: "home",
+    hero: withoutArrayIds(home.hero),
+    content: withoutArrayIds(home.content),
+    sections: withoutArrayIds(home.sections),
+    _status: "published",
+  };
+  pageFixture = (await api("/api/pages", "POST", pageData)).doc.id;
+  const updatedPage = await api("/api/pages/" + pageFixture, "PATCH", {
+    ...pageData,
+    title: "Preview full page write verified",
+  });
+  assert.equal(updatedPage.doc.title, "Preview full page write verified");
+  console.log(
+    "Cloudflare full homepage-shaped publication passed, including all named sections and arrays.",
+  );
   const media = await api("/api/media?limit=100");
   const image = media.docs.find(
     (m) => m.isPublic && m.mimeType === "image/png",
@@ -165,6 +197,7 @@ try {
     "Cloudflare authenticated draft page/PDF with private image, anonymous file rejection, public isolation and preview exit passed.",
   );
 } finally {
+  if (pageFixture) await api("/api/pages/" + pageFixture, "DELETE");
   if (fixture) await api("/api/products/" + fixture, "DELETE");
   if (privateImage) await api("/api/media/" + privateImage, "DELETE");
 }

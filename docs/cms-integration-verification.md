@@ -91,3 +91,9 @@ From `apps/cms`:
 - `TEST_SERVER_URL=https://agrochemicals-cms-preview-20261015.easondev.workers.dev node scripts/verify-editorial-preview.mjs` requires preview-only test credentials in environment. It refuses production origins and creates/deletes disposable product/media fixtures.
 
 Do not use the old seed-oriented HTTP smoke script as this release's acceptance test: it expects the former three placeholder resources, whereas this database has four real resource records.
+
+## Homepage publishing correction — 15 October 2026
+
+The first preview's homepage publication exceeded D1's 100 bound-parameter limit: Payload generated a 67-column insert/upsert with the same values bound again in the conflict-update clause (134 bindings). Product-only runtime publishing tests did not cover this case. The D1 adapter now references identical inserted values through SQLite `excluded` columns, retaining the existing update semantics without duplicate bindings. It does not modify dependency files or schema.
+
+Regression: the 67-column query failed the new parameter-limit test before the fix; afterward all 51 tests and typecheck/build passed. The expanded isolated-preview smoke test creates and updates a full homepage-shaped record, including nested sections/arrays, then deletes the fixture. Existing private-image/draft/PDF checks also pass. The actual saved homepage edit was published through the CMS UI, its status became Published, and the changed body appeared on frontend reload. Production remains unchanged. Corrected preview Worker version: `22fe1966-c663-46d5-b58c-48ae623d56a2`.
