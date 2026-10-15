@@ -114,7 +114,8 @@ export function ContactPage({
     <>
       <SiteHeader />
       <main>
-        <PageHero title={page?.heroHeading || page?.title || "Contact Us"} imageUrl={page?.heroImageUrl || siteAssets.contactHero} />
+        <PageHero title={page?.heroHeading || page?.title || "Contact Us"} imageUrl={page?.heroImageUrl || siteAssets.contactHero}
+          responsiveImages={page?.heroImageUrl ? undefined : { tablet: siteAssets.contactHeroTablet, mobile: siteAssets.contactHeroMobile }} />
         <section className="contact-section" id="contact-form">
           <div className="contact-copy">
             <h2>Get in Touch with Our Team</h2>
