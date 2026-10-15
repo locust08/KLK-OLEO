@@ -11,17 +11,42 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const cloudflare = process.env.CMS_CLOUDFLARE === "1";
 const platform = cloudflare ? await getPlatform() : null;
 // Keep native Node database/image dependencies out of the Worker bundle.
-const sharp = cloudflare ? undefined : (await import(/* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__sharp".replaceAll("_", "")}`)).default;
+const sharp = cloudflare
+  ? undefined
+  : (
+      await import(
+        /* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__sharp".replaceAll("_", "")}`
+      )
+    ).default;
 const db = platform
   ? sqliteD1Adapter({ binding: platform.env.D1, push: false })
   : process.env.DATABASE_URL
-    ? (await import(/* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__@payloadcms/db-postgres".replaceAll("_", "")}`)).postgresAdapter({ pool: { connectionString: process.env.DATABASE_URL } })
-    : (await import(/* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__@payloadcms/db-sqlite".replaceAll("_", "")}`)).sqliteAdapter({ client: { url: process.env.SQLITE_URL || "file:./cms.db" } });
+    ? (
+        await import(
+          /* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__@payloadcms/db-postgres".replaceAll("_", "")}`
+        )
+      ).postgresAdapter({
+        pool: { connectionString: process.env.DATABASE_URL },
+      })
+    : (
+        await import(
+          /* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__@payloadcms/db-sqlite".replaceAll("_", "")}`
+        )
+      ).sqliteAdapter({
+        push: process.env.CMS_SCHEMA_PUSH !== "0",
+        client: { url: process.env.SQLITE_URL || "file:./cms.db" },
+      });
 
 async function getPlatform() {
   if (process.env.KLK_CLOUDFLARE_BUILD === "1") {
-    const { getPlatformProxy } = await import(/* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__wrangler".replaceAll("_", "")}`);
-    return getPlatformProxy({ configPath: resolve(root, "wrangler.jsonc"), persist: false, remoteBindings: false });
+    const { getPlatformProxy } = await import(
+      /* webpackIgnore: true */ /* turbopackIgnore: true */ `${"__wrangler".replaceAll("_", "")}`
+    );
+    return getPlatformProxy({
+      configPath: resolve(root, "wrangler.jsonc"),
+      persist: false,
+      remoteBindings: false,
+    });
   }
   return getCloudflareContext({ async: true });
 }
@@ -38,6 +63,8 @@ export default buildConfig({
   collections,
   db,
   sharp,
-  plugins: platform ? [r2Storage({ bucket: platform.env.R2, collections: { media: true } })] : [],
+  plugins: platform
+    ? [r2Storage({ bucket: platform.env.R2, collections: { media: true } })]
+    : [],
   typescript: { outputFile: resolve(root, "src/payload-types.ts") },
 });

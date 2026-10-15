@@ -66,6 +66,10 @@
 }
 
 .agricultureImage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center 25%;
 }
@@ -95,7 +99,7 @@
   margin: 0;
   font-size: 48px;
   font-weight: 600;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
@@ -107,7 +111,7 @@
 
 .agricultureCopy > p:not(.kicker) {
   max-width: 1103px;
-  margin: 0 0 .9375em;
+  margin: 0 0 0.9375em;
   color: #414141;
   font-size: clamp(14px, 1vw, 19.2px);
   line-height: 1.5;
@@ -129,7 +133,12 @@
 .brandStory::before {
   position: absolute;
   inset: 0 34% 0 0;
-  background: linear-gradient(90deg, rgb(255 255 255 / 72%) 0%, rgb(255 255 255 / 46%) 68%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 72%) 0%,
+    rgb(255 255 255 / 46%) 68%,
+    transparent 100%
+  );
   content: "";
 }
 
@@ -193,21 +202,31 @@
 }
 
 .researchImage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.researchImageOne { top: 0; left: 7%; }
+.researchImageOne {
+  top: 0;
+  left: 7%;
+}
 .researchImageTwo {
   z-index: 2;
   top: 50%;
   right: 2%;
   transform: translateY(-50%);
 }
-.researchImageThree { bottom: 0; left: 7%; }
+.researchImageThree {
+  bottom: 0;
+  left: 7%;
+}
 
 @keyframes research-image-reveal {
   from {
-    opacity: .15;
+    opacity: 0.15;
     clip-path: inset(9% 9% 9% 9%);
     filter: blur(4px);
   }
@@ -224,9 +243,15 @@
     animation-timeline: view();
   }
 
-  .researchImageOne { animation-range: entry 5% cover 28%; }
-  .researchImageTwo { animation-range: entry 12% cover 35%; }
-  .researchImageThree { animation-range: entry 19% cover 42%; }
+  .researchImageOne {
+    animation-range: entry 5% cover 28%;
+  }
+  .researchImageTwo {
+    animation-range: entry 12% cover 35%;
+  }
+  .researchImageThree {
+    animation-range: entry 19% cover 42%;
+  }
 }
 
 .researchCopy {
@@ -270,7 +295,7 @@
   font-family: var(--font-poppins), Arial, sans-serif;
   font-size: clamp(30px, 2.5vw, 46px);
   font-weight: 600;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
   line-height: 1.15;
   text-align: left;
 }
@@ -279,7 +304,7 @@
   display: grid;
   width: 100%;
   max-width: 1780px;
-  grid-template-columns: minmax(0, 2fr) minmax(290px, .78fr);
+  grid-template-columns: minmax(0, 2fr) minmax(290px, 0.78fr);
   align-items: start;
   gap: clamp(24px, 2.5vw, 48px);
   margin: 0 auto;
@@ -347,7 +372,7 @@
   font-size: 20px;
   line-height: 1;
   content: "\2193";
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
 .regionPanel[open] {
@@ -397,7 +422,7 @@
 
 .regionGroup li::before {
   position: absolute;
-  top: .3em;
+  top: 0.3em;
   left: 1px;
   width: 11px;
   height: 11px;
@@ -407,25 +432,41 @@
 }
 
 @keyframes about-fade-in-down {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
-  .agriculture { padding-right: 40px; padding-left: 40px; }
+  .agriculture {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
   .agricultureInner {
     grid-template-columns: min(calc(35vw - 60px), 612px) minmax(0, 1fr);
     gap: 50px;
   }
-  .agricultureImage { top: 90px; }
+  .agricultureImage {
+    top: 90px;
+  }
   .brandStory {
     padding: 50px 40px;
     background-position: 60% center;
   }
-  .brandStoryInner { width: 66%; }
-  .research { padding-right: 30px; padding-left: 30px; }
+  .brandStoryInner {
+    width: 66%;
+  }
+  .research {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
   .globalPresenceInner {
-    grid-template-columns: minmax(0, 1.65fr) minmax(260px, .8fr);
+    grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.8fr);
   }
   .regionPanel summary {
     min-height: 68px;
@@ -440,8 +481,13 @@
     padding: 0 20px;
     background-position: center;
   }
-  .hero h1 { font-size: 28px; line-height: 1.1; }
-  .agriculture { padding: 40px 15px 43px; }
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+  .agriculture {
+    padding: 40px 15px 43px;
+  }
   .agricultureInner {
     display: flex;
     min-height: 0;
@@ -462,14 +508,21 @@
   }
   .agricultureCopy h2,
   .brandStory h2,
-  .researchCopy h2 { font-size: 28px; line-height: 1.1; }
-  .agricultureCopy h2 { margin-bottom: 20px; }
+  .researchCopy h2 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+  .agricultureCopy h2 {
+    margin-bottom: 20px;
+  }
   .agricultureCopy > p:not(.kicker) {
     margin-bottom: 14px;
     font-size: 14px;
     line-height: 1.5;
   }
-  .agricultureCopy > p:last-child { margin-bottom: 0; }
+  .agricultureCopy > p:last-child {
+    margin-bottom: 0;
+  }
   .brandStory {
     min-height: 673px;
     align-items: flex-start;
@@ -479,16 +532,25 @@
   }
   .brandStory::before {
     inset: 0;
-    background: linear-gradient(90deg, rgb(255 255 255 / 55%) 0%, rgb(255 255 255 / 25%) 68%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      rgb(255 255 255 / 55%) 0%,
+      rgb(255 255 255 / 25%) 68%,
+      transparent 100%
+    );
   }
-  .brandStoryInner { width: 100%; }
+  .brandStoryInner {
+    width: 100%;
+  }
   .brandLabel,
   .researchLabel {
     margin-bottom: 18px;
     font-size: 18px;
     line-height: 1.25;
   }
-  .brandStory h2 { margin-bottom: 24px; }
+  .brandStory h2 {
+    margin-bottom: 24px;
+  }
   .brandStoryInner > p:not(.brandLabel) {
     margin-bottom: 14px;
     font-size: 14px;
@@ -508,20 +570,39 @@
     aspect-ratio: 1.12;
     min-height: 0;
   }
-  .researchImage { width: 62%; max-width: none; }
-  .researchImageOne { top: 0; left: 0; }
+  .researchImage {
+    width: 62%;
+    max-width: none;
+  }
+  .researchImageOne {
+    top: 0;
+    left: 0;
+  }
   .researchImageTwo {
     top: 50%;
     right: 0;
     left: auto;
     transform: translateY(-50%);
   }
-  .researchImageThree { top: auto; bottom: 0; left: 0; }
-  .researchCopy { padding: 0; }
-  .researchCopy h2 { margin-bottom: 20px; }
-  .researchPoint { margin-top: 14px; }
+  .researchImageThree {
+    top: auto;
+    bottom: 0;
+    left: 0;
+  }
+  .researchCopy {
+    padding: 0;
+  }
+  .researchCopy h2 {
+    margin-bottom: 20px;
+  }
+  .researchPoint {
+    margin-top: 14px;
+  }
   .researchPoint h3,
-  .researchPoint p { font-size: 16px; line-height: 1.5; }
+  .researchPoint p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
   .globalPresence {
     padding: 56px 0 78px;
   }
@@ -560,7 +641,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .agricultureImage,
-  .researchImage { animation: none; }
+  .researchImage {
+    animation: none;
+  }
 }
 
 .hero,
@@ -572,43 +655,74 @@
 }
 
 /* Share the Life Science type scale with the Agrochemical page templates. */
-.hero h1, .agricultureCopy h2, .brandStory h2,
-.researchCopy h2, .globalPresence > h2 {
+.hero h1,
+.agricultureCopy h2,
+.brandStory h2,
+.researchCopy h2,
+.globalPresence > h2 {
   font-size: var(--type-title);
   font-weight: 600;
   line-height: var(--type-heading-line);
   letter-spacing: normal;
 }
-.hero h1 { color: #fff; }
-.heroOverlay { background: var(--hero-green-overlay); }
+.hero h1 {
+  color: #fff;
+}
+.heroOverlay {
+  background: var(--hero-green-overlay);
+}
 .agricultureCopy .kicker {
   font-size: var(--type-feature);
   line-height: var(--type-heading-line);
 }
-.brandLabel, .researchLabel, .researchPoint h3 {
+.brandLabel,
+.researchLabel,
+.researchPoint h3 {
   font-size: var(--type-label);
   font-weight: 600;
   line-height: var(--type-heading-line);
 }
-.researchPoint h3 { color: var(--green); }
-.kicker, .brandLabel, .researchLabel { text-transform: none; color: var(--green); }
+.researchPoint h3 {
+  color: var(--green);
+}
+.kicker,
+.brandLabel,
+.researchLabel {
+  text-transform: none;
+  color: var(--green);
+}
 .agricultureCopy > p:not(.kicker),
-.brandStoryInner > p:not(.brandLabel), .researchPoint p {
+.brandStoryInner > p:not(.brandLabel),
+.researchPoint p {
   font-size: var(--type-body);
   font-weight: 400;
   line-height: var(--type-body-line);
   color: #414141;
 }
-.brandStory::before { inset: 0; background: var(--image-text-gradient); }
-.research { height: auto; min-height: 730px; }
-.researchGallery { min-height: 570px; }
+.brandStory::before {
+  inset: 0;
+  background: var(--image-text-gradient);
+}
+.research {
+  height: auto;
+  min-height: 730px;
+}
+.researchGallery {
+  min-height: 570px;
+}
 @media (max-width: 767px) {
-  .research { min-height: 0; }
-  .researchGallery { min-height: 0; }
+  .research {
+    min-height: 0;
+  }
+  .researchGallery {
+    min-height: 0;
+  }
 }
 
 /* Match the R&D section's full-width, balanced media/copy split. */
-.agriculture { padding: 80px 42px; }
+.agriculture {
+  padding: 80px 42px;
+}
 .agricultureInner {
   display: grid;
   max-width: none;
@@ -635,28 +749,74 @@
   overflow-wrap: anywhere;
 }
 @media (min-width: 768px) and (max-width: 1199px) {
-  .agriculture { padding-inline: 30px; padding-block: 60px; }
-  .agricultureInner { gap: 30px; }
+  .agriculture {
+    padding-inline: 30px;
+    padding-block: 60px;
+  }
+  .agricultureInner {
+    gap: 30px;
+  }
 }
 @media (max-width: 767px) {
-  .agriculture { padding: 40px 15px; }
-  .agricultureInner { grid-template-columns: 1fr; gap: 30px; }
-  .agricultureImage { width: 78%; min-height: 0; aspect-ratio: 3 / 2; }
+  .agriculture {
+    padding: 40px 15px;
+  }
+  .agricultureInner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .agricultureImage {
+    width: 78%;
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+  }
 }
 
-.globalPresence { background: #fff; padding-inline: 42px; }
-/* Keep the Introduction at the same compact scale as R&D. */
-.agriculture { min-height: 730px; padding-block: min(4.17vw, 80px); }
-.agricultureInner { align-items: stretch; gap: 10px; }
-.agricultureInner > .agricultureImage { width: 100%; height: 100%; min-height: 570px; aspect-ratio: auto; }
-.agricultureCopy > p:not(.kicker) { line-height: 1.6; }
-@media (max-width: 767px) {
-  .agriculture { min-height: 0; padding-block: 40px; }
-  .agricultureInner { gap: 30px; }
-  .agricultureInner > .agricultureImage { height: auto; min-height: 0; aspect-ratio: 3 / 2; }
+.globalPresence {
+  background: #fff;
+  padding-inline: 42px;
 }
-.globalPresence > h2 { width: auto; margin-inline: 0; }
+/* Keep the Introduction at the same compact scale as R&D. */
+.agriculture {
+  min-height: 730px;
+  padding-block: min(4.17vw, 80px);
+}
+.agricultureInner {
+  align-items: stretch;
+  gap: 10px;
+}
+.agricultureInner > .agricultureImage {
+  width: 100%;
+  height: 100%;
+  min-height: 570px;
+  aspect-ratio: auto;
+}
+.agricultureCopy > p:not(.kicker) {
+  line-height: 1.6;
+}
 @media (max-width: 767px) {
-  .globalPresence { padding-inline: 20px; }
-  .globalPresence > h2 { margin-inline: 0; }
+  .agriculture {
+    min-height: 0;
+    padding-block: 40px;
+  }
+  .agricultureInner {
+    gap: 30px;
+  }
+  .agricultureInner > .agricultureImage {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+  }
+}
+.globalPresence > h2 {
+  width: auto;
+  margin-inline: 0;
+}
+@media (max-width: 767px) {
+  .globalPresence {
+    padding-inline: 20px;
+  }
+  .globalPresence > h2 {
+    margin-inline: 0;
+  }
 }

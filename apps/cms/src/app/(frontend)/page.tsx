@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/cms/metadata";
 import { HomePage } from "@/components/home/HomePage";
 import { getHomeBanner, getPageContent } from "@/lib/cms/queries";
 
@@ -7,4 +8,8 @@ export default async function Page() {
     getHomeBanner(),
   ]);
   return <HomePage page={page} banner={banner} />;
+}
+
+export async function generateMetadata() {
+  return pageMetadata("home", "/");
 }

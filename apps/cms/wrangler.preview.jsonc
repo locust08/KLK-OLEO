@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "agrochemicals-cms-preview-20261015",
+  "account_id": "e7c515dde995479daacd82ad79dfc3e8",
+  "main": "cloudflare-worker.ts",
+  "compatibility_date": "2026-09-29",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "workers_dev": true,
+  "keep_vars": true,
+  "vars": {
+    "CMS_CLOUDFLARE": "1",
+    "NEXT_PRIVATE_MINIMAL_MODE": "1",
+    "NEXT_PUBLIC_SERVER_URL": "https://agrochemicals-cms-preview-20261015.easondev.workers.dev",
+    "CMS_SCHEMA_PUSH": "0",
+    "CMS_PREVIEW": "1",
+  },
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "agrochemicals-cms-preview-20261015",
+      "database_id": "422392df-bc44-4a44-8a1a-796324b4cc26",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "agrochemicals-cms-preview-20261015",
+    },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+}

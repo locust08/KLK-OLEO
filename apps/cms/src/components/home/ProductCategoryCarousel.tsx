@@ -1,24 +1,23 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import Link from "next/link";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 
-const categories = [
-  {
-    title: "Emulsifiers",
-    copy: "Enable stable mixing of oil-based and water-based components, ensuring uniform and stable agrochemical formulations.",
-  },
-  {
-    title: "Humectants",
-    copy: "Helps sprays stay on leaf surfaces longer, slowing evaporation and enhancing absorption of active ingredients.",
-  },
-  {
-    title: "Solvents / Co-solvents",
-    copy: "Assist in dissolving active ingredients and formulation components to create stable and effective solutions.",
-  },
-];
-
-export function ProductCategoryCarousel() {
-  const items = useMemo(() => [...categories, ...categories, ...categories], []);
+export function ProductCategoryCarousel({
+  categories,
+}: {
+  categories: { title: string; copy: string; path?: string }[];
+}) {
+  const items = useMemo(
+    () => [...categories, ...categories, ...categories],
+    [categories],
+  );
   const shellRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(3);
   const [slotWidth, setSlotWidth] = useState(421);
@@ -41,7 +40,10 @@ export function ProductCategoryCarousel() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => setActiveIndex((current) => current + 1), 3200);
+    const timer = window.setInterval(
+      () => setActiveIndex((current) => current + 1),
+      3200,
+    );
     return () => window.clearInterval(timer);
   }, []);
 
@@ -50,7 +52,9 @@ export function ProductCategoryCarousel() {
     const timer = window.setTimeout(() => {
       setTransitioning(false);
       setActiveIndex(3);
-      window.requestAnimationFrame(() => window.requestAnimationFrame(() => setTransitioning(true)));
+      window.requestAnimationFrame(() =>
+        window.requestAnimationFrame(() => setTransitioning(true)),
+      );
     }, 760);
     return () => window.clearTimeout(timer);
   }, [activeIndex]);
@@ -68,22 +72,44 @@ export function ProductCategoryCarousel() {
     >
       <div
         className={`finder-carousel-track${transitioning ? " is-transitioning" : ""}`}
-        style={{
-          width: slotWidth * items.length,
-          transform: `translate3d(${offset}px, 0, 0)`,
-          "--carousel-slot": `${slotWidth}px`,
-        } as CSSProperties}
+        style={
+          {
+            width: slotWidth * items.length,
+            transform: `translate3d(${offset}px, 0, 0)`,
+            "--carousel-slot": `${slotWidth}px`,
+          } as CSSProperties
+        }
       >
         {items.map((item, index) => (
-          <div className="finder-carousel-slot" key={`${item.title}-${index}`} aria-hidden={index !== activeIndex}>
-            <article className={`finder-carousel-card${index === activeIndex ? " is-active" : ""}`}>
-              <h3>{item.title}</h3>
+          <div
+            className="finder-carousel-slot"
+            key={`${item.title}-${index}`}
+            aria-hidden={index !== activeIndex}
+          >
+            <article
+              className={`finder-carousel-card${index === activeIndex ? " is-active" : ""}`}
+            >
+              <h3>
+                {item.path ? (
+                  <Link
+                    href={item.path}
+                    tabIndex={index === activeIndex ? 0 : -1}
+                  >
+                    {item.title}
+                  </Link>
+                ) : (
+                  item.title
+                )}
+              </h3>
               <p>{item.copy}</p>
             </article>
           </div>
         ))}
       </div>
-      <div className="finder-carousel-dots" aria-label="Choose a product category">
+      <div
+        className="finder-carousel-dots"
+        aria-label="Choose a product category"
+      >
         {categories.map((category, index) => (
           <button
             type="button"

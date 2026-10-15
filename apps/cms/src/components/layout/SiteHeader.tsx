@@ -7,18 +7,25 @@ import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { useSite } from "./SiteContext";
 
-function ProductSearch({ className, inputId }: { className: string; inputId: string }) {
+function ProductSearch({
+  className,
+  inputId,
+}: {
+  className: string;
+  inputId: string;
+}) {
+  const { copy } = useSite();
   return (
     <Form className={className} action="/products" role="search">
       <label className="visually-hidden" htmlFor={inputId}>
-        Search products
+        {copy.searchLabel}
       </label>
       <input
         id={inputId}
         name="q"
         type="search"
-        placeholder="Search..."
-        aria-label="Search products"
+        placeholder={copy.searchPlaceholder}
+        aria-label={copy.searchLabel}
       />
     </Form>
   );
@@ -26,15 +33,13 @@ function ProductSearch({ className, inputId }: { className: string; inputId: str
 
 export function SiteHeader() {
   const site = useSite();
-  const navigation = (
-    site.navigation.length
-      ? site.navigation
-      : [{ label: "Products", path: "/products" }]
-  ).filter(({ path }) => path !== "/");
+  const navigation = site.navigation.filter(({ path }) => path !== "/");
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const menuToggle = useRef<HTMLButtonElement>(null);
-  const [productsOpen, setProductsOpen] = useState(pathname.startsWith("/products"));
+  const [productsOpen, setProductsOpen] = useState(
+    pathname.startsWith("/products"),
+  );
   useEffect(() => {
     if (!open) return;
     const dismiss = (event: KeyboardEvent) => {
@@ -56,29 +61,73 @@ export function SiteHeader() {
         <span>{site.brandName}</span>
       </Link>
       <nav className="desktop-nav" aria-label="Main navigation">
-        {navigation.map(({ label, path: href }) => href === "/products" ? (
-          <div className="desktop-nav__products" key={href}>
+        {navigation.map(({ label, path: href, newTab }) =>
+          href === "/products" ? (
+            <div className="desktop-nav__products" key={href}>
+              <Link
+                href={href}
+                className={
+                  pathname.startsWith("/products") ? "is-active" : undefined
+                }
+              >
+                {label}
+              </Link>
+              <div
+                className="desktop-products-submenu"
+                aria-label="Product categories"
+              >
+                <Link
+                  href="/products/category/functionalities"
+                  className={
+                    pathname === "/products/category/functionalities"
+                      ? "is-active"
+                      : undefined
+                  }
+                >
+                  {site.copy.functionLabel}
+                </Link>
+                <Link
+                  href="/products/category/formulation-type"
+                  className={
+                    pathname === "/products/category/formulation-type"
+                      ? "is-active"
+                      : undefined
+                  }
+                >
+                  {site.copy.formulationLabel}
+                </Link>
+                <Link
+                  href="/products/category/regulatory-labels"
+                  className={
+                    pathname === "/products/category/regulatory-labels"
+                      ? "is-active"
+                      : undefined
+                  }
+                >
+                  {site.copy.regulationLabel}
+                </Link>
+              </div>
+            </div>
+          ) : (
             <Link
+              key={href}
               href={href}
-              className={pathname.startsWith("/products") ? "is-active" : undefined}
+              target={
+                newTab && href.startsWith("https://") ? "_blank" : undefined
+              }
+              rel={
+                newTab && href.startsWith("https://") ? "noreferrer" : undefined
+              }
+              className={
+                pathname === href || pathname.startsWith(`${href}/`)
+                  ? "is-active"
+                  : undefined
+              }
             >
               {label}
             </Link>
-            <div className="desktop-products-submenu" aria-label="Product categories">
-              <Link href="/products/category/functionalities" className={pathname === "/products/category/functionalities" ? "is-active" : undefined}>Functionality</Link>
-              <Link href="/products/category/formulation-type" className={pathname === "/products/category/formulation-type" ? "is-active" : undefined}>Formulation Type</Link>
-              <Link href="/products/category/regulatory-labels" className={pathname === "/products/category/regulatory-labels" ? "is-active" : undefined}>Regulatory/Labels</Link>
-            </div>
-          </div>
-        ) : (
-          <Link
-            key={href}
-            href={href}
-            className={pathname === href || pathname.startsWith(`${href}/`) ? "is-active" : undefined}
-          >
-            {label}
-          </Link>
-        ))}
+          ),
+        )}
       </nav>
       <div className="header-actions">
         <button
@@ -112,8 +161,11 @@ export function SiteHeader() {
         aria-hidden={!open}
         inert={!open}
       >
-        <ProductSearch className="mobile-nav__search" inputId="mobile-product-search" />
-        {navigation.map(({ label, path: href }) =>
+        <ProductSearch
+          className="mobile-nav__search"
+          inputId="mobile-product-search"
+        />
+        {navigation.map(({ label, path: href, newTab }) =>
           href === "/products" ? (
             <div className="mobile-nav__products" key={href}>
               <div className="mobile-nav__products-row">
@@ -125,7 +177,11 @@ export function SiteHeader() {
                   {label}
                 </Link>
                 <button
-                  className={pathname.startsWith("/products") ? "mobile-nav__products-toggle is-active" : "mobile-nav__products-toggle"}
+                  className={
+                    pathname.startsWith("/products")
+                      ? "mobile-nav__products-toggle is-active"
+                      : "mobile-nav__products-toggle"
+                  }
                   type="button"
                   aria-label="Toggle product categories"
                   aria-expanded={productsOpen}
@@ -139,14 +195,38 @@ export function SiteHeader() {
                 id="mobile-product-categories"
                 className={`mobile-products-submenu ${productsOpen ? "is-open" : ""}`}
               >
-                <Link href="/products/category/functionalities" onClick={() => setOpen(false)} className={pathname === "/products/category/functionalities" ? "is-active" : undefined}>
-                  Functionality
+                <Link
+                  href="/products/category/functionalities"
+                  onClick={() => setOpen(false)}
+                  className={
+                    pathname === "/products/category/functionalities"
+                      ? "is-active"
+                      : undefined
+                  }
+                >
+                  {site.copy.functionLabel}
                 </Link>
-                <Link href="/products/category/formulation-type" onClick={() => setOpen(false)} className={pathname === "/products/category/formulation-type" ? "is-active" : undefined}>
-                  Formulation Type
+                <Link
+                  href="/products/category/formulation-type"
+                  onClick={() => setOpen(false)}
+                  className={
+                    pathname === "/products/category/formulation-type"
+                      ? "is-active"
+                      : undefined
+                  }
+                >
+                  {site.copy.formulationLabel}
                 </Link>
-                <Link href="/products/category/regulatory-labels" onClick={() => setOpen(false)} className={pathname === "/products/category/regulatory-labels" ? "is-active" : undefined}>
-                  Regulatory/Labels
+                <Link
+                  href="/products/category/regulatory-labels"
+                  onClick={() => setOpen(false)}
+                  className={
+                    pathname === "/products/category/regulatory-labels"
+                      ? "is-active"
+                      : undefined
+                  }
+                >
+                  {site.copy.regulationLabel}
                 </Link>
               </div>
             </div>
@@ -154,8 +234,18 @@ export function SiteHeader() {
             <Link
               key={href}
               href={href}
+              target={
+                newTab && href.startsWith("https://") ? "_blank" : undefined
+              }
+              rel={
+                newTab && href.startsWith("https://") ? "noreferrer" : undefined
+              }
               onClick={() => setOpen(false)}
-              className={pathname === href || pathname.startsWith(`${href}/`) ? "is-active" : undefined}
+              className={
+                pathname === href || pathname.startsWith(`${href}/`)
+                  ? "is-active"
+                  : undefined
+              }
             >
               {label}
             </Link>

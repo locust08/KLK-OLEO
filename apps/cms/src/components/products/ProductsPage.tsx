@@ -18,16 +18,20 @@ export function ProductsPage({
   products: ProductViewModel[];
   page: PageContentViewModel | null;
 }) {
+  if (!page) return null;
+  const intro = page.content.introduction;
   return (
     <>
       <SiteHeader />
       <main>
-        <ProductHero title={page?.heroHeading || page?.title || "Products"} eyebrow={page?.heroEyebrow || undefined} imageUrl={page?.heroImageUrl} />
+        <ProductHero
+          title={page.heroHeading || page.title}
+          eyebrow={page?.heroEyebrow || undefined}
+          image={page.heroImage}
+        />
         <section className="catalog-intro">
-          <h2>{page?.sections[0]?.heading || "Formulation solutions built for performance"}</h2>
-          <p>
-            {page?.sections[0]?.body || "Explore our agrochemical portfolio by functionality, formulation type, or regulatory label."}
-          </p>
+          <h2>{intro?.heading}</h2>
+          <p>{intro?.body}</p>
         </section>
         <Suspense fallback={null}>
           <ProductListing groups={groups} products={products} />

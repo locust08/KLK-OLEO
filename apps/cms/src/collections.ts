@@ -1,6 +1,24 @@
 import {
+  mediaProcessingStatus,
+  processMediaVariant,
+} from "./lib/content/media-processing";
+import {
+  ProductRedirects,
+  validateProductSlug,
+  saveProductRedirect,
+} from "./lib/content/redirects";
+import {
+  isAgrochemical,
+  validateEditorialPublication,
+  protectPublishedDependencies,
+  protectEditorialDelete,
+} from "./lib/content/guards";
+import { SitePresentation } from "./lib/content/presentation-collection";
+import { pageContentField, seoFields, imageField } from "./lib/content/fields";
+import {
   APIError,
   type CollectionConfig,
+  type CollectionBeforeOperationHook,
   type Field,
   type Where,
 } from "payload";
@@ -66,7 +84,12 @@ const versioned = (config: CollectionConfig): CollectionConfig => ({
       type: "select",
       options: ["draft", "published"],
       defaultValue: "draft",
-      access: { create: publisherField, update: publisherField },
+      access: {
+        create: (args) =>
+          Boolean(args.req.context.editorialDraft) || publisherField(args),
+        update: (args) =>
+          Boolean(args.req.context.editorialDraft) || publisherField(args),
+      },
       admin: { position: "sidebar" },
     },
   ],
@@ -214,8 +237,16 @@ export const RegulatoryLabels = taxonomy(
 );
 
 export const Products = versioned({
+  hooks: {
+    beforeChange: [validateProductSlug],
+    afterChange: [saveProductRedirect],
+  },
   slug: "products",
   admin: {
+    preview: async (doc, { req }) =>
+      (await isAgrochemical(req.payload, doc.site))
+        ? `/api/preview?path=/products/product/${doc.slug}`
+        : null,
     useAsTitle: "name",
     group: "Product catalogue",
     defaultColumns: [
@@ -285,6 +316,7 @@ export const Products = versioned({
     },
     { name: "image", type: "upload", relationTo: "media" },
     { name: "featured", type: "checkbox", defaultValue: false },
+    { name: "brochureEnabled", type: "checkbox", defaultValue: true },
     { name: "sourceNumber", type: "number" },
     { name: "sourceRow", type: "number" },
     source,
@@ -305,10 +337,7 @@ export const Products = versioned({
     {
       name: "seo",
       type: "group",
-      fields: [
-        { name: "title", type: "text" },
-        { name: "description", type: "textarea" },
-      ],
+      fields: seoFields,
     },
   ],
 });
@@ -324,11 +353,38 @@ export const Media: CollectionConfig = {
     update: contentWrite,
     delete: contentDelete,
   },
-  hooks: { beforeChange: [enforceScope] },
+  hooks: {
+    beforeChange: [enforceScope, mediaProcessingStatus],
+    afterChange: [processMediaVariant],
+  },
   fields: [
     site,
     { name: "alt", type: "text", required: true },
     { name: "caption", type: "text" },
+    {
+      name: "customCrop",
+      type: "checkbox",
+      defaultValue: false,
+      admin: {
+        description:
+          "Use this image focal point to override the template crop.",
+      },
+    },
+    {
+      name: "pdfVariant",
+      type: "upload",
+      relationTo: "media",
+      admin: {
+        description:
+          "Automatically generated PNG/JPEG variant where supported. Re-upload to retry conversion.",
+      },
+    },
+    {
+      name: "pdfStatus",
+      type: "select",
+      options: ["ready", "unsupported", "pending"],
+      admin: { readOnly: true },
+    },
     {
       name: "isPublic",
       type: "checkbox",
@@ -342,11 +398,34 @@ export const Media: CollectionConfig = {
 };
 export const Pages = versioned({
   slug: "pages",
-  admin: { useAsTitle: "title", group: "Content" },
+  admin: {
+    useAsTitle: "title",
+    group: "Content",
+    preview: async (doc, { req }) =>
+      (await isAgrochemical(req.payload, doc.site))
+        ? `/api/preview?path=${doc.slug === "home" ? "/" : "/" + doc.slug}`
+        : null,
+  },
   indexes: [{ fields: ["site", "slug"], unique: true }],
   fields: [
     { name: "title", type: "text", required: true },
-    slug,
+    {
+      ...slug,
+      access: {
+        update: async ({ req, doc }) =>
+          !(await isAgrochemical(req.payload, doc?.site)),
+      },
+    },
+    {
+      name: "integrationVersion",
+      type: "number",
+      admin: { readOnly: true },
+      access: {
+        create: ({ req }) => !req.user,
+        update: ({ req }) => !req.user,
+      },
+    },
+    pageContentField,
     {
       name: "template",
       type: "select",
@@ -367,6 +446,7 @@ export const Pages = versioned({
         { name: "heading", type: "text" },
         { name: "body", type: "textarea" },
         { name: "image", type: "upload", relationTo: "media" },
+        imageField("mobileImage"),
       ],
     },
     {
@@ -380,10 +460,7 @@ export const Pages = versioned({
     {
       name: "seo",
       type: "group",
-      fields: [
-        { name: "title", type: "text" },
-        { name: "description", type: "textarea" },
-      ],
+      fields: seoFields,
     },
     source,
   ],
@@ -419,13 +496,24 @@ export const Resources = versioned({
             400,
           );
         if (availability === "placeholder") data.file = null;
-        const thumbnail = idOf(data.thumbnail === undefined ? originalDoc?.thumbnail : data.thumbnail);
+        const thumbnail = idOf(
+          data.thumbnail === undefined
+            ? originalDoc?.thumbnail
+            : data.thumbnail,
+        );
         if (thumbnail) {
           const media = await req.payload.findByID({
-            collection: "media", id: thumbnail, depth: 0, req, overrideAccess: true,
+            collection: "media",
+            id: thumbnail,
+            depth: 0,
+            req,
+            overrideAccess: true,
           });
           if (!media.mimeType?.startsWith("image/"))
-            throw new APIError("Resource thumbnails must be uploaded images, not PDFs.", 400);
+            throw new APIError(
+              "Resource thumbnails must be uploaded images, not PDFs.",
+              400,
+            );
         }
         return data;
       },
@@ -460,7 +548,10 @@ export const Resources = versioned({
       type: "upload",
       relationTo: "media",
       filterOptions: { mimeType: { contains: "image/" } },
-      admin: { description: "Document cover image. Set its Media isPublic flag to display it on the website; this is independent of PDF download visibility." },
+      admin: {
+        description:
+          "Document cover image. Set its Media isPublic flag to display it on the website; this is independent of PDF download visibility.",
+      },
     },
   ],
 });
@@ -599,41 +690,101 @@ export const Leads: CollectionConfig = {
 };
 export const MapLocations = versioned({
   slug: "map-locations",
-  admin: { useAsTitle: "label", group: "Shared content", defaultColumns: ["label", "country", "region", "enabled", "_status"] },
+  admin: {
+    useAsTitle: "label",
+    group: "Shared content",
+    defaultColumns: ["label", "country", "region", "enabled", "_status"],
+  },
   access: {
     ...contentAccess,
-    read: ({ req }) => req.user ? contentRead({ req }) : {
-      and: [{ _status: { equals: "published" } }, { enabled: { equals: true } }],
-    },
+    read: ({ req }) =>
+      req.user
+        ? contentRead({ req })
+        : {
+            and: [
+              { _status: { equals: "published" } },
+              { enabled: { equals: true } },
+            ],
+          },
   },
-  hooks: { beforeChange: [async ({ req, data, originalDoc }) => {
-    const owner = idOf(data.site ?? originalDoc?.site);
-    if (owner === undefined) throw new APIError("A main-site owner is required.", 400);
-    const record = await req.payload.findByID({ collection: "sites", id: owner, depth: 0, overrideAccess: true, req });
-    if (record.kind !== "main") throw new APIError("Shared map locations must belong to a main site.", 400);
-    return data;
-  }] },
+  hooks: {
+    beforeChange: [
+      async ({ req, data, originalDoc }) => {
+        const owner = idOf(data.site ?? originalDoc?.site);
+        if (owner === undefined)
+          throw new APIError("A main-site owner is required.", 400);
+        const record = await req.payload.findByID({
+          collection: "sites",
+          id: owner,
+          depth: 0,
+          overrideAccess: true,
+          req,
+        });
+        if (record.kind !== "main")
+          throw new APIError(
+            "Shared map locations must belong to a main site.",
+            400,
+          );
+        return data;
+      },
+    ],
+  },
   fields: [
-    { name: "key", type: "text", required: true, unique: true, admin: { description: "Stable identifier; do not change when editing a label." } },
+    {
+      name: "key",
+      type: "text",
+      required: true,
+      unique: true,
+      admin: {
+        description: "Stable identifier; do not change when editing a label.",
+      },
+    },
     { name: "label", type: "text", required: true },
     { name: "country", type: "text", required: true },
-    { name: "region", type: "select", required: true, options: ["South East Asia", "Asia", "Europe", "Americas"] },
-    { name: "latitude", type: "number", required: true, min: -55, max: 85, admin: { description: "Decimal degrees, 55°S–85°N (the illustration excludes Antarctica). This is an overview, not a street map." } },
+    {
+      name: "region",
+      type: "select",
+      required: true,
+      options: ["South East Asia", "Asia", "Europe", "Americas"],
+    },
+    {
+      name: "latitude",
+      type: "number",
+      required: true,
+      min: -55,
+      max: 85,
+      admin: {
+        description:
+          "Decimal degrees, 55°S–85°N (the illustration excludes Antarctica). This is an overview, not a street map.",
+      },
+    },
     { name: "longitude", type: "number", required: true, min: -180, max: 180 },
     { name: "description", type: "textarea" },
-    { name: "url", type: "text", validate: (value: unknown) => {
-      if (!value) return true;
-      try { return ["https:", "http:"].includes(new URL(String(value)).protocol) || "Use an http or https URL."; }
-      catch { return "Use a valid http or https URL."; }
-    } },
+    {
+      name: "url",
+      type: "text",
+      validate: (value: unknown) => {
+        if (!value) return true;
+        try {
+          return (
+            ["https:", "http:"].includes(new URL(String(value)).protocol) ||
+            "Use an http or https URL."
+          );
+        } catch {
+          return "Use a valid http or https URL.";
+        }
+      },
+    },
     { name: "displayOrder", type: "number", required: true, defaultValue: 0 },
     { name: "enabled", type: "checkbox", defaultValue: true, required: true },
   ],
 });
 
-export const collections = [
+const baseCollections = [
   Users,
   Sites,
+  SitePresentation,
+  ProductRedirects,
   MapLocations,
   Media,
   ProductFunctions,
@@ -647,3 +798,64 @@ export const collections = [
   Forms,
   Leads,
 ];
+
+export const collections: CollectionConfig[] = baseCollections.map(
+  (collection): CollectionConfig => ({
+    ...collection,
+    hooks: {
+      ...collection.hooks,
+      beforeOperation: [
+        ...(collection.hooks?.beforeOperation ?? []),
+        (async ({ args, operation }) => {
+          if (operation === "update" || operation === "create") {
+            args.req.context.editorialDraft = Boolean(
+              "draft" in args &&
+              args.draft &&
+              !(
+                "data" in args &&
+                (args.data as { _status?: string } | undefined)?._status ===
+                  "published"
+              ),
+            );
+            if (
+              collection.versions &&
+              args.req.user?.role === "editor" &&
+              !args.req.context.editorialDraft &&
+              (await isAgrochemical(
+                args.req.payload,
+                ("data" in args
+                  ? (args.data as { site?: unknown })?.site
+                  : undefined) ??
+                  ("id" in args
+                    ? (
+                        await args.req.payload.findByID({
+                          collection: collection.slug as "pages",
+                          id: args.id as string | number,
+                          depth: 0,
+                          overrideAccess: true,
+                          req: args.req,
+                        })
+                      ).site
+                    : undefined),
+              ))
+            )
+              throw new APIError(
+                "Editors must explicitly save a draft; publishing requires publisher permissions.",
+                403,
+              );
+          }
+          return args;
+        }) as CollectionBeforeOperationHook,
+      ],
+      beforeChange: [
+        ...(collection.hooks?.beforeChange ?? []),
+        validateEditorialPublication,
+        protectPublishedDependencies,
+      ],
+      beforeDelete: [
+        ...(collection.hooks?.beforeDelete ?? []),
+        protectEditorialDelete,
+      ],
+    },
+  }),
+);

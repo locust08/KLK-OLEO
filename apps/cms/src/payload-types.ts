@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     users: User;
     sites: Site;
+    'site-presentation': SitePresentation;
+    'product-redirects': ProductRedirect;
     'map-locations': MapLocation;
     media: Media;
     'product-functions': ProductFunction;
@@ -90,6 +92,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     sites: SitesSelect<false> | SitesSelect<true>;
+    'site-presentation': SitePresentationSelect<false> | SitePresentationSelect<true>;
+    'product-redirects': ProductRedirectsSelect<false> | ProductRedirectsSelect<true>;
     'map-locations': MapLocationsSelect<false> | MapLocationsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'product-functions': ProductFunctionsSelect<false> | ProductFunctionsSelect<true>;
@@ -198,27 +202,143 @@ export interface Site {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "map-locations".
+ * via the `definition` "site-presentation".
  */
-export interface MapLocation {
+export interface SitePresentation {
   id: number;
   site: number | Site;
-  /**
-   * Stable identifier; do not change when editing a label.
-   */
-  key: string;
-  label: string;
-  country: string;
-  region: 'South East Asia' | 'Asia' | 'Europe' | 'Americas';
-  /**
-   * Decimal degrees, 55°S–85°N (the illustration excludes Antarctica). This is an overview, not a street map.
-   */
-  latitude: number;
-  longitude: number;
-  description?: string | null;
-  url?: string | null;
-  displayOrder: number;
-  enabled: boolean;
+  name: string;
+  brandName: string;
+  contactEmail: string;
+  navigation?:
+    | {
+        label: string;
+        path: string;
+        newTab?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  footer: {
+    logo?: (number | null) | Media;
+    description: string;
+    socialLabel?: string | null;
+    socialPath?: string | null;
+    quickLinks?:
+      | {
+          label: string;
+          path: string;
+          newTab?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    productLinks?:
+      | {
+          label: string;
+          path: string;
+          newTab?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    legalLinks?:
+      | {
+          label: string;
+          path: string;
+          newTab?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  copy?:
+    | {
+        key:
+          | 'detailFunction'
+          | 'detailFormulation'
+          | 'detailRegulation'
+          | 'searchLabel'
+          | 'searchPlaceholder'
+          | 'productCategories'
+          | 'functionLabel'
+          | 'formulationLabel'
+          | 'regulationLabel'
+          | 'quickLinks'
+          | 'products'
+          | 'getInTouch'
+          | 'copyright'
+          | 'showFilters'
+          | 'hideFilters'
+          | 'clearFilters'
+          | 'viewResults'
+          | 'noProducts'
+          | 'emptySearch'
+          | 'emptyFilters'
+          | 'previous'
+          | 'next'
+          | 'productSingular'
+          | 'productPlural'
+          | 'page'
+          | 'of'
+          | 'selected'
+          | 'productInformation'
+          | 'manufacturingSite'
+          | 'casNumber'
+          | 'requestProduct'
+          | 'brochure'
+          | 'brochureLoading'
+          | 'brochureError'
+          | 'relatedResources'
+          | 'resourceDownload'
+          | 'resourcePreviewUnavailable'
+          | 'resourcesEmptyHeading'
+          | 'resourcesEmptyBody'
+          | 'contactHeading'
+          | 'contactUnavailableHeading'
+          | 'contactUnavailableBody'
+          | 'contactSuccessHeading'
+          | 'anotherEnquiry'
+          | 'submit'
+          | 'submitting'
+          | 'firstName'
+          | 'lastName'
+          | 'company'
+          | 'jobPosition'
+          | 'country'
+          | 'selectCountry'
+          | 'email'
+          | 'companyWebsite'
+          | 'message'
+          | 'fullName'
+          | 'phone'
+          | 'requestedResource'
+          | 'close'
+          | 'resourceRequestTitle'
+          | 'resourceRequestIntro'
+          | 'resourceSuccessHeading'
+          | 'resourceSubmit'
+          | 'resourceSubmitting'
+          | 'resourceUnavailable'
+          | 'resourceRetry'
+          | 'resourceMessagePlaceholder';
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  catalogue: {
+    functionalities: {
+      label: string;
+      description?: string | null;
+      showDescription?: boolean | null;
+    };
+    formulation_type: {
+      label: string;
+      description?: string | null;
+      showDescription?: boolean | null;
+    };
+    regulatory_labels: {
+      label: string;
+      description?: string | null;
+      showDescription?: boolean | null;
+    };
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -232,6 +352,15 @@ export interface Media {
   site: number | Site;
   alt: string;
   caption?: string | null;
+  /**
+   * Use this image focal point to override the template crop.
+   */
+  customCrop?: boolean | null;
+  /**
+   * Automatically generated PNG/JPEG variant where supported. Re-upload to retry conversion.
+   */
+  pdfVariant?: (number | null) | Media;
+  pdfStatus?: ('ready' | 'unsupported' | 'pending') | null;
   /**
    * Enable for approved public website images and downloads.
    */
@@ -247,6 +376,75 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-redirects".
+ */
+export interface ProductRedirect {
+  id: number;
+  site: number | Site;
+  fromSlug: string;
+  product: number | Product;
+  _status?: 'published' | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  site: number | Site;
+  name: string;
+  slug: string;
+  chemicalDescription: string;
+  description: string;
+  functions?: (number | ProductFunction)[] | null;
+  formulationTypes?: (number | FormulationType)[] | null;
+  regulatoryLabels?: (number | RegulatoryLabel)[] | null;
+  /**
+   * Spreadsheet ticks are source claims, not independently validated certifications.
+   */
+  claimsReview: 'source-only' | 'verified' | 'needs-correction';
+  /**
+   * Source value retained, including mixtures and proprietary entries.
+   */
+  casNumber?: string | null;
+  manufacturingRegion?: ('EU' | 'MY') | null;
+  resources?: (number | Resource)[] | null;
+  image?: (number | null) | Media;
+  featured?: boolean | null;
+  brochureEnabled?: boolean | null;
+  sourceNumber?: number | null;
+  sourceRow?: number | null;
+  /**
+   * Original website or spreadsheet URL.
+   */
+  sourceURL?: string | null;
+  /**
+   * Reference filename only. No approved downloadable material exists yet.
+   */
+  sourceDocument?: string | null;
+  sourceCells?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    socialImage?: (number | null) | Media;
+    canonical?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -301,59 +499,6 @@ export interface RegulatoryLabel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: number;
-  site: number | Site;
-  name: string;
-  slug: string;
-  chemicalDescription: string;
-  description: string;
-  functions?: (number | ProductFunction)[] | null;
-  formulationTypes?: (number | FormulationType)[] | null;
-  regulatoryLabels?: (number | RegulatoryLabel)[] | null;
-  /**
-   * Spreadsheet ticks are source claims, not independently validated certifications.
-   */
-  claimsReview: 'source-only' | 'verified' | 'needs-correction';
-  /**
-   * Source value retained, including mixtures and proprietary entries.
-   */
-  casNumber?: string | null;
-  manufacturingRegion?: ('EU' | 'MY') | null;
-  resources?: (number | Resource)[] | null;
-  image?: (number | null) | Media;
-  featured?: boolean | null;
-  sourceNumber?: number | null;
-  sourceRow?: number | null;
-  /**
-   * Original website or spreadsheet URL.
-   */
-  sourceURL?: string | null;
-  /**
-   * Reference filename only. No approved downloadable material exists yet.
-   */
-  sourceDocument?: string | null;
-  sourceCells?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  seo?: {
-    title?: string | null;
-    description?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "resources".
  */
 export interface Resource {
@@ -376,6 +521,33 @@ export interface Resource {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "map-locations".
+ */
+export interface MapLocation {
+  id: number;
+  site: number | Site;
+  /**
+   * Stable identifier; do not change when editing a label.
+   */
+  key: string;
+  label: string;
+  country: string;
+  region: 'South East Asia' | 'Asia' | 'Europe' | 'Americas';
+  /**
+   * Decimal degrees, 55°S–85°N (the illustration excludes Antarctica). This is an overview, not a street map.
+   */
+  latitude: number;
+  longitude: number;
+  description?: string | null;
+  url?: string | null;
+  displayOrder: number;
+  enabled: boolean;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
@@ -383,12 +555,147 @@ export interface Page {
   site: number | Site;
   title: string;
   slug: string;
+  integrationVersion?: number | null;
+  content?: {
+    introduction?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      body?: string | null;
+      bullets?:
+        | {
+            text: string;
+            id?: string | null;
+          }[]
+        | null;
+      image?: (number | null) | Media;
+      mobileImage?: (number | null) | Media;
+      ctaLabel?: string | null;
+      ctaPath?: string | null;
+    };
+    capabilities?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      items?:
+        | {
+            heading: string;
+            body: string;
+            image?: (number | null) | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    innovations?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      image?: (number | null) | Media;
+      mobileImage?: (number | null) | Media;
+      items?:
+        | {
+            heading: string;
+            body: string;
+            label?: string | null;
+            product?: (number | null) | Product;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    finder?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      body?: string | null;
+      items?:
+        | {
+            heading: string;
+            body: string;
+            category?: (number | null) | ProductFunction;
+            id?: string | null;
+          }[]
+        | null;
+      ctaLabel?: string | null;
+      ctaPath?: string | null;
+    };
+    faq?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      items?:
+        | {
+            heading: string;
+            body: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    contact?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      body?: string | null;
+      image?: (number | null) | Media;
+      mobileImage?: (number | null) | Media;
+      ctaLabel?: string | null;
+      ctaPath?: string | null;
+    };
+    agriculture?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      paragraphs?:
+        | {
+            text: string;
+            id?: string | null;
+          }[]
+        | null;
+      image?: (number | null) | Media;
+      mobileImage?: (number | null) | Media;
+    };
+    brandStory?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      paragraphs?:
+        | {
+            text: string;
+            id?: string | null;
+          }[]
+        | null;
+      image?: (number | null) | Media;
+      mobileImage?: (number | null) | Media;
+    };
+    research?: {
+      enabled?: boolean | null;
+      eyebrow?: string | null;
+      heading?: string | null;
+      images?:
+        | {
+            image?: (number | null) | Media;
+            id?: string | null;
+          }[]
+        | null;
+      items?:
+        | {
+            heading: string;
+            body: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    globalPresence?: {
+      enabled?: boolean | null;
+      heading?: string | null;
+    };
+  };
   template: 'home' | 'standard' | 'product-finder' | 'resource-library' | 'contact';
   hero?: {
     eyebrow?: string | null;
     heading?: string | null;
     body?: string | null;
     image?: (number | null) | Media;
+    mobileImage?: (number | null) | Media;
   };
   sections?:
     | {
@@ -400,6 +707,8 @@ export interface Page {
   seo?: {
     title?: string | null;
     description?: string | null;
+    socialImage?: (number | null) | Media;
+    canonical?: string | null;
   };
   /**
    * Original website or spreadsheet URL.
@@ -538,6 +847,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'sites';
         value: number | Site;
+      } | null)
+    | ({
+        relationTo: 'site-presentation';
+        value: number | SitePresentation;
+      } | null)
+    | ({
+        relationTo: 'product-redirects';
+        value: number | ProductRedirect;
       } | null)
     | ({
         relationTo: 'map-locations';
@@ -682,6 +999,103 @@ export interface SitesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-presentation_select".
+ */
+export interface SitePresentationSelect<T extends boolean = true> {
+  site?: T;
+  name?: T;
+  brandName?: T;
+  contactEmail?: T;
+  navigation?:
+    | T
+    | {
+        label?: T;
+        path?: T;
+        newTab?: T;
+        id?: T;
+      };
+  footer?:
+    | T
+    | {
+        logo?: T;
+        description?: T;
+        socialLabel?: T;
+        socialPath?: T;
+        quickLinks?:
+          | T
+          | {
+              label?: T;
+              path?: T;
+              newTab?: T;
+              id?: T;
+            };
+        productLinks?:
+          | T
+          | {
+              label?: T;
+              path?: T;
+              newTab?: T;
+              id?: T;
+            };
+        legalLinks?:
+          | T
+          | {
+              label?: T;
+              path?: T;
+              newTab?: T;
+              id?: T;
+            };
+      };
+  copy?:
+    | T
+    | {
+        key?: T;
+        text?: T;
+        id?: T;
+      };
+  catalogue?:
+    | T
+    | {
+        functionalities?:
+          | T
+          | {
+              label?: T;
+              description?: T;
+              showDescription?: T;
+            };
+        formulation_type?:
+          | T
+          | {
+              label?: T;
+              description?: T;
+              showDescription?: T;
+            };
+        regulatory_labels?:
+          | T
+          | {
+              label?: T;
+              description?: T;
+              showDescription?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-redirects_select".
+ */
+export interface ProductRedirectsSelect<T extends boolean = true> {
+  site?: T;
+  fromSlug?: T;
+  product?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "map-locations_select".
  */
 export interface MapLocationsSelect<T extends boolean = true> {
@@ -708,6 +1122,9 @@ export interface MediaSelect<T extends boolean = true> {
   site?: T;
   alt?: T;
   caption?: T;
+  customCrop?: T;
+  pdfVariant?: T;
+  pdfStatus?: T;
   isPublic?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -779,6 +1196,7 @@ export interface ProductsSelect<T extends boolean = true> {
   resources?: T;
   image?: T;
   featured?: T;
+  brochureEnabled?: T;
   sourceNumber?: T;
   sourceRow?: T;
   sourceURL?: T;
@@ -789,6 +1207,8 @@ export interface ProductsSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        socialImage?: T;
+        canonical?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -802,6 +1222,162 @@ export interface PagesSelect<T extends boolean = true> {
   site?: T;
   title?: T;
   slug?: T;
+  integrationVersion?: T;
+  content?:
+    | T
+    | {
+        introduction?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              body?: T;
+              bullets?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              image?: T;
+              mobileImage?: T;
+              ctaLabel?: T;
+              ctaPath?: T;
+            };
+        capabilities?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    heading?: T;
+                    body?: T;
+                    image?: T;
+                    id?: T;
+                  };
+            };
+        innovations?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              image?: T;
+              mobileImage?: T;
+              items?:
+                | T
+                | {
+                    heading?: T;
+                    body?: T;
+                    label?: T;
+                    product?: T;
+                    id?: T;
+                  };
+            };
+        finder?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              body?: T;
+              items?:
+                | T
+                | {
+                    heading?: T;
+                    body?: T;
+                    category?: T;
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaPath?: T;
+            };
+        faq?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              items?:
+                | T
+                | {
+                    heading?: T;
+                    body?: T;
+                    id?: T;
+                  };
+            };
+        contact?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              body?: T;
+              image?: T;
+              mobileImage?: T;
+              ctaLabel?: T;
+              ctaPath?: T;
+            };
+        agriculture?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              image?: T;
+              mobileImage?: T;
+            };
+        brandStory?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              image?: T;
+              mobileImage?: T;
+            };
+        research?:
+          | T
+          | {
+              enabled?: T;
+              eyebrow?: T;
+              heading?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              items?:
+                | T
+                | {
+                    heading?: T;
+                    body?: T;
+                    id?: T;
+                  };
+            };
+        globalPresence?:
+          | T
+          | {
+              enabled?: T;
+              heading?: T;
+            };
+      };
   template?: T;
   hero?:
     | T
@@ -810,6 +1386,7 @@ export interface PagesSelect<T extends boolean = true> {
         heading?: T;
         body?: T;
         image?: T;
+        mobileImage?: T;
       };
   sections?:
     | T
@@ -823,6 +1400,8 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        socialImage?: T;
+        canonical?: T;
       };
   sourceURL?: T;
   updatedAt?: T;
