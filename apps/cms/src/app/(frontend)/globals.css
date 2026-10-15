@@ -2074,6 +2074,9 @@ a {
   color: var(--secondary);
   font-size: 18px;
 }
+.catalog-intro--products > p:last-child {
+  max-width: 1200px;
+}
 .catalog-category-intro {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;

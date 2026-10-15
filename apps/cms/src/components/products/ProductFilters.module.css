@@ -7,6 +7,9 @@
 .group .options { padding: 0; border-radius: 0; box-shadow: none; background: transparent; }
 .group .legend { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .count { font-size: 12px; font-weight: 400; white-space: nowrap; }
+.search { display: grid; gap: 8px; color: var(--green); font-weight: 600; }
+.search input { width: 100%; min-width: 0; padding: 14px 16px; border: 1px solid var(--green); border-radius: 8px; background: #fff; color: #414141; font: inherit; font-size: 16px; font-weight: 400; }
+.search input:focus-visible { outline: 2px solid #62a83b; outline-offset: 2px; }
 .group summary:focus-visible { outline: 3px solid #62a83b; outline-offset: 3px; }
 @media (max-width: 767px) {
   .clear { display: none; }

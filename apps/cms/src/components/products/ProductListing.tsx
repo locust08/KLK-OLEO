@@ -10,6 +10,7 @@ import {
   filterProducts,
   paginateProducts,
   parseFilterState,
+  searchFilterOptions,
   toggleProductFilter,
   updateFilterParams,
   type ProductFilterState,
@@ -29,21 +30,22 @@ type ProductListingProps = {
 
 const emptySearchParams = new URLSearchParams();
 
-function FilterGroup({ category, groups, selected, counts, onChange }: {
+function FilterGroup({ category, groups, selected, counts, filterQuery, onChange }: {
   category: ProductCategoryKey;
   groups: ProductCategoryGroups;
   selected: string[];
   counts: Record<string, number>;
+  filterQuery: string;
   onChange: (value: string) => void;
 }) {
   const group = groups[category];
   const title = category === "functionalities" ? "Functionality" : category === "formulation-type" ? "Formulation Type" : "Regulatory/Labels";
   return (
-    <details className={styles.group}>
+    <details className={styles.group} open={filterQuery.trim() ? true : undefined}>
       <summary>{title}{selected.length > 0 && <span className={styles.count}>{selected.length} selected</span>}<FaChevronDown className={styles.chevron} aria-hidden="true" /></summary>
     <fieldset className={`catalog-filter-group ${styles.options}`}>
       <legend className={styles.legend}>{title}</legend>
-      {group.options.map((option) => {
+      {group.options.filter((option) => option.name.toLocaleLowerCase().includes(filterQuery.trim().toLocaleLowerCase())).map((option) => {
         const count = counts[option.slug] ?? 0;
         const isSelected = selected.includes(option.slug);
         const isDisabled = count === 0 && !isSelected;
@@ -92,7 +94,7 @@ export function ProductListing({ category, groups, products }: ProductListingPro
   };
 
   const toggle = (key: ProductCategoryKey, value: string) => {
-    setUrlState(toggleProductFilter(state, key, value));
+    setUrlState({ ...toggleProductFilter(state, key, value), filterQuery: undefined });
   };
 
   const results = useMemo(
@@ -118,11 +120,21 @@ export function ProductListing({ category, groups, products }: ProductListingPro
         <button type="button" aria-expanded={filtersOpen} aria-controls={filterId} onClick={() => setFiltersOpen((current) => !current)}>
           {filtersOpen ? "Hide filters" : "Show filters"}{selectedCount > 0 ? ` (${selectedCount})` : ""}
         </button>
-        {(selectedCount > 0 || state.query) && <button type="button" onClick={clearFilters}>Clear filters</button>}
+        {(selectedCount > 0 || state.query || state.filterQuery) && <button type="button" onClick={clearFilters}>Clear filters</button>}
         {filtersOpen && <a href={`#${resultsId}`}>View results</a>}
       </div>
       <aside id={filterId} className={`catalog-filters${filtersOpen ? " is-open" : ""}`} aria-label="Filter products">
-        {(selectedCount > 0 || state.query) && <button type="button" className={`catalog-clear ${styles.clear}`} onClick={clearFilters}>Clear filters</button>}
+        <label className={styles.search}>
+          <span>Search filters</span>
+          <input type="search" placeholder="Search filter options…" value={state.filterQuery ?? ""}
+            onChange={(event) => {
+              const next = searchFilterOptions(state, groups, event.target.value, categories);
+              const params = updateFilterParams(searchParams, next);
+              window.history.replaceState(null, "", params.size ? `${pathname}?${params}` : pathname);
+            }} />
+        </label>
+        {state.filterQuery?.trim() && selectedCount === 0 && <p role="status">No matching filter options.</p>}
+        {(selectedCount > 0 || state.query || state.filterQuery) && <button type="button" className={`catalog-clear ${styles.clear}`} onClick={clearFilters}>Clear filters</button>}
         {categories.map((key) => (
           <FilterGroup
             key={key}
@@ -130,6 +142,7 @@ export function ProductListing({ category, groups, products }: ProductListingPro
             groups={groups}
             selected={state.selected[key]}
             counts={facetCounts[key]}
+            filterQuery={state.filterQuery ?? ""}
             onChange={(value) => toggle(key, value)}
           />
         ))}

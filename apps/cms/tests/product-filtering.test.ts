@@ -11,6 +11,7 @@ import {
   filterProducts,
   paginateProducts,
   parseFilterState,
+  searchFilterOptions,
   toggleProductFilter,
   updateFilterParams,
 } from "../src/lib/product-filtering";
@@ -34,6 +35,44 @@ const groups: ProductCategoryGroups = {
     options: [option("epa"), option("reach"), option("microplastic-free")],
   },
 };
+
+test("filter option search selects taxonomy labels only, ignoring case and surrounding spaces", () => {
+  const state = searchFilterOptions(createEmptyFilterState(), groups, "  EMUL  ");
+  assert.deepEqual(state.selected.functionalities, ["emulsifiers"]);
+  assert.deepEqual(state.selected["formulation-type"], []);
+  assert.deepEqual(state.selected["regulatory-labels"], []);
+  assert.equal(state.query, "");
+  assert.deepEqual(searchFilterOptions(state, groups, "Alpha").selected, createEmptyFilterState().selected);
+  assert.deepEqual(filterProducts(products, searchFilterOptions(state, groups, "Alpha")), []);
+});
+
+test("filter search replaces prior matches, clears selections and resets pagination", () => {
+  const first = searchFilterOptions({ ...createEmptyFilterState(), page: 3 }, groups, "e");
+  assert.ok(first.selected.functionalities.length > 1);
+  assert.deepEqual(first.selected["regulatory-labels"], ["epa", "reach", "microplastic-free"]);
+  const next = searchFilterOptions(first, groups, "od");
+  assert.deepEqual(next.selected["formulation-type"], ["od"]);
+  assert.deepEqual(next.selected.functionalities, []);
+  assert.equal(next.page, 1);
+  assert.deepEqual(searchFilterOptions(next, groups, "").selected, createEmptyFilterState().selected);
+});
+
+test("filter search uses names rather than slugs and respects category page scope", () => {
+  const renamed = { ...groups, functionalities: { ...groups.functionalities, options: [option("hidden-slug", "Visible label")] } };
+  assert.deepEqual(searchFilterOptions(createEmptyFilterState(), renamed, "hidden").selected.functionalities, []);
+  assert.deepEqual(searchFilterOptions(createEmptyFilterState(), renamed, "visible").selected.functionalities, ["hidden-slug"]);
+  const scoped = searchFilterOptions(createEmptyFilterState(), groups, "e", ["regulatory-labels"]);
+  assert.deepEqual(scoped.selected.functionalities, []);
+  assert.ok(scoped.selected["regulatory-labels"].length > 0);
+});
+
+test("filter search and automatic selections survive URL serialization independently of global search", () => {
+  const state = searchFilterOptions({ ...createEmptyFilterState(), query: "Alpha" }, groups, "epa");
+  const params = updateFilterParams(new URLSearchParams(), state);
+  assert.equal(params.get("q"), "Alpha");
+  assert.equal(params.get("filterSearch"), "epa");
+  assert.deepEqual(parseFilterState(params, groups), state);
+});
 
 function product(
   id: number,

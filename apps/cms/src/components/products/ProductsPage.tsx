@@ -23,7 +23,7 @@ export function ProductsPage({
       <SiteHeader />
       <main>
         <ProductHero title={page?.heroHeading || page?.title || "Products"} eyebrow={page?.heroEyebrow || undefined} imageUrl={page?.heroImageUrl} />
-        <section className="catalog-intro">
+        <section className="catalog-intro catalog-intro--products">
           <h2>{page?.sections[0]?.heading || "Formulation solutions built for performance"}</h2>
           <p>
             {page?.sections[0]?.body || "Explore our agrochemical portfolio by functionality, formulation type, or regulatory label."}
