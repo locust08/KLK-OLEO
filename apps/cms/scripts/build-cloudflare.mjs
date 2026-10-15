@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
 const template = createHash("sha256");
-for (const file of ["src/components/products/ProductDetailPage.tsx", ...readdirSync("src/app/(frontend)").filter((name) => name.endsWith(".css") || name === "layout.tsx").sort().map((name) => `src/app/(frontend)/${name}`), ...readdirSync("public/fonts").sort().map((name) => `public/fonts/${name}`)]) {
+for (const file of ["src/components/products/ProductDetailPage.tsx", "src/components/layout/ContactBannerContent.tsx", "src/data/site-assets.ts", "public/images/home/contact-agriculture-background.webp", ...readdirSync("src/app/(frontend)").filter((name) => name.endsWith(".css") || name === "layout.tsx").sort().map((name) => `src/app/(frontend)/${name}`), ...readdirSync("public/fonts").sort().map((name) => `public/fonts/${name}`)]) {
   template.update(file).update(readFileSync(file));
 }
 const templateVersion = template.digest("hex").slice(0, 20);

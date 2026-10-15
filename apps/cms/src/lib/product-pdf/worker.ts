@@ -81,6 +81,12 @@ export async function renderProductPdf(env: CloudflareEnv, source: PdfSnapshot) 
     await page.evaluate(async () => {
       await document.fonts.ready;
       await Promise.all(Array.from(document.images, (image) => image.decode()));
+      // The shared contact banner uses a CSS background, not an <img> element.
+      await Promise.all(Array.from(document.querySelectorAll(".product-pdf-contact"), async (element) => {
+        const background = getComputedStyle(element).backgroundImage;
+        const url = background.match(/^url\(["']?(.*?)["']?\)$/)?.[1];
+        if (url) { const image = new Image(); image.src = url; await image.decode(); }
+      }));
       if (Array.from(document.images).some((image) => !image.complete || !image.naturalWidth)) throw new Error("IMAGE_UNAVAILABLE");
     });
     const renderedVersion = await page.$eval("[data-pdf-version]", (element) => element.getAttribute("data-pdf-version"));

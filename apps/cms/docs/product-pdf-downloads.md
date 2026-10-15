@@ -13,13 +13,13 @@ The existing **Request Brochure** label, classes, placement and responsive sizin
 - Render jobs verify the print page's version and read the current publication again before upload and promotion. A changed/unpublished product cancels promotion. Conditional version/token updates fence late or expired workers. The previous object remains internally available through failure and is deleted only after successful promotion.
 - Published product `afterChange` hooks invalidate metadata and enqueue a delayed regeneration. Draft saves are excluded. Related published taxonomy/media edits enqueue affected products. Navigation and unrelated page edits have no product hook.
 - An hourly Queue reconciliation at minute 17 repairs missed jobs, exhausted retries and expired leases, and discovers template changes. Unchanged ready versions skip Browser Rendering entirely. Deleted/unpublished products are blocked immediately by source checks, regardless of retained internal metadata/files.
-- `scripts/build-cloudflare.mjs` automatically fingerprints `ProductDetailPage.tsx`, frontend CSS/layout and local fonts into `NEXT_PUBLIC_PRODUCT_PDF_TEMPLATE_VERSION`. This is a public build identifier, not a secret. A new deployment invalidates old template PDFs at download time and schedules eager replacement on the next hourly reconciliation.
+- `scripts/build-cloudflare.mjs` automatically fingerprints `ProductDetailPage.tsx`, the shared contact banner markup/background asset, frontend CSS/layout and local fonts into `NEXT_PUBLIC_PRODUCT_PDF_TEMPLATE_VERSION`. This is a public build identifier, not a secret. A new deployment invalidates old template PDFs at download time and schedules eager replacement on the next hourly reconciliation.
 
 ## Rendering
 
-Cloudflare Browser Rendering uses `@cloudflare/puppeteer` against `/products/product/:slug/print`. That route reuses `ProductDetailPage` with `printOnly`, rather than maintaining a second content template. It omits site chrome, breadcrumbs and both action buttons. Fonts and images must load successfully; image URLs include their media revision to avoid stale browser assets. Third-party scripts/requests are blocked by the renderer.
+Cloudflare Browser Rendering uses `@cloudflare/puppeteer` against `/products/product/:slug/print`. That route reuses `ProductDetailPage` with `printOnly`, rather than maintaining a second content template. It omits site chrome, breadcrumbs and both product action buttons. The Contact Us banner is explicitly included at the end following user confirmation, with an absolute website Contact link. Its markup is shared with the website banner. Fonts, product images and the banner background must load successfully; product image URLs include their media revision to avoid stale browser assets. Third-party scripts/requests are blocked by the renderer.
 
-Print CSS and Puppeteer agree on A4 portrait with 15mm margins, background printing and disabled browser headers/footers. Print typography fits the printable width while retaining Poppins, product colours, three application columns and the metadata table. Rows and images avoid breaks; paragraphs can paginate with widow/orphan control. No fixed-height page container truncates long content.
+Print CSS and Puppeteer agree on A4 portrait with 15mm margins, background printing and disabled browser headers/footers. The application profile is a semantic two-column table: category labels at left, values at right. Print typography retains Poppins, product colours and the metadata table. Rows, images and the complete contact banner avoid breaks; paragraphs can paginate with widow/orphan control. No fixed-height page container truncates long content. These presentation changes apply only to the PDF; the website retains its existing three-panel application layout.
 
 ## Files
 
@@ -32,13 +32,15 @@ Modified:
 - `scripts/build-cloudflare.mjs`: template fingerprint.
 - `src/collections.ts`: preserve configured hooks and register product/related-content hooks.
 - `src/lib/cms/queries.ts`: export the existing product view-model mapper.
-- `src/components/products/ProductDetailPage.tsx`: shared print mode and download control.
+- `src/components/products/ProductDetailPage.tsx`: shared print mode, PDF attribute table and download control.
+- `src/components/layout/ContactBanner.tsx`: wraps shared unchanged website banner markup.
 - `src/app/(frontend)/layout.tsx`: print/control stylesheet import.
 
 Created:
 
 - `src/lib/product-pdf/{version,published,cache,worker,hooks}.ts`.
 - `src/components/products/ProductBrochureButton.tsx`.
+- `src/components/layout/ContactBannerContent.tsx`: shared website/PDF banner markup.
 - `src/app/(frontend)/product-print.css`.
 - `src/app/(frontend)/products/product/[product]/print/page.tsx`.
 - `src/app/(frontend)/api/product-pdf/[slug]/route.ts` (plain Next development unavailable response).
@@ -86,13 +88,15 @@ Provide the existing Payload secret through the build environment as usual; do n
 
 ## Validation and limits
 
-- 60 tests pass, including a real isolated Payload/SQLite publish → draft-save → republish test. Concurrency/failure tests run the actual cache SQL against SQLite, with R2, Queue and browser boundaries simulated.
+- 62 tests pass, including a real isolated Payload/SQLite publish → draft-save → republish test, the three PDF table rows and the approved contact banner/link. Concurrency/failure tests run the actual cache SQL against SQLite, with R2, Queue and browser boundaries simulated.
 - Playwright verified unchanged button geometry at 1440, 768 and 390 pixels, the pending-to-download interaction, attachment filename, unavailable state and no redirect.
 - Local Chromium generated and inspected one-page and five-page A4 samples from published QA products using the shared print route; required content was extracted and site chrome/action text was absent. QA products were removed afterward.
-- Actual Cloudflare deployment completed: Worker version `f091628f-a9bf-4400-bbbd-c043319184d8`.
+- Initial implementation Cloudflare deployment completed: Worker version `f091628f-a9bf-4400-bbbd-c043319184d8`.
 - A real production button click on Aidigro EM1225 queued generation, transitioned D1 from `generating` to `ready`, and downloaded `aidigro-em1225.pdf` without navigating away. The actual Cloudflare/Chromium output is one-page A4 portrait, 20,998 bytes; extracted text includes name, chemical description, application attributes, manufacturing site and CAS number, with no site chrome or actions.
 - A repeated production HTTP download returned identical bytes, correct attachment/content-type/no-store headers and an unchanged D1 `generated_at` timestamp, proving cache reuse without a second render.
 - CMS publication/draft behaviour was verified against real isolated Payload/SQLite operations with the Queue boundary simulated. Existing live product content was not changed for this test.
+- Table/banner refinement: local A4 samples with an unusually large product image produced two pages (short content) and five pages (stress content); the banner remained whole and the contact link was present as a PDF URI annotation. Website checks at 1440/768/390px confirmed the PDF table did not replace the website panels and the website contact banner was neither duplicated nor changed.
+- The table/banner refinement is deployed and production-verified. The first EM1225 download returned HTTP 202, withholding the old cached template, then the actual button downloaded the newly rendered file. D1 is `ready` with template `6c964d9ed3b6cffba25c`. The updated production PDF is one A4 portrait page (1,433,799 bytes), visually inspected with the two-column application table and complete contact banner; its URI annotation points to `https://agrochemicals.easondev.workers.dev/contact`. Product action buttons and website chrome remain excluded.
 
 Plain `npm run dev` has no Cloudflare browser/Queue/D1 bindings and intentionally shows an unavailable state. Test actual generation on the deployed Worker; the print route itself can be tested locally with real published CMS records. Draft fixture catalogue entries cannot produce production brochures.
 
