@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { useSite } from "@/components/layout/SiteContext";
 import { PageHero } from "@/components/ui/PageHero";
 import { countries } from "@/data/countries";
+import { siteAssets } from "@/data/site-assets";
 import type {
   ContactFormViewModel,
   PageContentViewModel,
@@ -113,7 +114,7 @@ export function ContactPage({
     <>
       <SiteHeader />
       <main>
-        <PageHero title={page?.heroHeading || page?.title || "Contact Us"} imageUrl={page?.heroImageUrl} />
+        <PageHero title={page?.heroHeading || page?.title || "Contact Us"} imageUrl={page?.heroImageUrl || siteAssets.contactHero} />
         <section className="contact-section" id="contact-form">
           <div className="contact-copy">
             <h2>Get in Touch with Our Team</h2>

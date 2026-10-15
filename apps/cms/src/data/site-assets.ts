@@ -6,6 +6,7 @@ export const siteAssets = {
   aboutHero: "/images/about/about-us-agrochemical.webp",
   productsHero: "/images/products/products-hero-leaf.png",
   resourcesHero: "/images/resources/resources-hero-globe.png",
+  contactHero: "/images/contact/contact-hero.png",
   homeIntroduction: "/images/home/aidigro-introduction.webp",
   whatWeDoGlobal: "/images/home/global-reach.png",
   whatWeDoTailored: "/images/home/tailored-agriculture.png",
