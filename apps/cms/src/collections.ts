@@ -4,6 +4,7 @@ import {
   type Field,
   type Where,
 } from "payload";
+import { schedulePublishedProductPdf, scheduleRelatedProductPdfs } from "./lib/product-pdf/hooks";
 import {
   checkRelatedSites,
   contentDelete,
@@ -52,6 +53,7 @@ const versioned = (config: CollectionConfig): CollectionConfig => ({
   access: config.access ?? contentAccess,
   versions: { drafts: true, maxPerDoc: 20 },
   hooks: {
+    ...config.hooks,
     beforeChange: [
       enforceScope,
       checkRelatedSites,
@@ -192,6 +194,7 @@ export const Sites: CollectionConfig = {
 const taxonomy = (collectionSlug: string, label: string): CollectionConfig =>
   versioned({
     slug: collectionSlug,
+    hooks: { afterChange: [scheduleRelatedProductPdfs] },
     admin: { useAsTitle: "name", group: "Product catalogue" },
     indexes: [{ fields: ["site", "slug"], unique: true }],
     fields: [
@@ -215,6 +218,7 @@ export const RegulatoryLabels = taxonomy(
 
 export const Products = versioned({
   slug: "products",
+  hooks: { afterChange: [schedulePublishedProductPdf] },
   admin: {
     useAsTitle: "name",
     group: "Product catalogue",
@@ -324,7 +328,7 @@ export const Media: CollectionConfig = {
     update: contentWrite,
     delete: contentDelete,
   },
-  hooks: { beforeChange: [enforceScope] },
+  hooks: { beforeChange: [enforceScope], afterChange: [scheduleRelatedProductPdfs] },
   fields: [
     site,
     { name: "alt", type: "text", required: true },

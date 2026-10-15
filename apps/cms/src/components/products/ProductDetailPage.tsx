@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import type { ProductViewModel, ProductCategoryKey } from "@/lib/cms/view-models";
 import { productFilterParam } from "@/lib/product-filtering";
+import { ProductBrochureButton } from "./ProductBrochureButton";
 
 function AttributeValues({ values, slugs, category }: { values: string[]; slugs: string[]; category: ProductCategoryKey }) {
   return <ul>{values.map((value, index) => <li key={value}>
@@ -21,20 +22,20 @@ function UnspecifiedAttribute() {
   );
 }
 
-export function ProductDetailPage({ product }: { product: ProductViewModel }) {
+export function ProductDetailPage({ product, printOnly = false }: { product: ProductViewModel; printOnly?: boolean }) {
   const requestProductHref = product.id > 0
     ? `/contact?productId=${product.id}&product=${encodeURIComponent(product.name)}`
     : `/contact?product=${encodeURIComponent(product.name)}`;
   return (
     <>
-      <SiteHeader />
+      {!printOnly && <SiteHeader />}
       <main>
         <article className="product-detail">
-          <nav className="product-detail__breadcrumb" aria-label="Breadcrumb">
+          {!printOnly && <nav className="product-detail__breadcrumb" aria-label="Breadcrumb">
             <Link href="/products">Products</Link>
             <span aria-hidden="true">/</span>
             <span>{product.name}</span>
-          </nav>
+          </nav>}
 
           {product.imageUrl && (
             <div className="product-detail__visual">
@@ -69,14 +70,12 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
             </div>
           </section>
 
-          <div className="product-detail__actions">
+          {!printOnly && <div className="product-detail__actions">
             <Link href={requestProductHref} className="product-action">
               Request Product
             </Link>
-            <Link href="/resources" className="product-action product-action--outline">
-              Request Brochure
-            </Link>
-          </div>
+            <ProductBrochureButton slug={product.slug} />
+          </div>}
 
           <section className="product-meta-table" aria-labelledby="product-information-title">
             <h2 id="product-information-title">Product Information</h2>
@@ -87,7 +86,7 @@ export function ProductDetailPage({ product }: { product: ProductViewModel }) {
           </section>
         </article>
       </main>
-      <SiteFooter />
+      {!printOnly && <SiteFooter />}
     </>
   );
 }

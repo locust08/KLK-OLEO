@@ -8,6 +8,7 @@ import "./globals.css";
 import "./qa-overrides.css";
 import "./typography.css";
 import "./motion.css";
+import "./product-print.css";
 import { ScrollAnimations } from "@/components/ui/ScrollAnimations";
 
 export const dynamic = "force-dynamic";

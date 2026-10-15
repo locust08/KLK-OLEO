@@ -166,7 +166,7 @@ function mediaUrl(value: number | Media | null | undefined) {
   return isMedia(value) && value.isPublic && value.url ? value.url : undefined;
 }
 
-function mapProduct(product: Product): ProductViewModel {
+export function mapProduct(product: Product): ProductViewModel {
   const functions = relationValues<ProductFunction>(product.functions);
   const formulations = relationValues<FormulationType>(product.formulationTypes);
   const labels = relationValues<RegulatoryLabel>(product.regulatoryLabels);

@@ -1,0 +1,34 @@
+.product-pdf-control { display: inline-flex; position: relative; }
+.product-pdf-control button { font-family: inherit; cursor: pointer; }
+.product-pdf-control button:disabled { cursor: wait; opacity: .7; }
+.product-pdf-status { position: absolute; top: calc(100% + 8px); left: 0; width: 320px; max-width: calc(100vw - 40px); font-size: 12px; line-height: 1.4; color: #414141; }
+@media (max-width: 767px) { .product-pdf-control { width: 100%; } }
+@page { size: A4 portrait; margin: 15mm; }
+@media print {
+  html, body { height: auto !important; min-height: 0 !important; background: #fff !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body > header, body > footer, .site-header, .site-footer, nav, .contact-cta,
+  .product-detail__actions, .product-detail__breadcrumb, nextjs-portal,
+  [data-bugherd], #bugherd-sidebar, [class*="cookie"], [id*="cookie"] { display: none !important; }
+  [data-pdf-version] .product-detail, .product-detail { width: 100%; max-width: none; margin: 0; padding: 0; }
+  .product-detail, .product-detail * { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+  .product-detail__header { max-width: none; }
+  .product-detail__header h1 { font-size: 28pt; }
+  .product-detail__header h2 { font-size: 21pt; }
+  .product-detail__header p { font-size: 11pt; line-height: 1.65; max-width: none; }
+  .product-detail h2 { break-after: avoid; }
+  .product-detail p { orphans: 3; widows: 3; }
+  .product-spec-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
+  .product-spec-panel > div { padding: 18px 14px; min-width: 0; }
+  .product-spec-panel > div:first-child { padding-left: 0; }
+  .product-spec-panel h2, .product-meta-table h2 { font-size: 13pt; }
+  .product-spec-panel li, .product-spec-panel p { font-size: 10pt; line-height: 1.6; }
+  .product-meta-table { margin-top: 28px; }
+  .product-meta-table dl > div { display: grid; grid-template-columns: 40% 60%; }
+  .product-meta-table dt, .product-meta-table dd { font-size: 10pt; padding: 12px; }
+  .product-meta-table dl > div, .product-detail tr, .product-detail img, .product-detail__visual { break-inside: avoid; page-break-inside: avoid; }
+  .product-detail table { width: 100%; border-collapse: collapse; }
+  .product-detail thead { display: table-header-group; }
+  .product-detail img { max-width: 100%; max-height: 90mm; object-fit: contain; }
+  .product-detail a { color: inherit; text-decoration: none; }
+}
