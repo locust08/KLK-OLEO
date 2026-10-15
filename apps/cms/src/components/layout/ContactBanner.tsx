@@ -5,6 +5,6 @@ import { ContactBannerContent } from "./ContactBannerContent";
 
 export function ContactBanner() {
   const pathname = usePathname();
-  const preserveProductCta = pathname === "/products" || pathname.startsWith("/products/");
-  return <ContactBannerContent preserveProductCta={preserveProductCta} />;
+  if (pathname === "/contact" || pathname.startsWith("/contact/")) return null;
+  return <ContactBannerContent preserveProductCta={false} />;
 }
