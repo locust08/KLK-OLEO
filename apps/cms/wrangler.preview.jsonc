@@ -31,6 +31,28 @@
       "bucket_name": "agrochemicals-cms-preview-20261015",
     },
   ],
+  "browser": { "binding": "BROWSER" },
+  "services": [
+    { "binding": "PDF_APP", "service": "agrochemicals-cms-preview-20261015" },
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "PRODUCT_PDF_QUEUE",
+        "queue": "agrochemicals-cms-preview-pdfs",
+      },
+    ],
+    "consumers": [
+      {
+        "queue": "agrochemicals-cms-preview-pdfs",
+        "max_batch_size": 1,
+        "max_concurrency": 2,
+        "max_retries": 4,
+        "retry_delay": 60,
+        "dead_letter_queue": "agrochemicals-cms-preview-pdfs-dlq",
+      },
+    ],
+  },
   "observability": {
     "enabled": true,
   },

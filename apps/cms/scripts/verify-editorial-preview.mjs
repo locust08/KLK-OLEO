@@ -42,6 +42,15 @@ const api = async (path, method = "GET", data) => {
   );
   return j;
 };
+async function readyPdf(path, options) {
+  for (let attempt = 0; attempt < 90; attempt++) {
+    const response = await fetch(base + path, options);
+    if (response.status !== 202) return response;
+    await response.arrayBuffer();
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+  }
+  throw Error("PDF generation did not finish within the preview test limit.");
+}
 const sites = await api("/api/sites?where[slug][equals]=agrochemical");
 const site = sites.docs[0].id;
 let fixture, privateImage, pageFixture;
@@ -97,9 +106,7 @@ try {
     _status: "published",
   });
   fixture = created.doc.id;
-  const pdf = await fetch(
-    base + "/api/products/preview-pdf-verification/brochure",
-  );
+  const pdf = await readyPdf("/api/products/preview-pdf-verification/brochure");
   assert.equal(pdf.status, 200);
   const bytes = Buffer.from(await pdf.arrayBuffer());
   assert.equal(bytes.subarray(0, 4).toString(), "%PDF");
@@ -178,8 +185,8 @@ try {
   ).text();
   assert.ok(draft.includes("PRIVATE-DRAFT-VERIFICATION"));
   assert.ok(draft.includes("Draft preview"));
-  const draftPdf = await fetch(
-    base + "/api/products/preview-pdf-verification/brochure",
+  const draftPdf = await readyPdf(
+    "/api/products/preview-pdf-verification/brochure",
     { headers },
   );
   assert.equal(draftPdf.status, 200);

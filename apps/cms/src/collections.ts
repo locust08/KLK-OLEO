@@ -1,4 +1,8 @@
 import {
+  schedulePublishedProductPdf,
+  scheduleRelatedProductPdfs,
+} from "./lib/product-pdf/hooks";
+import {
   mediaProcessingStatus,
   processMediaVariant,
 } from "./lib/content/media-processing";
@@ -70,6 +74,7 @@ const versioned = (config: CollectionConfig): CollectionConfig => ({
   access: config.access ?? contentAccess,
   versions: { drafts: true, maxPerDoc: 20 },
   hooks: {
+    ...config.hooks,
     beforeChange: [
       enforceScope,
       checkRelatedSites,
@@ -215,6 +220,7 @@ export const Sites: CollectionConfig = {
 const taxonomy = (collectionSlug: string, label: string): CollectionConfig =>
   versioned({
     slug: collectionSlug,
+    hooks: { afterChange: [scheduleRelatedProductPdfs] },
     admin: { useAsTitle: "name", group: "Product catalogue" },
     indexes: [{ fields: ["site", "slug"], unique: true }],
     fields: [
@@ -239,7 +245,7 @@ export const RegulatoryLabels = taxonomy(
 export const Products = versioned({
   hooks: {
     beforeChange: [validateProductSlug],
-    afterChange: [saveProductRedirect],
+    afterChange: [saveProductRedirect, schedulePublishedProductPdf],
   },
   slug: "products",
   admin: {
@@ -355,7 +361,7 @@ export const Media: CollectionConfig = {
   },
   hooks: {
     beforeChange: [enforceScope, mediaProcessingStatus],
-    afterChange: [processMediaVariant],
+    afterChange: [processMediaVariant, scheduleRelatedProductPdfs],
   },
   fields: [
     site,
@@ -376,7 +382,7 @@ export const Media: CollectionConfig = {
       relationTo: "media",
       admin: {
         description:
-          "Automatically generated PNG/JPEG variant where supported. Re-upload to retry conversion.",
+          "Optional PNG/JPEG variant for the local Node PDF fallback. Cloudflare brochures render browser-supported image formats directly.",
       },
     },
     {
@@ -447,6 +453,7 @@ export const Pages = versioned({
         { name: "body", type: "textarea" },
         { name: "image", type: "upload", relationTo: "media" },
         imageField("mobileImage"),
+        imageField("tabletImage"),
       ],
     },
     {

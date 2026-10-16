@@ -251,6 +251,11 @@ export interface SitePresentation {
   copy?:
     | {
         key:
+          | 'filterSearch'
+          | 'filterSearchPlaceholder'
+          | 'filterNoMatch'
+          | 'brochureReady'
+          | 'brochurePending'
           | 'detailFunction'
           | 'detailFormulation'
           | 'detailRegulation'
@@ -696,6 +701,7 @@ export interface Page {
     body?: string | null;
     image?: (number | null) | Media;
     mobileImage?: (number | null) | Media;
+    tabletImage?: (number | null) | Media;
   };
   sections?:
     | {
@@ -1387,6 +1393,7 @@ export interface PagesSelect<T extends boolean = true> {
         body?: T;
         image?: T;
         mobileImage?: T;
+        tabletImage?: T;
       };
   sections?:
     | T

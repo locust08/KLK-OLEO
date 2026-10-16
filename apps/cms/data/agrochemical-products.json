@@ -5,7 +5,7 @@
     "sourceRow": 4,
     "sourceNumber": 1,
     "chemicalDescription": "Non-ionic block copolymer",
-    "description": "An emulsifier and dispersant used to produce stable concentrated emulsions with pesticide active ingedients. Can also be used in a suspoemulsion formulations",
+    "description": "An emulsifier and dispersant used to produce stable concentrated emulsions with pesticide active ingredients. It can also be used in suspo-emulsion formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -62,7 +62,7 @@
     "sourceRow": 5,
     "sourceNumber": 2,
     "chemicalDescription": "Surfactant blend",
-    "description": "Polymeric non-ionic block plolymer with low HLB value which can be used for concentrated aqueous emulsion formulations and nonaqueous dispersant. Additional benefits include adjuvancy due to increased spray retention.",
+    "description": "A polymeric non-ionic block polymer with a low HLB value, used for concentrated aqueous emulsion formulations and as a non-aqueous dispersant. Additional benefits include adjuvancy due to increased spray retention.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -120,7 +120,7 @@
     "sourceRow": 6,
     "sourceNumber": 3,
     "chemicalDescription": "Ester EO/PO block",
-    "description": "Versatile defoamer and low foam dispersant with adjuvancy effects, compatible with microbial formulations. Additional benefit of silicone and mineral oil free",
+    "description": "A versatile defoamer and low-foam dispersant with adjuvancy effects, compatible with microbial formulations. It is also silicone-free and mineral-oil-free.",
     "functions": [
       "Adjuvants",
       "Dispersants",
@@ -179,7 +179,7 @@
     "sourceRow": 7,
     "sourceNumber": 4,
     "chemicalDescription": "Wax/vegetable oil dispersion",
-    "description": "A defoaming specialty that also functions as a dispersing agent. Additional benefit of mineral oil and VOC-free",
+    "description": "A defoaming speciality that also functions as a dispersing agent. It is also mineral-oil-free and VOC-free.",
     "functions": [
       "Dispersants",
       "Defoamer"
@@ -240,7 +240,7 @@
     "slug": "aidigro-da1625",
     "sourceRow": 8,
     "sourceNumber": 5,
-    "chemicalDescription": "EO/PO BLOCK coplymer",
+    "chemicalDescription": "EO/PO BLOCK copolymer",
     "description": "Non-ionic dispersant and emulsifier with adjuvancy effects and wetting in oil dispersion formulations.",
     "functions": [
       "Adjuvants",
@@ -300,7 +300,7 @@
     "sourceRow": 9,
     "sourceNumber": 6,
     "chemicalDescription": "TSP-based phosphate ester",
-    "description": "An anionic dispersing agent for pesticide formulation and also compatible with microbial biopesticide formulations (bacteria and fungi) for foliar and root zone application",
+    "description": "An anionic dispersing agent for pesticide formulations, also compatible with microbial biopesticide formulations (bacteria and fungi) for foliar and root-zone applications.",
     "functions": [
       "Emulsifiers",
       "Dispersants",
@@ -477,7 +477,7 @@
     "sourceRow": 12,
     "sourceNumber": 9,
     "chemicalDescription": "Sorbeth-40 Hexaoleate",
-    "description": "Non-ionic surfactant which functions as emulsifier and can also be used as inert with adjuvancy properties. Also compatible with in can microbial formulations.",
+    "description": "Non-ionic surfactant that functions as an emulsifier and can also be used as an inert ingredient with adjuvancy properties. Also compatible with in-can microbial formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -536,7 +536,7 @@
     "sourceRow": 13,
     "sourceNumber": 10,
     "chemicalDescription": "PEG-50 sorbitan peroleate",
-    "description": "Non-ionic O/W emulsifier with adjuvancy and wetting properties",
+    "description": "Non-ionic O/W emulsifier with adjuvancy and wetting properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -596,7 +596,7 @@
     "sourceRow": 14,
     "sourceNumber": 11,
     "chemicalDescription": "Proprietary",
-    "description": "Aidigro WA1125 is a low odour,  non-ionic surfactant based on unique EO/PO copolymer with excellent wetting and penetrating function. \n\nAdditional benefits includes:\nSuper wetting\nPenetrating\nEmulsification\nLow odour\nOutstanding formulation and handling properties",
+    "description": "Aidigro WA1125 is a low-odour, non-ionic surfactant based on a unique EO/PO copolymer with excellent wetting and penetrating functions.\n\nAdditional benefits include:\nSuper wetting\nPenetrating\nEmulsification\nLow odour\nOutstanding formulation and handling properties.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -652,7 +652,7 @@
     "sourceRow": 15,
     "sourceNumber": 12,
     "chemicalDescription": "Branched dodecylbenzene sulphonate, Ca salt",
-    "description": "1,4-dioxane free, Anionic emulsifier (Calcium-based) typically combined with castor oil ethoxylates.",
+    "description": "1,4-dioxane-free anionic emulsifier (calcium-based), typically combined with castor oil ethoxylates.",
     "functions": [
       "Emulsifiers"
     ],
@@ -711,7 +711,7 @@
     "sourceRow": 16,
     "sourceNumber": 13,
     "chemicalDescription": "Linear dodecylbenzene sulphonate, Ca salt",
-    "description": "1,4-dioxane free, anionic emulsifier (Calcium-based) typically combined with castor oil ethoxylates.",
+    "description": "1,4-dioxane-free anionic emulsifier (calcium-based), typically combined with castor oil ethoxylates.",
     "functions": [
       "Emulsifiers"
     ],
@@ -769,8 +769,8 @@
     "slug": "aidigro-em2826",
     "sourceRow": 17,
     "sourceNumber": 14,
-    "chemicalDescription": "Castor oil suphonate, Na salt",
-    "description": "1,4-dioxane free, anionic emulsifier with wetting properties",
+    "chemicalDescription": "Castor oil sulphonate, Na salt",
+    "description": "1,4-dioxane free, anionic emulsifier with wetting properties.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -887,7 +887,7 @@
     "sourceRow": 19,
     "sourceNumber": 16,
     "chemicalDescription": "C12-C14 alcohol + 4 EO sulphate, Na salt",
-    "description": "Anionic emulsifier with beneficial adjuvancy properties",
+    "description": "Anionic emulsifier with beneficial adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -944,7 +944,7 @@
     "sourceRow": 20,
     "sourceNumber": 17,
     "chemicalDescription": "Alcohol phosphate ester",
-    "description": "Versatle dispersing agent for agrochemical formulations",
+    "description": "Versatile dispersing agent for agrochemical formulations.",
     "functions": [
       "Dispersants"
     ],
@@ -1003,7 +1003,7 @@
     "sourceRow": 21,
     "sourceNumber": 18,
     "chemicalDescription": "Alcohol phosphate ester",
-    "description": "Efficient as a dispersing agent in agrochemical formulations",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1063,7 +1063,7 @@
     "sourceRow": 22,
     "sourceNumber": 19,
     "chemicalDescription": "Alcohol phosphate ester",
-    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1124,7 +1124,7 @@
     "sourceRow": 23,
     "sourceNumber": 20,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1184,7 +1184,7 @@
     "sourceRow": 24,
     "sourceNumber": 21,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1244,7 +1244,7 @@
     "sourceRow": 25,
     "sourceNumber": 22,
     "chemicalDescription": "Alcohol phosphate ester",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1304,7 +1304,7 @@
     "sourceRow": 26,
     "sourceNumber": 23,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1362,7 +1362,7 @@
     "sourceRow": 27,
     "sourceNumber": 24,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Readily biodegradable anionic surfactant that functions as dispersants",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersant.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1422,7 +1422,7 @@
     "sourceRow": 28,
     "sourceNumber": 25,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Biodegradable ethoxylated phosphate ester that functions as a dispersing agent in agro formulation",
+    "description": "Biodegradable ethoxylated phosphate ester that functions as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1480,7 +1480,7 @@
     "sourceRow": 29,
     "sourceNumber": 26,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent with emulsifier and adjuvancy properties in agro formulation",
+    "description": "Efficient as a dispersing agent, with emulsifying and adjuvancy properties, in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1540,7 +1540,7 @@
     "sourceRow": 30,
     "sourceNumber": 27,
     "chemicalDescription": "Alcohol phosphate ester",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1598,7 +1598,7 @@
     "sourceRow": 31,
     "sourceNumber": 28,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1656,7 +1656,7 @@
     "sourceRow": 32,
     "sourceNumber": 29,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "An anionic dispersing agent with wetting and penetrating properties, compatible with microbial formulation",
+    "description": "An anionic dispersing agent with wetting and penetrating properties, compatible with microbial formulation.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1716,7 +1716,7 @@
     "sourceRow": 33,
     "sourceNumber": 30,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1774,7 +1774,7 @@
     "sourceRow": 34,
     "sourceNumber": 31,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1832,7 +1832,7 @@
     "sourceRow": 35,
     "sourceNumber": 32,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1890,7 +1890,7 @@
     "sourceRow": 36,
     "sourceNumber": 33,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -1948,7 +1948,7 @@
     "sourceRow": 37,
     "sourceNumber": 34,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -2006,7 +2006,7 @@
     "sourceRow": 38,
     "sourceNumber": 35,
     "chemicalDescription": "Phosphate ester ethoxylated",
-    "description": "Efficient as a dispersing agent in agro formulation",
+    "description": "Efficient as a dispersing agent in agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -2064,7 +2064,7 @@
     "sourceRow": 39,
     "sourceNumber": 36,
     "chemicalDescription": "Polyglycol ester",
-    "description": "Non-ionic surfactant based on polyglycol ester that functions as an emulsifier in agrochemical formulations. Additional benefits of Aidigro EM5026 is its excellent wetting properties. Aidigro EM5026 is label-free, dioxane under 75 ppm, and its property as a non-irritant even after prolonged contact makes it suitable for diverse agricultural use.",
+    "description": "Non-ionic surfactant based on polyglycol ester that functions as an emulsifier in agrochemical formulations. An additional benefit of Aidigro EM5026 is its excellent wetting properties. Aidigro EM5026 is label-free, has a dioxane content below 75 ppm, and its property as a non-irritant even after prolonged contact makes it suitable for diverse agricultural uses.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -2125,7 +2125,7 @@
     "sourceRow": 40,
     "sourceNumber": 37,
     "chemicalDescription": "Rapeseed oil ethoxylated",
-    "description": "Aidigro EM5126 is a non-ionic surfactant based on rapeseed oil ethoxylate that functions as an emulsifier with adjuvancy benefits that boost the efficacy of agrochemical formulations",
+    "description": "Aidigro EM5126 is a non-ionic surfactant based on rapeseed oil ethoxylate that functions as an emulsifier with adjuvancy benefits that boost the efficacy of agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -2180,7 +2180,7 @@
     "sourceRow": 41,
     "sourceNumber": 38,
     "chemicalDescription": "TSP-based ethoxylate",
-    "description": "Versatile emulsifier with ability to improve the stability and performance of agrochemical formulations, often with adjuvancy properties",
+    "description": "Versatile emulsifier with the ability to improve the stability and performance of agrochemical formulations, often with adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -2242,7 +2242,7 @@
     "sourceRow": 42,
     "sourceNumber": 39,
     "chemicalDescription": "TSP-based ethoxylate",
-    "description": "A high performance non-ionic surfactant that functions as emulsifier in pesticides and aid in the dispersion and stability of active ingredients, often with additional dispersing and wetting properties",
+    "description": "A high-performance non-ionic surfactant that functions as an emulsifier in pesticides and aids in the dispersion and stability of active ingredients, often with additional dispersing and wetting properties.",
     "functions": [
       "Emulsifiers",
       "Dispersants",
@@ -2302,8 +2302,8 @@
     "slug": "aidigro-df5426",
     "sourceRow": 43,
     "sourceNumber": 40,
-    "chemicalDescription": "EO/PO block coplymer",
-    "description": "Versatile low foam dispersant with wetting and penetrating effects, compatible with microbial formulations",
+    "chemicalDescription": "EO/PO block copolymer",
+    "description": "Versatile low-foam dispersant with wetting and penetrating effects, compatible with microbial formulations.",
     "functions": [
       "Dispersants",
       "Defoamer"
@@ -2358,8 +2358,8 @@
     "slug": "aidigro-da5526",
     "sourceRow": 44,
     "sourceNumber": 41,
-    "chemicalDescription": "EO/PO block coplymer",
-    "description": "Versatile low foaming non-ionic emulsifierfor oils and for solid dispersion in water based polymer dispersions based on EO/PO block copolymer",
+    "chemicalDescription": "EO/PO block copolymer",
+    "description": "Versatile, low-foaming non-ionic emulsifier for oils and for solid dispersion in water-based polymer dispersions, based on an EO/PO block copolymer.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -2417,7 +2417,7 @@
     "sourceRow": 45,
     "sourceNumber": 42,
     "chemicalDescription": "Polyacrylate",
-    "description": "Versatile dispersant and stabilizer for agrochemical formulations that can also function as a crystal growth inhibitor. It Is also used in seed coating",
+    "description": "Versatile dispersant and stabiliser for agrochemical formulations that can also function as a crystal growth inhibitor. It is also used in seed coating.",
     "functions": [
       "Dispersants",
       "Rheology modifiers"
@@ -2477,7 +2477,7 @@
     "sourceRow": 46,
     "sourceNumber": 43,
     "chemicalDescription": "Blend",
-    "description": "Effective general purpose emulsifier with wetting and adjuvancy properties",
+    "description": "Effective general-purpose emulsifier with wetting and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -2534,7 +2534,7 @@
     "sourceRow": 47,
     "sourceNumber": 44,
     "chemicalDescription": "Wax/mineral oil dispersion",
-    "description": "A VOC-free defoaming specialty that also functions as a dispersing agent",
+    "description": "A VOC-free defoaming speciality that also functions as a dispersing agent.",
     "functions": [
       "Dispersants",
       "Defoamer"
@@ -2594,7 +2594,7 @@
     "sourceRow": 48,
     "sourceNumber": 45,
     "chemicalDescription": "EO-PO-EO Block Copolymer",
-    "description": "A non-ionic versatile low foaming and highly effective emulsifier that can be used in a variety of formulation technologies",
+    "description": "A non-ionic versatile low-foaming and highly effective emulsifier that can be used in a variety of formulation technologies.",
     "functions": [
       "Emulsifiers",
       "Dispersants",
@@ -2656,7 +2656,7 @@
     "sourceRow": 49,
     "sourceNumber": 46,
     "chemicalDescription": "Castor oil + 31 EO (desalted)",
-    "description": "Non-ionic, salt-free emulsifier and solubilizer with wetting for SL & SC; biodegradable; dissolves well in water and soluble in most organic solvents. Additional benefits includes  compatibility with microbial biopesticide formulations (bacteria and fungi) for foliar and root zone application",
+    "description": "Non-ionic, salt-free emulsifier and solubiliser with wetting properties for SL and SC formulations; biodegradable; dissolves well in water and is soluble in most organic solvents. Additional benefits include compatibility with microbial biopesticide formulations (bacteria and fungi) for foliar and root-zone applications.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -2717,7 +2717,7 @@
     "sourceRow": 50,
     "sourceNumber": 47,
     "chemicalDescription": "Castor oil + 30 EO",
-    "description": "Efficient general purpose nonionic water-in-oil emulsifier",
+    "description": "Efficient general-purpose non-ionic water-in-oil emulsifier.",
     "functions": [
       "Emulsifiers"
     ],
@@ -2776,7 +2776,7 @@
     "sourceRow": 51,
     "sourceNumber": 48,
     "chemicalDescription": "Castor oil + 36 EO",
-    "description": "Efficient general purpose nonionic water-in-oil emulsifier; biodegradable",
+    "description": "Efficient general-purpose non-ionic water-in-oil emulsifier; biodegradable.",
     "functions": [
       "Emulsifiers",
       "Dispersants"
@@ -2836,7 +2836,7 @@
     "sourceRow": 52,
     "sourceNumber": 49,
     "chemicalDescription": "Castor oil + 40 EO",
-    "description": "Efficient general purpose nonionic water-in-oil emulsifier; biodegrabable product, dissolves well in water,and soluble in alcohols, oils and fatty acids.",
+    "description": "Efficient general-purpose non-ionic water-in-oil emulsifier; biodegradable product that dissolves well in water and is soluble in alcohols, oils and fatty acids.",
     "functions": [
       "Emulsifiers"
     ],
@@ -2895,7 +2895,7 @@
     "sourceRow": 53,
     "sourceNumber": 50,
     "chemicalDescription": "POE(6) Isotridecyl alcohol",
-    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -2955,7 +2955,7 @@
     "sourceRow": 54,
     "sourceNumber": 51,
     "chemicalDescription": "POE(10) Isotridecyl alcohol",
-    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3017,7 +3017,7 @@
     "sourceRow": 55,
     "sourceNumber": 52,
     "chemicalDescription": "POE(8) Isotridecyl alcohol",
-    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3079,7 +3079,7 @@
     "sourceRow": 56,
     "sourceNumber": 53,
     "chemicalDescription": "POE(9) Isotridecyl alcohol",
-    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3141,7 +3141,7 @@
     "sourceRow": 57,
     "sourceNumber": 54,
     "chemicalDescription": "POE(15) Isotridecyl alcohol",
-    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3203,7 +3203,7 @@
     "sourceRow": 58,
     "sourceNumber": 55,
     "chemicalDescription": "C9-C11 alcohol ethoxylated",
-    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agochemical formulations",
+    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -3259,7 +3259,7 @@
     "sourceRow": 59,
     "sourceNumber": 56,
     "chemicalDescription": "C9-C11 alcohol ethoxylated",
-    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agochemical formulations",
+    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -3317,7 +3317,7 @@
     "sourceRow": 60,
     "sourceNumber": 57,
     "chemicalDescription": "C9-C11 alcohol ethoxylated",
-    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agochemical formulations",
+    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -3373,7 +3373,7 @@
     "sourceRow": 61,
     "sourceNumber": 58,
     "chemicalDescription": "C12-C15 oxoalcohol ethoxylated",
-    "description": "Non-ionic surfactant based on synthetic alcohol that functions as amulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations",
+    "description": "Non-ionic surfactant based on synthetic alcohol that functions as an emulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3434,7 +3434,7 @@
     "sourceRow": 62,
     "sourceNumber": 59,
     "chemicalDescription": "C12-C15 oxoalcohol ethoxylated",
-    "description": "Non-ionic surfactant based on synthetic alcohol that functions as amulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations",
+    "description": "Non-ionic surfactant based on synthetic alcohol that functions as an emulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3495,7 +3495,7 @@
     "sourceRow": 63,
     "sourceNumber": 60,
     "chemicalDescription": "C12-C15 oxoalcohol ethoxylated",
-    "description": "Non-ionic surfactant based on synthetic alcohol that functions as amulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations",
+    "description": "Non-ionic surfactant based on synthetic alcohol that functions as an emulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3556,7 +3556,7 @@
     "sourceRow": 64,
     "sourceNumber": 61,
     "chemicalDescription": "C12-C14 alcohol ethoxylated",
-    "description": "Non-ionic emulsifier for agro formulations with wetting and adjuvancy properties",
+    "description": "Non-ionic emulsifier for agrochemical formulations with wetting and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3616,7 +3616,7 @@
     "sourceRow": 65,
     "sourceNumber": 62,
     "chemicalDescription": "C12-C14 alcohol ethoxylated",
-    "description": "Non-ionic emulsifier for agro formulations with wetting and adjuvancy properties",
+    "description": "Non-ionic emulsifier for agrochemical formulations with wetting and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3676,7 +3676,7 @@
     "sourceRow": 66,
     "sourceNumber": 63,
     "chemicalDescription": "C12-C14 alcohol ethoxylated",
-    "description": "Non-ionic emulsifier for agro formulations with wetting and adjuvancy properties",
+    "description": "Non-ionic emulsifier for agrochemical formulations with wetting and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3736,7 +3736,7 @@
     "sourceRow": 67,
     "sourceNumber": 64,
     "chemicalDescription": "C16-18 alcohol ethoxylated",
-    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also highly effective in stabilizing emulsions and creating stable agrochemical formulations.",
+    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also highly effective in stabilising emulsions and creating stable agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -3796,7 +3796,7 @@
     "sourceRow": 68,
     "sourceNumber": 65,
     "chemicalDescription": "C16-18 alcohol ethoxylated",
-    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also effective in stabilizing emulsions and creating stable agrochemical formulations.",
+    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also effective in stabilising emulsions and creating stable agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -3856,7 +3856,7 @@
     "sourceRow": 69,
     "sourceNumber": 66,
     "chemicalDescription": "C16-18 alcohol ethoxylated",
-    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also highly effective in stabilizing emulsions and creating stable agrochemical formulations.",
+    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also highly effective in stabilising emulsions and creating stable agrochemical formulations.",
     "functions": [
       "Emulsifiers",
       "Wetters, Penetrants and Spreaders"
@@ -3914,7 +3914,7 @@
     "sourceRow": 70,
     "sourceNumber": 67,
     "chemicalDescription": "Natural, unsaturated C16-18 alcohol ethoxylated",
-    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties",
+    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -3973,7 +3973,7 @@
     "sourceRow": 71,
     "sourceNumber": 68,
     "chemicalDescription": "Natural, unsaturated C16-18 alcohol ethoxylated",
-    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties",
+    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -4034,7 +4034,7 @@
     "sourceRow": 72,
     "sourceNumber": 69,
     "chemicalDescription": "Natural, unsaturated C16-18 alcohol ethoxylated",
-    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties",
+    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties.",
     "functions": [
       "Adjuvants",
       "Emulsifiers",
@@ -4336,7 +4336,7 @@
     "sourceRow": 77,
     "sourceNumber": 74,
     "chemicalDescription": "EO/PO Adduct",
-    "description": "A sustainable low foaming EO/PO adduct dispersant and stabiliser for SC and EC formulations.",
+    "description": "A sustainable low-foaming EO/PO adduct dispersant and stabiliser for SC and EC formulations.",
     "functions": [
       "Dispersants",
       "Defoamer"
@@ -4394,7 +4394,7 @@
     "sourceRow": 78,
     "sourceNumber": 75,
     "chemicalDescription": "Rapeseed oil methyl ester ethoxylated",
-    "description": "Non-ionic emulsifier with stabilizing and solubilizing properties. Additional beneffits includes excellent wetting and also offers adjuvancy effect in agrochemical formulations",
+    "description": "Non-ionic emulsifier with stabilising and solubilising properties. Additional benefits include excellent wetting properties and an adjuvancy effect in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -4452,7 +4452,7 @@
     "sourceRow": 79,
     "sourceNumber": 76,
     "chemicalDescription": "Rapeseed oil methyl ester ethoxylated",
-    "description": "Non-ionic emulsifier with stabilizing and solubilizing properties. Additional beneffits includes excellent wetting and also offers adjuvancy effect in agrochemical formulations",
+    "description": "Non-ionic emulsifier with stabilising and solubilising properties. Additional benefits include excellent wetting properties and an adjuvancy effect in agrochemical formulations.",
     "functions": [
       "Adjuvants",
       "Emulsifiers"
@@ -4510,7 +4510,7 @@
     "sourceRow": 80,
     "sourceNumber": 77,
     "chemicalDescription": "POE(20) Sorbitan monolaurate",
-    "description": "An excellent general purpose emulsifier for oils and water in diverese formulations",
+    "description": "An excellent general-purpose emulsifier for oils and water in diverse formulations.",
     "functions": [
       "Emulsifiers"
     ],
@@ -4566,7 +4566,7 @@
     "sourceRow": 81,
     "sourceNumber": 78,
     "chemicalDescription": "POE (80) Sorbitan Monooleate",
-    "description": "An excellent general purpose emulsifier for oils and water in diverese formulations",
+    "description": "An excellent general-purpose emulsifier for oils and water in diverse formulations.",
     "functions": [
       "Emulsifiers"
     ],
@@ -4622,7 +4622,7 @@
     "sourceRow": 82,
     "sourceNumber": 79,
     "chemicalDescription": "Dioctyl Sulfosuccinate Sodium Salt",
-    "description": "A versatile, readily biodegegradable anionic surfactant, that functions as a high performing wetting agent and emulsifier. Available in different solvents and approved for food contact applications",
+    "description": "A versatile, readily biodegradable anionic surfactant that functions as a high-performing wetting agent and emulsifier. Available in different solvents and approved for food contact applications.",
     "functions": [
       "Emulsifiers",
       "Dispersants",
@@ -4858,7 +4858,7 @@
     "slug": "aidigro-ga-2425",
     "sourceRow": 86,
     "sourceNumber": 83,
-    "chemicalDescription": "Prioprietary Surfactant blend",
+    "chemicalDescription": "Proprietary Surfactant blend",
     "description": "A ready-to-use, low-foaming in-can adjuvant formulated to enhance the performance of glyphosate (GA) and paraquat.",
     "functions": [
       "Adjuvants",
@@ -5736,8 +5736,8 @@
     "slug": "aidigro-ad6026",
     "sourceRow": 102,
     "sourceNumber": 99,
-    "chemicalDescription": "Prioprietary Surfactant blend",
-    "description": "Proprietary tank mix adjuvant with anti-drift property",
+    "chemicalDescription": "Proprietary Surfactant blend",
+    "description": "Proprietary tank-mix adjuvant with anti-drift properties.",
     "functions": [
       "Anti Drift",
       "Tank Mix Adjuvants"

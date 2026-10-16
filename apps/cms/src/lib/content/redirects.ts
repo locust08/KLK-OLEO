@@ -96,7 +96,7 @@ export const saveProductRedirect: CollectionAfterChangeHook = async ({
   req,
 }) => {
   if (
-    !previousDoc ||
+    !previousDoc?.slug ||
     previousDoc.slug === doc.slug ||
     req.context.editorialDraft ||
     !(await isAgrochemical(req.payload, doc.site))

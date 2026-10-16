@@ -17,6 +17,7 @@ export const productFilterParam: Record<ProductCategoryKey, string> = {
 export type ProductFilterState = {
   selected: Record<ProductCategoryKey, string[]>;
   query: string;
+  filterQuery?: string;
   page: number;
 };
 
@@ -30,6 +31,23 @@ export function createEmptyFilterState(): ProductFilterState {
     query: "",
     page: 1,
   };
+}
+
+/** Search taxonomy labels only; product text and slugs are deliberately excluded. */
+export function searchFilterOptions(
+  state: ProductFilterState,
+  groups: ProductCategoryGroups,
+  query: string,
+  categories: readonly ProductCategoryKey[] = productCategoryKeys,
+): ProductFilterState {
+  const keyword = query.trim().toLocaleLowerCase();
+  const selected = { ...state.selected };
+  for (const key of categories) {
+    selected[key] = keyword
+      ? groups[key].options.filter((option) => option.name.toLocaleLowerCase().includes(keyword)).map((option) => option.slug)
+      : [];
+  }
+  return { ...state, selected, filterQuery: query || undefined, page: 1 };
 }
 
 function matchesSearch(product: ProductViewModel, query: string) {
@@ -50,6 +68,7 @@ export function filterProducts(
   state: ProductFilterState,
   categories: readonly ProductCategoryKey[] = productCategoryKeys,
 ) {
+  if (state.filterQuery?.trim() && !categories.some((key) => state.selected[key].length)) return [];
   return products.filter(
     (product) =>
       matchesSearch(product, state.query) &&
@@ -143,6 +162,7 @@ export function parseFilterState(
       .filter((value, index, values) => valid.has(value) && values.indexOf(value) === index);
   }
   state.query = params.get("q")?.trim() ?? "";
+  if (params.get("filterSearch")) state.filterQuery = params.get("filterSearch")!;
   const page = Number.parseInt(params.get("page") ?? "1", 10);
   state.page = Number.isFinite(page) && page > 0 ? page : 1;
   return state;
@@ -160,6 +180,8 @@ export function updateFilterParams(
   }
   if (state.query) params.set("q", state.query);
   else params.delete("q");
+  if (state.filterQuery) params.set("filterSearch", state.filterQuery);
+  else params.delete("filterSearch");
   if (state.page > 1) params.set("page", String(state.page));
   else params.delete("page");
   return params;

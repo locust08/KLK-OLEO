@@ -50,6 +50,13 @@ export async function GET(
     const product = await getProductBySlug(slug);
     if (!product || product.brochureEnabled === false)
       return new Response("Brochure unavailable", { status: 404 });
+    if(process.env.CMS_CLOUDFLARE==="1"){
+      const {getCloudflareContext}=await import('@opennextjs/cloudflare');const {env}=await getCloudflareContext({async:true});const {draft,user}=await editorialReadContext();const {downloadProductPdf,renderProductPdf}=await import('@/lib/product-pdf/worker');
+      if(!draft||!user)return downloadProductPdf(request,env,slug);
+      const {draftPdfSource}=await import('@/lib/product-pdf/presentation');const snapshot=await draftPdfSource(slug);if(!snapshot)return new Response('Brochure unavailable',{status:404});
+      const bytes=await renderProductPdf(env,snapshot,{cookie:request.headers.get('cookie')||'',origin:new URL(request.url).origin,...(request.headers.get('authorization')?{authorization:request.headers.get('authorization')!}:{})});
+      const filename=product.name.replace(/[^a-zA-Z0-9_-]+/g,'-');return new Response(bytes as Uint8Array<ArrayBuffer>,{headers:{'Content-Type':'application/pdf','Content-Disposition':`attachment; filename="DRAFT-${filename}.pdf"`,'Cache-Control':'private, no-store'}});
+    }
     const site = await getSiteChrome();
     if (!site) return new Response("Brochure unavailable", { status: 503 });
     if (product.imageUrl && !product.pdfImageUrl)

@@ -205,6 +205,7 @@ export const validateEditorialPublication: CollectionBeforeChangeHook = async ({
         throw new APIError("PDF variants must be PNG or JPEG images.", 400);
     }
     if (
+      process.env.CMS_CLOUDFLARE !== "1" &&
       originalDoc?.id &&
       !/^image\/(png|jpeg)$/.test(
         req.file?.mimetype ?? merged.mimeType ?? "",
@@ -262,6 +263,7 @@ export const validateEditorialPublication: CollectionBeforeChangeHook = async ({
             );
   }
   if (
+    process.env.CMS_CLOUDFLARE !== "1" &&
     collection.slug === "products" &&
     merged.brochureEnabled !== false &&
     merged.image
@@ -292,6 +294,11 @@ export const validateEditorialPublication: CollectionBeforeChangeHook = async ({
       );
   }
   if (collection.slug === "site-presentation") {
+    if (!merged.navigation?.length)
+      throw new APIError(
+        "Provide at least one navigation link before publishing.",
+        400,
+      );
     const keys = (merged.copy ?? []).map((c: { key: string }) => c.key);
     if (
       interfaceKeys.some((k) => !keys.includes(k)) ||

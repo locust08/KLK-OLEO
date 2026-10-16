@@ -34,22 +34,13 @@ export function ProductCategoryPage({
           eyebrow={page?.title}
           image={page?.heroImage}
         />
-        <section className="catalog-category-intro">
-          <nav aria-label="Product category pages">
-            {productCategoryKeys.map((key) => (
-              <Link
-                key={key}
-                className={key === category ? "is-active" : undefined}
-                href={`/products/category/${key}`}
-              >
-                {groups[key].label}
-              </Link>
-            ))}
-          </nav>
-          {group.showDescription && group.description && (
-            <p>{group.description}</p>
-          )}
-        </section>
+        {group.showDescription && group.description && (
+          <section className="catalog-category-intro">
+            {group.showDescription && group.description && (
+              <p>{group.description}</p>
+            )}
+          </section>
+        )}
         <Suspense fallback={null}>
           <ProductListing
             category={category}

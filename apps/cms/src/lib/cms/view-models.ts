@@ -110,6 +110,8 @@ export type SiteChromeViewModel = {
   parentDomain: string;
   parentLinkLabel: string;
   navigation: EditorialLink[];
+  draftPreview?: boolean;
+  contactBanner?: import("../content/model").EditorialSection;
   copy: InterfaceCopy;
   footer: {
     logo?: EditorialImage;

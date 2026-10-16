@@ -86,6 +86,40 @@ test("populated product attributes remain visible", () => {
   assert.doesNotMatch(html, /<span aria-hidden="true">—<\/span>/);
 });
 
+test("PDF application profile uses a row-labelled table while retaining values and placeholders", () => {
+  const html = renderToStaticMarkup(createElement(ProductDetailPage, { product, copy, contactBanner:{...baseline.pages.home.content.contact,image:{url:"/images/home/contact-agriculture-background.webp",alt:"Agricultural crops"}}, printOnly: true }));
+  assert.match(html, /<table class="product-pdf-attributes" aria-label="Product application profile">/);
+  assert.equal((html.match(/<th scope="row">/g) ?? []).length, 3);
+  assert.match(html, /<th scope="row">Functionalities<\/th><td><ul>/);
+  assert.match(html, /Anti Drift/);
+  assert.match(html, /<th scope="row">Formulation Type<\/th>/);
+  assert.match(html, /<th scope="row">Regulatory\/Labels<\/th>/);
+  assert.equal((html.match(/<span aria-hidden="true">—<\/span>/g) ?? []).length, 2);
+  assert.doesNotMatch(html, /class="product-spec-panel"|Request Brochure/);
+});
+
+test("PDF includes the shared contact banner with an absolute website contact link", () => {
+  const html = renderToStaticMarkup(createElement(ProductDetailPage, { product, copy, contactBanner:{...baseline.pages.home.content.contact,image:{url:"/images/home/contact-agriculture-background.webp",alt:"Agricultural crops"}}, printOnly: true }));
+  assert.match(html, /contact-cta contact-cta--image product-pdf-contact/);
+  assert.match(html, /Still Can&#x27;t Find What You&#x27;re Looking For\?/);
+  assert.match(html, /href="https?:\/\/[^\"]+\/contact"/);
+  assert.match(html, /contact-agriculture-background.webp/);
+});
+
+test("product attributes link using their CMS slugs and the correct category filters", () => {
+  const html = renderDetailContent({
+    ...product,
+    functionalitySlugs: ["cms-function-slug"],
+    formulations: ["Oil Dispersion (OD)"],
+    formulationSlugs: ["oil-dispersion-od"],
+    labels: ["REACH"],
+    labelSlugs: ["reach"],
+  });
+  assert.match(html, /href="\/products\/category\/functionalities\?function=cms-function-slug"/);
+  assert.match(html, /href="\/products\/category\/formulation-type\?formulation=oil-dispersion-od"/);
+  assert.match(html, /href="\/products\/category\/regulatory-labels\?label=reach"/);
+});
+
 test("slash-separated hero titles preserve text with a safe line-break opportunity", () => {
   const html = renderToStaticMarkup(
     createElement(ProductHero, { title: "Regulatory/Labels" }),

@@ -16,6 +16,8 @@ export type EditorialImage = {
   url: string;
   alt: string;
   mobileUrl?: string;
+  tabletUrl?: string;
+  revision?: string;
   position?: string;
   id?: number;
 };

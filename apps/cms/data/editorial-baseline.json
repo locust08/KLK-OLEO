@@ -302,8 +302,16 @@
       "hero": {
         "heading": "Contact Us",
         "image": {
-          "asset": "/images/home/agrochemical-spraying-hero.webp",
-          "alt": "Agricultural crops"
+          "asset": "/images/contact/contact-hero-desktop.png",
+          "alt": "KLK OLEO Agrochemicals contact banner"
+        },
+        "tabletImage": {
+          "asset": "/images/contact/contact-hero-tablet.png",
+          "alt": "KLK OLEO Agrochemicals contact banner for tablets"
+        },
+        "mobileImage": {
+          "asset": "/images/contact/contact-hero-mobile.png",
+          "alt": "KLK OLEO Agrochemicals contact banner for mobile"
         }
       },
       "content": {
@@ -472,15 +480,15 @@
       },
       {
         "key": "functionLabel",
-        "text": "Product Function"
+        "text": "Functionality"
       },
       {
         "key": "formulationLabel",
-        "text": "Formulation"
+        "text": "Formulation Type"
       },
       {
         "key": "regulationLabel",
-        "text": "Regulation / Labels"
+        "text": "Regulatory/Labels"
       },
       {
         "key": "quickLinks",
@@ -572,7 +580,7 @@
       },
       {
         "key": "brochure",
-        "text": "Product brochure"
+        "text": "Request Brochure"
       },
       {
         "key": "brochureLoading",
@@ -725,6 +733,26 @@
       {
         "key": "detailRegulation",
         "text": "Regulatory/Labels"
+      },
+      {
+        "key": "filterSearch",
+        "text": "Search filters"
+      },
+      {
+        "key": "filterSearchPlaceholder",
+        "text": "Search filter options…"
+      },
+      {
+        "key": "filterNoMatch",
+        "text": "No matching filter options."
+      },
+      {
+        "key": "brochureReady",
+        "text": "Your brochure has downloaded."
+      },
+      {
+        "key": "brochurePending",
+        "text": "Your brochure is still being prepared. Please try again shortly."
       }
     ],
     "catalogue": {

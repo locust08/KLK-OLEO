@@ -10,6 +10,7 @@ import {
   calculateFacetCounts,
   filterProducts,
   paginateProducts,
+  searchFilterOptions,
   parseFilterState,
   toggleProductFilter,
   updateFilterParams,
@@ -35,12 +36,14 @@ function FilterGroup({
   groups,
   selected,
   counts,
+  filterQuery,
   onChange,
 }: {
   category: ProductCategoryKey;
   groups: ProductCategoryGroups;
   selected: string[];
   counts: Record<string, number>;
+  filterQuery: string;
   onChange: (value: string) => void;
 }) {
   const group = groups[category];
@@ -52,7 +55,10 @@ function FilterGroup({
         ? copy.formulationLabel
         : copy.regulationLabel;
   return (
-    <details className={styles.group}>
+    <details
+      className={styles.group}
+      open={filterQuery.trim() ? true : undefined}
+    >
       <summary>
         {title}
         {selected.length > 0 && (
@@ -64,36 +70,42 @@ function FilterGroup({
       </summary>
       <fieldset className={`catalog-filter-group ${styles.options}`}>
         <legend className={styles.legend}>{title}</legend>
-        {group.options.map((option) => {
-          const count = counts[option.slug] ?? 0;
-          const isSelected = selected.includes(option.slug);
-          const isDisabled = count === 0 && !isSelected;
-          return (
-            <label
-              title={option.description}
-              key={option.id}
-              className={
-                [
-                  isSelected ? "is-selected" : "",
-                  isDisabled ? "is-disabled" : "",
-                ]
-                  .filter(Boolean)
-                  .join(" ") || undefined
-              }
-            >
-              <input
-                type="checkbox"
-                checked={isSelected}
-                disabled={isDisabled}
-                onChange={() => onChange(option.slug)}
-              />
-              <span>
-                {option.name}{" "}
-                <span className="catalog-filter-count">({count})</span>
-              </span>
-            </label>
-          );
-        })}
+        {group.options
+          .filter((option) =>
+            option.name
+              .toLocaleLowerCase()
+              .includes(filterQuery.trim().toLocaleLowerCase()),
+          )
+          .map((option) => {
+            const count = counts[option.slug] ?? 0;
+            const isSelected = selected.includes(option.slug);
+            const isDisabled = count === 0 && !isSelected;
+            return (
+              <label
+                title={option.description}
+                key={option.id}
+                className={
+                  [
+                    isSelected ? "is-selected" : "",
+                    isDisabled ? "is-disabled" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ") || undefined
+                }
+              >
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  disabled={isDisabled}
+                  onChange={() => onChange(option.slug)}
+                />
+                <span>
+                  {option.name}{" "}
+                  <span className="catalog-filter-count">({count})</span>
+                </span>
+              </label>
+            );
+          })}
       </fieldset>
     </details>
   );
@@ -127,7 +139,10 @@ export function ProductListing({
   };
 
   const toggle = (key: ProductCategoryKey, value: string) => {
-    setUrlState(toggleProductFilter(state, key, value));
+    setUrlState({
+      ...toggleProductFilter(state, key, value),
+      filterQuery: undefined,
+    });
   };
 
   const results = useMemo(
@@ -170,7 +185,7 @@ export function ProductListing({
           {filtersOpen ? copy.hideFilters : copy.showFilters}
           {selectedCount > 0 ? ` (${selectedCount})` : ""}
         </button>
-        {(selectedCount > 0 || state.query) && (
+        {(selectedCount > 0 || state.query || state.filterQuery) && (
           <button type="button" onClick={clearFilters}>
             {copy.clearFilters}
           </button>
@@ -182,7 +197,7 @@ export function ProductListing({
         className={`catalog-filters${filtersOpen ? " is-open" : ""}`}
         aria-label="Filter products"
       >
-        {(selectedCount > 0 || state.query) && (
+        {(selectedCount > 0 || state.query || state.filterQuery) && (
           <button
             type="button"
             className={`catalog-clear ${styles.clear}`}
@@ -191,12 +206,38 @@ export function ProductListing({
             {copy.clearFilters}
           </button>
         )}
+        <label className={styles.search}>
+          <span>{copy.filterSearch}</span>
+          <input
+            type="search"
+            placeholder={copy.filterSearchPlaceholder}
+            value={state.filterQuery ?? ""}
+            onChange={(event) => {
+              const next = searchFilterOptions(
+                state,
+                groups,
+                event.target.value,
+                categories,
+              );
+              const params = updateFilterParams(searchParams, next);
+              window.history.replaceState(
+                null,
+                "",
+                params.size ? `${pathname}?${params}` : pathname,
+              );
+            }}
+          />
+        </label>
+        {state.filterQuery?.trim() && selectedCount === 0 && (
+          <p role="status">{copy.filterNoMatch}</p>
+        )}
         {categories.map((key) => (
           <FilterGroup
             key={key}
             category={key}
             groups={groups}
             selected={state.selected[key]}
+            filterQuery={state.filterQuery ?? ""}
             counts={facetCounts[key]}
             onChange={(value) => toggle(key, value)}
           />

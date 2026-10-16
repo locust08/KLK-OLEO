@@ -1,5 +1,10 @@
 /** Stable interface keys; wording is stored in site-presentation, not used as a runtime fallback. */
 export const interfaceKeys = [
+  "filterSearch",
+  "filterSearchPlaceholder",
+  "filterNoMatch",
+  "brochureReady",
+  "brochurePending",
   "detailFunction",
   "detailFormulation",
   "detailRegulation",

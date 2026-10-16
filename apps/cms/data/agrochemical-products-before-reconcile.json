@@ -1,0 +1,497 @@
+[
+  {
+    "slug": "aidigro-em1225",
+    "description": "An emulsifier and dispersant used to produce stable concentrated emulsions with pesticide active ingedients. Can also be used in a suspoemulsion formulations",
+    "chemicalDescription": "Non-ionic block copolymer"
+  },
+  {
+    "slug": "aidigro-em1325",
+    "description": "Polymeric non-ionic block plolymer with low HLB value which can be used for concentrated aqueous emulsion formulations and nonaqueous dispersant. Additional benefits include adjuvancy due to increased spray retention.",
+    "chemicalDescription": "Surfactant blend"
+  },
+  {
+    "slug": "aidigro-df1425",
+    "description": "Versatile defoamer and low foam dispersant with adjuvancy effects, compatible with microbial formulations. Additional benefit of silicone and mineral oil free",
+    "chemicalDescription": "Ester EO/PO block"
+  },
+  {
+    "slug": "aidigro-df1525",
+    "description": "A defoaming specialty that also functions as a dispersing agent. Additional benefit of mineral oil and VOC-free",
+    "chemicalDescription": "Wax/vegetable oil dispersion"
+  },
+  {
+    "slug": "aidigro-da1625",
+    "description": "Non-ionic dispersant and emulsifier with adjuvancy effects and wetting in oil dispersion formulations.",
+    "chemicalDescription": "EO/PO BLOCK coplymer"
+  },
+  {
+    "slug": "aidigro-da1725",
+    "description": "An anionic dispersing agent for pesticide formulation and also compatible with microbial biopesticide formulations (bacteria and fungi) for foliar and root zone application",
+    "chemicalDescription": "TSP-based phosphate ester"
+  },
+  {
+    "slug": "aidigro-da1825",
+    "description": "An anionic dispersing agent with wetting and penetrating properties, compatible with Pseudomonas and Bacillus spp.",
+    "chemicalDescription": "Ethoxylated phosphate ester"
+  },
+  {
+    "slug": "aidigro-da1925",
+    "description": "Readily biodegradable anionic dispersing agent with wetting and penetrating properties, compatible with Pseudomonas and Bacillus spp.",
+    "chemicalDescription": "Ethoxylated phosphate ester"
+  },
+  {
+    "slug": "aidigro-em2025",
+    "description": "Non-ionic surfactant which functions as emulsifier and can also be used as inert with adjuvancy properties. Also compatible with in can microbial formulations.",
+    "chemicalDescription": "Sorbeth-40 Hexaoleate"
+  },
+  {
+    "slug": "aidigro-em2125",
+    "description": "Non-ionic O/W emulsifier with adjuvancy and wetting properties",
+    "chemicalDescription": "PEG-50 sorbitan peroleate"
+  },
+  {
+    "slug": "aidigro-wa1125",
+    "description": "Aidigro WA1125 is a low odour,  non-ionic surfactant based on unique EO/PO copolymer with excellent wetting and penetrating function. \n\nAdditional benefits includes:\nSuper wetting\nPenetrating\nEmulsification\nLow odour\nOutstanding formulation and handling properties",
+    "chemicalDescription": "Proprietary"
+  },
+  {
+    "slug": "aidigro-em2626",
+    "description": "1,4-dioxane free, Anionic emulsifier (Calcium-based) typically combined with castor oil ethoxylates.",
+    "chemicalDescription": "Branched dodecylbenzene sulphonate, Ca salt"
+  },
+  {
+    "slug": "aidigro-em2726",
+    "description": "1,4-dioxane free, anionic emulsifier (Calcium-based) typically combined with castor oil ethoxylates.",
+    "chemicalDescription": "Linear dodecylbenzene sulphonate, Ca salt"
+  },
+  {
+    "slug": "aidigro-em2826",
+    "description": "1,4-dioxane free, anionic emulsifier with wetting properties",
+    "chemicalDescription": "Castor oil suphonate, Na salt"
+  },
+  {
+    "slug": "aidigro-em2926",
+    "description": "Anionic emulsifier and dispersant with additional wetting benefit, suitable for agrochemical formulations to improve emulsification, wetting, and dispersion stability.",
+    "chemicalDescription": "Iso C13 alcohol + 20 EO sulphate, Na salt"
+  },
+  {
+    "slug": "aidigro-em3026",
+    "description": "Anionic emulsifier with beneficial adjuvancy properties",
+    "chemicalDescription": "C12-C14 alcohol + 4 EO sulphate, Na salt"
+  },
+  {
+    "slug": "aidigro-da3126",
+    "description": "Versatle dispersing agent for agrochemical formulations",
+    "chemicalDescription": "Alcohol phosphate ester"
+  },
+  {
+    "slug": "aidigro-da3226",
+    "description": "Efficient as a dispersing agent in agrochemical formulations",
+    "chemicalDescription": "Alcohol phosphate ester"
+  },
+  {
+    "slug": "aidigro-da3326",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations",
+    "chemicalDescription": "Alcohol phosphate ester"
+  },
+  {
+    "slug": "aidigro-da-3426",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-3526",
+    "description": "Readily biodegradable anionic surfactant that functions as a dispersing agent in agrochemical formulations",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-3626",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Alcohol phosphate ester"
+  },
+  {
+    "slug": "aidigro-da-3726",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-3826",
+    "description": "Readily biodegradable anionic surfactant that functions as dispersants",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-3926",
+    "description": "Biodegradable ethoxylated phosphate ester that functions as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4026",
+    "description": "Efficient as a dispersing agent with emulsifier and adjuvancy properties in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4126",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Alcohol phosphate ester"
+  },
+  {
+    "slug": "aidigro-da-4226",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4326",
+    "description": "An anionic dispersing agent with wetting and penetrating properties, compatible with microbial formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4426",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4526",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4626",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4726",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4826",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-da-4926",
+    "description": "Efficient as a dispersing agent in agro formulation",
+    "chemicalDescription": "Phosphate ester ethoxylated"
+  },
+  {
+    "slug": "aidigro-em5026",
+    "description": "Non-ionic surfactant based on polyglycol ester that functions as an emulsifier in agrochemical formulations. Additional benefits of Aidigro EM5026 is its excellent wetting properties. Aidigro EM5026 is label-free, dioxane under 75 ppm, and its property as a non-irritant even after prolonged contact makes it suitable for diverse agricultural use.",
+    "chemicalDescription": "Polyglycol ester"
+  },
+  {
+    "slug": "aidigro-em5126",
+    "description": "Aidigro EM5126 is a non-ionic surfactant based on rapeseed oil ethoxylate that functions as an emulsifier with adjuvancy benefits that boost the efficacy of agrochemical formulations",
+    "chemicalDescription": "Rapeseed oil ethoxylated"
+  },
+  {
+    "slug": "aidigro-em-5226",
+    "description": "Versatile emulsifier with ability to improve the stability and performance of agrochemical formulations, often with adjuvancy properties",
+    "chemicalDescription": "TSP-based ethoxylate"
+  },
+  {
+    "slug": "aidigro-em5326",
+    "description": "A high performance non-ionic surfactant that functions as emulsifier in pesticides and aid in the dispersion and stability of active ingredients, often with additional dispersing and wetting properties",
+    "chemicalDescription": "TSP-based ethoxylate"
+  },
+  {
+    "slug": "aidigro-df5426",
+    "description": "Versatile low foam dispersant with wetting and penetrating effects, compatible with microbial formulations",
+    "chemicalDescription": "EO/PO block coplymer"
+  },
+  {
+    "slug": "aidigro-da5526",
+    "description": "Versatile low foaming non-ionic emulsifierfor oils and for solid dispersion in water based polymer dispersions based on EO/PO block copolymer",
+    "chemicalDescription": "EO/PO block coplymer"
+  },
+  {
+    "slug": "aidigro-da5626",
+    "description": "Versatile dispersant and stabilizer for agrochemical formulations that can also function as a crystal growth inhibitor. It Is also used in seed coating",
+    "chemicalDescription": "Polyacrylate"
+  },
+  {
+    "slug": "aidigro-em5726",
+    "description": "Effective general purpose emulsifier with wetting and adjuvancy properties",
+    "chemicalDescription": "Blend"
+  },
+  {
+    "slug": "aidigro-df5826",
+    "description": "A VOC-free defoaming specialty that also functions as a dispersing agent",
+    "chemicalDescription": "Wax/mineral oil dispersion"
+  },
+  {
+    "slug": "aidigro-em5926",
+    "description": "A non-ionic versatile low foaming and highly effective emulsifier that can be used in a variety of formulation technologies",
+    "chemicalDescription": "EO-PO-EO Block Copolymer"
+  },
+  {
+    "slug": "servirox-oeg-59e",
+    "description": "Non-ionic, salt-free emulsifier and solubilizer with wetting for SL & SC; biodegradable; dissolves well in water and soluble in most organic solvents. Additional benefits includes  compatibility with microbial biopesticide formulations (bacteria and fungi) for foliar and root zone application",
+    "chemicalDescription": "Castor oil + 31 EO (desalted)"
+  },
+  {
+    "slug": "hedipin-r-300",
+    "description": "Efficient general purpose nonionic water-in-oil emulsifier",
+    "chemicalDescription": "Castor oil + 30 EO"
+  },
+  {
+    "slug": "hedipin-r-360",
+    "description": "Efficient general purpose nonionic water-in-oil emulsifier; biodegradable",
+    "chemicalDescription": "Castor oil + 36 EO"
+  },
+  {
+    "slug": "hedipin-r-400",
+    "description": "Efficient general purpose nonionic water-in-oil emulsifier; biodegrabable product, dissolves well in water,and soluble in alcohols, oils and fatty acids.",
+    "chemicalDescription": "Castor oil + 40 EO"
+  },
+  {
+    "slug": "imbentin-t-060",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "chemicalDescription": "POE(6) Isotridecyl alcohol"
+  },
+  {
+    "slug": "imbentin-t-65",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "chemicalDescription": "POE(10) Isotridecyl alcohol"
+  },
+  {
+    "slug": "imbentin-t-080",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "chemicalDescription": "POE(8) Isotridecyl alcohol"
+  },
+  {
+    "slug": "imbentin-t-090-90",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "chemicalDescription": "POE(9) Isotridecyl alcohol"
+  },
+  {
+    "slug": "imbentin-t-150-80",
+    "description": "Non-ionic surfactant that functions as an emulsifier with wetting and adjuvancy properties in agro formulations",
+    "chemicalDescription": "POE(15) Isotridecyl alcohol"
+  },
+  {
+    "slug": "imbentin-c-91-040",
+    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agochemical formulations",
+    "chemicalDescription": "C9-C11 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-c-91-060",
+    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agochemical formulations",
+    "chemicalDescription": "C9-C11 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-c-91-080",
+    "description": "Non-ionic emulsifier with wetting and adjuvancy benefits in agochemical formulations",
+    "chemicalDescription": "C9-C11 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-c-125-030",
+    "description": "Non-ionic surfactant based on synthetic alcohol that functions as amulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations",
+    "chemicalDescription": "C12-C15 oxoalcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-c-125-060",
+    "description": "Non-ionic surfactant based on synthetic alcohol that functions as amulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations",
+    "chemicalDescription": "C12-C15 oxoalcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-c-125-070",
+    "description": "Non-ionic surfactant based on synthetic alcohol that functions as amulsifying agent in agrochemical formulations. Additional benefits include wetting and adjuvancy in SL formulations",
+    "chemicalDescription": "C12-C15 oxoalcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-ag-124s-020-0",
+    "description": "Non-ionic emulsifier for agro formulations with wetting and adjuvancy properties",
+    "chemicalDescription": "C12-C14 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-ag-124s-080",
+    "description": "Non-ionic emulsifier for agro formulations with wetting and adjuvancy properties",
+    "chemicalDescription": "C12-C14 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-ag-124s-110-90",
+    "description": "Non-ionic emulsifier for agro formulations with wetting and adjuvancy properties",
+    "chemicalDescription": "C12-C14 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-ag-168s-110",
+    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also highly effective in stabilizing emulsions and creating stable agrochemical formulations.",
+    "chemicalDescription": "C16-18 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-ag-168s-250-mb",
+    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also effective in stabilizing emulsions and creating stable agrochemical formulations.",
+    "chemicalDescription": "C16-18 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-ag-168s-800-1",
+    "description": "Non-ionic surfactant and an effective oil-in-water emulsifier that also functions as a wetting and spreading agent. It is also highly effective in stabilizing emulsions and creating stable agrochemical formulations.",
+    "chemicalDescription": "C16-18 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-poa-020-5055",
+    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties",
+    "chemicalDescription": "Natural, unsaturated C16-18 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-poa-100",
+    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties",
+    "chemicalDescription": "Natural, unsaturated C16-18 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-poa-250-6065-e",
+    "description": "Natural non-ionic surfactant with high emulsifying, dispersing and adjuvancy properties",
+    "chemicalDescription": "Natural, unsaturated C16-18 alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-e-100-060",
+    "description": "Effective oil-in-water emulsifier with adjuvancy effects.",
+    "chemicalDescription": "Iso-C10 Alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-e-100-070-90",
+    "description": "Effective oil-in-water emulsifier with adjuvancy effects.",
+    "chemicalDescription": "Iso-C10 Alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-e-100-090",
+    "description": "Effective oil-in-water emulsifier with adjuvancy effects.",
+    "chemicalDescription": "Iso-C10 Alcohol ethoxylated"
+  },
+  {
+    "slug": "imbentin-g-100-080",
+    "description": "Effective oil-in-water emulsifier with adjuvancy effects.",
+    "chemicalDescription": "POE(8) 2-propyl-1-heptanol"
+  },
+  {
+    "slug": "greenbentin-sg-845-ag-mb",
+    "description": "A sustainable low foaming EO/PO adduct dispersant and stabiliser for SC and EC formulations.",
+    "chemicalDescription": "EO/PO Adduct"
+  },
+  {
+    "slug": "greenbentin-xes-070",
+    "description": "Non-ionic emulsifier with stabilizing and solubilizing properties. Additional beneffits includes excellent wetting and also offers adjuvancy effect in agrochemical formulations",
+    "chemicalDescription": "Rapeseed oil methyl ester ethoxylated"
+  },
+  {
+    "slug": "greenbentin-xes-100",
+    "description": "Non-ionic emulsifier with stabilizing and solubilizing properties. Additional beneffits includes excellent wetting and also offers adjuvancy effect in agrochemical formulations",
+    "chemicalDescription": "Rapeseed oil methyl ester ethoxylated"
+  },
+  {
+    "slug": "kotilen-20",
+    "description": "An excellent general purpose emulsifier for oils and water in diverese formulations",
+    "chemicalDescription": "POE(20) Sorbitan monolaurate"
+  },
+  {
+    "slug": "kotilen-80",
+    "description": "An excellent general purpose emulsifier for oils and water in diverese formulations",
+    "chemicalDescription": "POE (80) Sorbitan Monooleate"
+  },
+  {
+    "slug": "serwet-wh",
+    "description": "A versatile, readily biodegegradable anionic surfactant, that functions as a high performing wetting agent and emulsifier. Available in different solvents and approved for food contact applications",
+    "chemicalDescription": "Dioctyl Sulfosuccinate Sodium Salt"
+  },
+  {
+    "slug": "aidigro-pn123",
+    "description": "An effective tank-mix adjuvant that also functions as an emulsifier within EW formulation systems.",
+    "chemicalDescription": "Nonionic Surfactant (Silicone free)"
+  },
+  {
+    "slug": "aidigro-pn223",
+    "description": "An effective tank-mix adjuvant that enhances spray performance while providing excellent anti-drift properties.",
+    "chemicalDescription": "Nonionic Surfactant (Silicone free)"
+  },
+  {
+    "slug": "aidigro-pn323",
+    "description": "An effective tank-mix adjuvant that enhances spray performance.",
+    "chemicalDescription": "Nonionic Surfactant (Silicone free)"
+  },
+  {
+    "slug": "aidigro-ga-2425",
+    "description": "A ready-to-use, low-foaming in-can adjuvant formulated to enhance the performance of glyphosate (GA) and paraquat.",
+    "chemicalDescription": "Prioprietary Surfactant blend"
+  },
+  {
+    "slug": "palmera-a5608",
+    "description": "Serves as an active ingredient in the formulation of herbicides.",
+    "chemicalDescription": "Caprylic-Capric Acid"
+  },
+  {
+    "slug": "palmfonate-6703",
+    "description": "Wetting agent and adjuvant for Glufosinate and Paraquat and other water-soluble pesticides.",
+    "chemicalDescription": "Methyl Ester Sulphonate 30%"
+  },
+  {
+    "slug": "palmfonate-6709-f",
+    "description": "Wetting agent and adjuvant for Glufosinate and Paraquat and other water-soluble pesticides.",
+    "chemicalDescription": "Methyl Ester Sulphonate 90%"
+  },
+  {
+    "slug": "tensagex-eom370b",
+    "description": "Wetting agent and adjuvant for Glufosinate and Paraquat and other water-soluble pesticides.",
+    "chemicalDescription": "POE (1) Sodium Lauryl Ether Sulfate"
+  },
+  {
+    "slug": "tensagex-eom670b",
+    "description": "Wetting agent and adjuvant for Glufosinate and Paraquat and other water-soluble pesticides.",
+    "chemicalDescription": "POE (2) Sodium Lauryl Ether Sulfate"
+  },
+  {
+    "slug": "palmera-g995u",
+    "description": "Suitable as a humectant in SL and SC formulations.",
+    "chemicalDescription": "Glycerine 99.5%"
+  },
+  {
+    "slug": "aidigro-em824",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Silicon-free non-ionic surfactant"
+  },
+  {
+    "slug": "aidigro-sv424",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Methyl Caproate Caprate"
+  },
+  {
+    "slug": "aidigro-sv524",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Methyl Laurate Myristate"
+  },
+  {
+    "slug": "aidigro-sv624",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Methyl Palmitate-Stearate PK, Refined"
+  },
+  {
+    "slug": "aidigro-sv724",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Methyl Oleate"
+  },
+  {
+    "slug": "aidigro-sv1025",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Methyl Oleate"
+  },
+  {
+    "slug": "aidigro-sv2525",
+    "description": "Suitable as a solvent for EC or OD and as a base for adjuvants.",
+    "chemicalDescription": "Methyl Laurate-Stearate"
+  },
+  {
+    "slug": "tensopol-p495",
+    "description": "Enhances the disintegration of solid formulations.",
+    "chemicalDescription": "Sodium Lauryl Sulfate 95%"
+  },
+  {
+    "slug": "tensopol-l430sp",
+    "description": "Enhances the disintegration of solid formulations.",
+    "chemicalDescription": "Sodium Lauryl Sulfate 28%"
+  },
+  {
+    "slug": "aidigro-ad6026",
+    "description": "Proprietary tank mix adjuvant with anti-drift property",
+    "chemicalDescription": "Prioprietary Surfactant blend"
+  }
+]

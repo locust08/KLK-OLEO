@@ -6,12 +6,13 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { siteAssets } from "@/data/site-assets";
 import { useSite } from "./SiteContext";
+import { ContactBanner } from "./ContactBanner";
 
 export function SiteFooter() {
   const site = useSite();
   const { footer, copy } = site;
   return (
-    <footer className="site-footer">
+    <><ContactBanner /><footer className="site-footer">
       <div className="footer-inner">
         <section className="footer-brand" aria-labelledby="footer-brand-title">
           {footer.logo && (
@@ -130,6 +131,6 @@ export function SiteFooter() {
           ))}
         </nav>
       </div>
-    </footer>
+    </footer></>
   );
 }

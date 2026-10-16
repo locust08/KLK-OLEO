@@ -5,7 +5,7 @@ import { ProductCategoryCarousel } from "./ProductCategoryCarousel";
 import { HomeFaq } from "./HomeFaq";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { TextCta } from "@/components/ui/TextCta";
 import {
   EditorialMedia,
   imageBackground,
@@ -58,10 +58,7 @@ export function HomePage({
                   ))}
                 </ul>
                 {intro.ctaPath && (
-                  <PrimaryButton href={intro.ctaPath}>
-                    {intro.ctaLabel}
-                    <FaAnglesRight aria-hidden="true" />
-                  </PrimaryButton>
+                  <TextCta href={intro.ctaPath}>{intro.ctaLabel}</TextCta>
                 )}
               </div>
             </div>
@@ -118,10 +115,9 @@ export function HomePage({
                   <h3>{item.heading}</h3>
                   <p>{item.body}</p>
                   {(item.productPath || item.path) && (
-                    <PrimaryButton href={item.productPath || item.path!}>
+                    <TextCta href={item.productPath || item.path!}>
                       {item.label}
-                      <FaAnglesRight aria-hidden="true" />
-                    </PrimaryButton>
+                    </TextCta>
                   )}
                 </article>
               ))}
@@ -137,10 +133,7 @@ export function HomePage({
             <div className="finder-copy finder-copy--action finder-reveal">
               <p>{finder.body}</p>
               {finder.ctaPath && (
-                <PrimaryButton href={finder.ctaPath}>
-                  {finder.ctaLabel}
-                  <FaAnglesRight aria-hidden="true" />
-                </PrimaryButton>
+                <TextCta href={finder.ctaPath}>{finder.ctaLabel}</TextCta>
               )}
             </div>
             <ProductCategoryCarousel
@@ -153,24 +146,6 @@ export function HomePage({
           </section>
         )}
         {faq?.enabled && <HomeFaq section={faq} />}
-        {contact?.enabled && (
-          <section
-            className="contact-cta contact-cta--image"
-            style={imageBackground(contact.image)}
-          >
-            <div className="contact-cta__content" data-reveal="up">
-              <p className="eyebrow">{contact.eyebrow}</p>
-              <h2>{contact.heading}</h2>
-              <p className="contact-cta__message">{contact.body}</p>
-              {contact.ctaPath && (
-                <PrimaryButton href={contact.ctaPath}>
-                  {contact.ctaLabel}
-                  <FaAnglesRight aria-hidden="true" />
-                </PrimaryButton>
-              )}
-            </div>
-          </section>
-        )}
       </main>
       <SiteFooter />
     </>

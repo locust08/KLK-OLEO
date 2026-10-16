@@ -8,6 +8,7 @@ export function editorialImage(
   value: unknown,
   preview = false,
   mobile?: unknown,
+  tablet?: unknown,
 ): EditorialImage | undefined {
   const image = value as Media | undefined;
   if (
@@ -20,6 +21,13 @@ export function editorialImage(
   const alternative = mobile as Media | undefined;
   return {
     id: image.id,
+    revision: image.updatedAt,
+    tabletUrl:
+      tablet &&
+      typeof tablet === "object" &&
+      (preview || (tablet as Media).isPublic)
+        ? ((tablet as Media).url ?? undefined)
+        : undefined,
     url: image.url,
     alt: image.alt,
     position: image.customCrop

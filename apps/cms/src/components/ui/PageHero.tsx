@@ -1,3 +1,4 @@
+import styles from "./PageHero.module.css";
 import { imageBackground } from "./EditorialMedia";
 import type { EditorialImage } from "@/lib/content/model";
 type PageHeroProps = {
@@ -16,10 +17,29 @@ export function PageHero({
   return (
     <section
       className={`page-hero page-hero--${kind}`}
-      style={imageBackground(
-        image ?? (imageUrl ? { url: imageUrl, alt: "" } : undefined),
-      )}
+      style={
+        image?.tabletUrl
+          ? undefined
+          : imageBackground(
+              image ?? (imageUrl ? { url: imageUrl, alt: "" } : undefined),
+            )
+      }
     >
+      {image?.tabletUrl && (
+        <picture className={styles.picture}>
+          <source
+            media="(max-width:767px)"
+            srcSet={image.mobileUrl || image.tabletUrl}
+          />
+          <source media="(max-width:1199px)" srcSet={image.tabletUrl} />
+          <img
+            src={image.url}
+            alt={image.alt}
+            style={{ objectPosition: image.position }}
+            fetchPriority="high"
+          />
+        </picture>
+      )}
       <h1>{title}</h1>
     </section>
   );

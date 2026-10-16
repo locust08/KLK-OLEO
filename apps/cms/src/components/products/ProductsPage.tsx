@@ -29,7 +29,7 @@ export function ProductsPage({
           eyebrow={page?.heroEyebrow || undefined}
           image={page.heroImage}
         />
-        <section className="catalog-intro">
+        <section className="catalog-intro catalog-intro--products">
           <h2>{intro?.heading}</h2>
           <p>{intro?.body}</p>
         </section>

@@ -146,7 +146,10 @@ function mediaUrl(value: number | Media | null | undefined) {
   return isMedia(value) && value.isPublic && value.url ? value.url : undefined;
 }
 
-function mapProduct(product: Product, preview = false): ProductViewModel {
+export function mapProduct(
+  product: Product,
+  preview = false,
+): ProductViewModel {
   const functions = relationValues<ProductFunction>(product.functions);
   const formulations = relationValues<FormulationType>(
     product.formulationTypes,
@@ -203,6 +206,7 @@ function mapPage(page: Page, preview = false): PageContentViewModel {
       page.hero?.image,
       preview,
       page.hero?.mobileImage,
+      page.hero?.tabletImage,
     ),
     socialImageUrl: mediaUrl(page.seo?.socialImage),
     canonical: page.seo?.canonical ?? undefined,
@@ -236,11 +240,16 @@ async function getSite(depth = 0): Promise<Site | null> {
   return result.docs[0] ?? null;
 }
 
-export async function getSiteChrome(): Promise<SiteChromeViewModel | null> {
+export async function getSiteChrome(
+  options: { publishedOnly?: boolean } = {},
+): Promise<SiteChromeViewModel | null> {
   const site = await getSite(1);
   if (!site) return null;
   const parent = typeof site.parentSite === "object" ? site.parentSite : null;
-  const { payload, draft, user } = await editorialReadContext(site.id);
+  const context = await editorialReadContext(site.id);
+  const { payload } = context;
+  const draft = options.publishedOnly ? false : context.draft;
+  const user = options.publishedOnly ? undefined : context.user;
   const result = await payload.find({
     collection: "site-presentation",
     where: {
@@ -259,6 +268,8 @@ export async function getSiteChrome(): Promise<SiteChromeViewModel | null> {
   if (!presentation) return null;
   return {
     name: site.name,
+    draftPreview: draft,
+    contactBanner: (await getPageContent("home", options))?.content.contact,
     brandName: presentation.brandName,
     contactEmail: presentation.contactEmail,
     parentDomain: parent?.domain || "",
@@ -278,10 +289,16 @@ export async function getSiteChrome(): Promise<SiteChromeViewModel | null> {
   };
 }
 
-export async function getPageContent(slug: string) {
+export async function getPageContent(
+  slug: string,
+  options: { publishedOnly?: boolean } = {},
+) {
   const site = await getSite();
   if (!site) return null;
-  const { payload, draft, user } = await editorialReadContext(site.id);
+  const context = await editorialReadContext(site.id);
+  const { payload } = context;
+  const draft = options.publishedOnly ? false : context.draft;
+  const user = options.publishedOnly ? undefined : context.user;
   const result = await payload.find({
     collection: "pages",
     where: {

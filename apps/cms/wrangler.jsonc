@@ -15,5 +15,12 @@
   },
   "d1_databases": [{ "binding": "D1", "database_name": "agrochemicals", "database_id": "54a431f6-2da4-43d1-962a-fa15af9a1f16" }],
   "r2_buckets": [{ "binding": "R2", "bucket_name": "agrochemicals-media" }],
+  "browser": { "binding": "BROWSER" },
+  "services": [{ "binding": "PDF_APP", "service": "agrochemicals" }],
+  "queues": {
+    "producers": [{ "binding": "PRODUCT_PDF_QUEUE", "queue": "agrochemicals-product-pdfs" }],
+    "consumers": [{ "queue": "agrochemicals-product-pdfs", "max_batch_size": 1, "max_concurrency": 2, "max_retries": 4, "retry_delay": 60, "dead_letter_queue": "agrochemicals-product-pdfs-dlq" }]
+  },
+  "triggers": { "crons": ["17 * * * *"] },
   "observability": { "enabled": true }
 }
