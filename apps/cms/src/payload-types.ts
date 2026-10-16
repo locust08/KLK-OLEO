@@ -362,7 +362,7 @@ export interface Media {
    */
   customCrop?: boolean | null;
   /**
-   * Automatically generated PNG/JPEG variant where supported. Re-upload to retry conversion.
+   * Optional PNG/JPEG variant for the local Node PDF fallback. Cloudflare brochures render browser-supported image formats directly.
    */
   pdfVariant?: (number | null) | Media;
   pdfStatus?: ('ready' | 'unsupported' | 'pending') | null;
