@@ -14,3 +14,6 @@ dist/
 coverage/
 .playwright-cli/
 .next-backup*/
+
+# Local implementation ledger
+.superpowers/

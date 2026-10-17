@@ -108,6 +108,7 @@ export const enforceScope: CollectionBeforeChangeHook = async ({
       );
     if (
       !hasRole(user, ["site-admin", "publisher"]) &&
+      !req.context.editorialDraft &&
       (data._status ?? originalDoc?._status) === "published"
     )
       throw new APIError(

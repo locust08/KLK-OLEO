@@ -1,20 +1,40 @@
-import { FaAnglesRight } from "react-icons/fa6";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { TextCta } from "@/components/ui/TextCta";
-import { siteAssets } from "@/data/site-assets";
-
-// Shared markup for the website banner and its PDF presentation.
-export function ContactBannerContent({ preserveProductCta, pdf = false, contactHref = "/contact" }: {
-  preserveProductCta: boolean; pdf?: boolean; contactHref?: string;
+import { imageBackground } from "@/components/ui/EditorialMedia";
+import type { EditorialSection } from "@/lib/content/model";
+export function ContactBannerContent({
+  section,
+  preserveProductCta,
+  pdf = false,
+  contactHref,
+}: {
+  section?: EditorialSection;
+  preserveProductCta: boolean;
+  pdf?: boolean;
+  contactHref?: string;
 }) {
-  return <section className={`contact-cta contact-cta--image${pdf ? " product-pdf-contact" : ""}`} aria-labelledby="contact-banner-title" style={{ backgroundImage: `url(${siteAssets.contactBackground})` }}>
-    <div className="contact-cta__content" data-reveal="up">
-      <p className="eyebrow">Discuss Your Needs</p>
-      <h2 id="contact-banner-title">Still Can&apos;t Find What You&apos;re Looking For?</h2>
-      <p className="contact-cta__message">Contact our team and we’ll help you identify the right solution.</p>
-      {preserveProductCta
-        ? <PrimaryButton href={contactHref}>Contact Us <FaAnglesRight aria-hidden="true" /></PrimaryButton>
-        : <TextCta href={contactHref}>Contact Us</TextCta>}
-    </div>
-  </section>;
+  if (!section?.enabled) return null;
+  return (
+    <section
+      className={`contact-cta contact-cta--image${pdf ? " product-pdf-contact" : ""}`}
+      aria-labelledby="contact-banner-title"
+      style={imageBackground(section.image)}
+    >
+      <div className="contact-cta__content" data-reveal="up">
+        <p className="eyebrow">{section.eyebrow}</p>
+        <h2 id="contact-banner-title">{section.heading}</h2>
+        <p className="contact-cta__message">{section.body}</p>
+        {section.ctaPath &&
+          (preserveProductCta ? (
+            <PrimaryButton href={contactHref || section.ctaPath}>
+              {section.ctaLabel}
+            </PrimaryButton>
+          ) : (
+            <TextCta href={contactHref || section.ctaPath}>
+              {section.ctaLabel}
+            </TextCta>
+          ))}
+      </div>
+    </section>
+  );
 }

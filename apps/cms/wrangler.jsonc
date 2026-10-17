@@ -13,7 +13,7 @@
     "NEXT_PRIVATE_MINIMAL_MODE": "1",
     "NEXT_PUBLIC_SERVER_URL": "https://agrochemicals.easondev.workers.dev"
   },
-  "d1_databases": [{ "binding": "D1", "database_name": "agrochemicals", "database_id": "54a431f6-2da4-43d1-962a-fa15af9a1f16" }],
+  "d1_databases": [{ "binding": "D1", "database_name": "agrochemicals-editorial-20261016", "database_id": "be2f167e-7af8-42dd-892f-1b86fa97c860" }],
   "r2_buckets": [{ "binding": "R2", "bucket_name": "agrochemicals-media" }],
   "browser": { "binding": "BROWSER" },
   "services": [{ "binding": "PDF_APP", "service": "agrochemicals" }],

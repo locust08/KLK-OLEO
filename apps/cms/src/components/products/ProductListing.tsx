@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useCopy } from "@/components/layout/SiteContext";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useId, useMemo, useState } from "react";
 import { FaArrowRightLong, FaChevronDown } from "react-icons/fa6";
@@ -9,8 +10,8 @@ import {
   calculateFacetCounts,
   filterProducts,
   paginateProducts,
-  parseFilterState,
   searchFilterOptions,
+  parseFilterState,
   toggleProductFilter,
   updateFilterParams,
   type ProductFilterState,
@@ -30,7 +31,14 @@ type ProductListingProps = {
 
 const emptySearchParams = new URLSearchParams();
 
-function FilterGroup({ category, groups, selected, counts, filterQuery, onChange }: {
+function FilterGroup({
+  category,
+  groups,
+  selected,
+  counts,
+  filterQuery,
+  onChange,
+}: {
   category: ProductCategoryKey;
   groups: ProductCategoryGroups;
   selected: string[];
@@ -39,39 +47,76 @@ function FilterGroup({ category, groups, selected, counts, filterQuery, onChange
   onChange: (value: string) => void;
 }) {
   const group = groups[category];
-  const title = category === "functionalities" ? "Functionality" : category === "formulation-type" ? "Formulation Type" : "Regulatory/Labels";
+  const copy = useCopy();
+  const title =
+    category === "functionalities"
+      ? copy.functionLabel
+      : category === "formulation-type"
+        ? copy.formulationLabel
+        : copy.regulationLabel;
   return (
-    <details className={styles.group} open={filterQuery.trim() ? true : undefined}>
-      <summary>{title}{selected.length > 0 && <span className={styles.count}>{selected.length} selected</span>}<FaChevronDown className={styles.chevron} aria-hidden="true" /></summary>
-    <fieldset className={`catalog-filter-group ${styles.options}`}>
-      <legend className={styles.legend}>{title}</legend>
-      {group.options.filter((option) => option.name.toLocaleLowerCase().includes(filterQuery.trim().toLocaleLowerCase())).map((option) => {
-        const count = counts[option.slug] ?? 0;
-        const isSelected = selected.includes(option.slug);
-        const isDisabled = count === 0 && !isSelected;
-        return (
-          <label
-            key={option.id}
-            className={[isSelected ? "is-selected" : "", isDisabled ? "is-disabled" : ""].filter(Boolean).join(" ") || undefined}
-          >
-            <input
-              type="checkbox"
-              checked={isSelected}
-              disabled={isDisabled}
-              onChange={() => onChange(option.slug)}
-            />
-            <span>
-              {option.name} <span className="catalog-filter-count">({count})</span>
-            </span>
-          </label>
-        );
-      })}
-    </fieldset>
+    <details
+      className={styles.group}
+      open={filterQuery.trim() ? true : undefined}
+    >
+      <summary>
+        {title}
+        {selected.length > 0 && (
+          <span className={styles.count}>
+            {selected.length} {copy.selected}
+          </span>
+        )}
+        <FaChevronDown className={styles.chevron} aria-hidden="true" />
+      </summary>
+      <fieldset className={`catalog-filter-group ${styles.options}`}>
+        <legend className={styles.legend}>{title}</legend>
+        {group.options
+          .filter((option) =>
+            option.name
+              .toLocaleLowerCase()
+              .includes(filterQuery.trim().toLocaleLowerCase()),
+          )
+          .map((option) => {
+            const count = counts[option.slug] ?? 0;
+            const isSelected = selected.includes(option.slug);
+            const isDisabled = count === 0 && !isSelected;
+            return (
+              <label
+                title={option.description}
+                key={option.id}
+                className={
+                  [
+                    isSelected ? "is-selected" : "",
+                    isDisabled ? "is-disabled" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ") || undefined
+                }
+              >
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  disabled={isDisabled}
+                  onChange={() => onChange(option.slug)}
+                />
+                <span>
+                  {option.name}{" "}
+                  <span className="catalog-filter-count">({count})</span>
+                </span>
+              </label>
+            );
+          })}
+      </fieldset>
     </details>
   );
 }
 
-export function ProductListing({ category, groups, products }: ProductListingProps) {
+export function ProductListing({
+  category,
+  groups,
+  products,
+}: ProductListingProps) {
+  const copy = useCopy();
   const [filtersOpen, setFiltersOpen] = useState(false);
   const filterId = useId();
   const resultsId = useId();
@@ -94,7 +139,10 @@ export function ProductListing({ category, groups, products }: ProductListingPro
   };
 
   const toggle = (key: ProductCategoryKey, value: string) => {
-    setUrlState({ ...toggleProductFilter(state, key, value), filterQuery: undefined });
+    setUrlState({
+      ...toggleProductFilter(state, key, value),
+      filterQuery: undefined,
+    });
   };
 
   const results = useMemo(
@@ -107,101 +155,189 @@ export function ProductListing({ category, groups, products }: ProductListingPro
   );
   const pagination = paginateProducts(results, state.page);
   const { items: pageProducts, page: currentPage, totalPages } = pagination;
-  const selectedCount = categories.reduce<number>((total, key) => total + state.selected[key].length, 0);
-  const clearFilters = () => setUrlState({
-    query: "",
-    selected: { functionalities: [], "formulation-type": [], "regulatory-labels": [] },
-    page: 1,
-  });
+  const selectedCount = categories.reduce<number>(
+    (total, key) => total + state.selected[key].length,
+    0,
+  );
+  const clearFilters = () =>
+    setUrlState({
+      query: "",
+      selected: {
+        functionalities: [],
+        "formulation-type": [],
+        "regulatory-labels": [],
+      },
+      page: 1,
+    });
   return (
     <section className="catalog-shell" aria-label="Product catalogue">
       <div className="catalog-mobile-tools">
-        <span aria-live="polite">{pagination.total} {pagination.total === 1 ? "Product" : "Products"}</span>
-        <button type="button" aria-expanded={filtersOpen} aria-controls={filterId} onClick={() => setFiltersOpen((current) => !current)}>
-          {filtersOpen ? "Hide filters" : "Show filters"}{selectedCount > 0 ? ` (${selectedCount})` : ""}
+        <span aria-live="polite">
+          {pagination.total}{" "}
+          {pagination.total === 1 ? copy.productSingular : copy.productPlural}
+        </span>
+        <button
+          type="button"
+          aria-expanded={filtersOpen}
+          aria-controls={filterId}
+          onClick={() => setFiltersOpen((current) => !current)}
+        >
+          {filtersOpen ? copy.hideFilters : copy.showFilters}
+          {selectedCount > 0 ? ` (${selectedCount})` : ""}
         </button>
-        {(selectedCount > 0 || state.query || state.filterQuery) && <button type="button" onClick={clearFilters}>Clear filters</button>}
-        {filtersOpen && <a href={`#${resultsId}`}>View results</a>}
+        {(selectedCount > 0 || state.query || state.filterQuery) && (
+          <button type="button" onClick={clearFilters}>
+            {copy.clearFilters}
+          </button>
+        )}
+        {filtersOpen && <a href={`#${resultsId}`}>{copy.viewResults}</a>}
       </div>
-      <aside id={filterId} className={`catalog-filters${filtersOpen ? " is-open" : ""}`} aria-label="Filter products">
+      <aside
+        id={filterId}
+        className={`catalog-filters${filtersOpen ? " is-open" : ""}`}
+        aria-label="Filter products"
+      >
+        {(selectedCount > 0 || state.query || state.filterQuery) && (
+          <button
+            type="button"
+            className={`catalog-clear ${styles.clear}`}
+            onClick={clearFilters}
+          >
+            {copy.clearFilters}
+          </button>
+        )}
         <label className={styles.search}>
-          <span>Search filters</span>
-          <input type="search" placeholder="Search filter options…" value={state.filterQuery ?? ""}
+          <span>{copy.filterSearch}</span>
+          <input
+            type="search"
+            placeholder={copy.filterSearchPlaceholder}
+            value={state.filterQuery ?? ""}
             onChange={(event) => {
-              const next = searchFilterOptions(state, groups, event.target.value, categories);
+              const next = searchFilterOptions(
+                state,
+                groups,
+                event.target.value,
+                categories,
+              );
               const params = updateFilterParams(searchParams, next);
-              window.history.replaceState(null, "", params.size ? `${pathname}?${params}` : pathname);
-            }} />
+              window.history.replaceState(
+                null,
+                "",
+                params.size ? `${pathname}?${params}` : pathname,
+              );
+            }}
+          />
         </label>
-        {state.filterQuery?.trim() && selectedCount === 0 && <p role="status">No matching filter options.</p>}
-        {(selectedCount > 0 || state.query || state.filterQuery) && <button type="button" className={`catalog-clear ${styles.clear}`} onClick={clearFilters}>Clear filters</button>}
+        {state.filterQuery?.trim() && selectedCount === 0 && (
+          <p role="status">{copy.filterNoMatch}</p>
+        )}
         {categories.map((key) => (
           <FilterGroup
             key={key}
             category={key}
             groups={groups}
             selected={state.selected[key]}
-            counts={facetCounts[key]}
             filterQuery={state.filterQuery ?? ""}
+            counts={facetCounts[key]}
             onChange={(value) => toggle(key, value)}
           />
         ))}
       </aside>
 
-      <div id={resultsId} className="catalog-results" aria-live="polite" aria-atomic="false">
+      <div
+        id={resultsId}
+        className="catalog-results"
+        aria-live="polite"
+        aria-atomic="false"
+      >
         {!category && (
           <div className="catalog-results__header">
-            <h2>{pagination.total} {pagination.total === 1 ? "Product" : "Products"}</h2>
-            {totalPages > 1 && <p>Page {currentPage} of {totalPages}</p>}
+            <h2>
+              {pagination.total}{" "}
+              {pagination.total === 1
+                ? copy.productSingular
+                : copy.productPlural}
+            </h2>
+            {totalPages > 1 && (
+              <p>
+                {copy.page} {currentPage} {copy.of} {totalPages}
+              </p>
+            )}
           </div>
         )}
         <div className="catalog-list">
           {pageProducts.map((product, index) => (
-            <article className="catalog-product-row" key={product.slug} style={{ "--row-delay": `${index * 70}ms` } as React.CSSProperties}>
+            <article
+              className="catalog-product-row"
+              key={product.slug}
+              style={
+                { "--row-delay": `${index * 70}ms` } as React.CSSProperties
+              }
+            >
               <div>
                 <h2>
-                  <Link href={`/products/product/${product.slug}`} className="catalog-product-row__title">
+                  <Link
+                    href={`/products/product/${product.slug}`}
+                    className="catalog-product-row__title"
+                  >
                     {product.name}
                   </Link>
                 </h2>
                 <h3>{product.type}</h3>
                 <p>{product.summary}</p>
               </div>
-              <Link href={`/products/product/${product.slug}`} className="catalog-product-row__arrow" aria-label={`View ${product.name}`}>
+              <Link
+                href={`/products/product/${product.slug}`}
+                className="catalog-product-row__arrow"
+                aria-label={`View ${product.name}`}
+              >
                 <FaArrowRightLong aria-hidden="true" />
               </Link>
             </article>
           ))}
           {results.length === 0 && (
             <div className="catalog-empty">
-              <h2>No products found.</h2>
-              <p>
-                {state.query
-                  ? "Try another keyword or clear the search to see all products."
-                  : "Clear one or more filters to see more formulation solutions."}
-              </p>
+              <h2>{copy.noProducts}</h2>
+              <p>{state.query ? copy.emptySearch : copy.emptyFilters}</p>
             </div>
           )}
         </div>
         {totalPages > 1 && (
-          <nav className="catalog-pagination" aria-label="Product results pages">
-            {currentPage > 1 && <button className="catalog-pagination__direction" type="button" onClick={() => setUrlState({ ...state, page: currentPage - 1 })}>
-              Previous
-            </button>}
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+          <nav
+            className="catalog-pagination"
+            aria-label="Product results pages"
+          >
+            {currentPage > 1 && (
               <button
-                key={page}
+                className="catalog-pagination__direction"
                 type="button"
-                aria-label={`Page ${page}`}
-                aria-current={page === currentPage ? "page" : undefined}
-                onClick={() => setUrlState({ ...state, page })}
+                onClick={() => setUrlState({ ...state, page: currentPage - 1 })}
               >
-                {page}
+                {copy.previous}
               </button>
-            ))}
-            {currentPage < totalPages && <button className="catalog-pagination__direction" type="button" onClick={() => setUrlState({ ...state, page: currentPage + 1 })}>
-              Next
-            </button>}
+            )}
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  type="button"
+                  aria-label={`Page ${page}`}
+                  aria-current={page === currentPage ? "page" : undefined}
+                  onClick={() => setUrlState({ ...state, page })}
+                >
+                  {page}
+                </button>
+              ),
+            )}
+            {currentPage < totalPages && (
+              <button
+                className="catalog-pagination__direction"
+                type="button"
+                onClick={() => setUrlState({ ...state, page: currentPage + 1 })}
+              >
+                {copy.next}
+              </button>
+            )}
           </nav>
         )}
       </div>

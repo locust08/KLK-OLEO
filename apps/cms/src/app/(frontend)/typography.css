@@ -453,3 +453,32 @@ main h1, main h2, main h3,
   .home-faq__item summary { padding: 20px 0; gap: 16px; }
   .home-faq__answer { padding-right: 36px; padding-bottom: 24px; }
 }
+
+/* Editorial media keeps the existing image boxes and crop geometry. */
+.editorial-picture {
+  display: contents;
+}
+.editorial-picture > img {
+  object-fit: cover;
+}
+@media (max-width: 767px) {
+  [style*="--editorial-image"] {
+    background-image: var(--editorial-mobile-image) !important;
+  }
+}
+.cms-preview-bar {
+  position: relative;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: #fff4cd;
+  color: #222;
+  text-align: center;
+}
+.cms-preview-bar a {
+  margin-left: 20px;
+  text-decoration: underline;
+}
+.finder-carousel-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}

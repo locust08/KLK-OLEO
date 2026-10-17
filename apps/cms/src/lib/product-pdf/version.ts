@@ -1,7 +1,8 @@
 import type { ProductViewModel } from "../cms/view-models";
 
 // Build script fingerprints the shared component, page styles and fonts.
-export const PDF_TEMPLATE_VERSION = process.env.NEXT_PUBLIC_PRODUCT_PDF_TEMPLATE_VERSION || "product-a4-v1";
+export const PDF_TEMPLATE_VERSION =
+  process.env.NEXT_PUBLIC_PRODUCT_PDF_TEMPLATE_VERSION || "product-a4-v1";
 export type PdfSnapshot = {
   productId: number;
   slug: string;
@@ -9,11 +10,19 @@ export type PdfSnapshot = {
   version: string;
   templateVersion: string;
   product: ProductViewModel;
+  copy?: import("../content/presentation").InterfaceCopy;
+  contactBanner?: import("../content/model").EditorialSection;
+  draft?: boolean;
 };
 
 export async function contentHash(value: unknown) {
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(JSON.stringify(value)));
-  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(JSON.stringify(value)),
+  );
+  return Array.from(new Uint8Array(digest), (byte) =>
+    byte.toString(16).padStart(2, "0"),
+  ).join("");
 }
 
 export function pdfFilename(slug: string) {

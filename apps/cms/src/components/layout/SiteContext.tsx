@@ -6,21 +6,7 @@ import {
   type SiteChromeViewModel,
 } from "@/lib/cms/view-models";
 
-const fallbackSite: SiteChromeViewModel = {
-  name: "KLK OLEO Agrochemicals",
-  brandName: AGROCHEMICAL_BRAND_NAME,
-  contactEmail: "agrochem@klkoleo.com",
-  parentDomain: "https://www.klkoleo.com",
-  parentLinkLabel: "Part of KLK OLEO",
-  navigation: [
-    { label: "About Us", path: "/about-us" },
-    { label: "Products", path: "/products" },
-    { label: "Resources", path: "/resources" },
-    { label: "Contact Us", path: "/contact" },
-  ],
-};
-
-const SiteContext = createContext(fallbackSite);
+const SiteContext = createContext<SiteChromeViewModel | null>(null);
 
 export function SiteProvider({
   value,
@@ -29,13 +15,15 @@ export function SiteProvider({
   value: SiteChromeViewModel | null;
   children: ReactNode;
 }) {
-  const site = value ? {
-    ...value,
-    navigation: value.navigation.length ? value.navigation : fallbackSite.navigation,
-  } : fallbackSite;
-  return <SiteContext value={site}>{children}</SiteContext>;
+  return <SiteContext value={value}>{children}</SiteContext>;
 }
 
 export function useSite() {
-  return useContext(SiteContext);
+  const value = useContext(SiteContext);
+  if (!value) throw new Error("Site presentation is unavailable.");
+  return value;
+}
+
+export function useCopy() {
+  return useSite().copy;
 }

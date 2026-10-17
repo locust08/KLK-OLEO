@@ -8,93 +8,97 @@ import { siteAssets } from "@/data/site-assets";
 import { useSite } from "./SiteContext";
 import { ContactBanner } from "./ContactBanner";
 
-const quickLinks = [
-  { label: "About", href: "/about-us" },
-  { label: "Products", href: "/products" },
-  { label: "News & Events", href: "/resources" },
-  { label: "Download", href: "/resources" },
-  { label: "Contact", href: "/contact" },
-] as const;
-
-const products = [
-  { label: "Active Ingredients", slug: "active-ingredients" },
-  { label: "Adjuvants", slug: "adjuvants" },
-  { label: "Anti Drift", slug: "anti-drift" },
-  { label: "(Co) Solvents", slug: "co-solvents" },
-  { label: "Defoamer", slug: "defoamer" },
-  { label: "Dispersants", slug: "dispersants" },
-  { label: "Emulsifiers", slug: "emulsifiers" },
-  { label: "Humectants", slug: "humectants" },
-  { label: "Rheology Modifiers", slug: "rheology-modifiers" },
-  { label: "Soil Moisture Retainers", slug: "soil-moisture-retainers" },
-  { label: "Tank Mix Adjuvants", slug: "tank-mix-adjuvants" },
-  { label: "Wetters, Penetrants and Spreaders", slug: "wetters-penetrants-and-spreaders" },
-] as const;
-
-const legalLinks = [
-  { label: "Disclaimer", href: "https://www.klkoleo.com/lifescience/disclaimer/" },
-  {
-    label: "Personal Data Notice Statement",
-    href: "https://www.klkoleo.com/lifescience/personal-data-notice-statement/",
-  },
-  { label: "Privacy Notice", href: "https://www.klk.com.my/privacy-notice/" },
-  { label: "Cookie Notice", href: "https://www.klkoleo.com/cookie-policy/" },
-] as const;
-
 export function SiteFooter() {
   const site = useSite();
+  const { footer, copy } = site;
   return (
     <><ContactBanner /><footer className="site-footer">
       <div className="footer-inner">
         <section className="footer-brand" aria-labelledby="footer-brand-title">
-          <Image
-            className="footer-logo"
-            src={siteAssets.footerLogo}
-            width={371}
-            height={127}
-            alt="KLK OLEO"
-          />
+          {footer.logo && (
+            <Image
+              unoptimized
+              className="footer-logo"
+              src={footer.logo.url}
+              width={371}
+              height={127}
+              alt={footer.logo.alt}
+            />
+          )}
           <h2 id="footer-brand-title">{site.brandName}</h2>
-          <p>
-            KLK OLEO Agrochemicals is your trusted partner for high-performance
-            and sustainable formulation solutions, supporting agricultural
-            innovation from the laboratory to the field.
-          </p>
+          <p>{footer.description}</p>
           <a
             className="footer-social"
-            href="https://www.linkedin.com/company/klkberhad/"
+            href={footer.socialPath ?? undefined}
             target="_blank"
             rel="noreferrer"
-            aria-label="Kuala Lumpur Kepong Berhad on LinkedIn"
+            aria-label={footer.socialLabel ?? undefined}
           >
             <FaLinkedinIn aria-hidden="true" />
           </a>
         </section>
 
-        <nav className="footer-column footer-quick-links" aria-label="Footer quick links">
-          <h2>Quick Links</h2>
+        <nav
+          className="footer-column footer-quick-links"
+          aria-label="Footer quick links"
+        >
+          <h2>{copy.quickLinks}</h2>
           <ul>
-            {quickLinks.map((link) => (
+            {footer.quickLinks.map((link) => (
               <li key={link.label}>
-                <Link href={link.href}>{link.label}</Link>
+                <Link
+                  href={link.path}
+                  target={
+                    link.newTab && link.path.startsWith("https://")
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    link.newTab && link.path.startsWith("https://")
+                      ? "noreferrer"
+                      : undefined
+                  }
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <nav className="footer-column footer-products" aria-label="Product categories">
-          <h2>Products</h2>
+        <nav
+          className="footer-column footer-products"
+          aria-label="Product categories"
+        >
+          <h2>{copy.products}</h2>
           <ul>
-            {products.map((product) => (
-              <li key={product.slug}>
-                <Link href={`/products/category/functionalities?function=${product.slug}`}>{product.label}</Link>
+            {footer.productLinks.map((product) => (
+              <li key={product.path}>
+                <Link
+                  href={product.path}
+                  target={
+                    product.newTab && product.path.startsWith("https://")
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    product.newTab && product.path.startsWith("https://")
+                      ? "noreferrer"
+                      : undefined
+                  }
+                >
+                  {product.label}
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <section className="footer-column footer-contact" aria-labelledby="footer-contact-title">
-          <h2 id="footer-contact-title">Get in Touch</h2>
+        <section
+          className="footer-column footer-contact"
+          aria-labelledby="footer-contact-title"
+        >
+          <h2 id="footer-contact-title">{copy.getInTouch}</h2>
           <a href={`mailto:${site.contactEmail}`}>
             <MdEmail aria-hidden="true" />
             <span>{site.contactEmail}</span>
@@ -103,10 +107,25 @@ export function SiteFooter() {
       </div>
 
       <div className="footer-bottom">
-        <p>2026 KLK OLEO | Agrochemicals All rights reserved</p>
+        <p>
+          {new Date().getFullYear()} {site.brandName} {copy.copyright}
+        </p>
         <nav aria-label="Legal links">
-          {legalLinks.map((link) => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+          {footer.legalLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.path}
+              target={
+                link.newTab && link.path.startsWith("https://")
+                  ? "_blank"
+                  : undefined
+              }
+              rel={
+                link.newTab && link.path.startsWith("https://")
+                  ? "noreferrer"
+                  : undefined
+              }
+            >
               {link.label}
             </a>
           ))}

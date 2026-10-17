@@ -1,3 +1,9 @@
+import type {
+  EditorialImage,
+  PageSections,
+  EditorialLink,
+} from "../content/model";
+import type { InterfaceCopy } from "../content/presentation";
 export const productCategoryKeys = [
   "functionalities",
   "formulation-type",
@@ -23,24 +29,43 @@ export type ProductViewModel = {
   manufacturingSite: string;
   casNumber: string;
   imageUrl?: string;
+  pdfImageUrl?: string;
+  imageAlt?: string;
+  image?: EditorialImage;
+  seoTitle?: string;
+  seoDescription?: string;
+  socialImageUrl?: string;
+  canonical?: string;
+  brochureEnabled?: boolean;
+  updatedAt?: string;
+  resources?: { id: number; title: string; slug: string }[];
 };
 
 export type ProductCategoryOption = {
   id: number | string;
   slug: string;
   name: string;
+  description?: string;
 };
 
 export type ProductCategoryGroup = {
   label: string;
   description: string;
+  showDescription?: boolean;
   options: ProductCategoryOption[];
 };
 
-export type ProductCategoryGroups = Record<ProductCategoryKey, ProductCategoryGroup>;
+export type ProductCategoryGroups = Record<
+  ProductCategoryKey,
+  ProductCategoryGroup
+>;
 
 export type PageContentViewModel = {
   title: string;
+  content: PageSections;
+  heroImage?: EditorialImage;
+  socialImageUrl?: string;
+  canonical?: string;
   heroEyebrow?: string;
   heroHeading?: string;
   heroBody?: string;
@@ -84,10 +109,24 @@ export type SiteChromeViewModel = {
   contactEmail: string;
   parentDomain: string;
   parentLinkLabel: string;
-  navigation: Array<{ label: string; path: string }>;
+  navigation: EditorialLink[];
+  draftPreview?: boolean;
+  contactBanner?: import("../content/model").EditorialSection;
+  copy: InterfaceCopy;
+  footer: {
+    logo?: EditorialImage;
+    description: string;
+    socialLabel?: string | null;
+    socialPath?: string | null;
+    quickLinks: EditorialLink[];
+    productLinks: EditorialLink[];
+    legalLinks: EditorialLink[];
+  };
 };
 
-export function isProductCategoryKey(value: string): value is ProductCategoryKey {
+export function isProductCategoryKey(
+  value: string,
+): value is ProductCategoryKey {
   return productCategoryKeys.includes(value as ProductCategoryKey);
 }
 

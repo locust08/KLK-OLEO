@@ -1,0 +1,818 @@
+{
+  "pages": {
+    "home": {
+      "hero": {
+        "eyebrow": "AIDIGRO",
+        "heading": "Comprehensive Formulation Solutions for Agrochemicals",
+        "image": {
+          "asset": "/images/home/agrochemical-spraying-hero.webp",
+          "alt": "Agricultural spraying over crops"
+        }
+      },
+      "content": {
+        "introduction": {
+          "enabled": true,
+          "heading": "KLK OLEO Agrochemicals",
+          "eyebrow": "About Us",
+          "body": "KLK OLEO Agrochemicals is a trusted global partner in sustainable agrochemical ingredients. We are committed to delivering innovative, sustainable solutions that empower farmers and agricultural businesses to thrive and grow.",
+          "image": {
+            "asset": "/images/home/aidigro-introduction.webp",
+            "alt": "A young plant growing from soil"
+          },
+          "bullets": [
+            {
+              "text": "Backed by KLK OLEO’s global oleochemical expertise and decades of manufacturing excellence."
+            },
+            {
+              "text": "AIDIGRO represents quality, innovation, and a commitment to effecient, sustainable agriculture."
+            },
+            {
+              "text": "Committed to high quality, safety standards, and comprehensive regulatory compliance."
+            },
+            {
+              "text": "Championing sustainability through plant-derived ingredients that drive responsible agriculture and environmentally conscious innovation."
+            }
+          ],
+          "ctaLabel": "Learn More",
+          "ctaPath": "/about-us"
+        },
+        "capabilities": {
+          "enabled": true,
+          "heading": "Your Trusted Global Partner in Agrochemicals",
+          "eyebrow": "What We Do",
+          "items": [
+            {
+              "heading": "Global Reach, Local Impact",
+              "body": "Delivering solutions that advance sustainability across diverse agricultural needs locally and globally.",
+              "image": {
+                "asset": "/images/home/global-reach.png",
+                "alt": "Global Reach, Local Impact"
+              }
+            },
+            {
+              "heading": "Tailored Agricultural Solutions",
+              "body": "Powered by strong R&D, product development, and agronomic expertise to deliver solutions to meet modern agricultural challenges practically.",
+              "image": {
+                "asset": "/images/home/tailored-agriculture.png",
+                "alt": "Tailored Agricultural Solutions"
+              }
+            },
+            {
+              "heading": "Comprehensive Agrochemical Portfolio",
+              "body": "Delivering efficient, high-performance formulants with diverse functional ingredients for real-world agricultural success.",
+              "image": {
+                "asset": "/images/home/comprehensive-portfolio.png",
+                "alt": "Comprehensive Agrochemical Portfolio"
+              }
+            },
+            {
+              "heading": "Sustainable Formulation Solutions",
+              "body": "Adjuvants engineered to boost performance, maximise application efficiency and advance sustainable agriculture worldwide.",
+              "image": {
+                "asset": "/images/home/sustainable-formulation.png",
+                "alt": "Sustainable Formulation Solutions"
+              }
+            }
+          ]
+        },
+        "innovations": {
+          "enabled": true,
+          "heading": "Our Latest Innovations",
+          "eyebrow": "Features",
+          "image": {
+            "asset": "/images/home/latest-innovations.png",
+            "alt": "Plant laboratory research"
+          },
+          "items": [
+            {
+              "heading": "Aidigro GA2425",
+              "body": "Aidigro GA2425 is our latest ready-to-use surfactant blend, specially formulated to enhance the performance of Glufosinate Ammonium (GA) applications.",
+              "label": "Learn More",
+              "path": "/products",
+              "productName": "Aidigro GA2425"
+            },
+            {
+              "heading": "Aidigro WA1125",
+              "body": "Aidigro WA1125 is a low odour, non-ionic surfactant based on unique EO/PO copolymer with excellent wetting and penetrating function.",
+              "label": "Learn More",
+              "path": "/products",
+              "productName": "Aidigro WA1125"
+            }
+          ]
+        },
+        "finder": {
+          "enabled": true,
+          "heading": "Looking for a product? Use our product finder!",
+          "eyebrow": "Product Finder",
+          "body": "Discover the right solution faster with our Product Finder, designed to help you explore our portfolio with ease.",
+          "ctaLabel": "Product Finder",
+          "ctaPath": "/products",
+          "items": [
+            {
+              "heading": "Adjuvants",
+              "body": "Assist in dissolving active ingredients and formulation components to create stable and effective solutions.",
+              "categorySlug": "adjuvants"
+            },
+            {
+              "heading": "Emulsifiers",
+              "body": "Helps sprays stay on leaf surfaces longer, slowing evaporation and enhancing absorption of active ingredients.",
+              "categorySlug": "emulsifiers"
+            },
+            {
+              "heading": "Dispersants",
+              "body": "Enable stable mixing of oil-based and water-based components, ensuring uniform and stable agrochemical formulations.",
+              "categorySlug": "dispersants"
+            },
+            {
+              "heading": "Rheology modifiers",
+              "body": "Control viscosity and flow behaviour to improve spray stability, handling, and application consistency.",
+              "categorySlug": "rheology-modifiers"
+            },
+            {
+              "heading": "(Co) Solvents",
+              "body": "Enhance solubility of active ingredients and support formulation stability across varying conditions.",
+              "categorySlug": "co-solvents"
+            },
+            {
+              "heading": "Wetters, Penetrants and Spreaders",
+              "body": "Improve spray coverage and adhesion on leaf surfaces, promoting better uptake of active ingredients.",
+              "categorySlug": "wetters-penetrants-and-spreaders"
+            },
+            {
+              "heading": "Active Ingredients",
+              "body": "Provide the primary biological effect, targeting pests, weeds, or diseases.",
+              "categorySlug": "active-ingredients"
+            },
+            {
+              "heading": "Defoamer",
+              "body": "Reduce or prevent foam formation during mixing and application, ensuring accurate dosing and smooth spraying.",
+              "categorySlug": "defoamer"
+            },
+            {
+              "heading": "Soil Moisture Retainers",
+              "body": "Help maintain soil moisture levels by reducing evaporation and improving water availability to plants.",
+              "categorySlug": "soil-moisture-retainers"
+            },
+            {
+              "heading": "Humectants",
+              "body": "Slow down droplet drying to extend surface wetness, allowing more time for active ingredient absorption.",
+              "categorySlug": "humectants"
+            },
+            {
+              "heading": "Anti Drift",
+              "body": "Minimise spray drift by optimising droplet size, improving on-target deposition and reducing off-target loss.",
+              "categorySlug": "anti-drift"
+            },
+            {
+              "heading": "Tank Mix Adjuvants",
+              "body": "Enhance compatibility and performance of mixed products in the spray tank, ensuring consistent and effective application.",
+              "categorySlug": "tank-mix-adjuvants"
+            }
+          ]
+        },
+        "faq": {
+          "enabled": true,
+          "heading": "Frequently Asked Questions",
+          "eyebrow": "FAQ",
+          "items": [
+            {
+              "heading": "How do I find the right ingredient for my formulation?",
+              "body": "Start with our Product Finder to explore ingredients by function and application. If you need help narrowing down your options, contact our team with your formulation requirements."
+            },
+            {
+              "heading": "What information should I include in a product enquiry?",
+              "body": "Tell us about your intended application, the ingredient function you need, and any performance requirements. Including your company and location helps us direct your enquiry to the appropriate team."
+            },
+            {
+              "heading": "Where can I find product information and resources?",
+              "body": "Visit our Products section for product information and our Resources section for available supporting materials. Contact us if you cannot find the information you need."
+            },
+            {
+              "heading": "Can I enquire about samples or technical support?",
+              "body": "Yes. Use the Contact Us page to share the product you are interested in and what you would like to evaluate. Our team can discuss your request and the available next steps."
+            },
+            {
+              "heading": "How can I contact the KLK OLEO Agrochemicals team?",
+              "body": "Submit an enquiry through our Contact Us page. Include a brief description of your question so we can connect you with the appropriate team."
+            }
+          ]
+        },
+        "contact": {
+          "enabled": true,
+          "heading": "Still Can't Find What You're Looking For?",
+          "eyebrow": "Discuss Your Needs",
+          "body": "Contact our team and we’ll help you identify the right solution.",
+          "ctaLabel": "Contact Us",
+          "ctaPath": "/contact",
+          "image": {
+            "asset": "/images/home/contact-agriculture-background.webp",
+            "alt": "Agricultural crops"
+          }
+        }
+      }
+    },
+    "about-us": {
+      "hero": {
+        "heading": "About Us",
+        "image": {
+          "asset": "/images/about/about-us-agrochemical.webp",
+          "alt": "Agrochemical agriculture"
+        }
+      },
+      "content": {
+        "agriculture": {
+          "enabled": true,
+          "heading": "Agriculture Solutions",
+          "eyebrow": "KLK Oleo Agrochemicals",
+          "paragraphs": [
+            {
+              "text": "KLK OLEO Agrochemicals is the preferred partner for high-performing agrochemical ingredients that enhance formulation efficiency, crop health, and application effectiveness. As part of KLK OLEO, a global leader in oleochemicals, we bring the strength of an international network directly to your fields and formulation labs."
+            },
+            {
+              "text": "Supported by our experienced scientists, R&D centres, product development capabilities and agronomist insights, we work hand-in-hand with customers to refine formulations, enhance application performance, and develop solutions that create measurable impact in the field."
+            },
+            {
+              "text": "Sustainability is embedded in everything we do. From plant-derived ingredients, low-carbon options to innovations that reduce agrochemical use, our portfolio is designed to meet today's environmental challenges while ensuring productivity and reliability."
+            },
+            {
+              "text": "With KLK OLEO Agrochemicals, you gain more than ingredients — you gain a partner committed to quality, consistency, and technical excellence, so you can focus on what matters most: healthy, productive crops and a sustainable future."
+            }
+          ],
+          "image": {
+            "asset": "/images/about/agriculture-solutions.webp",
+            "alt": "Hands holding soil and a young green plant"
+          }
+        },
+        "brandStory": {
+          "enabled": true,
+          "heading": "AIDIGRO",
+          "eyebrow": "Brand Story",
+          "paragraphs": [
+            {
+              "text": "Our dedicated agrochemical range, Aidigro, is more than a name; it's a promise. Rooted in the fusion of ‘Aid’ and ‘Agro’ (agriculture), our brand is a beacon to the world of farming."
+            },
+            {
+              "text": "We are passionate to nurture and to safeguard agricultural landscapes, dedicated to empower farmers and enriching the planet. Aidigro represents quality, innovation, and a commitment to responsible, sustainable agriculture."
+            },
+            {
+              "text": "Designed to empower formulators, our diverse agrochemical range offers both standard and customised solutions, carefully evaluated to support effective crop protection, improved performance, and reduced environmental impact."
+            },
+            {
+              "text": "By partnering with Aidigro, you gain a trusted ally in advancing sustainable agriculture and cultivating a greener and more productive future."
+            }
+          ],
+          "image": {
+            "asset": "/images/about/brand-story-background.png",
+            "alt": "Agricultural landscape"
+          }
+        },
+        "research": {
+          "enabled": true,
+          "heading": "Innovation from Lab to Field",
+          "eyebrow": "Research and Development",
+          "items": [
+            {
+              "heading": "Formulations Built for the Field",
+              "body": "At KLK OLEO, we are committed to deliver real solutions with growers to engineer complete systems that work seamlessly from the mixing tank to the field."
+            },
+            {
+              "heading": "Research and Development Rooted in Agronomy",
+              "body": "Partnering with Applied Agricultural Resources (AAR), we bring crop, soil, and environmental insight directly to you to meet modern agricultural challenges."
+            },
+            {
+              "heading": "From Lab to Land, Research to Reality",
+              "body": "As part of the KLK Group, we validate technologies in our own plantations—delivering proven reliability for real-world conditions."
+            }
+          ],
+          "images": [
+            {
+              "image": {
+                "asset": "/images/about/innovation-rnd-centre-web.jpg",
+                "alt": "KLK OLEO Research and Development Centre"
+              }
+            },
+            {
+              "image": {
+                "asset": "/images/about/innovation-field-drones-web.jpg",
+                "alt": "Agricultural drones applying treatments over a field"
+              }
+            },
+            {
+              "image": {
+                "asset": "/images/about/innovation-plant-research-web.jpg",
+                "alt": "Scientist studying a plant in a laboratory"
+              }
+            }
+          ]
+        },
+        "globalPresence": {
+          "enabled": true,
+          "heading": "KLK OLEO Global Presence"
+        }
+      }
+    },
+    "products": {
+      "hero": {
+        "heading": "Products",
+        "image": {
+          "asset": "/images/products/products-hero-leaf.png",
+          "alt": "Green leaf"
+        }
+      },
+      "content": {
+        "introduction": {
+          "enabled": true,
+          "heading": "Formulation solutions built for performance",
+          "body": "Explore our agrochemical portfolio by functionality, formulation type, or regulatory label."
+        }
+      }
+    },
+    "resources": {
+      "hero": {
+        "heading": "Resources",
+        "image": {
+          "asset": "/images/resources/resources-hero-globe.png",
+          "alt": "Global agricultural resources"
+        }
+      },
+      "content": {
+        "introduction": {
+          "enabled": true,
+          "heading": "Knowledge to support your formulations",
+          "body": "Explore technical insights and product resources for agrochemical formulation. Request the materials you need, and our team will help you find the right information for your application."
+        }
+      }
+    },
+    "contact": {
+      "hero": {
+        "heading": "Contact Us",
+        "image": {
+          "asset": "/images/contact/contact-hero-desktop.png",
+          "alt": "KLK OLEO Agrochemicals contact banner"
+        },
+        "tabletImage": {
+          "asset": "/images/contact/contact-hero-tablet.png",
+          "alt": "KLK OLEO Agrochemicals contact banner for tablets"
+        },
+        "mobileImage": {
+          "asset": "/images/contact/contact-hero-mobile.png",
+          "alt": "KLK OLEO Agrochemicals contact banner for mobile"
+        }
+      },
+      "content": {
+        "introduction": {
+          "enabled": true,
+          "heading": "Get in Touch with Our Team",
+          "body": "If you wish to enquire about KLK OLEO Agrochemicals products, please complete the short form provided. Our team will be in contact with you shortly."
+        }
+      }
+    }
+  },
+  "presentation": {
+    "name": "Agrochemical presentation",
+    "brandName": "KLK OLEO | Agrochemicals",
+    "contactEmail": "agrochem@klkoleo.com",
+    "navigation": [
+      {
+        "label": "About Us",
+        "path": "/about-us"
+      },
+      {
+        "label": "Products",
+        "path": "/products"
+      },
+      {
+        "label": "Resources",
+        "path": "/resources"
+      },
+      {
+        "label": "Contact Us",
+        "path": "/contact"
+      }
+    ],
+    "footer": {
+      "logo": {
+        "asset": "/images/common/klk-oleo-logo-white.webp",
+        "alt": "KLK OLEO"
+      },
+      "description": "KLK OLEO Agrochemicals is your trusted partner for high-performance and sustainable formulation solutions, supporting agricultural innovation from the laboratory to the field.",
+      "socialLabel": "Kuala Lumpur Kepong Berhad on LinkedIn",
+      "socialPath": "https://www.linkedin.com/company/klkberhad/",
+      "quickLinks": [
+        {
+          "label": "About",
+          "path": "/about-us",
+          "newTab": false
+        },
+        {
+          "label": "Products",
+          "path": "/products",
+          "newTab": false
+        },
+        {
+          "label": "News & Events",
+          "path": "/resources",
+          "newTab": false
+        },
+        {
+          "label": "Download",
+          "path": "/resources",
+          "newTab": false
+        },
+        {
+          "label": "Contact",
+          "path": "/contact",
+          "newTab": false
+        }
+      ],
+      "productLinks": [
+        {
+          "label": "Active Ingredients",
+          "path": "/products/category/functionalities?function=active-ingredients",
+          "newTab": false
+        },
+        {
+          "label": "Adjuvants",
+          "path": "/products/category/functionalities?function=adjuvants",
+          "newTab": false
+        },
+        {
+          "label": "Anti Drift",
+          "path": "/products/category/functionalities?function=anti-drift",
+          "newTab": false
+        },
+        {
+          "label": "(Co) Solvents",
+          "path": "/products/category/functionalities?function=co-solvents",
+          "newTab": false
+        },
+        {
+          "label": "Defoamer",
+          "path": "/products/category/functionalities?function=defoamer",
+          "newTab": false
+        },
+        {
+          "label": "Dispersants",
+          "path": "/products/category/functionalities?function=dispersants",
+          "newTab": false
+        },
+        {
+          "label": "Emulsifiers",
+          "path": "/products/category/functionalities?function=emulsifiers",
+          "newTab": false
+        },
+        {
+          "label": "Humectants",
+          "path": "/products/category/functionalities?function=humectants",
+          "newTab": false
+        },
+        {
+          "label": "Rheology Modifiers",
+          "path": "/products/category/functionalities?function=rheology-modifiers",
+          "newTab": false
+        },
+        {
+          "label": "Soil Moisture Retainers",
+          "path": "/products/category/functionalities?function=soil-moisture-retainers",
+          "newTab": false
+        },
+        {
+          "label": "Tank Mix Adjuvants",
+          "path": "/products/category/functionalities?function=tank-mix-adjuvants",
+          "newTab": false
+        },
+        {
+          "label": "Wetters, Penetrants and Spreaders",
+          "path": "/products/category/functionalities?function=wetters-penetrants-and-spreaders",
+          "newTab": false
+        }
+      ],
+      "legalLinks": [
+        {
+          "label": "Disclaimer",
+          "path": "https://www.klkoleo.com/lifescience/disclaimer/",
+          "newTab": true
+        },
+        {
+          "label": "Personal Data Notice Statement",
+          "path": "https://www.klkoleo.com/lifescience/personal-data-notice-statement/",
+          "newTab": true
+        },
+        {
+          "label": "Privacy Notice",
+          "path": "https://www.klk.com.my/privacy-notice/",
+          "newTab": true
+        },
+        {
+          "label": "Cookie Notice",
+          "path": "https://www.klkoleo.com/cookie-policy/",
+          "newTab": true
+        }
+      ]
+    },
+    "copy": [
+      {
+        "key": "searchLabel",
+        "text": "Search products"
+      },
+      {
+        "key": "searchPlaceholder",
+        "text": "Search..."
+      },
+      {
+        "key": "productCategories",
+        "text": "Product categories"
+      },
+      {
+        "key": "functionLabel",
+        "text": "Functionality"
+      },
+      {
+        "key": "formulationLabel",
+        "text": "Formulation Type"
+      },
+      {
+        "key": "regulationLabel",
+        "text": "Regulatory/Labels"
+      },
+      {
+        "key": "quickLinks",
+        "text": "Quick Links"
+      },
+      {
+        "key": "products",
+        "text": "Products"
+      },
+      {
+        "key": "getInTouch",
+        "text": "Get in Touch"
+      },
+      {
+        "key": "copyright",
+        "text": "All rights reserved"
+      },
+      {
+        "key": "showFilters",
+        "text": "Show filters"
+      },
+      {
+        "key": "hideFilters",
+        "text": "Hide filters"
+      },
+      {
+        "key": "clearFilters",
+        "text": "Clear filters"
+      },
+      {
+        "key": "viewResults",
+        "text": "View results"
+      },
+      {
+        "key": "noProducts",
+        "text": "No products found."
+      },
+      {
+        "key": "emptySearch",
+        "text": "Try another keyword or clear the search to see all products."
+      },
+      {
+        "key": "emptyFilters",
+        "text": "Clear one or more filters to see more formulation solutions."
+      },
+      {
+        "key": "previous",
+        "text": "Previous"
+      },
+      {
+        "key": "next",
+        "text": "Next"
+      },
+      {
+        "key": "productSingular",
+        "text": "Product"
+      },
+      {
+        "key": "productPlural",
+        "text": "Products"
+      },
+      {
+        "key": "page",
+        "text": "Page"
+      },
+      {
+        "key": "of",
+        "text": "of"
+      },
+      {
+        "key": "selected",
+        "text": "selected"
+      },
+      {
+        "key": "productInformation",
+        "text": "Product Information"
+      },
+      {
+        "key": "manufacturingSite",
+        "text": "Manufacturing Site"
+      },
+      {
+        "key": "casNumber",
+        "text": "CAS Number"
+      },
+      {
+        "key": "requestProduct",
+        "text": "Request Product"
+      },
+      {
+        "key": "brochure",
+        "text": "Request Brochure"
+      },
+      {
+        "key": "brochureLoading",
+        "text": "Preparing PDF…"
+      },
+      {
+        "key": "brochureError",
+        "text": "We could not generate the brochure. Please try again."
+      },
+      {
+        "key": "relatedResources",
+        "text": "Related resources"
+      },
+      {
+        "key": "resourceDownload",
+        "text": "Download"
+      },
+      {
+        "key": "resourcePreviewUnavailable",
+        "text": "Document preview unavailable"
+      },
+      {
+        "key": "resourcesEmptyHeading",
+        "text": "Resources are being prepared."
+      },
+      {
+        "key": "resourcesEmptyBody",
+        "text": "Please contact our team for the latest approved materials."
+      },
+      {
+        "key": "contactHeading",
+        "text": "Get in Touch with Our Team"
+      },
+      {
+        "key": "contactUnavailableHeading",
+        "text": "Contact our team by email."
+      },
+      {
+        "key": "contactUnavailableBody",
+        "text": "The online enquiry form is currently unavailable. Please use the email link to get in touch."
+      },
+      {
+        "key": "contactSuccessHeading",
+        "text": "Thank you for your request."
+      },
+      {
+        "key": "anotherEnquiry",
+        "text": "Send another enquiry"
+      },
+      {
+        "key": "submit",
+        "text": "Submit"
+      },
+      {
+        "key": "submitting",
+        "text": "Submitting…"
+      },
+      {
+        "key": "firstName",
+        "text": "First Name"
+      },
+      {
+        "key": "lastName",
+        "text": "Last Name"
+      },
+      {
+        "key": "company",
+        "text": "Company Name"
+      },
+      {
+        "key": "jobPosition",
+        "text": "Job Position"
+      },
+      {
+        "key": "country",
+        "text": "Country"
+      },
+      {
+        "key": "selectCountry",
+        "text": "Select Country"
+      },
+      {
+        "key": "email",
+        "text": "Email"
+      },
+      {
+        "key": "companyWebsite",
+        "text": "Company Website"
+      },
+      {
+        "key": "message",
+        "text": "Message"
+      },
+      {
+        "key": "fullName",
+        "text": "Full Name"
+      },
+      {
+        "key": "phone",
+        "text": "Phone / Contact Number"
+      },
+      {
+        "key": "requestedResource",
+        "text": "Requested Resource"
+      },
+      {
+        "key": "close",
+        "text": "Close"
+      },
+      {
+        "key": "resourceRequestTitle",
+        "text": "Request Resource"
+      },
+      {
+        "key": "resourceRequestIntro",
+        "text": "Complete the form below and our team will contact you regarding this resource."
+      },
+      {
+        "key": "resourceSuccessHeading",
+        "text": "Thank you for your enquiry."
+      },
+      {
+        "key": "resourceSubmit",
+        "text": "Submit Request"
+      },
+      {
+        "key": "resourceSubmitting",
+        "text": "Submitting…"
+      },
+      {
+        "key": "resourceUnavailable",
+        "text": "Resource requests are currently unavailable. Please contact our team."
+      },
+      {
+        "key": "resourceRetry",
+        "text": "Please try again."
+      },
+      {
+        "key": "resourceMessagePlaceholder",
+        "text": "Tell us how we can help."
+      },
+      {
+        "key": "detailFunction",
+        "text": "Functionalities"
+      },
+      {
+        "key": "detailFormulation",
+        "text": "Formulation Type"
+      },
+      {
+        "key": "detailRegulation",
+        "text": "Regulatory/Labels"
+      },
+      {
+        "key": "filterSearch",
+        "text": "Search filters"
+      },
+      {
+        "key": "filterSearchPlaceholder",
+        "text": "Search filter options…"
+      },
+      {
+        "key": "filterNoMatch",
+        "text": "No matching filter options."
+      },
+      {
+        "key": "brochureReady",
+        "text": "Your brochure has downloaded."
+      },
+      {
+        "key": "brochurePending",
+        "text": "Your brochure is still being prepared. Please try again shortly."
+      }
+    ],
+    "catalogue": {
+      "functionalities": {
+        "label": "Functionalities",
+        "description": "Browse formulation solutions by the role they perform in the field and in the formulation."
+      },
+      "formulation_type": {
+        "label": "Formulation Type",
+        "description": "Find products suited to the formulation system you are developing."
+      },
+      "regulatory_labels": {
+        "label": "Regulatory/Labels",
+        "description": "Review solutions by the regulatory or portfolio label attached to the product."
+      }
+    }
+  }
+}

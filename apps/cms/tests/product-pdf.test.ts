@@ -51,7 +51,7 @@ test("generated PDFs are reused with attachment and no-store headers", async () 
   await generateProductPdf(f.env, { slug: f.source.slug }, async () => { renders++; return pdf; });
   const response = await downloadProductPdf(request(), f.env, f.source.slug);
   assert.equal(response.status, 200);
-  assert.equal(response.headers.get("Content-Disposition"), 'attachment; filename="aidigro-test.pdf"');
+  assert.equal(response.headers.get("Content-Disposition"), 'attachment; filename="Aidigro-Test.pdf"');
   assert.match(response.headers.get("Cache-Control")!, /no-store/);
   assert.equal(await response.text(), new TextDecoder().decode(pdf));
   assert.equal(renders, 1);

@@ -1,10 +1,10 @@
 # Product brochure PDFs
 
-The existing **Request Brochure** label, classes, placement and responsive sizing are retained. Its click now fetches a same-origin PDF attachment and downloads `<product-slug>.pdf`. There is no external viewer or redirect. A busy state polls pending generation for up to two minutes; unavailable products and failures show a short message without exposing storage keys or server errors.
+The existing **Request Brochure** label, classes, placement and responsive sizing are retained. Its click now fetches a same-origin PDF attachment and downloads `<product-name>.pdf`. There is no external viewer or redirect. A busy state polls pending generation for up to two minutes; unavailable products and failures show a short message without exposing storage keys or server errors.
 
 ## Architecture and freshness
 
-- `GET /api/product-pdf/:slug` is intercepted by `cloudflare-worker.ts`. Only published products on the active Agrochemicals site are eligible. Source fixtures and authenticated CMS previews are never PDF sources.
+- `GET /api/product-pdf/:slug` is intercepted by `cloudflare-worker.ts`. Only published products on the active Agrochemicals site are eligible. The public cache never uses source fixtures or authenticated draft content. Authorized drafts use `/api/products/:slug/brochure` with a marked, uncached render of the same print layout.
 - The internal HTTP service binding `PDF_APP` invokes the same deployed Next application to obtain uncached published content. Its public source routes contain only already-public product content, never credentials or object keys.
 - D1 `product_pdf_cache` stores product ID/slug, published revision, content and template versions, status, active R2 key, timestamps, queue reservations, render leases, retry timing and a safe error code. It stores no PDF binary.
 - R2 uses private application keys under `product-pdfs/<id>/<template>/<content>/<lease-token>.pdf`, in the existing media bucket. These files are not added to Payload's public Media collection.
@@ -88,7 +88,7 @@ Provide the existing Payload secret through the build environment as usual; do n
 
 ## Validation and limits
 
-- 62 tests pass, including a real isolated Payload/SQLite publish → draft-save → republish test, the three PDF table rows and the approved contact banner/link. Concurrency/failure tests run the actual cache SQL against SQLite, with R2, Queue and browser boundaries simulated.
+- The reconciled branch has 74 passing tests, including a real isolated Payload/SQLite publish → draft-save → republish test, the three PDF table rows and the approved contact banner/link. Concurrency/failure tests run the actual cache SQL against SQLite, with R2, Queue and browser boundaries simulated.
 - Playwright verified unchanged button geometry at 1440, 768 and 390 pixels, the pending-to-download interaction, attachment filename, unavailable state and no redirect.
 - Local Chromium generated and inspected one-page and five-page A4 samples from published QA products using the shared print route; required content was extracted and site chrome/action text was absent. QA products were removed afterward.
 - Initial implementation Cloudflare deployment completed: Worker version `f091628f-a9bf-4400-bbbd-c043319184d8`.
@@ -101,3 +101,9 @@ Provide the existing Payload secret through the build environment as usual; do n
 Plain `npm run dev` has no Cloudflare browser/Queue/D1 bindings and intentionally shows an unavailable state. Test actual generation on the deployed Worker; the print route itself can be tested locally with real published CMS records. Draft fixture catalogue entries cannot produce production brochures.
 
 Failures retain the preceding file internally, never as a downloadable fallback. A crash between R2 upload and metadata promotion can leave an unreferenced versioned object; an operator may remove such objects after comparing their keys against D1. Do not attach an age-only R2 lifecycle policy to this prefix, because an older unchanged PDF can still be current. Extremely tall individual images/rows must fit the printable page to stay unbroken; image height is capped at 90mm. Local PDF stress tests used a large original image, producing approximately 12MB PDFs; file size depends on CMS assets.
+
+## CMS integration reconciliation
+
+The source digest also includes CMS interface copy and the shared CMS contact banner, including media revisions. Public reads force published-only context even when the caller has a preview cookie. Draft render requests forward only the authorized same-origin request context and bypass browser caching. Preview deployment uses isolated `agrochemicals-cms-preview-pdfs` and `agrochemicals-cms-preview-pdfs-dlq` queues and its own PDF_APP binding. Preview skips eager publication regeneration and has no scheduled trigger; on-demand downloads still enqueue. Production configuration retains eager regeneration and its scheduled repair.
+
+The production observations above describe the inherited main implementation, not a production deployment of this integration. Current integration verification and release limitations are recorded in `docs/cms-integration-verification.md` at repository root.

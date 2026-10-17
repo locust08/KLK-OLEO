@@ -7,7 +7,6 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { useSite } from "@/components/layout/SiteContext";
 import { PageHero } from "@/components/ui/PageHero";
 import { countries } from "@/data/countries";
-import { siteAssets } from "@/data/site-assets";
 import type {
   ContactFormViewModel,
   PageContentViewModel,
@@ -23,6 +22,7 @@ export function ContactPage({
   form: ContactFormViewModel | null;
 }) {
   const site = useSite();
+  const copy = site.copy;
   const [message, setMessage] = useState("");
   const [state, setState] = useState<SubmissionState>("idle");
   const [feedback, setFeedback] = useState("");
@@ -65,7 +65,8 @@ export function ContactPage({
 
     const element = event.currentTarget;
     const values = new FormData(element);
-    const productId = new URLSearchParams(window.location.search).get("productId") || undefined;
+    const productId =
+      new URLSearchParams(window.location.search).get("productId") || undefined;
     setState("submitting");
     setFeedback("");
 
@@ -90,9 +91,10 @@ export function ContactPage({
           website: String(values.get("website") || ""),
         }),
       });
-      const result = (await response.json().catch(() => null)) as
-        | { error?: string; message?: string }
-        | null;
+      const result = (await response.json().catch(() => null)) as {
+        error?: string;
+        message?: string;
+      } | null;
       if (!response.ok) {
         throw new Error(result?.error || "We could not submit your enquiry.");
       }
@@ -114,44 +116,123 @@ export function ContactPage({
     <>
       <SiteHeader />
       <main>
-        <PageHero title={page?.heroHeading || page?.title || "Contact Us"} imageUrl={page?.heroImageUrl || siteAssets.contactHero}
-          responsiveImages={page?.heroImageUrl ? undefined : { tablet: siteAssets.contactHeroTablet, mobile: siteAssets.contactHeroMobile }} />
+        <PageHero
+          title={page?.heroHeading || page?.title || ""}
+          image={page?.heroImage}
+        />
         <section className="contact-section" id="contact-form">
           <div className="contact-copy">
-            <h2>Get in Touch with Our Team</h2>
-            <p>{form
-              ? page?.heroBody || "If you wish to enquire about KLK OLEO Agrochemicals products, please complete the short form provided. Our team will be in contact with you shortly."
-              : "For enquiries about KLK OLEO Agrochemicals products, please email our team. Online enquiries are currently unavailable."}</p>
+            <h2>{page?.content.introduction?.heading}</h2>
+            <p>
+              {form
+                ? page?.content.introduction?.body
+                : copy.contactUnavailableBody}
+            </p>
             <a className="contact-email" href={`mailto:${site.contactEmail}`}>
-              <span className="contact-email__icon"><MdEmail aria-hidden="true" /></span>
+              <span className="contact-email__icon">
+                <MdEmail aria-hidden="true" />
+              </span>
               <span>{site.contactEmail}</span>
             </a>
           </div>
           {!form ? (
-            <div className="contact-form-success contact-form-reveal" role="status">
-              <h2>Contact our team by email.</h2>
-              <p>The online enquiry form is currently unavailable. Please use the email link to get in touch.</p>
+            <div
+              className="contact-form-success contact-form-reveal"
+              role="status"
+            >
+              <h2>{copy.contactUnavailableHeading}</h2>
+              <p>{copy.contactUnavailableBody}</p>
             </div>
           ) : state === "success" ? (
-            <div className="contact-form-success contact-form-reveal" role="status">
-              <h2>Thank you for your request.</h2>
+            <div
+              className="contact-form-success contact-form-reveal"
+              role="status"
+            >
+              <h2>{copy.contactSuccessHeading}</h2>
               <p>{feedback}</p>
-              <button type="button" onClick={() => setState("idle")}>Send another enquiry</button>
+              <button type="button" onClick={() => setState("idle")}>
+                {copy.anotherEnquiry}
+              </button>
             </div>
           ) : (
-            <form className="contact-form contact-form-reveal" onSubmit={handleSubmit}>
-              <label>First Name <span aria-hidden="true">*</span><input name="firstName" autoComplete="given-name" required /></label>
-              <label>Last Name<input name="lastName" autoComplete="family-name" /></label>
-              <label>Company Name<input name="company" autoComplete="organization" /></label>
-              <label>Job Position <span aria-hidden="true">*</span><input name="jobPosition" autoComplete="organization-title" required /></label>
-              <label className="contact-form__full">Country <span aria-hidden="true">*</span><select name="country" defaultValue="" required><option value="">Select Country</option>{countries.map((country) => <option key={country} value={country}>{country}</option>)}</select></label>
-              <label>Email <span aria-hidden="true">*</span><input type="email" name="email" autoComplete="email" required /></label>
-              <label>Company Website<input name="companyWebsite" type="url" autoComplete="url" placeholder="https://" /></label>
-              <label className="contact-form__full">Message <span aria-hidden="true">*</span><textarea name="message" value={message} onChange={(event) => setMessage(event.target.value)} required /></label>
-              <label className="contact-form__full contact-consent"><input type="checkbox" name="consent" required /><span>{form.consentLabel}</span></label>
-              <label className="contact-honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
-              {state === "error" && <p className="contact-form__full form-error" role="alert">{feedback}</p>}
-              <button type="submit" disabled={state === "submitting"}>{state === "submitting" ? "Submitting…" : "Submit"}</button>
+            <form
+              className="contact-form contact-form-reveal"
+              onSubmit={handleSubmit}
+            >
+              <label>
+                {copy.firstName} <span aria-hidden="true">*</span>
+                <input name="firstName" autoComplete="given-name" required />
+              </label>
+              <label>
+                {copy.lastName}
+                <input name="lastName" autoComplete="family-name" />
+              </label>
+              <label>
+                {copy.company}
+                <input name="company" autoComplete="organization" />
+              </label>
+              <label>
+                {copy.jobPosition} <span aria-hidden="true">*</span>
+                <input
+                  name="jobPosition"
+                  autoComplete="organization-title"
+                  required
+                />
+              </label>
+              <label className="contact-form__full">
+                {copy.country} <span aria-hidden="true">*</span>
+                <select name="country" defaultValue="" required>
+                  <option value="">{copy.selectCountry}</option>
+                  {countries.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                {copy.email} <span aria-hidden="true">*</span>
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                />
+              </label>
+              <label>
+                {copy.companyWebsite}
+                <input
+                  name="companyWebsite"
+                  type="url"
+                  autoComplete="url"
+                  placeholder="https://"
+                />
+              </label>
+              <label className="contact-form__full">
+                {copy.message} <span aria-hidden="true">*</span>
+                <textarea
+                  name="message"
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  required
+                />
+              </label>
+              <label className="contact-form__full contact-consent">
+                <input type="checkbox" name="consent" required />
+                <span>{form.consentLabel}</span>
+              </label>
+              <label className="contact-honeypot" aria-hidden="true">
+                Website
+                <input name="website" tabIndex={-1} autoComplete="off" />
+              </label>
+              {state === "error" && (
+                <p className="contact-form__full form-error" role="alert">
+                  {feedback}
+                </p>
+              )}
+              <button type="submit" disabled={state === "submitting"}>
+                {state === "submitting" ? copy.submitting : copy.submit}
+              </button>
             </form>
           )}
         </section>
