@@ -2,25 +2,62 @@
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
+// Names, descriptions and order from the supplied Functionality Description sheet.
 const categories = [
   {
-    title: "Emulsifiers",
-    copy: "Enable stable mixing of oil-based and water-based components, ensuring uniform and stable agrochemical formulations.",
+    "title": "Adjuvants",
+    "copy": "Assist in dissolving active ingredients and formulation components to create stable and effective solutions."
   },
   {
-    title: "Humectants",
-    copy: "Helps sprays stay on leaf surfaces longer, slowing evaporation and enhancing absorption of active ingredients.",
+    "title": "Emulsifiers",
+    "copy": "Helps sprays stay on leaf surfaces longer, slowing evaporation and enhancing absorption of active ingredients."
   },
   {
-    title: "Solvents / Co-solvents",
-    copy: "Assist in dissolving active ingredients and formulation components to create stable and effective solutions.",
+    "title": "Dispersants",
+    "copy": "Enable stable mixing of oil-based and water-based components, ensuring uniform and stable agrochemical formulations."
   },
+  {
+    "title": "Rheology modifiers",
+    "copy": "Control viscosity and flow behaviour to improve spray stability, handling, and application consistency."
+  },
+  {
+    "title": "(Co) Solvents",
+    "copy": "Enhance solubility of active ingredients and support formulation stability across varying conditions."
+  },
+  {
+    "title": "Wetters, Penetrants and Spreaders",
+    "copy": "Improve spray coverage and adhesion on leaf surfaces, promoting better uptake of active ingredients."
+  },
+  {
+    "title": "Active Ingredients",
+    "copy": "Provide the primary biological effect, targeting pests, weeds, or diseases."
+  },
+  {
+    "title": "Defoamer",
+    "copy": "Reduce or prevent foam formation during mixing and application, ensuring accurate dosing and smooth spraying."
+  },
+  {
+    "title": "Soil Moisture Retainers",
+    "copy": "Help maintain soil moisture levels by reducing evaporation and improving water availability to plants."
+  },
+  {
+    "title": "Humectants",
+    "copy": "Slow down droplet drying to extend surface wetness, allowing more time for active ingredient absorption."
+  },
+  {
+    "title": "Anti Drift",
+    "copy": "Minimise spray drift by optimising droplet size, improving on-target deposition and reducing off-target loss."
+  },
+  {
+    "title": "Tank Mix Adjuvants",
+    "copy": "Enhance compatibility and performance of mixed products in the spray tank, ensuring consistent and effective application."
+  }
 ];
 
 export function ProductCategoryCarousel() {
   const items = useMemo(() => [...categories, ...categories, ...categories], []);
   const shellRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(categories.length);
   const [slotWidth, setSlotWidth] = useState(421);
   const [shellWidth, setShellWidth] = useState(1425);
   const [transitioning, setTransitioning] = useState(true);
@@ -46,10 +83,10 @@ export function ProductCategoryCarousel() {
   }, []);
 
   useEffect(() => {
-    if (activeIndex !== 6) return;
+    if (activeIndex !== categories.length * 2) return;
     const timer = window.setTimeout(() => {
       setTransitioning(false);
-      setActiveIndex(3);
+      setActiveIndex(categories.length);
       window.requestAnimationFrame(() => window.requestAnimationFrame(() => setTransitioning(true)));
     }, 760);
     return () => window.clearTimeout(timer);
@@ -93,7 +130,7 @@ export function ProductCategoryCarousel() {
             aria-current={index === activeDot ? "true" : undefined}
             onClick={() => {
               setTransitioning(true);
-              setActiveIndex(3 + index);
+              setActiveIndex(categories.length + index);
             }}
           />
         ))}

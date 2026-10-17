@@ -9,7 +9,7 @@ export function ContactBannerContent({ preserveProductCta, pdf = false, contactH
 }) {
   return <section className={`contact-cta contact-cta--image${pdf ? " product-pdf-contact" : ""}`} aria-labelledby="contact-banner-title" style={{ backgroundImage: `url(${siteAssets.contactBackground})` }}>
     <div className="contact-cta__content" data-reveal="up">
-      <p className="eyebrow">Contact Us</p>
+      <p className="eyebrow">Discuss Your Needs</p>
       <h2 id="contact-banner-title">Still Can&apos;t Find What You&apos;re Looking For?</h2>
       <p className="contact-cta__message">Contact our team and we’ll help you identify the right solution.</p>
       {preserveProductCta

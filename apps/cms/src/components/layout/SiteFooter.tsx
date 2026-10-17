@@ -62,10 +62,10 @@ export function SiteFooter() {
           </p>
           <a
             className="footer-social"
-            href="https://www.linkedin.com/company/klk-oleo/"
+            href="https://www.linkedin.com/company/klkberhad/"
             target="_blank"
             rel="noreferrer"
-            aria-label="KLK OLEO on LinkedIn"
+            aria-label="Kuala Lumpur Kepong Berhad on LinkedIn"
           >
             <FaLinkedinIn aria-hidden="true" />
           </a>

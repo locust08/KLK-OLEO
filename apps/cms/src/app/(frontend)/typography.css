@@ -241,7 +241,10 @@ main h1, main h2, main h3,
 .finder-carousel-card {
   position: relative;
   overflow: hidden;
+  padding: 24px;
 }
+.finder-carousel-card h3 { font-size: 26px; }
+.finder-carousel-card p { line-height: 1.6; }
 .finder-carousel-card::after {
   content: "";
   position: absolute;
@@ -353,7 +356,37 @@ main h1, main h2, main h3,
   .header-search { display: none; }
   .mobile-nav__search { display: block; }
 }
-/* Only the shared footer's bottom legal strip follows the compact main-site treatment. */
+/* Footer typography and column rules follow the supplied revamped-site prototype. */
+.site-footer .footer-brand h2 {
+  max-width: 330px;
+  color: #79b829;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.site-footer .footer-brand p {
+  max-width: 330px;
+  font-size: 14px;
+  line-height: 2;
+}
+.site-footer .footer-column h2 {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgb(255 255 255 / 18%);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.site-footer .footer-column li,
+.site-footer .footer-contact > a {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2;
+}
+.site-footer .footer-column li + li { margin-top: 12px; }
+.site-footer .footer-products ul { gap: 12px 28px; }
+.site-footer .footer-products li + li { margin-top: 0; }
+/* Compact legal strip. */
 .site-footer .footer-bottom {
   flex-direction: column;
   gap: 10px;
